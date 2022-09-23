@@ -1,0 +1,2 @@
+pandoc -r gfm --template=https://github.com/IHE/publications/raw/master/ihe_template.html --metadata title="De-Identification Handbook" --metadata path-prefix="../../../" -w html -o index.html DeID-handbook.md
+REM pandoc -r gfm --standalone --metadata title="De-Identification Handbook" -w html --css=style.css -o index.html DeID-hanbook.md
