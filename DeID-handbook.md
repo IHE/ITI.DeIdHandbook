@@ -43,101 +43,47 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 [2.2 Definitions](#2.2-definitions)
 
-[2.3 De-identification Background
-[11](#de-identification-background)](#de-identification-background)
+[2.3 De-identification Background](#de-identification-background)
 
-[2.3.1 Examples [13](#examples)](#examples)
+[2.4 Pseudonymization](#pseudonymization)
 
-[2.4 Pseudonymization [13](#pseudonymization)](#pseudonymization)
+[2.5 Relinking or Re-identification](#relinking-or-re-identification)
 
-[2.5 Relinking or Re-identification
-[14](#relinking-or-re-identification)](#relinking-or-re-identification)
+[2.6 Threat Categories](#threat-categories)
 
-[2.6 Threat Categories [15](#threat-categories)](#threat-categories)
+[3 Data Categories](#data-categories)
 
-[3 Data Categories [17](#data-categories)](#data-categories)
+[4 Algorithms](#algorithms)
 
-[4 Algorithms [21](#algorithms)](#algorithms)
+[4.1 Redaction](#redaction)
 
-[4.1 Redaction [21](#redaction)](#redaction)
+[4.2 Fuzzing](#fuzzing)
 
-[4.1.1 Characteristics [21](#characteristics)](#characteristics)
+[4.3 Generalization](#generlization)
 
-[4.1.2 Complete redaction
-[21](#complete-redaction)](#complete-redaction)
+[4.4 Longitudinal Consistency Constraints](#longitudinal-consistency-constraints)
 
-[4.1.3 Deletion of value [21](#deletion-of-value)](#deletion-of-value)
+[4.5 Recoverable Substitution](#recoverable-substitution)
 
-[4.1.4 Example [22](#example)](#example)
+[4.6 Text Processing](#text-processing)
 
-[4.1.5 Other Considerations
-[23](#other-considerations)](#other-considerations)
+[4.7 Pass-through](#pass-through)
 
-[4.2 Fuzzing [23](#fuzzing)](#fuzzing)
+[4.8 De-identification datatype/algorithm matrix](#de-identification-datatypealgorithm-matrix)
 
-[4.2.1 Description [23](#description)](#description)
+[5 Process](#process)](#process)
 
-[4.2.2 Applicability [23](#applicability)](#applicability)
+[5.1 Step 1 – Requirements Design](#step-1-requirements-design)
 
-[4.2.3 Example [23](#example-1)](#example-1)
+[5.2 Step 2 – De-identification Design](#step-2-de-identification-design)
 
-[4.2.4 Variations [24](#variations)](#variations)
+[5.3 Step 3 – Design Validation](#step-3-design-validation)
 
-[4.2.4.1 Numeric [24](#numeric)](#numeric)
+[5.4 Step 4 – Implementation](#step-4-implementation)
 
-[4.2.4.2 Zip/Postal [24](#zippostal)](#zippostal)
+[5.5 Step 5 – Implementation Validation](#step-5-implementation-validation)
 
-[4.2.4.3 Codified Values [24](#codified-values)](#codified-values)
-
-[4.2.5 Other Considerations
-[24](#other-considerations-1)](#other-considerations-1)
-
-[4.3 Generalization [24](#_Toc387911997)](#_Toc387911997)
-
-[4.3.1 Applicability [25](#applicability-1)](#applicability-1)
-
-[4.3.2 Example [25](#example-2)](#example-2)
-
-[4.3.3 Advantages and Disadvantages
-[25](#advantages-and-disadvantages)](#advantages-and-disadvantages)
-
-[4.4 Longitudinal Consistency Constraints
-[25](#longitudinal-consistency-constraints)](#longitudinal-consistency-constraints)
-
-[4.4.1 Applicability [26](#applicability-2)](#applicability-2)
-
-[4.4.2 Other Considerations
-[26](#other-considerations-2)](#other-considerations-2)
-
-[4.5 Recoverable Substitution
-[26](#recoverable-substitution)](#recoverable-substitution)
-
-[4.6 Text Processing [26](#text-processing)](#text-processing)
-
-[4.7 Pass-through [26](#pass-through)](#pass-through)
-
-[4.8 De-identification datatype/algorithm matrix
-[27](#de-identification-datatypealgorithm-matrix)](#de-identification-datatypealgorithm-matrix)
-
-[5 Process [28](#process)](#process)
-
-[5.1 Step 1 – Requirements Design
-[28](#step-1-requirements-design)](#step-1-requirements-design)
-
-[5.2 Step 2 – De-identification Design
-[30](#step-2-de-identification-design)](#step-2-de-identification-design)
-
-[5.3 Step 3 – Design Validation
-[31](#step-3-design-validation)](#step-3-design-validation)
-
-[5.4 Step 4 – Implementation
-[31](#step-4-implementation)](#step-4-implementation)
-
-[5.5 Step 5 – Implementation Validation
-[32](#step-5-implementation-validation)](#step-5-implementation-validation)
-
-[5.6 Step 6 – Periodic Review of Implementation
-[32](#step-6-periodic-review-of-implementation)](#step-6-periodic-review-of-implementation)
+[5.6 Step 6 – Periodic Review of Implementation](#step-6-periodic-review-of-implementation)
 
 [6 De-Identification and Pseudonymization for IHE Profile Editors](#6-de-identification-and-pseudonymization-for-ihe-profile-editors)
 
@@ -147,7 +93,7 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 [Appendix A: Annotated References](#appendix:-a-annotated-references)
 
-[Appendix B: Examples (HL7 2.x and CDA](#appendix b:-examples-(hl72.x-and-cda)
+[Appendix B: Examples (HL7 2.x and CDA)](#appendix b:-examples-(hl72.x-and-cda))
 
 [Appendix C: ATNA and Other Logging Considerations](#appendix-c:-atna-and-other-logging-considerations)
 
@@ -872,7 +818,6 @@ The below example applies several different generalization techniques to dates.
 Database record before and after date generalization:
 
 |            |                  |            |                                                     |
-|------------|------------------|------------|-----------------------------------------------------|
 | First Name | Original DOB     | Fuzzed DOB | Technique Applied                                   |
 | Joe        | 1997-03-13 13:12 | 1997-03-14 | Removed time                                        |
 | Jane       | 2005-04-13 11:23 | 2005-04    | Removed day and time                                |
@@ -959,74 +904,65 @@ It is important to consider the option that the resulting data will still be con
 The result of a requirements design is a document. The following outline is suggested:
 
 |---------------------------------------------------------------------------------------------------------------------------|
-| 1. Project Scope
-
-	1.1 What data must be retained in order to satisfy the primary and
-tertiary needs of the project?
-
-	1.2 What is the acceptable level of privacy risk (for example, a tumor
-board will accept a high level of risk than a clinical trial)?
-
-	1.3 What legal sensitivities apply to these data? Are the data subject
-to special sensitivity rules such as for behavioral health?
-
-2. Project Details
-
-	2.1 What are the threats that need to be protected against?
-
-	2.2 Is there a need to re-identify the original patient? What elements
-are needed for this purpose?
-
-	2.3 What general types of entities are being de-identified? Patients?
-Providers? Facilities? Other?
-
-	2.4 What are the additional project requirements beyond raw data, for
-example administrative tracking data?
-
-	2.5 Is there a need to maintain clinical time threading? Does it
-maintain a time relationship to external events? If so, what is the type
-of error allowed (e.g., time shifted, fuzzy, loss of precision)?
-
-	2.6 How accurate do the remaining data elements need to be? Is it
-desirable for the remaining data to not show evidence of
-de-identification?        |
-
-
-
-
-``` 
 1. Project Scope
 
-	1.1 What data must be retained in order to satisfy the primary and
+1.1 What data must be retained in order to satisfy the primary and tertiary needs of the project?
+
+1.2 What is the acceptable level of privacy risk (for example, a tumor board will accept a high level of risk than a clinical trial)?
+
+1.3 What legal sensitivities apply to these data? Are the data subject to special sensitivity rules such as for behavioral health?
+
+2. Project Details
+
+2.1 What are the threats that need to be protected against?
+
+2.2 Is there a need to re-identify the original patient? What elements are needed for this purpose?
+
+2.3 What general types of entities are being de-identified? Patients? Providers? Facilities? Other?
+
+2.4 What are the additional project requirements beyond raw data, for example administrative tracking data?
+
+2.5 Is there a need to maintain clinical time threading? Does it maintain a time relationship to external events? If so, what is the type of error allowed (e.g., time shifted, fuzzy, loss of precision)?
+
+2.6 How accurate do the remaining data elements need to be? Is it desirable for the remaining data to not show evidence of de-identification?
+|
+
+
+
+
+
+1. Project Scope
+
+1.1 What data must be retained in order to satisfy the primary and
 tertiary needs of the project?
 
-	1.2 What is the acceptable level of privacy risk (for example, a tumor
+1.2 What is the acceptable level of privacy risk (for example, a tumor
 board will accept a high level of risk than a clinical trial)?
 
-	1.3 What legal sensitivities apply to these data? Are the data subject
+1.3 What legal sensitivities apply to these data? Are the data subject
 to special sensitivity rules such as for behavioral health?
 
 2. Project Details
 
-	2.1 What are the threats that need to be protected against?
+2.1 What are the threats that need to be protected against?
 
-	2.2 Is there a need to re-identify the original patient? What elements
+2.2 Is there a need to re-identify the original patient? What elements
 are needed for this purpose?
 
-	2.3 What general types of entities are being de-identified? Patients?
+2.3 What general types of entities are being de-identified? Patients?
 Providers? Facilities? Other?
 
-	2.4 What are the additional project requirements beyond raw data, for
+2.4 What are the additional project requirements beyond raw data, for
 example administrative tracking data?
 
-	2.5 Is there a need to maintain clinical time threading? Does it
+2.5 Is there a need to maintain clinical time threading? Does it
 maintain a time relationship to external events? If so, what is the type
 of error allowed (e.g., time shifted, fuzzy, loss of precision)?
 
-	2.6 How accurate do the remaining data elements need to be? Is it
+2.6 How accurate do the remaining data elements need to be? Is it
 desirable for the remaining data to not show evidence of
 de-identification?
-```
+
 
 ## 5.2 Step 2 – De-identification Design
 
@@ -1361,6 +1297,15 @@ The authoring group would like the express gratitude and recognition to the foll
 Geoff Pascoe, Robert Horn, Vassil Peytchev, Charles Parisot, Lisa Nelson, Amit Popat, Dan Trainor, Illa Fortunov, Jennifer Puyenbroek, Karen Witting, Landen Bain, Manuel Metz, and Mick Talley 
 
 ## Open Issues
+
+| Issue # | Description                              | Resolution                                                                            |
+|---------|------------------------------------------|---------------------------------------------------------------------------------------|
+| 3       | Have a separate section for profile writing?| Leave open issue for now.
+
+
+
+
+
 
 <table>
 <colgroup>
