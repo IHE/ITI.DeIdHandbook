@@ -71,7 +71,7 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 [4.8 De-identification datatype/algorithm matrix](#de-identification-datatypealgorithm-matrix)
 
-[5 Process](#process)](#process)
+[5 Process](#process)
 
 [5.1 Step 1 – Requirements Design](#step-1-requirements-design)
 
@@ -91,13 +91,13 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 [Appendices](#appendices)
 
-[Appendix A: Annotated References](#appendix:-a-annotated-references)
+[Appendix A: Annotated References](#appendix:---a-annotated-references)
 
-[Appendix B: Examples (HL7 2.x and CDA)](#appendix b:-examples-(hl72.x-and-cda))
+[Appendix B: Examples /(HL7 2.x and CDA)](#appendix b:---examples-/(hl72.x-and-cda))
 
-[Appendix C: ATNA and Other Logging Considerations](#appendix-c:-atna-and-other-logging-considerations)
+[Appendix C: ATNA and Other Logging Considerations](#appendix-c:---atna-and-other-logging-considerations)
 
-[Appendix D: Acknowledgements](#appendix-d:-acknowledgements)
+[Appendix D: Acknowledgements](#appendix-d:---acknowledgements)
 
 [Open Issues](#open-issues)
 
@@ -494,7 +494,7 @@ The semantic category of each data element determines the algorithm or algorithm
 
 This table can be used as a starting point. There are also standard specifications available (e.g., DICOM PS3.15 Annex E, see Appendix B of this document) that take this high level categorization and expand it to the individual attributes for particular kinds of data. Profile writers and others should extend these tables with any data categories that are specific to their intended use.
 
-Table 3-1: Data Categories
+**Table 3-1: Data Categories**
 
 <table>
 <colgroup>
@@ -903,63 +903,35 @@ It is important to consider the option that the resulting data will still be con
 
 The result of a requirements design is a document. The following outline is suggested:
 
-|---------------------------------------------------------------------------------------------------------------------------|
-1. Project Scope
+> 1. Project Scope
 
-1.1 What data must be retained in order to satisfy the primary and tertiary needs of the project?
-
-1.2 What is the acceptable level of privacy risk (for example, a tumor board will accept a high level of risk than a clinical trial)?
-
-1.3 What legal sensitivities apply to these data? Are the data subject to special sensitivity rules such as for behavioral health?
-
-2. Project Details
-
-2.1 What are the threats that need to be protected against?
-
-2.2 Is there a need to re-identify the original patient? What elements are needed for this purpose?
-
-2.3 What general types of entities are being de-identified? Patients? Providers? Facilities? Other?
-
-2.4 What are the additional project requirements beyond raw data, for example administrative tracking data?
-
-2.5 Is there a need to maintain clinical time threading? Does it maintain a time relationship to external events? If so, what is the type of error allowed (e.g., time shifted, fuzzy, loss of precision)?
-
-2.6 How accurate do the remaining data elements need to be? Is it desirable for the remaining data to not show evidence of de-identification?
-|
-
-
-
-
-
-1. Project Scope
-
-1.1 What data must be retained in order to satisfy the primary and
+> 1.1 What data must be retained in order to satisfy the primary and
 tertiary needs of the project?
 
-1.2 What is the acceptable level of privacy risk (for example, a tumor
+> 1.2 What is the acceptable level of privacy risk (for example, a tumor
 board will accept a high level of risk than a clinical trial)?
 
-1.3 What legal sensitivities apply to these data? Are the data subject
+> 1.3 What legal sensitivities apply to these data? Are the data subject
 to special sensitivity rules such as for behavioral health?
 
-2. Project Details
+> 2. Project Details
 
-2.1 What are the threats that need to be protected against?
+> 2.1 What are the threats that need to be protected against?
 
-2.2 Is there a need to re-identify the original patient? What elements
+> 2.2 Is there a need to re-identify the original patient? What elements
 are needed for this purpose?
 
-2.3 What general types of entities are being de-identified? Patients?
+> 2.3 What general types of entities are being de-identified? Patients?
 Providers? Facilities? Other?
 
-2.4 What are the additional project requirements beyond raw data, for
+> 2.4 What are the additional project requirements beyond raw data, for
 example administrative tracking data?
 
-2.5 Is there a need to maintain clinical time threading? Does it
+> 2.5 Is there a need to maintain clinical time threading? Does it
 maintain a time relationship to external events? If so, what is the type
 of error allowed (e.g., time shifted, fuzzy, loss of precision)?
 
-2.6 How accurate do the remaining data elements need to be? Is it
+> 2.6 How accurate do the remaining data elements need to be? Is it
 desirable for the remaining data to not show evidence of
 de-identification?
 
@@ -1298,39 +1270,10 @@ Geoff Pascoe, Robert Horn, Vassil Peytchev, Charles Parisot, Lisa Nelson, Amit P
 
 ## Open Issues
 
-| Issue # | Description                              | Resolution                                                                            |
-|---------|------------------------------------------|---------------------------------------------------------------------------------------|
-| 3       | Have a separate section for profile writing?| Leave open issue for now.
-
-
-
-
-
-
-<table>
-<colgroup>
-<col style="width: 11%" />
-<col style="width: 54%" />
-<col style="width: 34%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Issue</th>
-<th>Description</th>
-<th>Resolution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>3</td>
-<td>Have a separate section for profile writing?</td>
-<td><p>Leave open issue for now.</p>
-<p>Home in security consideration. Try some words there. “If the risk
-assessment identifies de-identification as a need, then follow the
-process and tailor to content/profile purpose …</p></td>
-</tr>
-</tbody>
-</table>
+| Issue # | Description                                 | Resolution                                                                            |
+|---------|---------------------------------------------|---------------------------------------------------------------------------------------|
+| 3       | Have a separate section for profile writing?| Leave open issue for now. <br /> Home in security consideration. Try some words there. “If the risk
+assessment identifies de-identification as a need, then follow the process and tailor to content/profile purpose …|
 
 ## Closed Issues
 
