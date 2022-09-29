@@ -1,15 +1,13 @@
 **Integrating the Healthcare Enterprise**
 
 <img src="./media/IHE-logo.jpeg" style="width:1.78681in;height:0.92014in"
-alt="IHE_LOGO_for_tf-docs" />
+alt="IHE_LOGO" />
 
-**IHE IT Infrastructure**
-
-**Handbook**
+**[IHE IT Infrastructure](http's://profiles.ihe.net/ITI) Handbook**
 
 **De-Identification**
 
-**Draft**
+**Draft (initial conversion to html)**
 
 Date: TODO
 
@@ -35,73 +33,73 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 **CONTENTS**
 
-[1 Introduction to This Handbook](#1-introduction-to-this-handbook)
+* [1 Introduction to This Handbook](#1-introduction-to-this-handbook)
 
-[2 De-Identification, Pseudonymization, and Relinking](#2-de-identification-pseudonymization-and-relinking)
+* [2 De-Identification, Pseudonymization, and Relinking](#2-de-identification-pseudonymization-and-relinking)
 
-[2.1 General Approach](#21-general-approach)
+	* [2.1 General Approach](#21-general-approach)
 
-[2.2 Definitions](#22-definitions)
+	* [2.2 Definitions](#22-definitions)
 
-[2.3 De-identification Background](#23-de-identification-background)
+	* [2.3 De-identification Background](#23-de-identification-background)
 
-[2.4 Pseudonymization](#24-pseudonymization)
+	* [2.4 Pseudonymization](#24-pseudonymization)
 
-[2.5 Relinking or Re-identification](#25-relinking-or-re-identification)
+	* [2.5 Relinking or Re-identification](#25-relinking-or-re-identification)
 
-[2.6 Threat Categories](#26-threat-categories)
+	* [2.6 Threat Categories](#26-threat-categories)
 
-[3 Data Categories](#3-data-categories)
+* [3 Data Categories](#3-data-categories)
 
-[4 Algorithms](#4-algorithms)
+* [4 Algorithms](#4-algorithms)
 
-[4.1 Redaction](#41-redaction)
+	* [4.1 Redaction](#41-redaction)
 
-[4.2 Fuzzing](#42-fuzzing)
+	* [4.2 Fuzzing](#42-fuzzing)
 
-[4.3 Generalization](#43-generlization)
+	* [4.3 Generalization](#43-generlization)
 
-[4.4 Longitudinal Consistency Constraints](#44-longitudinal-consistency-constraints)
+	* [4.4 Longitudinal Consistency Constraints](#44-longitudinal-consistency-constraints)
 
-[4.5 Recoverable Substitution](#45-recoverable-substitution)
+	* [4.5 Recoverable Substitution](#45-recoverable-substitution)
 
-[4.6 Text Processing](#46-text-processing)
+	* [4.6 Text Processing](#46-text-processing)
 
-[4.7 Pass-through](#47-pass-through)
+	* [4.7 Pass-through](#47-pass-through)
 
-[4.8 De-identification datatype/algorithm matrix](#48-de-identification-datatypealgorithm-matrix)
+	* [4.8 De-identification datatype/algorithm matrix](#48-de-identification-datatypealgorithm-matrix)
 
-[5 Process](#5-process)
+ * [5 Process](#5-process)
 
-[5.1 Step 1 – Requirements Design](#51-step-1--requirements-design)
+	* [5.1 Step 1 – Requirements Design](#51-step-1--requirements-design)
 
-[5.2 Step 2 – De-identification Design](#52-step-2--de-identification-design)
+	* [5.2 Step 2 – De-identification Design](#52-step-2--de-identification-design)
 
-[5.3 Step 3 – Design Validation](#53-step-3--design-validation)
+	* [5.3 Step 3 – Design Validation](#53-step-3--design-validation)
 
-[5.4 Step 4 – Implementation](#54-step-4--implementation)
+	* [5.4 Step 4 – Implementation](#54-step-4--implementation)
 
-[5.5 Step 5 – Implementation Validation](#55-step-5--implementation-validation)
+	* [5.5 Step 5 – Implementation Validation](#55-step-5--implementation-validation)
 
-[5.6 Step 6 – Periodic Review of Implementation](#56-step-6--periodic-review-of-implementation)
+	* [5.6 Step 6 – Periodic Review of Implementation](#56-step-6--periodic-review-of-implementation)
 
-[6 De-Identification and Pseudonymization for IHE Profile Editors](#6-de-identification-and-pseudonymization-for-ihe-profile-editors)
+ * [6 De-Identification and Pseudonymization for IHE Profile Editors](#6-de-identification-and-pseudonymization-for-ihe-profile-editors)
 
-[7 Security Considerations](#7-security-considerations)
+* [7 Security Considerations](#7-security-considerations)
 
-[Appendices](#appendices)
+* [Appendices](#appendices)
 
-[Appendix A: Annotated References](#appendix-a-annotated-references)
+	* [Appendix A: Annotated References](#appendix-a-annotated-references)
 
-[Appendix B: Examples (HL7 2.x and CDA)](#appendix-b-examples-hl7-2x-and-cda))
+	* [Appendix B: Examples (HL7 2.x and CDA)](#appendix-b-examples-hl7-2x-and-cda))
 
-[Appendix C: ATNA and Other Logging Considerations](#appendix-c-atna-and-other-logging-considerations)
+	* [Appendix C: ATNA and Other Logging Considerations](#appendix-c-atna-and-other-logging-considerations)
 
-[Appendix D: Acknowledgements](#appendix-d-acknowledgements)
+	* [Appendix D: Acknowledgements](#appendix-d-acknowledgements)
 
-[Open Issues](#open-issues)
+* [Open Issues](#open-issues)
 
-[Closed Issues](#closed-issues)
+* [Closed Issues](#closed-issues)
 
 # 1 Introduction to This Handbook
 
@@ -903,38 +901,27 @@ It is important to consider the option that the resulting data will still be con
 
 The result of a requirements design is a document. The following outline is suggested:
 
-> 1. Project Scope
-
-> 1.1 What data must be retained in order to satisfy the primary and
+> 1.0 Project Scope
+>    1.1 What data must be retained in order to satisfy the primary and
 tertiary needs of the project?
-
-> 1.2 What is the acceptable level of privacy risk (for example, a tumor
+>    1.2 What is the acceptable level of privacy risk (for example, a tumor
 board will accept a high level of risk than a clinical trial)?
-
-> 1.3 What legal sensitivities apply to these data? Are the data subject
+>     1.3 What legal sensitivities apply to these data? Are the data subject
 to special sensitivity rules such as for behavioral health?
-
-> 2. Project Details
-
-> 2.1 What are the threats that need to be protected against?
-
-> 2.2 Is there a need to re-identify the original patient? What elements
+> 2.0 Project Details
+>     2.1 What are the threats that need to be protected against?
+>     2.2 Is there a need to re-identify the original patient? What elements
 are needed for this purpose?
-
-> 2.3 What general types of entities are being de-identified? Patients?
+>     2.3 What general types of entities are being de-identified? Patients?
 Providers? Facilities? Other?
-
-> 2.4 What are the additional project requirements beyond raw data, for
+>     2.4 What are the additional project requirements beyond raw data, for
 example administrative tracking data?
-
-> 2.5 Is there a need to maintain clinical time threading? Does it
+>     2.5 Is there a need to maintain clinical time threading? Does it
 maintain a time relationship to external events? If so, what is the type
 of error allowed (e.g., time shifted, fuzzy, loss of precision)?
-
-> 2.6 How accurate do the remaining data elements need to be? Is it
+>    2.6 How accurate do the remaining data elements need to be? Is it
 desirable for the remaining data to not show evidence of
 de-identification?
-
 
 ## 5.2 Step 2 – De-identification Design
 
