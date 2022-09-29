@@ -253,16 +253,16 @@ For each element you must consider the associated risk. Risk Assessment is the t
 
 Much of this analysis must be aided by subject matter experts. For example, consider what information is needed for a prescription record that will be part of a clinical review. Clearly the patient name, address, etc. are not needed for the review. Is the prescription number needed? The exact number is probably not needed, but a substitute unique number might be needed for software processing and tracking references, e.g., references from the dispense report. Is the dispensing pharmacy identification needed? Is the dispense time needed? Is the brand or lot number needed? These depend entirely upon the purpose of the review. If it is evaluating pharmacy performance the pharmacy identification needs to be psuedonymized. If not, the pharmacy identification may be anonymized. The subject matter expert can answer this kind of question. The answer will be different for different intended uses.
 
-	 This analysis will also be affected by regulatory requirements. Most
-	 nations have laws that identify particular sensitive data that must be
-	 given special protection, and other laws that may mandate disclosure
-	 of other information. Local regulatory expertise will be needed.
-	
-	 At the end of the requirement analysis process a table of data
-	 elements, intended use, risks, mitigations, and residual risks will be
-	 created. Some standards, e.g., DICOM PS3.15 Annex E, provide tables
-	 that can act as the starting point for creating a use specific final
-	 table. Table 2.1-1 illustrates what a final table might contain.
+> This analysis will also be affected by regulatory requirements. Most
+> nations have laws that identify particular sensitive data that must be
+> given special protection, and other laws that may mandate disclosure
+> of other information. Local regulatory expertise will be needed.
+>
+> At the end of the requirement analysis process a table of data
+> elements, intended use, risks, mitigations, and residual risks will be
+> created. Some standards, e.g., DICOM PS3.15 Annex E, provide tables
+> that can act as the starting point for creating a use specific final
+> table. Table 2.1-1 illustrates what a final table might contain.
 
 **Table 2.1-1: Illustrative List of Fields and Risks**
 
@@ -957,6 +957,42 @@ This leaves data elements that are 'Indirect Identifiers', that is they could be
 It is important to consider the option that the resulting data will still be considered PHI. There are many internal uses, such as Cancer Board reviews, where a de-identification step is taken to reduce the risk of accidental disclosures and bias. The de-identified data could still be easily re-identified, so it must still be protected as PHI. But, the risks of accidental disclosure can be greatly reduced by removing all the unnecessary identifiers.
 
 The result of a requirements design is a document. The following outline is suggested:
+
+|---------------------------------------------------------------------------------------------------------------------------|
+| 1. Project Scope
+
+	1.1 What data must be retained in order to satisfy the primary and
+tertiary needs of the project?
+
+	1.2 What is the acceptable level of privacy risk (for example, a tumor
+board will accept a high level of risk than a clinical trial)?
+
+	1.3 What legal sensitivities apply to these data? Are the data subject
+to special sensitivity rules such as for behavioral health?
+
+2. Project Details
+
+	2.1 What are the threats that need to be protected against?
+
+	2.2 Is there a need to re-identify the original patient? What elements
+are needed for this purpose?
+
+	2.3 What general types of entities are being de-identified? Patients?
+Providers? Facilities? Other?
+
+	2.4 What are the additional project requirements beyond raw data, for
+example administrative tracking data?
+
+	2.5 Is there a need to maintain clinical time threading? Does it
+maintain a time relationship to external events? If so, what is the type
+of error allowed (e.g., time shifted, fuzzy, loss of precision)?
+
+	2.6 How accurate do the remaining data elements need to be? Is it
+desirable for the remaining data to not show evidence of
+de-identification?        |
+
+
+
 
 ``` 
 1. Project Scope
