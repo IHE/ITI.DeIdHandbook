@@ -91,13 +91,13 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 [Appendices](#appendices)
 
-[Appendix A: Annotated References](#appendix:---a-annotated-references)
+[Appendix A: Annotated References](#appendix:-/--a-annotated-references)
 
-[Appendix B: Examples /(HL7 2.x and CDA)](#appendix b:---examples-/(hl72.x-and-cda))
+[Appendix B: Examples /(HL7 2.x and CDA)](#appendix b:-/--examples-/(hl72.x-and-cda))
 
-[Appendix C: ATNA and Other Logging Considerations](#appendix-c:---atna-and-other-logging-considerations)
+[Appendix C: ATNA and Other Logging Considerations](#appendix-c:-/--atna-and-other-logging-considerations)
 
-[Appendix D: Acknowledgements](#appendix-d:---acknowledgements)
+[Appendix D: Acknowledgements](#appendix/-d:-/--acknowledgements)
 
 [Open Issues](#open-issues)
 
@@ -1272,8 +1272,7 @@ Geoff Pascoe, Robert Horn, Vassil Peytchev, Charles Parisot, Lisa Nelson, Amit P
 
 | Issue # | Description                                 | Resolution                                                                            |
 |---------|---------------------------------------------|---------------------------------------------------------------------------------------|
-| 3       | Have a separate section for profile writing?| Leave open issue for now. <br /> Home in security consideration. Try some words there. “If the risk
-assessment identifies de-identification as a need, then follow the process and tailor to content/profile purpose …|
+| 3       | Have a separate section for profile writing?| Leave open issue for now. <br /><br /> Home in security consideration. Try some words there. “If the risk assessment identifies de-identification as a need, then follow the process and tailor to content/profile purpose …|
 
 ## Closed Issues
 
