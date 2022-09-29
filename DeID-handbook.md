@@ -23,7 +23,7 @@ Email: ITI@ihe.net
 
 **Foreword**
 
-This handbook, written by the IHE IT Infrastructure Technical Committee, is published as of TODO [add date]. Comments are invited and can be submitted via traditional methods at [ITI Public Comments](http://www.ihe.net/ITI_Public_Comments/) or by creating a [GitHub Issue](TODO add link). Please reference the section that your comment applies to.
+This handbook, written by the IHE IT Infrastructure Technical Committee, is published as of 2022-xx-xx. Comments are invited and can be submitted via traditional methods at [ITI Public Comments](http://www.ihe.net/ITI_Public_Comments/) or by creating a [GitHub Issue](TODO add link). Please reference the section that your comment applies to.
 
 General information about IHE can be found at [IHE.net](http://www.ihe.net/).
 
@@ -39,51 +39,51 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 [2 De-Identification, Pseudonymization, and Relinking](#2-de-identification-pseudonymization-and-relinking)
 
-[2.1 General Approach](#2.1-general-approach)
+[2.1 General Approach](#21-general-approach)
 
-[2.2 Definitions](#2.2-definitions)
+[2.2 Definitions](#22-definitions)
 
-[2.3 De-identification Background](#de-identification-background)
+[2.3 De-identification Background](#23-de-identification-background)
 
-[2.4 Pseudonymization](#pseudonymization)
+[2.4 Pseudonymization](#24-pseudonymization)
 
-[2.5 Relinking or Re-identification](#relinking-or-re-identification)
+[2.5 Relinking or Re-identification](#25-relinking-or-re-identification)
 
-[2.6 Threat Categories](#threat-categories)
+[2.6 Threat Categories](#26-threat-categories)
 
-[3 Data Categories](#data-categories)
+[3 Data Categories](#3-data-categories)
 
-[4 Algorithms](#algorithms)
+[4 Algorithms](#4-algorithms)
 
-[4.1 Redaction](#redaction)
+[4.1 Redaction](#41-redaction)
 
-[4.2 Fuzzing](#fuzzing)
+[4.2 Fuzzing](#42-fuzzing)
 
-[4.3 Generalization](#generlization)
+[4.3 Generalization](#43-generlization)
 
-[4.4 Longitudinal Consistency Constraints](#longitudinal-consistency-constraints)
+[4.4 Longitudinal Consistency Constraints](#44-longitudinal-consistency-constraints)
 
-[4.5 Recoverable Substitution](#recoverable-substitution)
+[4.5 Recoverable Substitution](#45-recoverable-substitution)
 
-[4.6 Text Processing](#text-processing)
+[4.6 Text Processing](#46-text-processing)
 
-[4.7 Pass-through](#pass-through)
+[4.7 Pass-through](#47-pass-through)
 
-[4.8 De-identification datatype/algorithm matrix](#de-identification-datatypealgorithm-matrix)
+[4.8 De-identification datatype/algorithm matrix](#48-de-identification-datatypealgorithm-matrix)
 
-[5 Process](#process)
+[5 Process](#5-process)
 
-[5.1 Step 1 – Requirements Design](#step-1-requirements-design)
+[5.1 Step 1 – Requirements Design](#51-step-1--requirements-design)
 
-[5.2 Step 2 – De-identification Design](#step-2-de-identification-design)
+[5.2 Step 2 – De-identification Design](#52-step-2--de-identification-design)
 
-[5.3 Step 3 – Design Validation](#step-3-design-validation)
+[5.3 Step 3 – Design Validation](#53-step-3--design-validation)
 
-[5.4 Step 4 – Implementation](#step-4-implementation)
+[5.4 Step 4 – Implementation](#54-step-4--implementation)
 
-[5.5 Step 5 – Implementation Validation](#step-5-implementation-validation)
+[5.5 Step 5 – Implementation Validation](#55-step-5--implementation-validation)
 
-[5.6 Step 6 – Periodic Review of Implementation](#step-6-periodic-review-of-implementation)
+[5.6 Step 6 – Periodic Review of Implementation](#56-step-6--periodic-review-of-implementation)
 
 [6 De-Identification and Pseudonymization for IHE Profile Editors](#6-de-identification-and-pseudonymization-for-ihe-profile-editors)
 
@@ -91,13 +91,13 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 [Appendices](#appendices)
 
-[Appendix A: Annotated References](#appendix/-a:-/--a-annotated-references)
+[Appendix A: Annotated References](#appendix-a-annotated-references)
 
-[Appendix B: Examples (HL7 2.x and CDA)](#appendix/-b:-/--examples-/(hl72.x-and-cda))
+[Appendix B: Examples (HL7 2.x and CDA)](#appendix-b-examples-hl7-2x-and-cda))
 
-[Appendix C: ATNA and Other Logging Considerations](#appendix/-c:-/--atna-and-other-logging-considerations)
+[Appendix C: ATNA and Other Logging Considerations](#appendix-c-atna-and-other-logging-considerations)
 
-[Appendix D: Acknowledgements](#appendix/-d:-/--acknowledgements)
+[Appendix D: Acknowledgements](#appendix-d-acknowledgements)
 
 [Open Issues](#open-issues)
 
