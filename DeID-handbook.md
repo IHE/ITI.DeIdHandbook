@@ -391,6 +391,22 @@ There are various kinds of threats that motivate de-identification. The followin
 
 **Table 2.6-1: Threat Categories**
 
+| Category of Threat | Threat Description     | Scenario            | Example           | Candidate Mitigations          |
+|--------------------|----------------------- |---------------------|-------------------|--------------------------------|
+| 1| Attacker will determine the identity of the subject by combining directly available data elements such as first name, last name, and  address, identification numbers, email, facial image, etc.| Direct identifiers| Full name and address left in the data (e.g., free text field) in one database|Removal of clearly identifying data; removal of text narratives|
+| 2| Attacker will correlate and aggregate fields from other data sources to determine a subjects identity|Multiple data sources|Combining pseudonymized gender and postal code in one data
+source, address in another, name in another. Using publically available data (e.g., auto license plate number). Dates left in the data correlate to known health events for individual (e.g., attacker surveillance of individual knows dates of service).| Attempt to remove data elements that provide for direct correlation, or generalize or fuzz these elements (such as using only first 3 digits of USA Zip postal codes) to make direct correlation harder.
+Using only first 3 digits of USA Zip postal codes Fuzz the dates-of-service.|
+| 3| Attacker will identify an individual via remaining data elements that alone uniquely identify an individual| Use of outliers| Unusual medical condition in a rural area|Supply minimal data set and conduct a statistical analysis of the result; work with sufficiently large data sets|
+| 4| Attacker will infer missing information from provided information|Data elements remaining are sufficient to infer the identity| Can infer the age or gender of a person based on certain tests| Complex threat modeling, statistical analysis; use of large data sets; carefully control vocabulary and allowed values of tests and procedures, etc.|
+| 5| Pseudonym-to-real identifiers cross reference table is compromised| | | |
+| 6| Weak pseudonym algorithm is compromised|A specific pseudonymization approach may use a vulnerable algorithm (such as a non-cryptographic hash) of an identifier|A USA domain Social Security Number is hashed using MD5 with no salt where a “rainbow table” attack is highly viable.| Use a cryptographic hash (with a salt) or create a random identifier that is not a mathematical function of any real identifiers.|
+| 7| Previously protected information is compromised| | Old court records made publically available, by mistake, authorized individual, or social engineering attack| |
+
+
+
+
+
 <table>
 <colgroup>
 <col style="width: 13%" />
@@ -711,7 +727,7 @@ The following example shows how an HL7 V2.x A08 message could be redacted.
 
 **A08 Before:**
 
-| \xb
+\xb
 
 MSH\|^\~\\&\|PROACCESS5\|DHIN\|BIOSENSE\|CDC01\|20080808290000\|\|ADT^A08\|1437549872\|P\|2.5\|\|
 
@@ -724,7 +740,7 @@ PV1\|1\|O\|\|
 
 IN1\|\|Plan123\|PART\|InsureCo\|Address1\|Admin\|+1-801-555-1212\|Group12\|GroupNm\|EmpID\|CoNm\|20080101\|20081231\|Auth\|TypeP\|Spencer^Royce\|Son\|19990101\|Addr\|AOB\|COB\|\|\|\|\|\|\|\|\|\|\|\|\|\|\|""
 
-\x1c |
+\x1c
 
 **A08 after replacing values with fixed values:**
 
