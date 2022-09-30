@@ -711,7 +711,7 @@ The following example shows how an HL7 V2.x A08 message could be redacted.
 
 **A08 Before:**
 
-\xb
+| \xb
 
 MSH\|^\~\\&\|PROACCESS5\|DHIN\|BIOSENSE\|CDC01\|20080808290000\|\|ADT^A08\|1437549872\|P\|2.5\|\|
 
@@ -724,7 +724,7 @@ PV1\|1\|O\|\|
 
 IN1\|\|Plan123\|PART\|InsureCo\|Address1\|Admin\|+1-801-555-1212\|Group12\|GroupNm\|EmpID\|CoNm\|20080101\|20081231\|Auth\|TypeP\|Spencer^Royce\|Son\|19990101\|Addr\|AOB\|COB\|\|\|\|\|\|\|\|\|\|\|\|\|\|\|""
 
-\x1c
+\x1c |
 
 **A08 after replacing values with fixed values:**
 
