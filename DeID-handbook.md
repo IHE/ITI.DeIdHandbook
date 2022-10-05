@@ -33,73 +33,73 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 **CONTENTS**
 
-* [1 Introduction to This Handbook](#1-introduction-to-this-handbook)
+- [1 Introduction to This Handbook](#1-introduction-to-this-handbook)
 
-* [2 De-Identification, Pseudonymization, and Relinking](#2-de-identification-pseudonymization-and-relinking)
+- [2 De-Identification, Pseudonymization, and Relinking](#2-de-identification-pseudonymization-and-relinking)
 
-	* [2.1 General Approach](#21-general-approach)
+	- [2.1 General Approach](#21-general-approach)
 
-	* [2.2 Definitions](#22-definitions)
+	- [2.2 Definitions](#22-definitions)
 
-	* [2.3 De-identification Background](#23-de-identification-background)
+	- [2.3 De-identification Background](#23-de-identification-background)
 
-	* [2.4 Pseudonymization](#24-pseudonymization)
+	- [2.4 Pseudonymization](#24-pseudonymization)
 
-	* [2.5 Relinking or Re-identification](#25-relinking-or-re-identification)
+	- [2.5 Relinking or Re-identification](#25-relinking-or-re-identification)
 
-	* [2.6 Threat Categories](#26-threat-categories)
+	- [2.6 Threat Categories](#26-threat-categories)
 
-* [3 Data Categories](#3-data-categories)
+- [3 Data Categories](#3-data-categories)
 
-* [4 Algorithms](#4-algorithms)
+- [4 Algorithms](#4-algorithms)
 
-	* [4.1 Redaction](#41-redaction)
+	- [4.1 Redaction](#41-redaction)
 
-	* [4.2 Fuzzing](#42-fuzzing)
+	- [4.2 Fuzzing](#42-fuzzing)
 
-	* [4.3 Generalization](#43-generlization)
+	- [4.3 Generalization](#43-generlization)
 
-	* [4.4 Longitudinal Consistency Constraints](#44-longitudinal-consistency-constraints)
+	- [4.4 Longitudinal Consistency Constraints](#44-longitudinal-consistency-constraints)
 
-	* [4.5 Recoverable Substitution](#45-recoverable-substitution)
+	- [4.5 Recoverable Substitution](#45-recoverable-substitution)
 
-	* [4.6 Text Processing](#46-text-processing)
+	- [4.6 Text Processing](#46-text-processing)
 
-	* [4.7 Pass-through](#47-pass-through)
+	- [4.7 Pass-through](#47-pass-through)
 
-	* [4.8 De-identification datatype/algorithm matrix](#48-de-identification-datatypealgorithm-matrix)
+	- [4.8 De-identification datatype/algorithm matrix](#48-de-identification-datatypealgorithm-matrix)
 
- * [5 Process](#5-process)
+- [5 Process](#5-process)
 
-	* [5.1 Step 1 – Requirements Design](#51-step-1--requirements-design)
+	- [5.1 Step 1 – Requirements Design](#51-step-1--requirements-design)
 
-	* [5.2 Step 2 – De-identification Design](#52-step-2--de-identification-design)
+	- [5.2 Step 2 – De-identification Design](#52-step-2--de-identification-design)
 
-	* [5.3 Step 3 – Design Validation](#53-step-3--design-validation)
+	- [5.3 Step 3 – Design Validation](#53-step-3--design-validation)
 
-	* [5.4 Step 4 – Implementation](#54-step-4--implementation)
+	- [5.4 Step 4 – Implementation](#54-step-4--implementation)
 
-	* [5.5 Step 5 – Implementation Validation](#55-step-5--implementation-validation)
+	- [5.5 Step 5 – Implementation Validation](#55-step-5--implementation-validation)
 
-	* [5.6 Step 6 – Periodic Review of Implementation](#56-step-6--periodic-review-of-implementation)
+	- [5.6 Step 6 – Periodic Review of Implementation](#56-step-6--periodic-review-of-implementation)
 
- * [6 De-Identification and Pseudonymization for IHE Profile Editors](#6-de-identification-and-pseudonymization-for-ihe-profile-editors)
+- [6 De-Identification and Pseudonymization for IHE Profile Editors](#6-de-identification-and-pseudonymization-for-ihe-profile-editors)
 
-* [7 Security Considerations](#7-security-considerations)
+- [7 Security Considerations](#7-security-considerations)
 
-* [Appendices](#appendices)
+- [Appendices](#appendices)
 
-	* [Appendix A: Annotated References](#appendix-a-annotated-references)
+	- [Appendix A: Annotated References](#appendix-a-annotated-references)
 
-	* [Appendix B: Examples (HL7 2.x and CDA)](#appendix-b-examples-hl7-2x-and-cda))
+	- [Appendix B: Examples (HL7 2.x and CDA)](#appendix-b-examples-hl7-2x-and-cda))
 
-	* [Appendix C: ATNA and Other Logging Considerations](#appendix-c-atna-and-other-logging-considerations)
+	- [Appendix C: ATNA and Other Logging Considerations](#appendix-c-atna-and-other-logging-considerations)
 
-	* [Appendix D: Acknowledgements](#appendix-d-acknowledgements)
+	- [Appendix D: Acknowledgements](#appendix-d-acknowledgements)
 
-* [Open Issues](#open-issues)
+- [Open Issues](#open-issues)
 
-* [Closed Issues](#closed-issues)
+- [Closed Issues](#closed-issues)
 
 # 1 Introduction to This Handbook
 
@@ -293,7 +293,7 @@ Ultimately there will be residual risk that will need to be documented as unmiti
 
 **Pseudonym**: A computed or assigned value that is substituted for one or more data elements in that subject’s record. Alias and nickname are common terms for pseudonym. For example, a pseudonym of “csrk123” could be added to a subject’s record, and that subject’s first, last, middle, and national ID numbers could be removed. The protection provided by a pseudonym is dependent on the system used to create and protect the relationship between the pseudonym and the person’s real identity. Well known aliases are an example of pseudonyms that provide little protection. More people know the alias “Lenin” than his birth name. This differs from anonymization by preserving continuity throughout the resulting data set.
 
-**Pseudonymization:  **A particular type of anonymization that removes the association between data and a subject and introduces a new identifier that establishes a bidirectional-mapping between that subject and the new identifier. Pronunciation guide: “soo-DON-imm-ization”, rhymes with optimization.
+**Pseudonymization**: A particular type of anonymization that removes the association between data and a subject and introduces a new identifier that establishes a bidirectional-mapping between that subject and the new identifier. Pronunciation guide: “soo-DON-imm-ization”, rhymes with optimization.
 
 **Real name**: The recognized names of the subject (natural person). This is often also called the “legal name”, but there can be subtle differences between legal requirements and identification. The real name can be multiple or change over time as a result of changes like a legal name change due to a marriage. Real names can also include extensive optional elements, such as the family history components of Spanish names or the extended content of some Indian names.
 
