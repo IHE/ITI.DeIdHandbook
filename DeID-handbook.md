@@ -15,13 +15,11 @@ Author: IHE IT Infrastructure Technical Committee
 
 Email: ITI@ihe.net
 
-**Please verify you have the most recent version of this document.** See
-[here](http://ihe.net/Technical_Frameworks/) for Published versions and
-[here](http://ihe.net/Public_Comment/) for Public Comment versions.
+**Please verify you have the most recent version of this document.** See [here](https://profiles.ihe.net/ITI/#1.5) for Published versions and [here](https://profiles.ihe.net/ITI/#1.3) for Public Comment versions.
 
 **Foreword**
 
-This handbook, written by the IHE IT Infrastructure Technical Committee, is published as of 2022-xx-xx. Comments are invited and can be submitted via traditional methods at [ITI Public Comments](http://www.ihe.net/ITI_Public_Comments/) or by creating a [GitHub Issue](TODO add link). Please reference the section that your comment applies to.
+This handbook, written by the IHE IT Infrastructure Technical Committee, is published on TODO for public comment. Comments are invited and can be submitted via traditional methods at [ITI Public Comments](http://www.ihe.net/ITI_Public_Comments/) or by creating a [GitHub Issue](TODO add link). Please reference the section that your comment applies to. In order to be considered in development of the sunsequent version of the handbook, comments must be received by TODO.
 
 General information about IHE can be found at [IHE.net](http://www.ihe.net/).
 
@@ -158,6 +156,8 @@ De-identification is also used to reduce risks such as bias in clinical studies 
 <img src="./media/image2.png"
 style="width:2.82917in;height:1.60903in" />
 
+**Figure 2-1: DeIdentification**
+
 De-identification removes data that are not strictly required for the intended purpose of those data.
 
 - Anonymization disassociates all identifiers from the data;
@@ -209,6 +209,17 @@ Much of this analysis must be aided by subject matter experts. For example, cons
 > table. Table 2.1-1 illustrates what a final table might contain.
 
 **Table 2.1-1: Illustrative List of Fields and Risks**
+
+| Example Field      | Intended Use           | Risk Characteristics      | Mitigation          | Residual Risk           |
+|--------------------|------------------------|---------------------------|---------------------|-------------------------|
+| Medical Record Number (MRN)| Re-identification is required when the patient must be notified of a significant diagnosis.| Direct identification of a patient within a facility, or indirect
+identification outside the facility.| Pseudonymize using separately stored Trial ID and Patient ID relationship| Re-identification database must be protected|
+| National/regional identity numbers (SSN for the UA realm, Provincial Health Card for Canada, NI for the UK, etc.)| None| Direct identification of a patient to an attacker with access to commonly available data sources.| redact| Nil|
+| Codified medications,| | Provided that these data are not outliers, the risk of identifying a person is reasonably low. <br>Inconsistent use of codes and changes to value sets may cause analysis problems.| None, preserve information. <br>Flag unusual values for technical analysis.| Some sensitive disease information, e.g., HIV treatment, remains in the dataset.|
+| Etc.| | | | |
+
+
+
 
 <table>
 <colgroup>
