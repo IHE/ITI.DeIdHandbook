@@ -210,12 +210,11 @@ Much of this analysis must be aided by subject matter experts. For example, cons
 
 **Table 2.1-1: Illustrative List of Fields and Risks**
 
-| Example Field      | Intended Use           | Risk Characteristics      | Mitigation          | Residual Risk           |
-|--------------------|------------------------|---------------------------|---------------------|-------------------------|
-| Medical Record Number (MRN)| Re-identification is required when the patient must be notified of a significant diagnosis.| Direct identification of a patient within a facility, or indirect
-identification outside the facility.| Pseudonymize using separately stored Trial ID and Patient ID relationship| Re-identification database must be protected|
-| National/regional identity numbers (SSN for the UA realm, Provincial Health Card for Canada, NI for the UK, etc.)| None| Direct identification of a patient to an attacker with access to commonly available data sources.| redact| Nil|
-| Codified medications,| | Provided that these data are not outliers, the risk of identifying a person is reasonably low. <br>Inconsistent use of codes and changes to value sets may cause analysis problems.| None, preserve information. <br>Flag unusual values for technical analysis.| Some sensitive disease information, e.g., HIV treatment, remains in the dataset.|
+| Example Field           | Intended Use                        | Risk Characteristics                        | Mitigation                        | Residual Risk                        |
+|-------------------------|-------------------------------------|---------------------------------------------|-----------------------------------|--------------------------------------|
+| Medical Record Number (MRN)| Re-identification is required when the patient must be notified of a significant diagnosis.| Direct identification of a patient within a facility or indirect identification outside the facility.| Pseudonymize using separately stored Trial ID and Patient ID relationship| Re-identification database must be protected|
+| National/regional identity numbers (SSN for the UA realm, Provincial Health Card for Canada, NI for the UK, etc.)| None| Direct identification of a patient to an attacker with access to commonly available data sources.| Redact| Nil|
+| Codified medications| | Provided that these data are not outliers, the risk of identifying a person is reasonably low. <br><br>Inconsistent use of codes and changes to value sets may cause analysis problems.| None, preserve information. <br><br>Flag unusual values for technical analysis.| Some sensitive disease information (e.g., HIV treatment), remains in the dataset.|
 | Etc.| | | | |
 
 
