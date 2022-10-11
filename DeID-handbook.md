@@ -197,16 +197,9 @@ For each element you must consider the associated risk. Risk Assessment is the t
 
 Much of this analysis must be aided by subject matter experts. For example, consider what information is needed for a prescription record that will be part of a clinical review. Clearly the patient name, address, etc. are not needed for the review. Is the prescription number needed? The exact number is probably not needed, but a substitute unique number might be needed for software processing and tracking references, e.g., references from the dispense report. Is the dispensing pharmacy identification needed? Is the dispense time needed? Is the brand or lot number needed? These depend entirely upon the purpose of the review. If it is evaluating pharmacy performance the pharmacy identification needs to be psuedonymized. If not, the pharmacy identification may be anonymized. The subject matter expert can answer this kind of question. The answer will be different for different intended uses.
 
-| This analysis will also be affected by regulatory requirements. Most
-| nations have laws that identify particular sensitive data that must be
-| given special protection, and other laws that may mandate disclosure
-| of other information. Local regulatory expertise will be needed.
-| 
-| At the end of the requirement analysis process a table of data
-| elements, intended use, risks, mitigations, and residual risks will be
-| created. Some standards, e.g., DICOM PS3.15 Annex E, provide tables
-| that can act as the starting point for creating a use specific final
-| table. Table 2.1-1 illustrates what a final table might contain.
+This analysis will also be affected by regulatory requirements. Most nations have laws that identify particular sensitive data that must be given special protection, and other laws that may mandate disclosure of other information. Local regulatory expertise will be needed.
+
+At the end of the requirement analysis process a table of data elements, intended use, risks, mitigations, and residual risks will be created. Some standards, e.g., DICOM PS3.15 Annex E, provide tables that can act as the starting point for creating a use specific final table. Table 2.1-1 illustrates what a final table might contain.
 
 **Table 2.1-1: Illustrative List of Fields and Risks**
 
@@ -216,68 +209,6 @@ Much of this analysis must be aided by subject matter experts. For example, cons
 | National/regional identity numbers (SSN for the UA realm, Provincial Health Card for Canada, NI for the UK, etc.)| None| Direct identification of a patient to an attacker with access to commonly available data sources.| Redact| Nil|
 | Codified medications| | Provided that these data are not outliers, the risk of identifying a person is reasonably low. <br><br>Inconsistent use of codes and changes to value sets may cause analysis problems.| None, preserve information. <br><br>Flag unusual values for technical analysis.| Some sensitive disease information (e.g., HIV treatment), remains in the dataset.|
 | Etc.| | | | |
-
-
-
-
-<table>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 17%" />
-<col style="width: 20%" />
-<col style="width: 15%" />
-<col style="width: 31%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Example Field</th>
-<th>Intended Use</th>
-<th>Risk Characteristics</th>
-<th>Mitigation</th>
-<th>Residual Risk</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Medical Record Number (MRN)</td>
-<td>Re-identification is required when the patient must be notified of a
-significant diagnosis.</td>
-<td>Direct identification of a patient within a facility, or indirect
-identification outside the facility.</td>
-<td>Pseudonymize using separately stored Trial ID and Patient ID
-relationship</td>
-<td>Re-identification database must be protected</td>
-</tr>
-<tr class="even">
-<td>National/regional identity numbers (SSN for the UA realm, Provincial
-Health Card for Canada, NI for the UK, etc.)</td>
-<td>None</td>
-<td>Direct identification of a patient to an attacker with access to
-commonly available data sources.</td>
-<td>redact</td>
-<td>Nil</td>
-</tr>
-<tr class="odd">
-<td>Codified medications,</td>
-<td></td>
-<td><p>Provided that these data are not outliers, the risk of
-identifying a person is reasonably low.</p>
-<p>Inconsistent use of codes and changes to value sets may cause
-analysis problems.</p></td>
-<td><p>None, preserve information.</p>
-<p>Flag unusual values for technical analysis.</p></td>
-<td>Some sensitive disease information, e.g., HIV treatment, remains in
-the dataset.</td>
-</tr>
-<tr class="even">
-<td>Etc.</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 
 Ultimately there will be residual risk that will need to be documented as unmitigated. This may make it necessary to protect the resulting de-identified data through other means like access controls and physical limits.
 
@@ -403,16 +334,13 @@ There are various kinds of threats that motivate de-identification. The followin
 
 | Category of Threat | Threat Description     | Scenario            | Example           | Candidate Mitigations          |
 |--------------------|----------------------- |---------------------|-------------------|--------------------------------|
-| 1| Attacker will determine the identity of the subject by combining directly available data elements such as first name, last name, and  address, identification numbers, email, facial image, etc.| Direct identifiers| Full name and address left in the data (e.g., free text field) in one database|Removal of clearly identifying data; removal of text narratives|
-| 2| Attacker will correlate and aggregate fields from other data sources to determine a subjects identity|Multiple data sources|Combining pseudonymized gender and postal code in one data
-source, address in another, name in another. Using publically available data (e.g., auto license plate number). Dates left in the data correlate to known health events for individual (e.g., attacker surveillance of individual knows dates of service).| Attempt to remove data elements that provide for direct correlation, or generalize or fuzz these elements (such as using only first 3 digits of USA Zip postal codes) to make direct correlation harder.
-Using only first 3 digits of USA Zip postal codes Fuzz the dates-of-service.|
+| 1| Attacker will determine the identity of the subject by combining directly available data elements such as first name, last name, and  address, identification numbers, email, facial image, etc.| Direct identifiers| Full name and address left in the data (e.g., free text field) in one database| Removal of clearly identifying data; removal of text narratives|
+| 2| Attacker will correlate and aggregate fields from other data sources to determine a subjects identity| Multiple data sources| Combining pseudonymized gender and postal code in one data source, address in another, name in another. <br><br>Using publically available data (e.g., auto license plate number). <br><br>Dates left in the data correlate to known health events for individual (e.g., attacker surveillance of individual knows dates of service). | Attempt to remove data elements that provide for direct correlation, or generalize or fuzz these elements (such as using only first 3 digits of USA Zip postal codes) to make direct correlation harder. <br><br>Using only first 3 digits of USA Zip postal codes.<br><br>Fuzz the dates-of-service.
 | 3| Attacker will identify an individual via remaining data elements that alone uniquely identify an individual| Use of outliers| Unusual medical condition in a rural area|Supply minimal data set and conduct a statistical analysis of the result; work with sufficiently large data sets|
 | 4| Attacker will infer missing information from provided information|Data elements remaining are sufficient to infer the identity| Can infer the age or gender of a person based on certain tests| Complex threat modeling, statistical analysis; use of large data sets; carefully control vocabulary and allowed values of tests and procedures, etc.|
 | 5| Pseudonym-to-real identifiers cross reference table is compromised| | | |
 | 6| Weak pseudonym algorithm is compromised|A specific pseudonymization approach may use a vulnerable algorithm (such as a non-cryptographic hash) of an identifier|A USA domain Social Security Number is hashed using MD5 with no salt where a “rainbow table” attack is highly viable.| Use a cryptographic hash (with a salt) or create a random identifier that is not a mathematical function of any real identifiers.|
 | 7| Previously protected information is compromised| | Old court records made publically available, by mistake, authorized individual, or social engineering attack| |
-
 
 
 
