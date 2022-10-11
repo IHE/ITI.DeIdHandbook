@@ -19,7 +19,7 @@ Email: ITI@ihe.net
 
 **Foreword**
 
-This handbook, written by the IHE IT Infrastructure Technical Committee, is published on TODO for public comment. Comments are invited and can be submitted via traditional methods at [ITI Public Comments](http://www.ihe.net/ITI_Public_Comments/) or by creating a [GitHub Issue](TODO add link). Please reference the section that your comment applies to. In order to be considered in development of the sunsequent version of the handbook, comments must be received by TODO.
+This handbook, written by the IHE IT Infrastructure Technical Committee, is published on TODO for public comment. Comments are invited and can be submitted via traditional methods at [ITI Public Comments](http://www.ihe.net/ITI_Public_Comments/) or by creating a [GitHub Issue](TODO add link). Please reference the section that your comment applies to. In order to be considered in development of the subsequent version of the handbook, comments must be received by TODO.
 
 General information about IHE can be found at [IHE.net](http://www.ihe.net/).
 
@@ -156,7 +156,7 @@ De-identification is also used to reduce risks such as bias in clinical studies 
 <img src="./media/image2.png"
 style="width:2.82917in;height:1.60903in" />
 
-**Figure 2-1: DeIdentification**
+**Figure 2-1: De-Identification**
 
 De-identification removes data that are not strictly required for the intended purpose of those data.
 
@@ -197,16 +197,16 @@ For each element you must consider the associated risk. Risk Assessment is the t
 
 Much of this analysis must be aided by subject matter experts. For example, consider what information is needed for a prescription record that will be part of a clinical review. Clearly the patient name, address, etc. are not needed for the review. Is the prescription number needed? The exact number is probably not needed, but a substitute unique number might be needed for software processing and tracking references, e.g., references from the dispense report. Is the dispensing pharmacy identification needed? Is the dispense time needed? Is the brand or lot number needed? These depend entirely upon the purpose of the review. If it is evaluating pharmacy performance the pharmacy identification needs to be psuedonymized. If not, the pharmacy identification may be anonymized. The subject matter expert can answer this kind of question. The answer will be different for different intended uses.
 
-> This analysis will also be affected by regulatory requirements. Most
-> nations have laws that identify particular sensitive data that must be
-> given special protection, and other laws that may mandate disclosure
-> of other information. Local regulatory expertise will be needed.
->
-> At the end of the requirement analysis process a table of data
-> elements, intended use, risks, mitigations, and residual risks will be
-> created. Some standards, e.g., DICOM PS3.15 Annex E, provide tables
-> that can act as the starting point for creating a use specific final
-> table. Table 2.1-1 illustrates what a final table might contain.
+| This analysis will also be affected by regulatory requirements. Most
+| nations have laws that identify particular sensitive data that must be
+| given special protection, and other laws that may mandate disclosure
+| of other information. Local regulatory expertise will be needed.
+| 
+| At the end of the requirement analysis process a table of data
+| elements, intended use, risks, mitigations, and residual risks will be
+| created. Some standards, e.g., DICOM PS3.15 Annex E, provide tables
+| that can act as the starting point for creating a use specific final
+| table. Table 2.1-1 illustrates what a final table might contain.
 
 **Table 2.1-1: Illustrative List of Fields and Risks**
 
