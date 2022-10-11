@@ -342,104 +342,6 @@ There are various kinds of threats that motivate de-identification. The followin
 | 6| Weak pseudonym algorithm is compromised|A specific pseudonymization approach may use a vulnerable algorithm (such as a non-cryptographic hash) of an identifier|A USA domain Social Security Number is hashed using MD5 with no salt where a “rainbow table” attack is highly viable.| Use a cryptographic hash (with a salt) or create a random identifier that is not a mathematical function of any real identifiers.|
 | 7| Previously protected information is compromised| | Old court records made publically available, by mistake, authorized individual, or social engineering attack| |
 
-
-
-
-<table>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 23%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 30%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Category of Threat</th>
-<th>Threat Description</th>
-<th>Scenario</th>
-<th>Example</th>
-<th>Candidate Mitigations</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Attacker will determine the identity of the subject by combining
-directly available data elements such as first name, last name, and
-address, identification numbers, email, facial image, etc.</td>
-<td>Direct identifiers</td>
-<td>Full name and address left in the data (e.g., free text field) in
-one database</td>
-<td>Removal of clearly identifying data; removal of text narratives</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>Attacker will correlate and aggregate fields from other data sources
-to determine a subjects identity</td>
-<td>Multiple data sources</td>
-<td><p>Combining pseudonymized gender and postal code in one data
-source, address in another, name in another.</p>
-<p>Using publically available data (e.g., auto license plate
-number).</p>
-<p>Dates left in the data correlate to known health events for
-individual (e.g., attacker surveillance of individual knows dates of
-service).</p></td>
-<td><p>Attempt to remove data elements that provide for direct
-correlation, or generalize or fuzz these elements (such as using only
-first 3 digits of USA Zip postal codes) to make direct correlation
-harder.</p>
-<p>Using only first 3 digits of USA Zip postal codes</p>
-<p>Fuzz the dates-of-service.</p></td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Attacker will identify an individual via remaining data elements
-that alone uniquely identify an individual</td>
-<td>Use of outliers</td>
-<td>Unusual medical condition in a rural area</td>
-<td>Supply minimal data set and conduct a statistical analysis of the
-result; work with sufficiently large data sets</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Attacker will infer missing information from provided
-information</td>
-<td>Data elements remaining are sufficient to infer the identity</td>
-<td>Can infer the age or gender of a person based on certain tests</td>
-<td>Complex threat modeling, statistical analysis; use of large data
-sets; carefully control vocabulary and allowed values of tests and
-procedures, etc.</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Pseudonym-to-real identifiers cross reference table is
-compromised</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>Weak pseudonym algorithm is compromised</td>
-<td>A specific pseudonymization approach may use a vulnerable algorithm
-(such as a non-cryptographic hash) of an identifier</td>
-<td>A USA domain Social Security Number is hashed using MD5 with no salt
-where a “rainbow table” attack is highly viable.</td>
-<td>Use a cryptographic hash (with a salt) or create a random identifier
-that is not a mathematical function of any real identifiers.</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Previously protected information is compromised</td>
-<td></td>
-<td>Old court records made publically available, by mistake, authorized
-individual, or social engineering attack</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
 # 3 Data Categories
 
 The semantic category of each data element determines the algorithm or algorithms to apply to that element. Below we discuss various categories of data.
@@ -447,6 +349,95 @@ The semantic category of each data element determines the algorithm or algorithm
 This table can be used as a starting point. There are also standard specifications available (e.g., DICOM PS3.15 Annex E, see Appendix B of this document) that take this high level categorization and expand it to the individual attributes for particular kinds of data. Profile writers and others should extend these tables with any data categories that are specific to their intended use.
 
 **Table 3-1: Data Categories**
+
+| Data categories           | Examples                                                | Approaches                                                               |
+|---------------------------|---------------------------------------------------------|--------------------------------------------------------------------------|
+| Person identifying direct identifiers| - person's name (including preferred name, legal name, other names by which the person is known); by name, we are referring to the name and
+all name data elements as specified in ISO/TS 22220; <br><br> person identifiers (including, for example, issuing authorities, types, and designations such as patient account number, medical record number, certificate/license numbers, social security number, health plan beneficiary numbers, vehicle identifiers and serial numbers, including license plate numbers); -  biometrics (voice prints, finger prints, photographs, etc.); <br><br> digital certificates that identify an individual; <br><br>mother's maiden name and other similar relationship-based concept (e.g., family links); <br><br> residential address; <br><br> electronic communications (telephone, mobile telephone, fax, pager, e-mail, URL, IP addresses, device identifiers, message control IDs, and device serial numbers); subject of care linkages (mother, father, sibling, child); <br><br> descriptions of tattoos and identifying marks.| Should be removed where possible, or aggregated at a threshold specified by the domain or jurisdiction. Where these data need to be retained, risk assessment of unauthorized re-identification and appropriate mitigations to identified risks of the resulting data resource shall be conducted.|
+| Aggregation variables| dates of birth and ages; <br><br> admission, discharge dates; and <br><br>location data| For statistical purposes, absolute data references should be avoided. <br><br>Dates of birth are highly identifying. Ages are less identifying but can still pose a threat for linking observational data, therefore it is better to use age groups or age categories. In order to determine safe ranges, re-identification risk analysis should be run, which is outside the scope of this Technical Specification. <br><br>Admission, discharge dates, etc. can also be aggregated into categories of periods, but events could be expressed relatively to a milestone (e.g., x months after treatment). <br><br> Location data, if regional codes are too specific, should be aggregated. Where location codes are structured in a hierarchical way, the finer levels can be stripped, e.g., where postal codes or dialing codes contain 20 000 or fewer people, the code may be changed to 0001)|
+| Demographic data are indirect identifiers| language spoken at home;
+person's communication language;
+religion;
+ethnicity;
+person gender;
+country of birth;
+occupation;
+criminal history;
+person legal orders;
+other addresses (e.g., business address, temporary addresses, mailing
+addresses);
+birth plurality (second or later delivery from a multiple gestation).
+| Should be removed where possible or aggregated at a threshold specified by the domain or jurisdiction. Where these data need to be retained, risk assessment of unauthorized re-identification and appropriate mitigations to identified risks of the resulting data resource shall be conducted.|
+| Outlier variables| rare diagnoses;
+uncommon procedures;
+some occupations (e.g., tennis professional);
+certain recessive traits uncharacteristic of the population in the
+information resource;
+distinct deformities.|Outlier variables should be removed based upon risk assessment.|
+|Persistent data resources claiming pseudonymity||Shall be subject to routine risk analysis for potentially
+identifying outlier variables. This risk analysis shall be conducted at
+least annually. The identified risks shall be coupled with a risk
+mitigation strategy.|
+|Structured data variables|vital signs;
+diagnosis;
+procedures; and
+lab tests and results.|Structured data give some indication of what information can be
+expected and where it can be expected. It is then up to
+re-identification risk analysis to make assumptions about what can lead
+to (unacceptable) identification risks, ranging from simple rules of
+thumb up to analysis of populated databases and inference deductions. In
+“free text”, as opposed to “structured”, automated analysis for privacy
+purposes with guaranteed outcome is not possible.|
+|Freeform text|Some examples are:
+Physician notes
+Referral letters
+SOAP notes
+Chief complaint
+Nursing observations
+Triage notes
+Test interpretation
+Susceptibility test interpretation
+Impressions|Freeform text cannot be assured anonymity. All freeform text
+shall be subject to risk analysis and a mitigation strategy for
+identified risks. Re-identification risks of retained freeform text may
+be mitigated through:
+implementation of policy surrounding freeform text content requiring
+that the freeform text data shall not contain directly identifiable
+information (e.g., patient numbers, names);
+verification that freeform content is unlikely to contain identifying
+data (e.g., where freeform text is generated from structured text);
+revising, rewriting or otherwise converting the data into coded
+form.
+Computationally convert the freeform text into coded concepts, thus
+releasing the need for the freeform text.
+As parsing and natural language processing "data scrubbing" and
+pseudonymization algorithms progress, re-identification risks associated
+with freeform text may merit relaxation of this assertion.
+Freeform text should be revised, rewritten or otherwise converted
+into coded form.|
+|Text/voice data with non-parseable content|Voice recordings|As with freeform text, non-parsable data should be removed.|
+|Image data|A radiology image with patient identifiers on image.|Some medical data contain identifiable information within the
+data. Mitigations of such identifiable data in the structured and coded
+DICOM header should be in accordance with DICOM PS 3.15 Annex E.
+Additional risk assessment shall be considered for identifiable
+characteristics of the image or notations that are part of the image.
+See DICOM PS 3.15 Annex E|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <table>
 <colgroup>
