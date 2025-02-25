@@ -1,7 +1,5 @@
-**Analysis of Optimal De-Identification Algorithms for Family Planning Data Elements**
 
-
-# Introduction
+## Analysis of Optimal De-Identification Algorithms for Family Planning Data Elements
 
 This document, the IHE IT Infrastructure (ITI) Analysis of Optimal
 De-Identification Algorithms for Family Planning Data Elements White
@@ -11,7 +9,7 @@ De-Identification for Family Planning use case published in the IHE
 Quality, Research, and Public Health (QRPH) Family Planning Trial
 Implementation Supplement, Volume 4.
 
-## Purpose of the De-Identification Algorithms for Family Planning Data Elements White Paper
+### Purpose of the De-Identification Algorithms for Family Planning Data Elements White Paper
 
 This white paper is intended to describe the rationale for the selection
 of the de-identification algorithms for each IHE QRPH Family Planning
@@ -128,271 +126,17 @@ Planning supplement and whitepaper:
     De-Identification for Family Planning supplement, and only refer to
     this whitepaper for background information where needed.
 
-<!-- -->
-
-5.  Clinicians, researchers, data analysts, and others who seek to
+2.  Clinicians, researchers, data analysts, and others who seek to
     understand how and why the selected de-identification algorithms
     were chosen for each data element. This whitepaper is targeted at
     this audience.
 
-## Comment Process
-
-IHE International welcomes comments on this document and the IHE
-initiative. They can be submitted at
-[http://www.ihe.net/ITI_Public_Comments](http://www.ihe.net/ITI_Public_Comments/).
-
-## Open and Closed Issues
-
-### Closed Issues
-
-1.  How do we reconcile the two audiences? Audience analysis:
-
--   For ITI we are more concerned with the De-ID readers, not
-    Connectathon implementers or other typical ITI members (so the TF is
-    not necessarily optimal)
-
--   For QRPH we ARE concerned with implementers, and therefore the TF/TI
-    supplement route IS optimal
-
-<!-- -->
-
--   QRPH audience are the people who are responsible for Family Planning
-    data from a regulatory or fiduciary perspective, who need to execute
-    on the de-identification (e.g., in the U.S. this could be a Title X
-    grantee, Office of Population Affairs (OPA) data contractor, or a
-    HIE) who would be gathering Family Planning data and ensuring
-    De-Identification us completed
-
--   The other audience will be vendors who want to go fully automated
-    with family planning data reporting. That will mean that their
-    system not only capture the data, but trigger the de-identification
-    and send the final report in a way that is conformation with the
-    De-ID for Family Planning algorithms so they are transmitting as
-    little PHI as possible.
-
-<!-- -->
-
--   Therefore, in order to satisfy the QRPH audience a TF document is
-    needed, whereas to satisfy the ITI audience, once this supplement is
-    completed and QRPH takes ownership, CPs to the De-ID whitepaper
-    based on lessons learned as well as an accompanying educational
-    PowerPoint should be sufficient.
-
--   We can also publish the FPAR specific pieces as a U.S. national
-    extension. The existing Family Planning Profile is both
-    international and contains Volume 4 components.
-
--   Conclusion – create these artefacts:
-
-<!-- -->
-
--   Audience: Analysts who need to update the FAMILY PLANNING De-ID
-    Profile and other derivative profiles/processes/etc.
-
-<!-- -->
-
--   **Output**: “Everything else” in the current De-ID document, as well
-    as the threat analysis and spreadsheet, etc. – a.k.a. “supporting
-    materials”
-
-<!-- -->
-
--   Audience: FAMILY PLANNING de-ID implementers
-
-<!-- -->
-
--   **Output**: Family Planning De-identification Profile (pages 14-17?)
-
--   **Output**: Guidance for reviewing the profile
-
-<!-- -->
-
--   Authors of de-ID handbook who need to know how to improve the
-    handbook
-
-<!-- -->
-
--   **Output**: list of challenges/gaps for improving the de-id handbook
-
-6.  The unknown sex will have a higher risk, and we may need to
-    re-assess what to do if the value is unknown later. E.g., anybody
-    declared as unknown, their whole data set is restricted from
-    reporting rather than attempting to de-identify it.
-
-If they identify as Unknown, but a pap smear is performed, can we
-classify them as female based on the data? Need to return to the
-discussion about the unknowns.
-
-Leaving this element in increases the risk for the male individual since
-for example for Title X only 8% of the population consuming family
-planning services is male.
-
-Female gender numbers are used to measure contraceptive effectiveness.
-For males, the BMI calculation is different so we do need the binary at
-minimum. There are enough other reasons to know number of males that the
-best method may be to completely drop any encounter level data for
-patients that identify as unknown. The risk to that approach is that
-differences in numbers reported may identify the number of unknowns at a
-given site; however, it is possible to lose encounter level reports for
-other reasons so we need to determine the likelihood of identifying
-unknown genders. As a result, a two-step approach may be best, where the
-service site itself would:
-
-Use a binary and ask individuals to pick “Female” or “Male” if they can;
-and
-
-Redact entire encounter level data for patients that identify as “other”
-and do not submit that encounter at all.
-
-After repeated discussion, the committee concluded that encounter
-documents where the Administrative sex was listed as “other” that this
-value should be changed to female for de-identification purposes.
-
-7.  Hashing is not useful for the Limited English Proficiency (LEP) data
-    element because the values are too obvious. For round one, we agree
-    that it is needed and can be reduced to a YES/NO. For round two, we
-    need to determine if there is a way to reduce the risk for the
-    population for which the answer is YES.
-
-Given that the data set is a large population, people with a limited
-language proficiency in English are still fairly numerous so the group
-of people affected by a “YES” is not an extremely high risk of
-identifiability (\~600 000 in the last year).
-
-8.  How do we pilot the results of this effort?
-
-The analysis is expected to be done by the Title X program prior to
-going live with Protected Health Information (PHI).
-
-9.  Can we even do this with Clinical Document Architecture
-    (CDA<sup>®</sup>[^1])? I.e., Are the new data elements state-able in
-    a CDA document? (w.r.t mandatory fields, etc.?)
-
-<!-- -->
-
-1.  For data elements where the de-identification algorithm transforms
-    the data element away from its original data type, is it possible to
-    transmit the new data type in CDA?
-
-2.  Not using base CDA, you would have to define and use an extension
-
-3.  If it is or is not possible, what is the preferred approach for
-    formatting the new set of data? (FHIR<sup>®</sup>[^2], CDA, flat
-    file, etc.?) – May want to use a format that R supports, such as
-    comma delimited or flat XML/JSON
-
-<!-- -->
-
-10. What do user/family planning organizations think about replacing
-    their current data fuzzing practices to use the ones specified in
-    this document for harmonization purposes and to lower overall risk
-    and to further align the data so that data analytics work?
-
-<!-- -->
-
-1.  We are aware that some organizations are already generalizing some
-    dates to the first day of the month, rather than the current model
-    of week/year or month/year. What do other organizations do/prefer in
-    this area?
-
-> Most organizations that responded to public comment indicated that it
-> would be preferable to allow the centralized de-identifier to
-> de-identify once, instead of fuzzing locally. Many organizations
-> responded that they are unable to do local fuzzing or
-> de-identification.
->
-> Additionally, week/year plus an identifier of sequence of visit in the
-> instance of multiple visits per year was the preferred method for
-> de-identifying visit dates.
-
-11. How do you measure the linkage to care for HIV positive patients?
-    Specifically:
-
-<!-- -->
-
-2.  Referrals to care,
-
-3.  Date of last pap test/how long since last pap test, etc.?
-
-4.  If a patient needs something within 90 days and it turns out to be
-    91 days because of the date de-identification identified in this
-    profile, will this cause issues when calculating a performance
-    measure?
-
-<!-- -->
-
-1.  If yes, how do organizations with fuzzing practices account for
-    those now? For example, if someone is measuring the percentage of
-    positive CT cases treated within 14 and 30 days (2 separate
-    measures) then they may build a buffer around the days to account
-    for fuzzing. This is not a concern outside of the agency. Should we
-    be concerned if data are fuzzed at the agency level and then
-    aggregated and “re-fuzzed” at higher levels?
-
-    Comments indicated that slight deviation from 90 to 91 days is not
-    an issue, as well as strong preference for handling of sensitive HIV
-    linkages as a separate report.
-
-<!-- -->
-
-12. At the present time, it is unclear whether more than the grantees
-    should have access to the mapping table for provider identifiers.
-
-    Public comment feedback indicated no requests for access to mapping
-    tables.
-
-    Mapping table access policy will be determined by OPA for FPAR 2.0.
-    Severe restriction of access to mapping tables is strongly
-    recommended.
-
-13. At what level of the Title X service network should
-    de-identification occur? Please submit commentary as to whether you
-    as a Title X Grantee, sub-recipient or service site feel you possess
-    the capability, resources and desire to perform de-identification or
-    if it is preferable for OPA to fund a centralized point of
-    de-identification (third party vendor) to whom you will submit your
-    identified data to. Please note:
-
--   De-Identification at a lower level of the network, i.e., at the
-    grantee or sub-recipient level may negatively impact the level of
-    detail in the data, e.g., collapsed age categories.
-
--   For data accuracy purposes, the fewer points of de-identification
-    the better. If there is only one third-party who is responsible for
-    de-Identifying the data sets, there will be less potential for
-    error, and fewer possibilities for over-fuzzing data or negatively
-    impacting longitudinal consistency.
-
--   De-identification of contraceptive methods for “low probability
-    types” should be made only at the de-ID contractor level, otherwise
-    grantees, subrecipients, and sites will be forced to report many of
-    their users in supergroups. New or LARC (Long Acting Reversible
-    Contraceptive) users would likely be reclassified into a supergroup
-    and OPA would lose information on the uptake of new or LARC methods.
-    Information about the specific types of new and LARC methods (IUD or
-    implant) is needed to examine barriers, training and TA needs, etc.
-    This will result in the loss of helpful analytic information for
-    OPA.
-
--   However, some Grantees or State Health Departments, or even service
-    sites may desire to de-Identify themselves prior to submitting data
-    to the centralized FPAR repository.
-
--   Please comment and let us know if a single de-identification point
-    is possible, or if multiple points need to be planned for.
-
--   What are the concerns, if any, if data were reported in an
-    identified form to a centralized/third party for de-identification?
-
-    De-Identification by a single, centralized body was preferred by
-    most of those who provided feedback.
-
-# De-Identification goals for Family Planning Data Elements
+## De-Identification goals for Family Planning Data Elements
 
 This section contains a high-level analysis of the data elements
 described in the QRPH Family Planning Profile Volume 1 Appendix B.
 
-## Problem Description
+### Problem Description
 
 The De-Identification process involves consuming the original Family
 Planning CDA documents as inputs, and creating a new, De-Identified for
@@ -417,7 +161,7 @@ In order to focus discussions, we have selected the U.S. Office of
 Population Affairs (OPA) Title X Family Planning Annual Reports
 (FPAR)[^3] use case as our example.
 
-## Definitions
+### Definitions
 
 Anonymization: A process that is intended to irreversibly remove the
 association between a subject and information that can identify the
@@ -440,11 +184,11 @@ that establishes a bidirectional-mapping between that subject and the
 new identifier. Pronunciation guide: “soo-DON-imm-ization”, rhymes with
 optimization
 
-## Conventions
+### Conventions
 
 This section intentionally left blank.
 
-## Use Cases 
+### Use Cases 
 
 OPA requires the collection of family planning service delivery data in
 the form of the FPAR as a condition of its grant awards. The office uses
@@ -525,12 +269,12 @@ participants may also be submitting other types of CDA documents through
 the same or similar workflows. These other document types are out of
 scope for this whitepaper
 
-<img src="fp-image3.emf" style="width:6.87292in;height:3.60998in" />
+<img src="fp-flow.png" />
 
 Figure 2.4-1: Data Flows in the Title X Family Planning Annual Report
 Use Case
 
-## De-Identification Methods
+### De-Identification Methods
 
 De-identification, anonymization, and pseudonymization are processes
 that reduce the probability of data being associated with a specific
@@ -595,7 +339,7 @@ of the patient should be removed and the data made fully anonymous.
 Maintenance and repair logs for equipment and software are a frequent
 patient disclosure risk where anonymization is very appropriate.
 
-## Data Models 
+### Data Models 
 
 The following table contains a high-level list of the IHE Family
 Planning Profile data elements, along with the suggested default
@@ -823,9 +567,9 @@ inches.</p>
 </tbody>
 </table>
 
-## De-Identification algorithm analysis
+### De-Identification algorithm analysis
 
-### Facility identifier
+#### Facility identifier
 
 From a health services research perspective, the facility identifier is
 needed, at a minimum, to compare services or outcomes at the level of a
@@ -950,17 +694,18 @@ identifiers, as well as the list of de-identified values that they are
 mapped to. For example:
 
 | Facility ID of Origin | De-Identified Facility ID (Example only) |
-|-----------------------|------------------------------------------|
+| --------------------- | ---------------------------------------- |
 | 12678                 | 111-111                                  |
 | 92457                 | 222-222                                  |
 | 92774                 | 333-333                                  |
 | 92837                 | 999-999                                  |
 |                       | 777-777                                  |
+{:.grid}
 
 Identifier mapping should be generated using a standardized algorithm,
 using a cryptographically strong randomly assigned identifier.
 
-### Clinical Provider identifier
+#### Clinical Provider identifier
 
 Uses of this data element differ across different countries. In the
 U.S., consumers of the de-identified data set may want to track outcomes
@@ -992,7 +737,7 @@ do so. Given this, the preferred approach is a mapping table; however,
 the determination of where this mapping occurs, prior to submission to
 OPA, is a critical component.
 
-### Patient identifier
+#### Patient identifier
 
 The Patient identifier is needed in the de-identified family planning
 data set to track longitudinal consistency of the data. In other words,
@@ -1063,7 +808,7 @@ mapping table must be made clear.
 Identifier mapping should be generated using a standardized algorithm,
 using a cryptographically strong randomly assigned identifier.
 
-### Visit Date
+#### Visit Date
 
 The visit date is used to measure trends, intervals between visits,
 intervals between assessment of pregnancy intention and positive
@@ -1120,7 +865,7 @@ Note 3: When other dates that are recorded, such as test dates or
 referral dates match the visit date, those dates must be modified to
 match the weekly value of the visit date.
 
-### Date of Birth
+#### Date of Birth
 
 Date of birth is used in family planning to do cross-tabulation with
 reproductive lifespan, reproductive lifecycle and to determine services
@@ -1166,7 +911,7 @@ submit that as a whole number (i.e., if the person is 18.6 at the time
 of the visit, the age reported will be “18”. For clients over 50,
 generalize their age to “over 50”.
 
-### Administrative Sex
+#### Administrative Sex
 
 Administrative Sex is not a clinical or genetic statement; it is used
 for administrative purposes. Administrative Sex also does not equal
@@ -1210,7 +955,7 @@ Sex” to “Administrative Gender” in August 2012, which has caused some
 confusion. The term used here is “Administrative Sex” because that is
 what is currently used in the IHE QRPH Family Planning Profile.
 
-### Pregnancy History
+#### Pregnancy History
 
 Pregnancy History is a stratification variable that can have fertility
 implications in the clinical realm. In the performance measurement
@@ -1226,7 +971,7 @@ profiles. If other use cases exist that need this data element,
 implementers will need its conduct their own analysis to determine the
 best de-identification algorithm for that use case.
 
-### Limited Language Proficiency
+#### Limited Language Proficiency
 
 The data element describes family planning users who do not speak the
 national dominant language (e.g., English in the U.S.) as their primary
@@ -1253,7 +998,7 @@ is a large population, people with a limited language proficiency in
 English are still fairly numerous so the group of people affected by a
 “YES” is not an extremely high risk of identifiability.
 
-### Ethnicity
+#### Ethnicity
 
 Ethnicity is a stratification variable used in performance measurement
 to track healthcare disparities by ethnicity. For example, in the U.S.
@@ -1282,7 +1027,7 @@ For the stated use case in the U.S., “Hispanic or Latino” and “Not
 Hispanic or Latino” are sufficient. Note that current FPAR has three
 categories; Hispanic/Latino, Not Hispanic/Not Latino, and Unknown.
 
-### Race 
+#### Race
 
 Race is used as a stratification variable to track healthcare
 disparities by race. For example, in the U.S., 21% of Title X users in
@@ -1323,7 +1068,7 @@ will appear in the original CDA document as a separate entry and each
 entry will be de-identified using the same method. I.e., a dual race of
 “Chinese” and “Polish” will be de-identified as “Asian and “White”.
 
-### Annual Household Income
+#### Annual Household Income
 
 Annual Household Income is asked for in order to assess whether the
 patient qualifies for the annual poverty level. This is calculated
@@ -1360,7 +1105,7 @@ The conclusion reached is for the reporting organization to calculate
 and submit the FPL percentage in lieu of submitting Income AND Household
 size.
 
-### Household Size
+#### Household Size
 
 Household size as it is defined in the IHE QRPH Family Planning Profile
 is data that is not identifiable, does not need to be modified and can
@@ -1370,7 +1115,7 @@ Income. Therefore, for de-identification purposes, the Household size
 will be calculated into FPL percentage and then deleted. See Annual
 Household Income for details.
 
-### Visit Payer
+#### Visit Payer
 
 This data element is used for performance metrics to see what percentage
 of people are uninsured, are served by Medicaid, etc. Categories used
@@ -1389,7 +1134,7 @@ generalization to not be very identifying.
 
 The conclusion reached is to use the PHIN vocabulary described here.
 
-### Current Pregnancy Status
+#### Current Pregnancy Status
 
 This data element is needed for performance measurement purposes to
 justify why a method of contraception is not assigned. This data point
@@ -1411,7 +1156,7 @@ pregnant).
 
 The decision made is to generalize to Yes, No or Unknown.
 
-### Pregnancy Intention 
+#### Pregnancy Intention
 
 Pregnancy intention is used in performance measurement to evaluate the
 proportion of patients that were assessed in the last year.
@@ -1437,7 +1182,7 @@ same value set and as a result are not necessarily identifying the
 individual’s gender. This data element can be passed along without
 applying any de-identification algorithms.
 
-### Sexual Activity
+#### Sexual Activity
 
 This data element is used in performance measurements to establish a
 correct denominator for clients who have been sexually active in the
@@ -1447,7 +1192,7 @@ The value set is limited to “yes/no/unknown” and is not considered to
 provide enough detail to identify someone. This data element can be
 passed along without applying any de-identification algorithms.
 
-### Contraceptive Method at Intake
+#### Contraceptive Method at Intake
 
 Contraceptive method at intake is used in performance measurement to
 compare “method at intake” and “method at exit” to determine if patients
@@ -1463,7 +1208,7 @@ The full list, however, may be useful for analytic options.
 The current value list includes:
 
 | Diaphragm or cap                       | Emergency Contraception (EC) |
-|----------------------------------------|------------------------------|
+| -------------------------------------- | ---------------------------- |
 | Female condom                          | Female sterilization         |
 | Fertility Awareness Method (FAM) FAM   | Implant                      |
 | Injectables                            | IUD/IUS                      |
@@ -1473,11 +1218,13 @@ The current value list includes:
 | Spermicide                             | Sponge                       |
 | Vaginal Ring                           | Vasectomy                    |
 | Withdrawal                             | Decline to answer            |
+{:.grid}
+
 
 For de-identification purposes, this data point may be passed through
 unchanged.
 
-### Reason for No Contraceptive Method 
+#### Reason for No Contraceptive Method
 
 Reason for No Contraceptive Method is used to further specify who should
 be included in a given analysis. For example, don’t include people
@@ -1505,7 +1252,7 @@ Note: For international projects, the seeking pregnancy and same-sex
 partner elements may have different sensitivities and should be
 evaluated independently.
 
-### Contraceptive Method at Exit
+#### Contraceptive Method at Exit
 
 Please see Contraceptive Method at Intake in Section 2.7.17 for details.
 
@@ -1515,7 +1262,7 @@ conclude that this data element can be passed on unmodified, with the
 categories “Highly Effective”, “Moderately Effective”, and “Less
 Effective “used for low probability types.
 
-### Date of Last Pap test
+#### Date of Last Pap test
 
 Date of last pap test is used for a performance measure on cervical
 cancer screenings, intervals between tests, etc. Time of day is not a
@@ -1532,7 +1279,7 @@ measurement purposes.
 The day can be removed and the value can be generalized to week and
 year.
 
-### HPV Co-test Ordered
+#### HPV Co-test Ordered
 
 HPV co-test is a date used for performance measures on HPV screenings.
 This data element constitutes the date that the HPV co-test was ordered,
@@ -1541,7 +1288,7 @@ accurate than the date of the last pap test. However, it is used in the
 same way as date of last pap test above, and can be generalized to
 week/year without loss.
 
-### CT Screen Ordered
+#### CT Screen Ordered
 
 The CT screen is a date used for performance measures on Chlamydia
 screening. This data element constitutes the date that the last
@@ -1555,21 +1302,21 @@ overall compliance scores. The lack of precision may negatively impact
 the overall measures and their usability. This concern would not apply
 with a generalization to week/year.
 
-### GC Screen Ordered
+#### GC Screen Ordered
 
 The GC screen is a date used for performance measures on Gonorrhea
 screening. This data element constitutes the date that the last
 Gonorrhea test was ordered, and is similar to the HPV co-test element
 above and can be generalized to week/year without loss.
 
-### HIV Screen Ordered
+#### HIV Screen Ordered
 
 The HIV screen is a date used for performance measures on HIV screening.
 This data element constitutes the date that the last HIV test was
 ordered, and is similar to the HPV co-test element above and can be
 generalized to week/year without loss.
 
-### HIV Rapid Screen Result
+#### HIV Rapid Screen Result
 
 The HIV Rapid Screen Result is an actual result whose value set is
 Negative, Reactive, Invalid.
@@ -1645,11 +1392,11 @@ Care, instead of at the individual level. Until that separate mechanism
 is established, for de-identification purposes the HIV data should be
 deleted.
 
-### HIV Supplemental Result
+#### HIV Supplemental Result
 
 -   This data element is to be deleted from the de-identified data set.
 
-### Referral Recommended Date and Referral Visit Completed Date 
+#### Referral Recommended Date and Referral Visit Completed Date 
 
 For performance measurement purposes, the referral recommended date and
 referral visit completed date are used to identify if visits like
@@ -1669,7 +1416,7 @@ these data elements are collected, then:
 -   Generalize dates to week/month/year or month/year, if possible, for
     non-HIV referral dates
 
-### Systolic and Diastolic blood pressure
+#### Systolic and Diastolic blood pressure
 
 The Systolic and Diastolic blood pressure data elements are used in
 performance measurement for blood pressure screening goals for male
@@ -1681,7 +1428,7 @@ considered as just data rather than indirect or direct identifiers and
 do not require de-identification. As such, these values should be passed
 through unchanged.
 
-### Height and Weight
+#### Height and Weight
 
 Height and weight are used in performance measurement of BMI. Weight may
 also be useful for measurement of effectiveness of contraception in
@@ -1719,7 +1466,7 @@ Upper and lower limits for height and weight are based on the NHIS
 survey:
 ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NHIS/2010/samadult_freq.pdf
 
-### Smoking status
+#### Smoking status
 
 Smoking status is used for performance measurement purposes to report
 that clinicians are assessing the smoking status of patients in family
@@ -1729,7 +1476,7 @@ In the U.S., Smoking status is encoded as per the Meaningful Use data
 set:
 
 | Current every day smoker       | 449868002       |
-|--------------------------------|-----------------|
+| ------------------------------ | --------------- |
 | Current some day smoker        | 428041000124106 |
 | Former smoker                  | 8517006         |
 | Never smoker                   | 266919005       |
@@ -1737,6 +1484,8 @@ set:
 | Unknown if ever smoked         | 266927001       |
 | Heavy tobacco smoker           | 428071000124103 |
 | Light tobacco smoker           | 428061000124105 |
+{:.grid}
+
 
 The Meaningful Use value set represents a certain degree of fuzzing, as
 clinical providers may be documenting more detail on smoking status but
@@ -1749,10 +1498,9 @@ Approximately 10% of women reported smoking during the last 3 months of
 pregnancy according to the 2011 PRAMS. As a result, these are fairly
 large categories. This data can be passed through unchanged.
 
-<span id="_Toc468201454" class="anchor"></span>Appendix A: Sample FP CDA
-documents and their De-Identified documents
+### Appendix A: Sample FP CDA documents and their De-Identified documents
 
-<span id="_Toc468201455" class="anchor"></span>A.1 Patient: JB
+#### A.1 Patient: JB
 
 JB is a 16-year-old G-0 P-0 in the clinic for STI screening and well
 woman exam. Last menstrual period (LMP) was 3 weeks ago. No history of
@@ -1778,7 +1526,7 @@ Geographic location: HHS Region 4 (Alabama, Florida, Georgia, Kentucky,
 Mississippi, North Carolina, South Carolina, and Tennessee)
 
 | Data Element                                            | Original Data                                                        | Data after application of de-identification |
-|---------------------------------------------------------|----------------------------------------------------------------------|---------------------------------------------|
+| ------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------- |
 | **Patient Identifier**                                  | \[patient ID from service site\]                                     | \[Mapped patient ID=333-333\]               |
 | **Date of Birth**                                       | 5 June 1998                                                          | 16                                          |
 | **Administrative Sex**                                  | Female                                                               | Female                                      |
@@ -1815,14 +1563,15 @@ Mississippi, North Carolina, South Carolina, and Tennessee)
 | **Annual Household Income**                             | $9,000                                                               | FPL 44%                                     |
 | **Household Size**                                      | 3                                                                    | DELETED                                     |
 | **Insurance**                                           | No Insurance=NA                                                      | NA                                          |
+{:.grid}
 
-<span id="_Toc468201456" class="anchor"></span>A.2 Patient: MT
+#### A.2 Patient: MT
 
 MT is a 52-year-old G-7 P-5 TAB-1 SAB-1 in the clinic to follow up on
 the results of an abnormal pap test she had at a different provider 4
 months ago. LMP 1 week ago. History of herpes, but no other STI. Smokes
 1 pack of cigarettes a day for past 30 years. BMI 29. BP 145/96 P 80 R
-14. Prior pap history unknown, but she is pretty sure she had one when
+1.  Prior pap history unknown, but she is pretty sure she had one when
 she was pregnant 9 years ago. Says she is certain that she doesn’t want
 any more children and will use condoms for contraception in future. She
 brings in a copy of the letter from a visit 6 months ago that was sent
@@ -1841,7 +1590,7 @@ Geographic location: HHS Region 6 (Arkansas, Louisiana, New Mexico,
 Oklahoma, and Texas)
 
 | **Patient Identifier**                           | \[patient ID from service site\]                                     | \[Patient Mapping Table Entry 2\]  |
-|--------------------------------------------------|----------------------------------------------------------------------|------------------------------------|
+| ------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------- |
 | **Date of Birth**                                | 1 Oct 1962                                                           | Over 50                            |
 | **Administrative Sex**                           | Female                                                               | Female                             |
 | **Language of Communication**                    | en-US                                                                | LEP NO                             |
@@ -1876,8 +1625,8 @@ Oklahoma, and Texas)
 | **Annual Household Income**                      | $24,738                                                              | FPL 125%                           |
 | **Household Size**                               | 3                                                                    | DELETED                            |
 | **Insurance**                                    | 5                                                                    | 5                                  |
+{:.grid}
 
-<span id="_Toc468201457" class="anchor"></span>A.3 Patient: LD
 
 <u>Visit 1</u>
 
@@ -1913,7 +1662,7 @@ this client-visit can be closed out.
 Visit date: 15 Aug 2014
 
 | **Patient Identifier**                           | \[patient ID from service site\]                                     | \[Patient Mapping Table Entry 3\]  |
-|--------------------------------------------------|----------------------------------------------------------------------|------------------------------------|
+| ------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------- |
 | **Date of Birth**                                | 2 Jan 1978                                                           | 36                                 |
 | **Administrative Sex**                           | Male                                                                 | Male                               |
 | **Language of Communication**                    | en-US                                                                | LEP No                             |
@@ -1948,10 +1697,10 @@ Visit date: 15 Aug 2014
 | **Annual Household Income**                      | $47,252                                                              | FPL 235%                           |
 | **Household Size**                               | 3                                                                    | DELETED                            |
 | **Insurance**                                    | NA                                                                   | NA                                 |
+{:.grid}
 
-<span id="h.wdcdphexk0p1" class="anchor"></span>
 
-A.4 Patient: JW
+#### A.4 Patient: JW
 
 JW is a 23-year-old G-0 Black female who has been with her partner for 2
 years and they have decided to start a family. She is seeing you today
@@ -1972,7 +1721,7 @@ American Samoa, Commonwealth of the Northern Mariana Islands, Federated
 States of Micronesia, Guam, Marshall Islands, and Republic of Palau)
 
 | **Patient Identifier**                           | \[patient ID from service site\]                                     | \[Patient Mapping Table Entry 4\]  |
-|--------------------------------------------------|----------------------------------------------------------------------|------------------------------------|
+| ------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------- |
 | **Date of Birth**                                | 17 Jun 1991                                                          | 23                                 |
 | **Administrative Sex**                           | Female                                                               | Female                             |
 | **Language of Communication**                    | en-US                                                                | LEP No                             |
@@ -2007,8 +1756,11 @@ States of Micronesia, Guam, Marshall Islands, and Republic of Palau)
 | **Annual Household Income**                      | $22,738                                                              | FPL 143%                           |
 | **Household Size**                               | 2                                                                    | DELETED                            |
 | **Insurance**                                    | Self-Pay=81                                                          | 81                                 |
+{:.grid}
 
-<span id="_Toc468201459" class="anchor"></span>Appendix B: Usability
+
+### Appendix B: Usability
+
 Analysis of de-Identified data
 
 Based on the initial set of de-identification algorithms, and an
@@ -2019,8 +1771,6 @@ performance measurement purposes:
 
 1.  Not having HIV positivity rates is a problem for HHS, and removal of
     HIV rapid screen result is an issue
-
-<!-- -->
 
 14. Setting age group for Chlamydia screening to “People under 18” is
     problematic because we will lose our trends for under 15, and 15-17
@@ -2043,8 +1793,6 @@ individuals. OPA should select from the following three alternatives:
 
 3.  Restrict the overall access to the FPAR 2.0 database so that the
     much more sensitive data is safeguarded better
-
-<!-- -->
 
 15. Using single age instead of date of birth will affect the
     calculation (numerator/denominator inclusion/exclusions) of
@@ -2121,8 +1869,7 @@ issue.
     order to determine if W/Y is still sufficiently large as to not be
     an issue.
 
-<span id="_Toc468201460" class="anchor"></span>B.1 Threat cases for
-re-identification of family planning data:
+#### B.1 Threat cases for re-identification of family planning data:
 
 A quick Google search on the term re-identification will yield many
 blogs, papers and studies describing where de-identified datasets were
@@ -2145,7 +1892,7 @@ in order to ensure that we have considered whether the de-identification
 algorithms selected address such issues as the very high risk of
 including date of birth and gender in a data set.
 
-B.1.1 Threat motivators and threat agents:
+##### B.1.1 Threat motivators and threat agents:
 
 The following are potential motivators and actors who may want to
 identify certain types of individuals from the de-identified data. As
@@ -2154,8 +1901,6 @@ identified data for inappropriate purposes.
 
 1.  Targeting of people who have consumed family planning services of
     any kind (media, religious groups)
-
-<!-- -->
 
 18. Targeting of people who have had or considered abortions (law
     enforcement, relatives, religious groups/religious police/religious
@@ -2199,7 +1944,7 @@ identified data for inappropriate purposes.
     create a bunch of fake patients that we never actually saw that you
     can’t tell are not patients because they are de-identified)
 
-B.1.2 Analysis of Threat cases
+##### B.1.2 Analysis of Threat cases
 
 The following is an analysis of how the currently de-identified data
 could be combined and attacked in the context of the threat cases listed
@@ -2227,8 +1972,6 @@ access control and other security restrictions are necessary.
     attack on de-identified published Netflix ratings to identify
     individual Netflix users is discussed in this paper:
     <https://digital.lib.washington.edu/dspace-law/bitstream/handle/1773.1/417/vol5_no1_art3.pdf?sequence=1>
-
-<!-- -->
 
 31. In order to identify people who have considered abortions, the
     following four data elements could be used to identify a pregnancy
@@ -2361,8 +2104,6 @@ facility ID is re-identifiable, this may become a very small pool.
     height/weight, facility identifier to identify a homosexual
     individual.
 
-<!-- -->
-
 -   **Is this a risk in some areas? Should we further de-identify this
     by lumping same-sex partner in as “other”?**
 
@@ -2450,8 +2191,7 @@ identifiers that we’ve deleted and the items that we have said are just
 data, you have the focused list of indirect identifiers and algorithms –
 what correlations are obvious there?
 
-<span id="_Toc468201461" class="anchor"></span>B.2 Theoretical
-K-analysis:
+#### B.2 Theoretical K-analysis:
 
 Until a data set is available, it is helpful to identify combinations of
 data elements that could be identifying. Once data is available, these
@@ -2462,15 +2202,13 @@ The first step is to look at the table containing our original
 assessment of whether the data element is direct/indirect/data and
 assess whether the de-identified element is now direct/indirect/data.
 
-B.2.1 Indirect identifier analysis
+##### B.2.1 Indirect identifier analysis
 
 For identifiers that are still indirect after de-identification, we need
 to look at two factors for each indirect identifier:
 
 1.  What is the smallest percentage of the pool that the indirect
     identifiers could result in?
-
-<!-- -->
 
 43. Which indirect identifiers can be combined to identify small pools
     of individuals.
@@ -2782,6 +2520,8 @@ such as:
     individual grantees, sub-recipients, and researchers via research
     request which is performed by a limited number of OPA-trusted staff
     with enhanced privacy and security training.
+
+### References 
 
 [^1]: CDA is the registered trademark of Health Level Seven
     International.
