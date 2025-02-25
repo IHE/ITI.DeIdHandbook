@@ -1,0 +1,121 @@
+# sushi-config.yaml is documented https://fshschool.org/docs/sushi/configuration/
+# ───────────────────────────────────────────────────
+# the id should be lowercase made up of "ihe." + {domain acronym} + "." + {profile acronym/short-name}
+# e.g. ihe.iti.mhds, or ihe.iti.basicaudit
+id: ihe.iti.deid
+canonical: https://profiles.ihe.net/ITI/DeId
+version: 0.0.1-current
+name: IHE_ITI_DeId
+title: "De-Identification Profile"
+description: This profile defines the requirements for the de-identification of health information.
+releaseLabel: ci-build
+#releaseLabel: ballot
+#releaseLabel: trial-use
+#releaseLabel: release
+#date: 2022-01-02
+status: draft
+publisher:
+  ## Find your domain contact on the https://www.ihe.net/ihe_domains page
+  - name: IHE IT Infrastructure Technical Committee
+  - url: https://www.ihe.net/ihe_domains/it_infrastructure/
+  - email: iti@ihe.net
+contact:
+  - name: IHE IT Infrastructure Technical Committee
+    telecom:
+      - system: email
+        value: iti@ihe.net
+license:  CC-BY-4.0
+fhirVersion: 4.0.1
+jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
+#copyright: IHE http://www.ihe.net/Governance/#Intellectual_Property
+copyrightYear: 2021+
+
+
+parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
+  path-resource:
+    - input/resources
+    - fsh-generated/resources
+    - input/examples
+#  path-pages:
+#    - input/pagecontent
+#    - fsh-generated/includes
+  show-inherited-invariants: 'false'
+  usage-stats-opt-out: 'false'
+  logging: progress
+  shownav: 'true'
+  active-tables: 'false'
+  apply-contact: 'true'
+  apply-jurisdiction: 'true'
+  apply-publisher: 'true'
+  apply-version: 'true'
+# valueSets and codeSystems should be given OIDs, this is especially required if that codeSystem or valueSet is going to be used by CDA. IHE has an OID root that is managed https://wiki.ihe.net/index.php/OID_Registration, with a branch assigned to each IHE domain. Each IHE domain should have a page where they manage assignments within their branch. an OID should be assigned to each IG, and that OID placed below so that the IG publisher will manage OID assignment to all valueSets and codeSystems defined in that IG. The IG publisher will create an ./oids.ini in the project root that will need to be checked into your github repository.
+#  auto-oid-root: 1.3.6.1.4.1.19376.1.5....
+
+#resources:
+# list every example here with a name, description and that exampleBoolean is true; These are used to populate the artifacts page, and are needed to eliminate build warnings 
+# You may delay filling out this section until you approach publication as it is merely a nice to have and eliminates build warnings -- If you do this then you will need above the autoload-resources true
+
+
+pages:
+# itemize here each narrative page. Include assigned section numbers when appropriate. The order they appear here is the order they will appear in the TOC and on the next/prev navigation.
+  index.md:
+    title: De-Identification Handbook Home
+    generation: markdown
+  intro.md:
+    title: Introduction 
+    generation: markdown
+  concepts.md:
+    title: Concepts 
+    generation: markdown
+  data-types.md:
+    title: Data Types 
+    generation: markdown
+  algorithms.md:
+    title: Algorithms 
+    generation: markdown
+  process.md:
+    title: Process 
+    generation: markdown
+  ihe-use.md:
+    title: IHE Use
+    generation: markdown
+  security.md:
+    title: Security Considerations 
+    generation: markdown
+  dicom-example.md:
+    title: DICOM Example
+    generation: markdown
+  fhir-example.md:
+    title: FHIR Example
+    generation: markdown
+  hl7-example.md:
+    title: HL7 v2 Example
+    generation: markdown
+  download.md:
+    title: "Download and Analysis"
+    generation: markdown
+  issues.md:
+    title: Significant Changes and Issues
+    generation: markdown
+  references.md:
+    title: References
+    generation: markdown
+
+menu:
+  Home: index.html
+  De-Identification Handbook:
+    Introduction: intro.html
+    Concepts: concepts.html
+    Data Types: Data-types.html
+    Algorithms: algorithms.html
+    Process: process.html
+    IHE Use: ihe-use.html
+    Security Considerations: security.html
+    FHIR Example: FHIR-example.html
+    DICOM Example: dicom-example.html
+    HL7 Example: hl7-example.html
+  Artifacts: artifacts.html
+  Other:
+    Download and Analysis: download.html
+    Significant Changes and Issues: issues.html
+    References: references.html

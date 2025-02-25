@@ -1,0 +1,6 @@
+@startuml
+skinparam svgDimensionStyle false
+agent "[[#client Client]]" as Client
+agent "[[#server Server]]" as Server
+Client -down-> Server : "go [[domain-YY.html Domain-YY]]"
+@enduml
