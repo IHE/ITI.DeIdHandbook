@@ -210,4 +210,46 @@ The data that must be preserved will be passed through without modification.
 
 ## 4.8 De-identification Datatype/Algorithm Matrix
 
-A spreadsheet indicating which algorithms might be applied to what kinds of data is published along with this handbook at TODO. For each kind of data, (e.g., person name, candidate) de-identification algorithms are indicated. For some of these, (e.g., Medications) it shows “c/n/t” to indicate that this information may be coded, numeric, or text, and that different algorithms may be appropriate for the different forms.
+An informative table indicating which algorithms might be applied to what kinds of data is below. For each kind of data, (e.g., person name, candidate) de-identification algorithms are indicated. For some of these, (e.g., Medications) it shows “c/n/t” to indicate that this information may be **coded**, **numeric***, or **text**, and that different algorithms may be appropriate for the different forms.
+
+**Table: 4.8-1 Informative algorithm use**
+
+| Algorithm | Longitudinal Consistency option | Person name | Telephone | Zip/Postal code, FIPS, GIS | Address (Residential, Work, temporary, mailing) | Date/Time values | Codes (Cal score, BMI, BW Pain Assessment) | Measurement Numeric Values | DOB | Age | Time Intervals | Weight/Height | Person IDs  | Biometrics (Finger Prints, Photographs) | Personal Digital Certs (X.509,PGP) | IP Addresses (v4,v6) | Relationship Linkages (Sibling, Child) | Links (to other documents, order IDs,) | Service Dates (admission) | Language Spoken / Written Language | Race /  Ethnicity | FIPS, GIS codes | Occupation | Criminal History | Legal Orders | Other Coded Values | Plural Birth,  Birth Order | Rare Diagnoses,  Uncommon Procedures | Vital Signs (see code or numeric) | Labs, medications, order | Free Form Text  | Accession Numbers | Encounter ID | Equipment IDs | Genetic Data
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Redaction | Delete Attribute Name and Value | x | Y | Y | Y | Y | Y | Y | Y | Y | y | Y | y | Y | y | y | Y | y | y | Y | y | y | y | y | y | y | y | y | y | c/n | c/n/t | y | y | y |  | 
+|  | Delete Value |  | Y | Y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | y | c/n | c/n/t | y | y | y |  | 
+|  | Fixed Length Substitute Value | x | y | y | y | y | y |  | y | Y |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Original Length Substitute Value | x | y | y | y | y | y |  | y | Y |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Substitute Attribute Name and Value |  |  |  |  |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Substitute meaningful value | x |   |  |  |  |  | y |  |  |  | y |  |  | Y |   |  | y | y |  | y | y |  | y |  |  | y |  |  |  | y |  |  |  |  | 
+|  | Substitute Meaningless Value | x |   |  |  |  |  |  |  |  |  |  |  |  |  |  | y |  | y |  |  | y | y | y | y | y | y | y |  | c/n | c/n/t | y | y | y |  | 
+|  | "Provided by Third Party |  e.g. |  Escrow" | x | y |  |  |  |  |  |  |  |  |  |  | y |  |   |  | y |  |  |  |  |  |  |  |  |  |  |  |  | c/n/t |  |  |  | c/n/t | 
+|  | Pseudonym |  | Y |  |  |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+| Fuzzing | Numeric (statistical algorithm) | x |  |   |  |  |  |  | y |  | y | y | y |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Code Set (Random) | x |  |  | y |  |  | y |  |  |  |  | y | y |  | y | y |   |  |  | y | y | y | y | y |  | y |  | y | c/n | c/n/t |  |  |  |  | 
+| Generalization | Date/Time Collapsing  |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Week values | x |  |  |  |  | y |  |  | y | y |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | DOB to age | x |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Statistical adjustment | x |  |  |  |  | y |  |  |  |  | y | y |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Time of day (such as w/r to meals) specialized time of day | x |  |  |  |  | y |  |  |  |  |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Specalized date of week (weekend vs week day) | x |  |  |  |  | y |  |  |  |  |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Shift by (random) offsets | x |  |  |  |  | y |  |  |  |  |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Move to day of week | x |  |  |  |  | y |  |  |  |  |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Move to day of month | x |  |  |  |  | y |  |  |  |  |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Remove day/month/year | x |  |  |  |  | y |  |  | y | y |  |  |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Truncation | x |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Algorithmic substitution of appropriate code |  |  |  |  |  |  | y |  |  |  |  |  |  |  |  | y |  |  |  | y | y |  | y | y |  | y |  | y | c/n | c/n/t |  |  |  |  | y
+|  | Geographical location algorithm | x |  |  | y | y |  |  |  |  |  |  |  |  |  |  | y |  |  |  |  |  | y |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+| Longitudinal Consistency | Date/Time Generalization |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Geographical locations |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Consistent algorithmic substitution of coded value |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Removing Precision |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Floor/Ceiling Values? |  |  |  |  |   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+| Recoverable Substitution | Pseudorandom Values | x |  |  |  |  |  |  |  |  |  |  |  | y |  | y |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n | c/n/t |  |  |  |  | 
+|  | Sequential Values | x | Y |  |  |  |  |  |  |  |  |  |  | y |  | y |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n/t |  |  |  |  | 
+| Text Processing | Manual editing | x |  |  |  |  |  |  |  |  |  |  |  |  |   |  |   |  |  |  |  |  |  |  | y | y |  |  | y |  | c/n/t | y |  |  |  | 
+|  | Text reprocessing into coded values | x |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | c/n/t |  |  |  |  | 
+{:.grid}
+
+
+Note:  c/n/t indicates that there are different algorithms in this category for codes
