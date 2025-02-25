@@ -44,6 +44,7 @@ This guide is organized into the following sections:
    - [FHIR Examples](fhir-example.html)
    - [DICOM Examples](dicom-example.html)
    - [HL7 2 Examples](hl7-example.html)
+   - [Family Planning](family-planning.html)
 9. Other
    - [Download and Analysis](download.html)
    - [References](references.html)

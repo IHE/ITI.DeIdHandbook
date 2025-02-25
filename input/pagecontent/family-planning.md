@@ -1,197 +1,5 @@
-**Integrating the Healthcare Enterprise**
+**Analysis of Optimal De-Identification Algorithms for Family Planning Data Elements**
 
-<img src="./media/image1.jpeg"
-style="width:1.79167in;height:0.91667in" />
-
-**IHE IT Infrastructure (ITI)**
-
-**White Paper**
-
-**Analysis of Optimal De-Identification Algorithms for Family Planning
-Data Elements**
-
-**Published**
-
-**Revision 1.1**
-
-Date: December 2, 2016
-
-Author: ITI Technical Committee
-
-Email: iti@ihe.net
-
-**Please verify you have the most recent version of this document.** See
-[here](http://ihe.net/Technical_Frameworks/) for Published versions and
-[here](http://ihe.net/Public_Comment/) for Public Comment versions.
-
-**Foreword**
-
-Integrating the Healthcare Enterprise (IHE) is an international
-initiative to promote the use of standards to achieve interoperability
-among health information technology (HIT) systems and effective use of
-electronic health records (EHRs). IHE provides a forum for care
-providers, HIT experts and other stakeholders in several clinical and
-operational domains to reach consensus on standards-based solutions to
-critical interoperability issues.
-
-The primary output of IHE is system implementation guides, called IHE
-Profiles. IHE publishes each profile through a well-defined process of
-public review and trial implementation and gathers profiles that have
-reached final text status into an IHE Technical Frameworks.
-
-This white paper is published as of December 2, 2016. Comments are
-invited and can be submitted at
-[http://www.ihe.net/ITI_Public_Comments](http://www.ihe.net/ITI_Public_Comments/).
-
-General information about IHE can be found at:
-[http://ihe.net](http://ihe.net/).
-
-Information about the IHE IT Infrastructure domain can be found at:
-[http://ihe.net/IHE_Domains](http://ihe.net/IHE_Domains/).
-
-Information about the organization of IHE Technical Frameworks and
-Supplements and the process used to create them can be found at:
-[http://ihe.net/IHE_Process](http://ihe.net/IHE_Process/) and
-[http://ihe.net/Profiles](http://ihe.net/Profiles/).
-
-The current version of the IHE IT Infrastructure Technical Framework can
-be found at: <http://ihe.net/Technical_Frameworks/>.
-
-**CONTENTS**
-
-[1 Introduction [5](#_Toc468201410)](#_Toc468201410)
-
-[1.1 Purpose of the De-Identification Algorithms for Family Planning
-Data Elements White Paper
-[5](#purpose-of-the-de-identification-algorithms-for-family-planning-data-elements-white-paper)](#purpose-of-the-de-identification-algorithms-for-family-planning-data-elements-white-paper)
-
-[1.2 Intended Audience [7](#intended-audience)](#intended-audience)
-
-[1.3 Comment Process [7](#_Toc468201413)](#_Toc468201413)
-
-[1.4 Open and Closed Issues
-[7](#open-and-closed-issues)](#open-and-closed-issues)
-
-[Closed Issues [7](#closed-issues)](#closed-issues)
-
-[2 De-Identification goals for Family Planning Data Elements
-[12](#de-identification-goals-for-family-planning-data-elements)](#de-identification-goals-for-family-planning-data-elements)
-
-[2.1 Problem Description
-[12](#problem-description)](#problem-description)
-
-[2.2 Definitions [13](#definitions)](#definitions)
-
-[2.3 Conventions [13](#conventions)](#conventions)
-
-[2.4 Use Cases [13](#use-cases)](#use-cases)
-
-[2.5 De-Identification Methods
-[15](#de-identification-methods)](#de-identification-methods)
-
-[2.6 Data Models [16](#data-models)](#data-models)
-
-[2.7 De-Identification algorithm analysis
-[18](#de-identification-algorithm-analysis)](#de-identification-algorithm-analysis)
-
-[2.7.1 Facility identifier
-[18](#facility-identifier)](#facility-identifier)
-
-[2.7.2 Clinical Provider identifier
-[21](#clinical-provider-identifier)](#clinical-provider-identifier)
-
-[2.7.3 Patient identifier
-[21](#patient-identifier)](#patient-identifier)
-
-[2.7.4 Visit Date [23](#visit-date)](#visit-date)
-
-[2.7.5 Date of Birth [23](#date-of-birth)](#date-of-birth)
-
-[2.7.6 Administrative Sex
-[24](#administrative-sex)](#administrative-sex)
-
-[2.7.7 Pregnancy History [25](#pregnancy-history)](#pregnancy-history)
-
-[2.7.8 Limited Language Proficiency
-[25](#limited-language-proficiency)](#limited-language-proficiency)
-
-[2.7.9 Ethnicity [26](#ethnicity)](#ethnicity)
-
-[2.7.10 Race [26](#race)](#race)
-
-[2.7.11 Annual Household Income
-[27](#annual-household-income)](#annual-household-income)
-
-[2.7.12 Household Size [28](#household-size)](#household-size)
-
-[2.7.13 Visit Payer [28](#visit-payer)](#visit-payer)
-
-[2.7.14 Current Pregnancy Status
-[28](#current-pregnancy-status)](#current-pregnancy-status)
-
-[2.7.15 Pregnancy Intention
-[29](#pregnancy-intention)](#pregnancy-intention)
-
-[2.7.16 Sexual Activity [29](#sexual-activity)](#sexual-activity)
-
-[2.7.17 Contraceptive Method at Intake
-[29](#contraceptive-method-at-intake)](#contraceptive-method-at-intake)
-
-[2.7.18 Reason for No Contraceptive Method
-[30](#reason-for-no-contraceptive-method)](#reason-for-no-contraceptive-method)
-
-[2.7.19 Contraceptive Method at Exit
-[30](#contraceptive-method-at-exit)](#contraceptive-method-at-exit)
-
-[2.7.20 Date of Last Pap test
-[31](#date-of-last-pap-test)](#date-of-last-pap-test)
-
-[2.7.21 HPV Co-test Ordered
-[31](#hpv-co-test-ordered)](#hpv-co-test-ordered)
-
-[2.7.22 CT Screen Ordered [31](#ct-screen-ordered)](#ct-screen-ordered)
-
-[2.7.23 GC Screen Ordered [31](#gc-screen-ordered)](#gc-screen-ordered)
-
-[2.7.24 HIV Screen Ordered
-[31](#hiv-screen-ordered)](#hiv-screen-ordered)
-
-[2.7.25 HIV Rapid Screen Result
-[32](#hiv-rapid-screen-result)](#hiv-rapid-screen-result)
-
-[2.7.26 HIV Supplemental Result
-[33](#hiv-supplemental-result)](#hiv-supplemental-result)
-
-[2.7.27 Referral Recommended Date and Referral Visit Completed Date
-[33](#referral-recommended-date-and-referral-visit-completed-date)](#referral-recommended-date-and-referral-visit-completed-date)
-
-[2.7.28 Systolic and Diastolic blood pressure
-[33](#systolic-and-diastolic-blood-pressure)](#systolic-and-diastolic-blood-pressure)
-
-[2.7.29 Height and Weight [33](#height-and-weight)](#height-and-weight)
-
-[2.7.30 Smoking status [34](#smoking-status)](#smoking-status)
-
-[Appendix A: Sample FP CDA documents and their De-Identified documents
-[36](#_Toc468201454)](#_Toc468201454)
-
-[A.1 Patient: JB [36](#_Toc468201455)](#_Toc468201455)
-
-[A.2 Patient: MT [37](#_Toc468201456)](#_Toc468201456)
-
-[A.3 Patient: LD [39](#_Toc468201457)](#_Toc468201457)
-
-[A.4 Patient: JW [40](#h.wdcdphexk0p1)](#h.wdcdphexk0p1)
-
-[Appendix B: Usability Analysis of de-Identified data
-[43](#_Toc468201459)](#_Toc468201459)
-
-[B.1 Threat cases for re-identification of family planning data:
-[44](#_Toc468201460)](#_Toc468201460)
-
-[B.2 Theoretical K-analysis: [50](#_Toc468201461)](#_Toc468201461)
-
-  
 
 # Introduction
 
@@ -591,8 +399,7 @@ Planning CDA documents as inputs, and creating a new, De-Identified for
 Family Planning Comma Separated Value (CSV) file where each row in the
 CSV file corresponds to a de-Identified Family Planning CDA document.
 
-<img src="./media/image2.png" style="width:3.33465in;height:4.85433in"
-alt="^4916BA4BC45E9BE17C642C7231020640E7CAAA8244F7C98AB4^pimgpsh_fullsize_distr" />
+<img src="fp-image2.png" style="width:3.33465in;height:4.85433in" />
 
 Figure 2.1-1: De-Identification for Family Planning Process Diagram
 
@@ -718,8 +525,7 @@ participants may also be submitting other types of CDA documents through
 the same or similar workflows. These other document types are out of
 scope for this whitepaper
 
-> <img src="./media/image3.emf"
-> style="width:6.87292in;height:3.60998in" />
+<img src="fp-image3.emf" style="width:6.87292in;height:3.60998in" />
 
 Figure 2.4-1: Data Flows in the Title X Family Planning Annual Report
 Use Case

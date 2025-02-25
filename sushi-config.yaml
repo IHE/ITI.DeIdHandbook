@@ -91,8 +91,11 @@ pages:
   hl7-example.md:
     title: HL7 v2 Example
     generation: markdown
+  family-planning.md:
+    title: Family Planning Example
+    generation: markdown
   download.md:
-    title: "Download and Analysis"
+    title: Download and Analysis
     generation: markdown
   issues.md:
     title: Significant Changes and Issues
@@ -111,9 +114,11 @@ menu:
     Process: process.html
     IHE Use: ihe-use.html
     Security Considerations: security.html
+  Implementation Examples:
     FHIR Example: fhir-example.html
     DICOM Example: dicom-example.html
     HL7 Example: hl7-example.html
+    Family Planning Example: family-planning.html
   Artifacts: artifacts.html
   Other:
     Download and Analysis: download.html
