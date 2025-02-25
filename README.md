@@ -7,6 +7,7 @@ This is the Update to the De-Identification Handbook.
 
 ## Plan
 
+- Lead: John Moehrke
 - Proposal Editor: Alan Zhang, Soyean Kim, John Moehrke … (TBD)
 - Work item Editor: Alan Zhang, Soyean Kim, John Moehrke … (TBD)
 - Date: 2025-02-18
