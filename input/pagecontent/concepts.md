@@ -1,13 +1,31 @@
+---
+title: De-Identification, Pseudonymization, and Anonymization 
+
+bibliography: de-identification.bib
+csl: apa6.csl
+---
 # 2 Concepts
 
-De-identification, anonymization, and pseudonymization are processes that reduce the probability of an individual being associated with that individual’s data. The most common healthcare use of these techniques is to protect individual patients, but they may also be applied to protect healthcare clinicians, devices, or organizations.
+In general, de-identification, anonymization, and pseudonymization are processes that mitigate the privacy risk of associating the disclosed information with an individual or a group of individuals when sharing personal data or anonymous information between different data environments. The most common healthcare use of these processes is to protect individual patients, but they may also be applied to protect healthcare clinicians and other individuals being involved.
 
+One of the challenges of applying those risk mitigation processes comes from the unclear or conflicting definitions. There are multiple sources of those definitions. For example,[@ISO25237] defines pseudonymization as a type of de-identification process, while [@ISO20889] specifies it as a de-identification technique. Under [@GDPR2016a], pseudonymization is also defined as a processing of personal data, and further clarifies the condition under which the personal data can no longer be attributed to a specific data subject. The concept of pseudonymization under [@GDPR2016a] is similar to the definition of de-identification under [@PIPL2021]. Both of them emphasize the condition of without using additional information when considering whether or not the disclosed (transformed) personal data can be attributed to an individual. Unlike, pseudonymizatoin under the GDPR and de-identification under the PIPL, the HIPAA (Health Insurance Portability and Accountability Act) Rule does not restrict the concept of de-identification under the condition of without using additional information, instead it relies on the concept of a very small risk[^1]. Both [@GDPR2016a] and [@PIPL2021] agree that the principles of data protection specified in the law should not apply to anonymous data. Another example is the concept of anonymization. [@PIPL2021] defines anonymization as a process of processing personal information to make it impossible to identify specific data subject and impossible to restore. [@ISO25237] gives a similar definition of anonymization, emphasizing the data subject can no longer be identified directly or indirectly without specifying any condition. However [@GDPR2016a] does not define the term anonymization formally even the term anonymous information is used in the GDPR Recital 26[^2]. 
+
+The current definitions of those concepts results in disputes when considering the implementation for the purpose of privacy compliance. Well known disputes include absolute anonymization vs relative anonymization[^3], pseudonymization(extended scope) vs de-identification [@edpb2025]. The idea of an absolute anonymization makes it impractical because there's always a possibility of associating the disclosed information with an individual. [@edpb2025] extends the scope of pseudonymization from dealing with direct identifiers to quasi identifiers. As a result, techniques like, randomization, generalization can also be applied in the process of pseudonymization which is conflicts with pseudonymization techniques specified in [@ISO20889], [@NIST_SP_800-188_2023]. Those disputes may continue because behind it there might be some strong reasons, for example, what if [@edpb2025] limits themselves only to the terms introduced by the GDPR where de-identification is not used.
+
+The concepts in this handbook are based on those existing definitions, but may be adjusted to make it more practical and actionable for the audience of the handbook. Also the handbook respects those widely accepted ideas about pseudonymization, de-identification and anonymization, and these ideas include:
+
+1. The principles of data protection specified in the privacy laws, like, the GDPR and PIPL should not apply to anonymous data[^4],[^5]. 
+2. Pseudonymized and de-identified data, in general, are still personal data.
+3. Pseudonymization usually enables the link tracing precisely from the pseudonyms back to the original personal identifiers. 
+4. De-identification, in general, supports the secondary use of data, in other words, allowing for the production of aggregate statistics. Therefore, the link between the pseudonyms and the original personal identifiers is not required[@NI'ST_SP_800-188_2023][@ocr2025].
+
+
+ 
 Anonymization and pseudonymization are the two types of de-identification. Anonymization is used for one-way de-identification for situations where there is no requirement to identify the patient based on these records. Pseudonymization is used when there is a requirement to be able to identify the patient based on these records. Re-identification may require contacting third parties to perform this task.
 
 De-identification is also used to reduce risks such as bias in clinical studies or clinical reviews. De-identification is not often thought of in the context of treatment because you usually must associate the patient with his/her data in order to treat the patient. Some healthcare services, such as HIV testing, are delivered anonymously or pseudonymously. De-identification is more often an essential tool for secondary uses of data such as clinical trials and analytics.
 
-<img src="image2.png"
-style="width:2.82917in;height:1.60903in" />
+![de-identification](../images/image2.png "de-identification")
 
 **Figure 2-1: De-Identification**
 
@@ -186,3 +204,13 @@ There are various kinds of threats that motivate de-identification. The followin
 | 6| Weak pseudonym algorithm is compromised|A specific pseudonymization approach may use a vulnerable algorithm (such as a non-cryptographic hash) of an identifier|A USA domain Social Security Number is hashed using MD5 with no salt where a “rainbow table” attack is highly viable.| Use a cryptographic hash (with a salt) or create a random identifier that is not a mathematical function of any real identifiers.|
 | 7| Previously protected information is compromised| | Old court records made publicly available, by mistake, authorized individual, or social engineering attack| |
 {:.grid}
+
+[^1]: 45 C.F.R $164.514(b)(1)(i)
+
+[^2]: See Recital 26 of the General Data Protection Regulation (GDPR): “The principles of data protection should not apply to anonymous information, namely information which does not relate to an identified or identifiable natural person or to personal data rendered anonymous in such a manner that the data subject is not or no longer identifiable.”
+
+[^3]: IAPP. (n.d.). https://iapp.org/news/a/a-practical-guide-to-anonymization-standards-across-the-eu-and-uk
+
+[^4]: See Recital 26 of the General Data Protection Regulation (GDPR): "The principles of data protection should therefore not apply to anonymous information."
+
+[^5]: See Personal Information Protection Law of the People's Republic of China (PIPL) Chapter I Article 4: "Personal information refers to various information related to an identified or identifiable natural person recorded electronically or by other means, but does not include anonymized information"
