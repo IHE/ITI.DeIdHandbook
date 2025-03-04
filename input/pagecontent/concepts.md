@@ -14,10 +14,10 @@ The current definitions of those concepts results in disputes when considering t
 
 The concepts in this handbook are based on those existing definitions, but may be adjusted to make it more practical and actionable for the audience of the handbook. Also the handbook respects those widely accepted ideas about pseudonymization, de-identification and anonymization, and these ideas include:
 
-1. The principles of data protection specified in the privacy laws, like, the GDPR and PIPL should not apply to anonymous data[^4],[^5]. 
-2. Pseudonymized and de-identified data, in general, are still personal data.
+1. The principles of data protection specified in the privacy laws, like, the GDPR and PIPL should not apply to anonymous data[^4][^5]. 
+2. Pseudonymized and de-identified data, in general, are still personal data[^6][^7].
 3. Pseudonymization usually enables the link tracing precisely from the pseudonyms back to the original personal identifiers. 
-4. De-identification, in general, supports the secondary use of data, in other words, allowing for the production of aggregate statistics. Therefore, the link between the pseudonyms and the original personal identifiers is not required[@NI'ST_SP_800-188_2023][@ocr2025].
+4. De-identification, in general, supports the secondary use of data, in other words, allowing for the production of aggregate statistics. Therefore, the link between the pseudonyms and the original personal identifiers is not required[@NIST_SP_800-188_2023][@ocr2025].
 
 
  
@@ -214,3 +214,7 @@ There are various kinds of threats that motivate de-identification. The followin
 [^4]: See Recital 26 of the General Data Protection Regulation (GDPR): "The principles of data protection should therefore not apply to anonymous information."
 
 [^5]: See Personal Information Protection Law of the People's Republic of China (PIPL) Chapter I Article 4: "Personal information refers to various information related to an identified or identifiable natural person recorded electronically or by other means, but does not include anonymized information"
+
+[^6]: See Recital 26 of the General Data Protection Regulation (GDPR): "Personal data which have undergone pseudonymisation, which could be attributed to a natural person by the use of additional information should be considered to be information on an identifiable natural person."
+
+[^7]: See European Commission. (n.d.). Data Protection explained. European Commission. https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en
