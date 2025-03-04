@@ -16,7 +16,7 @@ The concepts in this handbook are based on those existing definitions, but may b
 
 1. The principles of data protection specified in the privacy laws, like, the GDPR and PIPL should not apply to anonymous data[^4][^5]. 
 2. Pseudonymized and de-identified data, in general, are still personal data[^6][^7].
-3. Pseudonymization usually enables the link tracing precisely from the pseudonyms back to the original personal identifiers. 
+3. Pseudonymization usually enables the link tracing precisely from the pseudonyms back to the original personal identifiers[^8]. 
 4. De-identification, in general, supports the secondary use of data, in other words, allowing for the production of aggregate statistics. Therefore, the link between the pseudonyms and the original personal identifiers is not required[@NIST_SP_800-188_2023][@ocr2025].
 
 
@@ -218,3 +218,5 @@ There are various kinds of threats that motivate de-identification. The followin
 [^6]: See Recital 26 of the General Data Protection Regulation (GDPR): "Personal data which have undergone pseudonymisation, which could be attributed to a natural person by the use of additional information should be considered to be information on an identifiable natural person."
 
 [^7]: See European Commission. (n.d.). Data Protection explained. European Commission. https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en
+
+[^8]: See Information Commissioner’s Office. (2022). Draft anonymisation, pseudonymisation and privacy enhancing technologies guidance. In Chapter 3. https://ico.org.uk/media/about-the-ico/consultations/4019579/chapter-3-anonymisation-guidance.pdf
