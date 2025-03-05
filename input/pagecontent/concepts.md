@@ -23,7 +23,7 @@ The concepts in this handbook are based on those existing definitions, but may b
 
 Personal data transformed in a way to reduce the risk of re-identification can be at different levels. [@GB/T_42460_2023] and [@Hintze_2017] introduces a four-level identifiability. Although the definition for each level is different, the common idea is that re-identification risk is going down alone the ordered levels.
 
-```mermaid{filename="four-level-identifiability.png"}
+```mermaid {filename="four-level-identifiability.png"}
 graph LR
     subgraph "Personal Data"
         L1[Identified data] --> L2[Identifiable] --> L3[De-Identified]
