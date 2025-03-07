@@ -23,23 +23,17 @@ The concepts in this handbook are based on those existing definitions, but may b
 
 Personal data transformed in a way to reduce the risk of re-identification can be at different levels. [@GB/T_42460_2023] and [@Hintze_2017] introduces a four-level identifiability. Although the definition for each level is different, the common idea is that re-identification risk is going down alone the ordered levels.
 
-```mermaid {filename="four-level-identifiability.png"}
-graph LR
-    subgraph "Personal Data"
-        L1[Identified data] --> L2[Identifiable] --> L3[De-Identified]
-    end
-    subgraph "Anonymous Data"
-        L4[Anonymous]
-    end
-    L3 --> L4
-```
+<figure>
+{%include identifiability.svg%}
+<figcaption><b>Figure: Two step Processing flow</b></figcaption>
+</figure>
+<br clear="all">
 
- 
 Anonymization and pseudonymization are the two types of de-identification. Anonymization is used for one-way de-identification for situations where there is no requirement to identify the patient based on these records. Pseudonymization is used when there is a requirement to be able to identify the patient based on these records. Re-identification may require contacting third parties to perform this task.
 
 De-identification is also used to reduce risks such as bias in clinical studies or clinical reviews. De-identification is not often thought of in the context of treatment because you usually must associate the patient with his/her data in order to treat the patient. Some healthcare services, such as HIV testing, are delivered anonymously or pseudonymously. De-identification is more often an essential tool for secondary uses of data such as clinical trials and analytics.
 
-![de-identification](../images/image2.png "de-identification")
+<img src="image2.png" style="width:2.82917in;height:1.60903in" />
 
 **Figure 2-1: De-Identification**
 

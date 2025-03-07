@@ -1,0 +1,34 @@
+@startuml
+    class "Identified Data" as IdentifiedData {
+        + Name
+        + Address
+        + Phone
+        + DateOfBirth
+        + Email
+        + SSN
+        + MRN 
+        + OrderNumber
+        + DeviceID
+        + IPAddress
+        + MACAddress
+        + date
+        + data
+    }
+    class "Identifiable Data" as IdentifiableData {
+        + MRN 
+        + DeviceID
+        + IPAddress
+        + MACAddress
+        + date
+        + data
+    }
+    class "De-Identified Data" as DeIdentifiedData {
+        + PseudoId
+        + fuzzedAge
+        + fuzzedDate
+        + data
+    }
+    IdentifiableData --> IdentifiedData 
+    IdentifiedData --> DeIdentifiedData
+
+@enduml
