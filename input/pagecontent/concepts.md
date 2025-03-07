@@ -1,10 +1,4 @@
----
-title: De-Identification, Pseudonymization, and Anonymization 
 
-bibliography: de-identification.bib
-csl: apa6.csl
----
-# Concepts
 
 In general, de-identification, anonymization, and pseudonymization are processes that mitigate the privacy risk of associating the disclosed information with an individual or a group of individuals when sharing personal data or anonymous information between different data environments. The most common healthcare use of these processes is to protect individual patients, but they may also be applied to protect healthcare clinicians and other individuals being involved.
 
