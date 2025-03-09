@@ -1,0 +1,8 @@
+@startuml
+left to right direction
+[*] --> Identified
+Identified --> Identifiable
+Identifiable --> De_identified
+De_identified --> Anonymous
+Anonymous --> [*]
+@enduml
