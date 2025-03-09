@@ -1,6 +1,7 @@
 #!/bin/bash
 # get root dir of the shell env
 ROOT_DIR="$(dirname "$(realpath "$0")")"
+echo $ROOT_DIR
 mkdir -p "$ROOT_DIR/temp/pages/_bibliography"
 
 # copy _bibliography
