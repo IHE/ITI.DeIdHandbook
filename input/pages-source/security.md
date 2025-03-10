@@ -1,4 +1,4 @@
-# 7 Security and Privacy Considerations
+# Security and Privacy Considerations
 
 Every de-identification project will be the result of a specific
 security analysis. De-identification is motivated by mitigation of some
@@ -9,7 +9,7 @@ original security analysis.
 IHE provides guidelines for preparing security and privacy risk
 assessments in <http://www.ihe.net/Technical_Framework/upload/IHE_ITI_Whitepaper_Security_Cookbook_2008-11-10.pdf>
 
-## 7.1 ATNA and Other Logging Considerations
+## ATNA and Other Logging Considerations
 
 De-identification, pseudonymization, and re-identification are events that should be logged as part of the ATNA surveillance log. The specific audit messages that will be appropriate depend upon the usage, and will be profiled elsewhere.
 

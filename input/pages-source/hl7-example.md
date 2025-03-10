@@ -1,6 +1,6 @@
 ## HL7 2.x Examples
 
-### B.1 HL7 2.x
+### HL7 2.x
 
 The following is an example of what a segment of an HL7 2.x message might look like after de-identification. In this example some of the fields have been removed, and some of the fields have had dummy values substituted.
 
@@ -38,7 +38,7 @@ IN1\|\|Plan123\|PART\|InsureCo\|Address1\|Admin\|+1-801-555-1212\|Group12\|Group
 
 ```
 
-### B.2 Biosurveillance Specification (CDA)
+### Biosurveillance Specification (CDA)
 
 An example of a de-identification plan for a bio-surveillance is available at ftp:// . This is the table that identifies what algorithm will be applied to all the identified potential input fields. It assumes that the original documents and resulting documents will both be CDA documents.  
 

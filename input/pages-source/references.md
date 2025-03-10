@@ -1,4 +1,4 @@
-# References
+## References
 
 HP. "Efficient signature schemes supporting redaction, pseudonymization,
 and data deidentification." *HP.*
@@ -39,7 +39,7 @@ original content, preserving data needed for the trial.
 Blog entry by one of this document’s co-authors
 
 *De-Identification is highly contextual*
-
+q
 <http://healthcaresecprivacy.blogspot.com/2009/10/de-identification-is-highly-contextual.html>
 
 Lists summary of units of data exchange and values that should be
@@ -73,3 +73,6 @@ Technical and Legal Study*
 
 <http://web.mit.edu/sem083/www/assignments/reidentification.html><span
 id="_Toc354562093" class="anchor"></span>
+
+## References (updated in 2025) 
+{% bibliography %}

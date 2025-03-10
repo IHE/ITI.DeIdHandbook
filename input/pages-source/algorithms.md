@@ -1,5 +1,5 @@
 
-# 4 Algorithms
+# Algorithms
 
 The major algorithms used in de-identification are:
 
@@ -20,19 +20,19 @@ The major algorithms used in de-identification are:
 The key objective of most of these techniques is to increase the size of the set of patients that could be the source of the data. When this set is large enough, it becomes impractical to identify a specific patient. 
 These algorithms are discussed below, and they are also used in the de-identification matrix described in Section 4.8.
 
-## 4.1 Redaction
+## Redaction
 
 Redaction is the process of removing one or more values so that the original information content is no longer observable by human and computer recipients of the data. Redaction is a type of substitution.
 
-### 4.1.1 Characteristics
+### Characteristics
 
 Data is fully removed. Risk is minimized.
 
-### 4.1.2 Complete Redaction
+### Complete Redaction
 
 Some data formats permit complete deletion of both the attribute name and value.
 
-### 4.1.3 Deletion of Value
+### Deletion of Value
 
 Some data formats have mandatory fields that cannot be completely deleted. These may permit replacement of the original data value with a null value or missing data indicator. If the underlying data format permits this, it is usually equivalent to complete redaction. Some care may be needed with this approach. Some data formats also indicate that there is a different meaning to deletion of value, e.g., “a missing value shall be interpreted as indicating that the patient was not asked”.
 
@@ -40,7 +40,7 @@ Some standard substitute data have traditionally been used as missing indicators
 
 Encryption and hashing have been intentionally omitted from this description. These are difficult to implement properly. They are often vulnerable to dictionary attack.
 
-### 4.1.4 Example
+### Example
 
 Historically, this technique has been used for legal and governmental work when printed content is physically obscured with a black mark preventing the original content from being read.
 
@@ -76,22 +76,22 @@ PID\|123\|123\|123456\|123\|FamilyName^""^GivenName^""^""^""\|\|19900113\|U\|Ali
 
 ```
 
-### 4.1.5 Other Considerations
+### Other Considerations
 
 Care must be taken to ensure redacted data remain syntactically correct. A HL7 CDA document that complies with a template has specific rules regarding discrete data elements and required structure. Post processing after de-identification may be required to create a document that still complies with the template. Template designers may need to consider the needs of de-identification in the design of new templates.
 
-## 4.2 Fuzzing
+## Fuzzing
 
-### 4.2.1 Description
+### Description
 
 Fuzzing adds apparently random modifications to data while remaining within certain constraints. For example a random amount of time can be added to or removed from person’s birth date. The goal of fuzzing is to remove as much accuracy as possible while still meeting the intended use. The design phase should determine the accuracy that must be preserved. Fuzzing is the only de-identification approach that provides control over the statistical characteristics of the data.
 
-### 4.2.2 Applicability
+### Applicability
 
 Fuzzing may be appropriate when approximate values are needed for the intended use and precise values could identify the patient. It is frequently needed as part of preserving longitudinal integrity, e.g.,
 using the same data value in all of the relevant records.
 
-### 4.2.3 Example
+### Example
 
 The below example applies a random offset to the birth date/time. This same date shift should be applied to the same patient each time if the intended use needs to preserve clinical time threading.
 
@@ -107,22 +107,22 @@ Database record before and after date fuzzing:
 {:.grid}
 
 
-### 4.2.4 Variations
+### Variations
 
-#### 4.2.4.1 Numeric
+#### Numeric
 
 Any numeric values can be potentially fuzzed, such as patient’s weight.
 
-#### 4.2.4.2 Zip/Postal
+#### Zip/Postal
 
 Postal codes can be fuzzed using algorithms that are aware of the special code formatting requirements. This requires knowledge of the individual postal codes so that sufficient accuracy remains for the
 intended use, while having a potential population large enough to make individual identification impractical.
 
-#### 4.2.4.3 Codified Values
+#### Codified Values
 
 Coded values can be fuzzed by selecting a random code from a list of equivalent codes. This is effective, but requires specific medical knowledge and intended use to establish the proper lists of equivalent codes.
 
-### 4.2.5 Other Considerations
+### Other Considerations
 
 Time and sequence threading can be impacted when dates and times are changed. Dates and times must remain in the proper sequence. For example, process flow may need to remain in the proper order:
 
@@ -133,7 +133,7 @@ Time and sequence threading can be impacted when dates and times are changed. Da
 
 Other statistical characteristic may need to be preserved, such as population statistics for body surface area. Redaction makes it difficult to preserve these statistics. A properly designed fuzzing can preserve these statistics while concealing identities.
 
-## 4.3 Generalization
+## Generalization
 
 Generalization is a simpler algorithm than fuzzing, but does not preserve statistical characteristics.
 
@@ -147,11 +147,11 @@ Several techniques are commonly employed, with various tradeoffs.
 
 4. Dates can be changed to using a month number, or a week number instead of the exact date.
 
-### 4.3.1 Applicability
+### Applicability
 
 Generalization may be appropriate when approximate values are still useful for the intended use and fuzzing will be too difficult.
 
-### 4.3.2 Example
+### Example
 
 The below example applies several different generalization techniques to dates.
 
@@ -170,21 +170,21 @@ Database record before and after date generalization:
 
 Generalization can be a computationally simple approach, but statistical characteristics are lost. Fuzzing should be preferred when practical.
 
-## 4.4 Longitudinal Consistency Constraints
+## Longitudinal Consistency Constraints
 
 It is often essential to preserve date/time relationships, order number relationships, etc. When the intended use will examine many related data records preserving these relationships may be important. We refer to this objective as “longitudinal consistency”.
 
 This constraint affects both fuzzing and generalization algorithms. If order numbers are being fuzzed with random different unique order numbers, then all of the order number substitutions must be consistent. If the date and time values are being fuzzed, then all of the related records must be fuzzed by the same time change. Note that fuzzing time information can be sensitive to how time order and accuracy affect the intended use for the resulting dataset.
 
-### 4.4.1 Applicability
+### Applicability
 
 This algorithm is potentially applicable to any fuzzing algorithm. It most often arises for dates, times, locations, and identifiers like order numbers.
 
-### 4.4.2 Other Considerations
+### Other Considerations
 
 The extent to which longitudinal consistency matters is very sensitive to details of the intended use. DICOM objects make extensive use of UIDs for references to other objects. These references often must be preserved in order to maintain the usability of the collection of images created in a study. The de-identification process must consider whether original UIDs can be re-used, or whether new UIDs should be created.
 
-## 4.5 Recoverable Substitution
+## Recoverable Substitution
 
 There may be a requirement that original values be recoverable. There are two basic approaches to solving this problem:
 
@@ -198,17 +198,17 @@ Escrow is widely used in clinical trials. The most common example is replacement
 
 Some data formats, e.g., DICOM, include an option to have a “modified elements sequence”. The original information values can be provided in encrypted form along with the de-identified data. Managing the key and disclosure control for this kind of data record is considerably more complex than managing an escrow process, so this has proven to be of limited use.
 
-## 4.6 Text Processing
+## Text Processing
 
 There are repeated attempts to provide natural text de-identification algorithms. At this time there is no demonstrated successful general purpose algorithm.
 
 Teaching files are often in text form. The de-identification is typically done by the educators preparing these files. They are aware of the full medical context and able to paraphrase the text so that the original patient identity is obscured while preserving the educational requirements.
 
-## 4.7 Pass-through
+## Pass-through
 
 The data that must be preserved will be passed through without modification.
 
-## 4.8 De-identification Datatype/Algorithm Matrix
+## De-identification Datatype/Algorithm Matrix
 
 An informative table indicating which algorithms might be applied to what kinds of data is below. For each kind of data, (e.g., person name, candidate) de-identification algorithms are indicated. For some of these, (e.g., Medications) it shows “c/n/t” to indicate that this information may be **coded**, **numeric***, or **text**, and that different algorithms may be appropriate for the different forms.
 

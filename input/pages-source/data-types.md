@@ -1,4 +1,4 @@
-# 3 Data Types
+# Data Types
 
 The semantic type of each data element determines the algorithm or algorithms to apply to that element. Below we discuss various types of data.
 

@@ -1,5 +1,5 @@
 
-# 5 Process
+# Process
 
 Projects that need de-identification or pseudonymization should follow these steps to define the de-identification process that is appropriate for the project’s intended uses of the de-identified data.
 
@@ -10,7 +10,7 @@ Projects that need de-identification or pseudonymization should follow these ste
 5. Process Validation: The process and procedures must be validated with test data and dry-run operations. It is not appropriate to go operational without validation.
 6. Periodic review during operation: At regular intervals the process and procedures should be re-evaluated. Threats evolve and technology changes, which may require changes to the de-identification process. There should also be a review of problem reports. An appropriate corrective action and preventative action process should be in place and its appropriate use verified.
 
-## 5.1 Step 1 – Requirements Design
+## Step 1 – Requirements Design
 
 The intended uses of the data determine the extent of de-identification and risk. Clearly define the specific data needed for the intended use. The reason for each data element that is needed should be documented. That will determine what data is preserved (pass through), what data is removed (e.g., redacted), and what data is obscured (e.g., fuzzed).
 
@@ -48,7 +48,7 @@ of error allowed (e.g., time shifted, fuzzy, loss of precision)?
 desirable for the remaining data to not show evidence of
 de-identification?
 
-## 5.2 Step 2 – De-identification Design
+## Step 2 – De-identification Design
 
 **Design Considerations**
 
@@ -84,7 +84,7 @@ The DICOM standard provides initial starting point tables for commonplace de-ide
 
 There are also project and other examples available, such as the Biosurveillance Use Case Minimum Data Elements Specification.
 
-## 5.3 Step 3 – Design Validation
+## Step 3 – Design Validation
 
 The design should be validated before the design is fully implemented. Validation should focus on confirming that identified project risks are either reduced or identified as protection requirements. This must include risks related to overall project objectives, risks to individual patient privacy, and risks of non-compliance with applicable policy. The validation review may need to include stakeholders such as the IRB. 
 The validation phase consists of three phases:
@@ -100,7 +100,7 @@ data to the end-user to confirm it meets their expectations.
 
 As should be apparent, the more data can be removed, the easier the validation phase, and subsequent steps, are. In addition, the risks are also lowered.
 
-## 5.4 Step 4 – Implementation
+## Step 4 – Implementation
 
 IHE has profiles, such as imaging teaching files profile, for some of the common de-identification situations. DICOM has identified some common intended use requirements and defined de-identification profiles for these situations. Other organizations have published their de-identification profiles.
 
@@ -108,13 +108,13 @@ When developing project specific de-identification profiles these can be a good 
 
 This document does not cover the implementation of processes, procedures, software, or staffing of the de-identification system. There are already established methodologies for project management, safety risk analysis, etc. These are also applicable to deployment of de-identification processes. There is usually no need to invent new unfamiliar processes for the organization.
 
-## 5.5 Step 5 – Implementation Validation
+## Step 5 – Implementation Validation
 
 Implementation validation is part of any healthcare system deployment. The existing processes should apply here also.
 
 De-identification adds one extra element. An operational validation using a subset of real data should be performed. This is very similar to the initial design validation, but using the operational system processes, staff, and software.
 
-## 5.6 Step 6 – Periodic Review of Implementation
+## Step 6 – Periodic Review of Implementation
 
 De-identification requirements are a continuously moving target. Re-identification algorithms change, making previously low risk data elements into higher risk elements. Computer and storage capabilities increase rapidly. Genetic data that was once too costly to use for identification is now usable because the cost of storage and computing has plummeted. Previously private information is increasingly available for sale. You can now track a person’s location from cell phone records to match person ID to healthcare provider visits. This kind of information used to be prohibitively expensive, but it is now available for sale at lower and lower cost.
 
