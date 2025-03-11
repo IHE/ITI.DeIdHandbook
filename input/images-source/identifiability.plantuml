@@ -1,34 +1,15 @@
 @startuml
-    class "Identified Data" as IdentifiedData {
-        + Name
-        + Address
-        + Phone
-        + DateOfBirth
-        + Email
-        + SSN
-        + MRN 
-        + OrderNumber
-        + DeviceID
-        + IPAddress
-        + MACAddress
-        + date
-        + data
-    }
-    class "Identifiable Data" as IdentifiableData {
-        + MRN 
-        + DeviceID
-        + IPAddress
-        + MACAddress
-        + date
-        + data
-    }
-    class "De-Identified Data" as DeIdentifiedData {
-        + PseudoId
-        + fuzzedAge
-        + fuzzedDate
-        + data
-    }
-    IdentifiableData --> IdentifiedData 
-    IdentifiedData --> DeIdentifiedData
+left to right direction
+
+[*] --> Identified
+state "Data Identified" as Identified
+state "Partially Identifiable" as Identifiable
+state "De-Identified" as DeIdentified
+state "Fully Anonymized" as Anonymized
+
+Identified --> Identifiable
+Identifiable --> DeIdentified
+DeIdentified --> Anonymized
+Anonymized --> [*]
 
 @enduml

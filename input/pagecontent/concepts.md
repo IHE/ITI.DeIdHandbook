@@ -1,4 +1,4 @@
-
+# 2 Concepts
 
 In general, de-identification, anonymization, and pseudonymization are processes that mitigate the privacy risk of associating the disclosed information with an individual or a group of individuals when sharing personal data or anonymous information between different data environments. The most common healthcare use of these processes is to protect individual patients, but they may also be applied to protect healthcare clinicians and other individuals being involved.
 
@@ -15,13 +15,45 @@ The concepts in this handbook are based on those existing definitions, but may b
 
 ## Identifiability
 
-Personal data transformed in a way to reduce the risk of re-identification can be at different levels. [@GB/T_42460_2023] and [@Hintze_2017] introduces a four-level identifiability. Although the definition for each level is different, the common idea is that re-identification risk is going down alone the ordered levels.
-
+Personal data transformed in a way to reduce the risk of re-identification can be at different levels. [@GB/T_42460_2023] and [@Hintze_2017] introduces a four-level identifiability. Although the definition for each level is different, the common idea is that re-identification risk is going down alone the ordered levels (from left to the right as the figure below).
 <figure>
-{%include identifiability.svg%}
-<figcaption><b>Figure: Two step Processing flow</b></figcaption>
+  <img src="identifiability-levels.png" alt="levels of identifiability">
+  <figcaption><strong>Figure 2-1: Levels of De-Identification</strong></figcaption>
 </figure>
-<br clear="all">
+
+
+The concepts of identifiability in this book are mainly based on the definitions specified [@Hintze_2017].The definitions of the first three levels are identical. The definition for the last level,  anonymous data, is adjusted considering the other sources including the [@GDPR2016a],[@PIPL2021], and [@HIPAA1996].
+
+**Identified Data**
+
+Identified data relates to a specific natural person whose identity is apparent from the data; contains data that identifies the person (such as a name, e-mail address, or government-issued ID number); or is directly linked to data that is accessible and identifies the person.
+
+**Readily-Identifiable Data**
+
+Readily-Identifiable data relates to a specific person whose identity is not apparent from the data, does not contain data that identifies the person, and the data is not directly linked with data that identifies the person; but there is a known, systematic way to reliably create or re-create a link with identifying data. To the data controller that pseudonymizes data, but retains the raw data set, additional data that allows re-identification, or a key that would allow the pseudonymization to be reversed, that pseudonymous data would be Readily-Identifiable data.
+
+**De-Identified Data**
+
+De-Identified data relates to a specific person whose identity is not apparent from the data; and the data is not directly linked with data that identifies the person. The data could potentially be re-identified if matched to additional identifying data provided by the data subject or a third party, but there is no known, systematic way for the controller to reliably create or re-create a link with identifying data.
+
+**Anonymous Data**
+Information that does not relate to an identified or identifiable natural person, or personal data that has been rendered anonymous through an anonymization process such that the data subject is no longer identifiable.
+
+> **Notes:** (1) The original definition in [@Hintze_2017] considers only aggregated data at this level. In this book, the definition is derived from the GDPR Article 26 and [@ISO25237].(2) Practical/relative concept in understanding the idea of "no longer identifiable". The GDPR Article 26 further explains the meaning of "identifiable" as "To determine whether a natural person is identifiable, account should be taken of all the means reasonably likely to be used, such as singling out, either by the controller or by another person to identify the natural person directly or indirectly.". 
+
+The table below summarizes the characteristics of the levels of identifiability by comparing it with [@HIPAA1996] and [@GB/T_42460_2023].
+
+**Table 2.1-1: Characteristics of Levels of Identifiability**
+
+|               |Identified|Readily-Identifiable|De-Identified|Anonymous|
+|---------------|----------|--------------------|-------------|---------|
+|Data Included  |Direct Identifiers|Quasi Identifiers + Additional Information(a known, systematic way to reliably create or re-create a link with identifying data)|Quasi Identifiers|Aggregated Data or Candidates of Quasi Identifiers + Small Risk|
+|GB/T_42460_2023|Level 1: direct identifiers  |Level 2: Quasi Identifiers + High Risk|Level 3: Quasi Identifiers + Acceptable Risk      |Level 4: No Identifiers  |
+|HIPAA De-ID|[Safe Harbor 18 identifiers](https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html#safeharborguidance)|Not Available|Quasi Identifiers + very small risk|Not Available|
+{:.grid}
+
+
+## De-Identification
 
 Anonymization and pseudonymization are the two types of de-identification. Anonymization is used for one-way de-identification for situations where there is no requirement to identify the patient based on these records. Pseudonymization is used when there is a requirement to be able to identify the patient based on these records. Re-identification may require contacting third parties to perform this task.
 
