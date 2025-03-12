@@ -15,7 +15,7 @@ The concepts in this handbook are based on those existing definitions, but may b
 
 ## 2.1 Identifiability
 
-Personal data transformed in a way to reduce the risk of re-identification can be at different levels. [@GB/T_42460_2023] and [@Hintze_2017] introduces a four-level identifiability. Although the definition for each level is different, the common idea is that re-identification risk is going down alone the ordered levels (from left to the right as the figure below).
+The transformation of personal data to mitigate re-identification risk results in distinct levels of identifiability. GB/T 42460-2023 and Hintze (2017) each present a four-level identifiability framework. Although their definitions diverge, both frameworks share the principle that re-identification risk diminishes along the ordered levels, progressing from left to right (as illustrated in the figure below). (from left to the right as the figure below).
 
 <figure>
   <img src="identifiability-levels.png" alt="levels of identifiability">
@@ -23,7 +23,7 @@ Personal data transformed in a way to reduce the risk of re-identification can b
 </figure>
 
 
-The concepts of identifiability in this book are mainly based on the definitions specified [@Hintze_2017].The definitions of the first three levels are identical. The definition for the last level,  anonymous data, is adjusted considering the other sources including the [@GDPR2016a],[@PIPL2021], and [@HIPAA1996].
+The identifiability concepts presented herein are largely derived from the definitions in [@Hintze_2017]. Specifically, the first three levels are consistent with those outlined in that work. The definition for the last level, anonymous data, is adjusted considering the other sources including the [@GDPR2016a],[@PIPL2021], and [@HIPAA1996].
 
 **Identified Data**
 
