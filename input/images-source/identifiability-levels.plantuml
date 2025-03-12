@@ -2,10 +2,10 @@
 left to right direction
 
 [*] --> Identified
-state "Data Identified" as Identified
-state "Partially Identifiable" as Identifiable
+state "Identified" as Identified
+state "Readily-Identifiable" as Identifiable
 state "De-Identified" as DeIdentified
-state "Fully Anonymized" as Anonymized
+state "Anonymized" as Anonymized
 
 Identified --> Identifiable
 Identifiable --> DeIdentified
