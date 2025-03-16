@@ -82,7 +82,10 @@ Clinical trials usually employ pseudonymization. Clinical trial processes remove
 In this book, one-way/irreversible pseudonymization is considered as de-identification.
 
 ### 2.3.2 De-Identification (TBD)
-De-identification is the process of removing or transforming sufficient information from the source data. The goal is that the risk of re-identification is reduced to an acceptable level while also achieving the objectives of the intended use. There is a trade-off between the fidelity of the resulting de-identified data set, and the risk of re-identification. From ISO/TS 25237 “There is no one single de-identification procedure that will meet the diverse needs of all the medical uses while providing identity concealment. Every record release process shall be subject to risk analysis to evaluate:
+De-identifcation is a :
+> general term for any process of removing the association between a set of identifying data and the data subject.[@ISO25237]
+The definition above aligns closely with the HIPAA Rule (see 45 CFR § 164.514(a), (b), (c)). Under the HIPAA Rule, this process can follow the Safe Harbor method, the Expert Determination method, or a combination of both. While GDPR does not provide a formal (or even informal) definition of de-identification, its concept of pseudonymization—formally defined under GDPR—can be viewed as a specific type of de-identification process. In contrast, under China’s Personal Information Protection Law (PIPL), de-identification and anonymization are treated as distinct processes with significantly different legal requirements and obligations. In PIPL, data resulting from de-identification remains classified as personal data, whereas data resulting from anonymization is considered non-personal data.
+Despite definitions in HIPAA (45 CFR § 164.514(c)) and PIPL (Article 8,73,(III)), which do not explicitly exclude pseudonymization from de-identification, this book emphasizes an irreversible method of disassociation, adhering to a more rigorous interpretation of de-identification. n De-identification is the process of removing or transforming sufficient information from the source data. The goal is that the risk of re-identification is reduced to an acceptable level while also achieving the objectives of the intended use. There is a trade-off between the fidelity of the resulting de-identified data set, and the risk of re-identification. From ISO/TS 25237 “There is no one single de-identification procedure that will meet the diverse needs of all the medical uses while providing identity concealment. Every record release process shall be subject to risk analysis to evaluate:
 
 1. the purpose for the data release (e.g., analysis);
 
@@ -218,18 +221,4 @@ There are various kinds of threats that motivate de-identification. The followin
 | 7| Previously protected information is compromised| | Old court records made publicly available, by mistake, authorized individual, or social engineering attack| |
 {:.grid}
 
-[^1]: 45 C.F.R $164.514(b)(1)(i)
 
-[^2]: See Recital 26 of the General Data Protection Regulation (GDPR): “The principles of data protection should not apply to anonymous information, namely information which does not relate to an identified or identifiable natural person or to personal data rendered anonymous in such a manner that the data subject is not or no longer identifiable.”
-
-[^3]: IAPP. (n.d.). https://iapp.org/news/a/a-practical-guide-to-anonymization-standards-across-the-eu-and-uk
-
-[^4]: See Recital 26 of the General Data Protection Regulation (GDPR): "The principles of data protection should therefore not apply to anonymous information."
-
-[^5]: See Personal Information Protection Law of the People's Republic of China (PIPL) Chapter I Article 4: "Personal information refers to various information related to an identified or identifiable natural person recorded electronically or by other means, but does not include anonymized information"
-
-[^6]: See Recital 26 of the General Data Protection Regulation (GDPR): "Personal data which have undergone pseudonymisation, which could be attributed to a natural person by the use of additional information should be considered to be information on an identifiable natural person."
-
-[^7]: See European Commission. (n.d.). Data Protection explained. European Commission. https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en
-
-[^8]: See Information Commissioner’s Office. (2022). Draft anonymisation, pseudonymisation and privacy enhancing technologies guidance. In Chapter 3. https://ico.org.uk/media/about-the-ico/consultations/4019579/chapter-3-anonymisation-guidance.pdf
