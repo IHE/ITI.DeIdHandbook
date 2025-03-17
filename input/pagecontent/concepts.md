@@ -81,12 +81,19 @@ Clinical trials usually employ pseudonymization. Clinical trial processes remove
 
 In this book, one-way/irreversible pseudonymization is considered as de-identification.
 
-### 2.3.2 De-Identification (TBD)
-De-identifcation is a :
+### 2.3.2 De-Identification
+De-identification is the process of removing or transforming sufficient information from the source data. The goal is that the risk of re-identification is reduced to an acceptable level while also achieving the objectives of the intended use. One of the definition is:
 > general term for any process of removing the association between a set of identifying data and the data subject.[@ISO25237]
-The definition above aligns closely with the HIPAA Rule (see 45 CFR § 164.514(a), (b), (c)). Under the HIPAA Rule, this process can follow the Safe Harbor method, the Expert Determination method, or a combination of both. While GDPR does not provide a formal (or even informal) definition of de-identification, its concept of pseudonymization—formally defined under GDPR—can be viewed as a specific type of de-identification process. In contrast, under China’s Personal Information Protection Law (PIPL), de-identification and anonymization are treated as distinct processes with significantly different legal requirements and obligations. In PIPL, data resulting from de-identification remains classified as personal data, whereas data resulting from anonymization is considered non-personal data.
-Despite definitions in HIPAA (45 CFR § 164.514(c)) and PIPL (Article 8,73,(III)), which do not explicitly exclude pseudonymization from de-identification, this book emphasizes an irreversible method of disassociation, adhering to a more rigorous interpretation of de-identification. n De-identification is the process of removing or transforming sufficient information from the source data. The goal is that the risk of re-identification is reduced to an acceptable level while also achieving the objectives of the intended use. There is a trade-off between the fidelity of the resulting de-identified data set, and the risk of re-identification. From ISO/TS 25237 “There is no one single de-identification procedure that will meet the diverse needs of all the medical uses while providing identity concealment. Every record release process shall be subject to risk analysis to evaluate:
+The definition above aligns closely with the HIPAA Rule (see 45 CFR § 164.514(a), (b), (c)). Under this rule, the process may follow the Safe Harbor method, the Expert Determination method, or a combination of both. Although the GDPR does not explicitly define de-identification—whether formally or informally—its concept of pseudonymization, as outlined in Art. 4(5) GDPR, can be regarded as a specific type of de-identification. In contrast, China’s Personal Information Protection Law (PIPL) distinguishes de-identification from anonymization as distinct processes with different legal requirements and implications. Under PIPL, de-identified data remains classified as personal data, while anonymized data is considered non-personal data. Comparing pseudonymization under GDPR (Art. 4(5)) with de-identification under PIPL (Art. 73(3)) highlights two key similarities: first, the data resulting from both processes is still treated as personal data; second, both stipulate that an individual cannot be re-identified from the processed dataset—whether pseudonymized or de-identified—without additional information. To align these concepts with modern privacy laws, this book defines de-identification as a process that produces a de-identified (including Readily-Identifiable)  dataset, which remains personal data identifiable only with additional information.
 
+<figure>
+  <img src="relationships-between-concepts.drawio.png" />
+  <figcaption><strong>Figure 2.3.2-1: Relationships between different concepts of de-identification</strong></figcaption>
+</figure>
+ 
+Figure 2.3.1-1 illustrates the concepts of de-identification across various levels. The outermost zones represent a broad view of de-identification, encompassing all its forms, differentiated solely by the degree of their outcomes. However, this expansive perspective is imprecise and may cause confusion, especially when addressing implementation for compliance purposes. To resolve this, this book employs the concepts at a more specific level: reversible de-identification (pseudonymization), irreversible de-identification (typically simplified as de-identification), and anonymization.
+
+When determining the extent of a de-identification process, there is a trade-off between the fidelity of the resulting de-identified dataset and the risk of re-identification considering the pupose of using data. According to ISO/TS 25237, "There is no single de-identification procedure that can meet the diverse needs of all medical applications while ensuring identity concealment. Every record release process must undergo a risk analysis to evaluate the balance between data utility and privacy protection". Every data release process shall be subject to risk analysis to evaluate:
 1. the purpose for the data release (e.g., analysis);
 
 2. the minimum information that shall be released to meet that purpose;
@@ -95,9 +102,11 @@ Despite definitions in HIPAA (45 CFR § 164.514(c)) and PIPL (Article 8,73,(III)
 
 4. what release strategies are available.
 
+Irreversible de-identification, often simply referred to as de-identification, differs from pseudonymization in that no additional information is generated during the process to enable secure linking of the processed data back to the original personal identifiers. This distinction typically applies to scenarios focused solely on analyzing insights about a group or population.
+
 <figure>
 	<img src="relationships-removed-by-deid.png" style="width:6.50694in;height:2.85347in" />
-	<figcaption><strong>Figure 2.3.2-1: Relationships removed by De-identification</strong></figcaption>
+	<figcaption><strong>Figure 2.3.2-2: Relationships removed by De-identification</strong></figcaption>
 </figure>
 
 In the above figures, each person is associated with specific characteristics such as age, administrate gender, given name, etc. Starting with zero knowledge, an attacker can only identify a large set of people as candidates. But each time the attacker obtains a characteristic, the set of candidate individuals is reduced. If an attacker can collect enough characteristics about a person, then the set of candidate individuals is reduced to a single person. De-identification techniques are used, to ensure that all these sets remain sufficiently large that the risk of identifying a specific individual is acceptable.
