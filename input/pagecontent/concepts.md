@@ -1,4 +1,3 @@
-# 2 Concepts
 
 De-identification, anonymization, and pseudonymization are processes that reduce the probability of an individual being associated with that individual’s data. The most common healthcare use of these techniques is to protect individual patients, but they may also be applied to protect healthcare clinicians, devices, or organizations.
 
@@ -32,7 +31,7 @@ In the USA, part of the clinical trial process is governed by an Institutional R
 
 Part of the human subject risk considered by IRBs is that to patient privacy, which most nations require protection of. In the US, regulations state “IRBs should determine the adequacy of the provisions to protect the **privacy** of subjects and to maintain the **confidentiality** of the data \[*see* Guidebook Chapter 3, Section D, "Privacy and Confidentiality"\]” One effective method to help reduce both study bias and privacy risk is to use data that has been pseudonymized. Since IHE profiles are not governed by IRBs, IHE writers need to provide enough info in their profiles to help implementers comply with anticipated future IRB policies.
 
-## 2.1 General Approach
+## General Approach
 
 The process of de-identification focuses on risk reduction. This starts with defining the intended use of the de-identified data and understanding the needs of that use. This approach starts by allowing no data, which requires that the project team justify that each attribute is required to fulfill the use case objectives. As each attribute is examined, various methods of manipulation are considered. The data use purpose may be met by data that has been modified to reduce the amount of identifying information conveyed. The goal is to eliminate everything that the implementer can afford lose. The result is that only the minimal information needed for the intended use remains in the de-identified data-set.
 
@@ -49,9 +48,9 @@ Much of this analysis must be aided by subject matter experts. For example, cons
 
 This analysis will also be affected by regulatory requirements. Most nations have laws that identify particular sensitive data that must be given special protection, and other laws that may mandate disclosure of other information. Local regulatory expertise will be needed.
 
-At the end of the requirement analysis process a table of data elements, intended use, risks, mitigations, and residual risks will be created. Some standards, e.g., DICOM PS3.15 Annex E, provide tables that can act as the starting point for creating a use specific final table. Table 2.1-1 illustrates what a final table might contain.
+At the end of the requirement analysis process a table of data elements, intended use, risks, mitigations, and residual risks will be created. Some standards, e.g., [DICOM PS3.15 Annex E](references.html#dicom-part-15-annex-e), provide tables that can act as the starting point for creating a use specific final table. Table 2.1-1 illustrates what a final table might contain.
 
-**Table 2.1-1: Illustrative List of Fields and Risks**
+**Table: Illustrative List of Fields and Risks**
 
 | Example Field           | Intended Use                        | Risk Characteristics                        | Mitigation                        | Residual Risk                        |
 |-------------------------|-------------------------------------|---------------------------------------------|-----------------------------------|--------------------------------------|
@@ -63,7 +62,7 @@ At the end of the requirement analysis process a table of data elements, intende
 
 Ultimately there will be residual risk that will need to be documented as unmitigated. This may make it necessary to protect the resulting de-identified data through other means like access controls and physical limits.
 
-## 2.2 Definitions
+## Definitions
 
 **Anonymity:** Anonymity means that the subject is not identifiable. For example, a patient cannot be identified from a teaching file. From the perspective of an attacker, anonymity means that no individual subjects can be identified.
 
@@ -91,7 +90,7 @@ Ultimately there will be residual risk that will need to be documented as unmiti
 
 **Unlinkability:** A state whereby which two items cannot be associated.
 
-## 2.3 De-identification Background
+## De-identification Background
 
 De-identification is the process of removing or transforming sufficient information from the source data. The goal is that the risk of re-identification is reduced to an acceptable level while also achieving the objectives of the intended use. There is a trade-off between the fidelity of the resulting de-identified data set, and the risk of re-identification. From ISO/TS 25237 “There is no one single de-identification procedure that will meet the diverse needs of all the medical uses while providing identity concealment. Every record release process shall be subject to risk analysis to evaluate:
 
@@ -106,12 +105,12 @@ De-identification is the process of removing or transforming sufficient informat
 <img src="relationships-in-original-data.png"
 style="width:6.50694in;height:2.85347in" />
 
-**Figure 2.3-1: Relationships in original data**
+**Figure: Relationships in original data**
 
 <img src="relationships-removed-by-deid.png"
 style="width:6.50694in;height:2.85347in" />
 
-**Figure 2.3-2: Relationships removed by De-identification**
+**Figure: Relationships removed by De-identification**
 
 In the above figures, each person is associated with specific
 characteristics such as age, administrate gender, given name, etc.
@@ -124,7 +123,7 @@ De-identification techniques are used, to ensure that all these sets
 remain sufficiently large that the risk of identifying a specific
 individual is acceptable.
 
-### 2.3.1 Examples
+### Examples
 
 A national government project in central Europe was seeking to identify prisons that had populations that were at high risk for outbreaks of certain disease so that they could intervene. They found that certain lifestyle traits, specifically a history of intravenous drug usage, piercings, and tattoos, had a high positive correlation with this disease. This lifestyle information was not codified and only existed in free form text notes. Their first solution was to manually redact the records and supply the remaining information to the researchers. But it failed to achieve privacy objectives. Specific prisoners could often be identified. Their second solution was to use manual free form text data mining tools to extract only certain key words, removing the entire record, and only supplying those keywords and the prison location. This proved successful. Their current plan is to use automated tools to identify key phrases, transform those into project-specific codified values, and then only supply that information along with the prison identifier to the researchers.
 
@@ -133,7 +132,7 @@ trial sponsor agreed to allow a de-identification team access to the original pa
 
 In the event that a significant finding is made by the review team, they communicate the finding to the de-identification team. The de-identification team contacts the patient’s physician with the finding. The patient’s physician examines the record and communicates with the patient. The physician informs the de-identification team that the patient has been informed. The de-identification team informs the review team, so that the review team can confirm that their ethical duty to ensure that the patient is informed has been met.
 
-## 2.4 Pseudonymization
+## Pseudonymization
 
 Pseudonymization is a particular type of de-identification “that both removes the association with a data subject and adds an association between a particular set of characteristics relating to the data subject and one or more pseudonyms.
 
@@ -146,7 +145,7 @@ Pseudonymization separates personal identifiers from payload data by assigning n
 <img src="pseudonymization.png"
 style="width:6.47986in;height:2.82639in" />
 
-**Figure 2.4-1: Pseudonymization**
+**Figure: Pseudonymization**
 
 One key use of pseudonymization is to preserve the relationships that
 associate data in many different documents to a specific individual. The
@@ -155,7 +154,7 @@ original person identifier. De-identification must use still be done
 after pseudonymization to remove the remaining non-essential
 characteristics.
 
-## 2.5 Relinking or Re-identification
+## Relinking or Re-identification
 
 Re-identification is the process of re-associating the de-identified data with the original subject identity. The need for re-identification increases the complexity.
 
@@ -170,11 +169,11 @@ Reasons for re-identification include:
 - Facilitating follow-up research
 - Law enforcement
 
-## 2.6 Threat Categories
+## Threat Categories
 
 There are various kinds of threats that motivate de-identification. The following table is illustrative of these kinds of threats. As part of the risk assessment there is a threat analysis that will consider whether these and other threats apply in that situation.
 
-**Table 2.6-1: Threat Categories**
+**Table: Threat Categories**
 
 | Category of Threat | Threat Description     | Scenario            | Example           | Candidate Mitigations          |
 |--------------------|----------------------- |---------------------|-------------------|--------------------------------|

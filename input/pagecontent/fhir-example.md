@@ -1,3 +1,2 @@
-## FHIR Examples
 
 TODO
