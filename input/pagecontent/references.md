@@ -1,260 +1,43 @@
 # References
 
-HP. "Efficient signature schemes supporting redaction, pseudonymization,
-and data deidentification." *HP.*
-<http://hpl.hp.com/techreports/2007/HPL-2007-191.pdf>.
+#### <a name="hp2007"></a> HP. (2007). *Efficient signature schemes supporting redaction, pseudonymization, and data deidentification* (HP Tech. Rep. HPL-2007-191). http://hpl.hp.com/techreports/2007/HPL-2007-191.pdf
 
-Schneier, Bruce. "Commentary on the Importance of a Systemic Approach to
-Security." *Bruce Schneier.* <http://www.schneier.com/essay-028.html>.
+#### <a name="schneier2008"></a> Schneier, B. (2008). Commentary on the importance of a systemic approach to security. *Bruce Schneier*. http://www.schneier.com/essay-028.html
 
-A United Kingdom government document describing a toolkit for removing
-content prior publication for various legal reasons.
+#### <a name="uk2008"></a> United Kingdom Government. (2008). *Redaction guidelines for the editing of exempt information from paper and electronic documents prior to release*. http://www.nationalarchives.gov.uk/documents/information-management/redaction_toolkit.pdf
 
-*REDACTION GUIDELINES FOR THE EDITING OF EXEMPT INFORMATION FROM PAPER
-AND ELECTRONIC DOCUMENTS PRIOR TO RELEASE*
+#### <a name="iso2008"></a> ISO. (2008). *Health informatics — Pseudonymization (Informatique de santé — Pseudonymisation)* (ISO/TS 25237:2008). http://www.iso.org/iso/catalogue_detail?csnumber=42807
 
-<http://www.nationalarchives.gov.uk/documents/information-management/redaction_toolkit.pdf>
+#### <a name="dicom2011"></a> DICOM. (2011). *DICOM Part 15, Annex E*. http://medical.nema.org/Dicom/2011/11_15pu.pdf
 
-Educational publication dealing with de-identification, pseudonymization
-and relinking in the context of healthcare information technology
-domains. Discusses definitions, conceptual models, risk assessment,
-algorithms, and much more.
+#### <a name="blog2009"></a> Anonymous. (2009). *De-identification is highly contextual*. http://healthcaresecprivacy.blogspot.com/2009/10/de-identification-is-highly-contextual.html
 
-*Health informatics — Pseudonymization (Informatique de santé —
-Pseudonymisation)*
+#### <a name="hitsp2008"></a> HITSP. (2008). *HITSP biosurveillance use case presentation*. http://hitsp.wikispaces.com/Biosurveillance+Use+Case
 
-ISO Technical Specification ISO/TS 25237: Health informatics –
-Pseudonymization, First edition, 2008-12-01 (Informatique de santé —
-Pseudonymisation)
+#### <a name="dobbs2010"></a> Dobbs, D. (2010). Biosurveillance use case and minimum data elements. *NCBI*. http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2995626/
 
-<http://www.iso.org/iso/catalogue_detail?csnumber=42807>
+#### <a name="nhn2008"></a> NHN Testing Work Group. (2008). *Biosurveillance test case scenarios 2008-10-03.xls*.
 
-Discusses clinical trials, double-blinding, traceability (relinking) to
-original content, preserving data needed for the trial.
+#### <a name="pfitzmann2008"></a> Pfitzmann, A., & Hansen, M. (2008). *Anonymity, unlinkability, undetectability, unobservability, pseudonymity, and identity management – A consolidated proposal for terminology*. http://dud.inf.tu-dresden.de/literatur/Anon_Terminology_v0.31.pdf
 
-*DICOM Part 15, Annex E*
+#### <a name="mit2008"></a> MIT. (2008). *Reidentification of individuals in Chicago's homicide database: A technical and legal study*. http://web.mit.edu/sem083/www/assignments/reidentification.html
 
-<http://medical.nema.org/Dicom/2011/11_15pu.pdf>
+#### <a name="ISO25237"></a> ISO 25237:2017. (2017, January). *Health informatics — Pseudonymization* (ISO 25237:2017). International Organization for Standardization. https://www.iso.org/standard/63553.html
 
-Blog entry by one of this document’s co-authors
+#### <a name="ISO20889"></a> ISO/IEC 20889:2018(E). (2018, November). *Privacy enhancing data de-identification terminology and classification of techniques* (ISO/IEC 20889:2018(E)). International Organization for Standardization. https://www.iso.org/standard/69373.html
 
-*De-Identification is highly contextual*
+#### <a name="GDPR2016a"></a> GDPR. (2016, May 4). *Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)*. European Parliament and Council of the European Union. https://data.europa.eu/eli/reg/2016/679/oj
 
-<http://healthcaresecprivacy.blogspot.com/2009/10/de-identification-is-highly-contextual.html>
+#### <a name="PIPL2021"></a> PIPL. (2021, August 20). *Personal Information Protection Law of the People’s Republic of China*. National People’s Congress of the People’s Republic of China (NPC). http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559.htm
 
-Lists summary of units of data exchange and values that should be
-pseudonymized
+#### <a name="edpb2025"></a> European Data Protection Board. (2025). *Guidelines 01/2025 on pseudonymisation* (Adopted - Version for Public Consultation 1). https://www.edpb.europa.eu/system/files/2025-01/edpb_guidelines_202501_pseudonymisation_en.pdf
 
-*HITSP Biosurveillance Use Case presentation*
+#### <a name="NIST_SP_800-188_2023"></a> NIST 800-188. (2023). *De-identifying government datasets* (Special Publication 800-188). National Institute of Standards and Technology. https://doi.org/10.6028/nist.sp.800-188
 
-<http://hitsp.wikispaces.com/Biosurveillance+Use+Case>
+#### <a name="ocr2025"></a> Office for Civil Rights. (2025, February 3). *Methods for de-identification of PHI*. HHS.gov. https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html#rationale
 
-Presentation by David Dobbs on the Biosurveillance Use Case and Minimum
-Data Elements
+#### <a name="Hintze_2017"></a> Hintze, M. (2017, December). Viewing the GDPR through a de-identification lens: A tool for compliance, clarification, and consistency. *International Data Privacy Law, 8*(1), 86–101. https://doi.org/10.1093/IDPL/IPX020
 
-<http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2995626/>
+#### <a name="GB/T_42460_2023"></a> GB/T 42460—2023. (2023, March). *Information security technology - Guide for evaluating the effectiveness of personal information de-identification* (GB/T 42460—2023). State Administration for Market Regulation Standardization Administration of China. https://www.iso.org/standard/69373.html
 
-NHN Testing Work Group document *Biosurveillance Test Case Scenarios
-2008-10-03.xls* file, draft
-
-A proposed vocabulary for pseudonymization and related concepts
-
-*Anonymity, Unlinkability, Undetectability, Unobservability,
-Pseudonymity, and Identity Management – A Consolidated Proposal for
-Terminology* (Version v0.31 Feb. 15, 2008)
-
-<http://dud.inf.tu-dresden.de/literatur/Anon_Terminology_v0.31.pdf>
-
-Shows that a large percentage of people can be re-identified with
-Date-of-Birth, Current ZIP Code, and Sex
-
-*Reidentification of Individuals in Chicago's Homicide Database A
-Technical and Legal Study*
-
-<http://web.mit.edu/sem083/www/assignments/reidentification.html><span
-id="_Toc354562093" class="anchor"></span>
-
-```bibtex
-@techreport{hp2007,
-    author = {HP},
-    title = {Efficient signature schemes supporting redaction, pseudonymization, and data deidentification},
-    institution = {HP},
-    year = {2007},
-    url = {http://hpl.hp.com/techreports/2007/HPL-2007-191.pdf}
-}
-
-@article{schneier2008,
-    author = {Bruce Schneier},
-    title = {Commentary on the Importance of a Systemic Approach to Security},
-    journal = {Bruce Schneier},
-    year = {2008},
-    url = {http://www.schneier.com/essay-028.html}
-}
-
-@misc{uk2008,
-    author = {United Kingdom Government},
-    title = {Redaction Guidelines for the Editing of Exempt Information from Paper and Electronic Documents Prior to Release},
-    year = {2008},
-    url = {http://www.nationalarchives.gov.uk/documents/information-management/redaction_toolkit.pdf}
-}
-
-@techreport{iso2008,
-    author = {ISO},
-    title = {Health informatics — Pseudonymization (Informatique de santé — Pseudonymisation)},
-    institution = {ISO},
-    year = {2008},
-    url = {http://www.iso.org/iso/catalogue_detail?csnumber=42807}
-}
-
-@misc{dicom2011,
-    author = {DICOM},
-    title = {DICOM Part 15, Annex E},
-    year = {2011},
-    url = {http://medical.nema.org/Dicom/2011/11_15pu.pdf}
-}
-
-@misc{blog2009,
-    author = {Anonymous},
-    title = {De-Identification is highly contextual},
-    year = {2009},
-    url = {http://healthcaresecprivacy.blogspot.com/2009/10/de-identification-is-highly-contextual.html}
-}
-
-@misc{hitsp2008,
-    author = {HITSP},
-    title = {HITSP Biosurveillance Use Case presentation},
-    year = {2008},
-    url = {http://hitsp.wikispaces.com/Biosurveillance+Use+Case}
-}
-
-@article{dobbs2010,
-    author = {David Dobbs},
-    title = {Biosurveillance Use Case and Minimum Data Elements},
-    journal = {NCBI},
-    year = {2010},
-    url = {http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2995626/}
-}
-
-@misc{nhn2008,
-    author = {NHN Testing Work Group},
-    title = {Biosurveillance Test Case Scenarios 2008-10-03.xls},
-    year = {2008}
-}
-
-@misc{pfitzmann2008,
-    author = {Andreas Pfitzmann and Marit Hansen},
-    title = {Anonymity, Unlinkability, Undetectability, Unobservability, Pseudonymity, and Identity Management – A Consolidated Proposal for Terminology},
-    year = {2008},
-    url = {http://dud.inf.tu-dresden.de/literatur/Anon_Terminology_v0.31.pdf}
-}
-
-@misc{mit2008,
-    author = {MIT},
-    title = {Reidentification of Individuals in Chicago's Homicide Database A Technical and Legal Study},
-    year = {2008},
-    url = {http://web.mit.edu/sem083/www/assignments/reidentification.html}
-}
-
-@TechReport{ISO25237,
-  author       = {{ISO 25237:2017}},
-  title        = {Health informatics — Pseudonymization},
-  institution  = {International Organization for Standardization},
-  year 	       = {2017},
-  number       = {ISO 25237:2017},
-  address      = {Geneva, CH},
-  month        = jan,
-  url          = {https://www.iso.org/standard/63553.html}
-}
-
-@TechReport{ISO20889,
-  type         = {Standard},
-  author       = {{ISO/IEC 20889:2018(E)}},
-  number       = {ISO/IEC 20889:2018(E)},
-  month        = nov,
-  year         = 2018,
-  title        = {Privacy enhancing data de-identification terminology and classification of techniques},
-  address      = {Geneva, CH},
-  institution  = {International Organization for Standardization},
-  url          = {https://www.iso.org/standard/69373.html}
-}
-
-@online{GDPR2016a,
-  author     = {GDPR},
-  date       = {2016-05-04},
-  location   = {OJ L 119, 4.5.2016, p. 1--88},
-  title      = {Regulation ({EU}) 2016/679 of the {European} {Parliament} and of the {Council}},
-  url        = {https://data.europa.eu/eli/reg/2016/679/oj},
-  titleaddon = {of 27 {April} 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing {Directive} 95/46/{EC} ({General} {Data} {Protection} {Regulation})},
-  abstract   = {The General Data Protection Regulation (2016/679, "GDPR") is a Regulation in European Union (EU) law on data protection and privacy in the EU and the European Economic Area (EEA).},
-  institution     = {European Parliament and Council of the European Union},
-  keywords   = {access consumer data data-processing freedom gdpr information justice law personal privacy protection security verification},
-  urldate    = {2023-04-13},
-}
-
-@online{PIPL2021,
-  author     ={PIPL},
-  date       ={2021-08-20},
-  title      ={Personal Information Protection Law of the People’s Republic of China},
-  url        ={http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559.htm},
-  institution     ={National People’s Congress of the People’s Republic of China ({NPC}) },
-  urldate    ={2021-12-29}
-}
-
-@misc{edpb2025,
-  author = {{European Data Protection Board}},
-  title = {Guidelines 01/2025 on Pseudonymisation},
-  year = {2025},
-  note = {Adopted - Version for Public Consultation 1},
-  url = {https://www.edpb.europa.eu/system/files/2025-01/edpb_guidelines_202501_pseudonymisation_en.pdf},
-  urldate = {2025-03-02}
-}
-
-@techreport{NIST_SP_800-188_2023,
-  author = {{NIST 800-188}},
-  title = {De-identifying Government Datasets},
-  year = 2023,
-  institution = {National Institute of Standards and Technology},
-  type = {Special Publication},
-  number = {800-188},
-  doi = {10.6028/nist.sp.800-188},
-  url = {https://doi.org/10.6028/nist.sp.800-188},
-  urldate = {2025-03-02}
-}
-
-@misc{ocr2025,
-  author = {{Office for Civil Rights}},
-  title = {Methods for De-identification of PHI},
-  year = {2025},
-  month = {feb},
-  day = {3},
-  publisher = {HHS.gov},
-  url = {https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html#rationale},
-  urldate = {2025-03-02}
-}
-
-@article{Hintze_2017,
-title={Viewing the GDPR through a de-identification lens: a tool for compliance, clarification, and consistency},
-volume={8},
-url={https://academic.oup.com/idpl/article-abstract/8/1/86/4763693},
-DOI={10.1093/IDPL/IPX020},
-number={1},
-journal={International Data Privacy Law},
-publisher={Oxford Academic},
-author={Hintze, Mike},
-year={2017},
-month=dec,
-pages={86–101}
-}
-
-@TechReport{GB/T_42460_2023,
-  type         = {Standard},
-  author       = {{GB/T_42460}},
-  number       = {GB/T_42460—2023},
-  month        = mar,
-  year         = 2023,
-  title        = {Information security technology - Guide for evaluating the effectiveness of personal information de-identification},
-  institution  = {State Administration for Market Regulation Standardization Administration of China},
-  url          = {https://www.iso.org/standard/69373.html}
-}
-
-```
+#### <a name="HIPAA1996"></a> HIPAA. (1996, February 3). *Guidance regarding methods for de-identification of protected health information in accordance with the Health Insurance Portability and Accountability Act (HIPAA) Privacy Rule*. Rights, Office For Civil; HHS.gov. https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html
