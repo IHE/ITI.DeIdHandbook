@@ -41,3 +41,7 @@
 #### <a name="GB/T_42460_2023"></a> GB/T 42460—2023. (2023, March). *Information security technology - Guide for evaluating the effectiveness of personal information de-identification* (GB/T 42460—2023). State Administration for Market Regulation Standardization Administration of China. https://www.iso.org/standard/69373.html
 
 #### <a name="HIPAA1996"></a> HIPAA. (1996, February 3). *Guidance regarding methods for de-identification of protected health information in accordance with the Health Insurance Portability and Accountability Act (HIPAA) Privacy Rule*. Rights, Office For Civil; HHS.gov. https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html
+
+#### <a name="UKAN2020ADF"></a>UK Anonymisation Network. (2020). Anonymisation decision-making framework: European practitioners’ guide (2nd ed.). University of Manchester. https://ukanon.net/wp-content/uploads/2024/01/adf-2nd-edition-european-practitioners-guide-final-version-cover-2024-version-2.pdf
+
+<a name="isoiec27559"></a> ISO/IEC 27559 (2022). Information security, cybersecurity and privacy protection — Privacy enhancing data de-identification framework (ISO/IEC 27559:2022). https://www.iso.org/standard/71659.html
