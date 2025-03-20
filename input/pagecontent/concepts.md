@@ -150,7 +150,7 @@ While the risk levels vary, pseudonymization, de-identification (irreversible), 
 [UKAN2020ADF](references.html#UKAN2020ADF) introduces the Anonymisation Decision-Making Framework (ADF), offering a perspective on anonymisation and the reuse of personal data that moves beyond the limitations of overly technical or legalistic approaches. In the ADF, 'anonymisation' differs from its usage in GDPR and PIPL, being defined instead as Functional Anonymisation. This concept hinges on assessing anonymisation based on the data and its environment, without excluding any level of identifiability, and is not intended as legal advice. The framework effectively addresses the risk-based aspects of de-identification, making it a foundational approach adopted in this book.
 <figure>
 	<img src="risk-based-general-approach.drawio.png"/>
-	<figcaption><strong>Ris-Based General Approach of De-Identification</strong></figcaption>
+	<figcaption><strong>Risk-Based General Approach of De-Identification</strong></figcaption>
 </figure>
 
 The figure above illustrates the key aspects of a risk-based general approach, namely, Data Situation Analysis, Disclosure Risk Control, and Impact Management.
@@ -183,7 +183,7 @@ Disclosure risk control starts with risk assessment. Re-Identification risks in 
 [ISO/IEC 27559 2022](references.html#isoiec27559) specifies an eqution for calculating the re-identificaiton risk:
 > P(identification) = P(identification | threat) × P(threat) 
 
-P(identification | threat) represents data risk, while P(threat) denotes context risk. When quantifying data risk, a data privacy model must be selected based on the required dataset structure and the type of data assessment. k-Anonymity and Differential Privacy are the two primary privacy models.
+P(identification | threat) represents data risk, while P(threat) denotes context risk. When quantifying data risk, a data privacy model must be selected based on the required dataset structure and the type of data access. k-Anonymity and Differential Privacy are the two primary privacy models.
 
 Risk control is guided by the results of the risk assessment and typically involves a combination of technical and organizational measures. Technical measures include techniques to transform direct identifiers—such as secure hashing, encryption, random replacement, and suppression—as well as quasi-identifiers, through methods like generalization and noise addition. Organizational measures consist of secure data infrastructure, data access controls, usage agreements, auditing, and monitoring etc.
 
@@ -191,7 +191,7 @@ Risk control is guided by the results of the risk assessment and typically invol
 
 ## 2.5 Definitions
 
-**Anonymity:** Anonymity means that the subject is not identifiable. For example, a patient cannot be identified from a teaching file. From the perspective of an attacker, anonymity means that no individual subjects can be identified.
+**Anonymity:** Anonymity signifies that a subject's identity is indiscernible, ensuring, for instance, that a patient in a teaching file remains unidentifiable; from a threat actor's viewpoint, anonymity implies the inability to link any data to a specific individual. 
 
 **Anonymization**: A process that is intended to irreversibly remove the association between a subject and information that can identify the subject. If the process is intended to be reversible and a new identifier is substituted for the subject’s real identifiers, then the process is called **pseudonymization**.
 
