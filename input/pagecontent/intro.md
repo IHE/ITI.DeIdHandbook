@@ -1,6 +1,4 @@
 
-# 1 Introduction to This Handbook
-
 This handbook explains the PROCESS for removing individually identifiable information from healthcare data. This includes de-identification, pseudonymization, re-linking, design considerations, techniques, and risks. The intended audience is IHE Profile editors and healthcare information technology implementers needing a guide for designing and implementing de-identification systems.
 
 De-identification is used to reduce privacy risks in a wide variety of situations:

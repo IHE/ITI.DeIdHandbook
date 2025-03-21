@@ -1,7 +1,5 @@
 
-## Analysis of Optimal De-Identification Algorithms for Family Planning Data Elements
-
-This document, the IHE IT Infrastructure (ITI) Analysis of Optimal
+This section, the IHE IT Infrastructure (ITI) Analysis of Optimal
 De-Identification Algorithms for Family Planning Data Elements White
 Paper, describes the analysis performed by the ITI Technical Committee
 when selecting the optimal de-identification algorithms to fulfill the

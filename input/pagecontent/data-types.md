@@ -1,10 +1,9 @@
-# 3 Data Types
 
 The semantic type of each data element determines the algorithm or algorithms to apply to that element. Below we discuss various types of data.
 
 This table can be used as a starting point. There are also standard specifications available (e.g., DICOM PS3.15 Annex E, see Appendix B of this document) that take this high level categorization and expand it to the individual attributes for particular kinds of data. Profile writers and others should extend these tables with any data types that are specific to their intended use.
 
-**Table 3-1: Data types**
+**Table: Data types**
 
 | Data types           | Examples                                                            | Approaches                                                           |
 |---------------------------|---------------------------------------------------------------------|----------------------------------------------------------------------|
@@ -76,7 +75,7 @@ data. Mitigations of such identifiable data in the structured and coded
 DICOM header should be in accordance with DICOM PS 3.15 Annex E.
 Additional risk assessment shall be considered for identifiable
 characteristics of the image or notations that are part of the image.
-See DICOM PS 3.15 Annex E|
+See [DICOM PS 3.15 Annex E](references.html#dicom-part-15-annex-e)|
 {:.grid}
 
 
