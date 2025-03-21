@@ -16,6 +16,13 @@ This is the Update to the De-Identification Handbook.
 
 Note: Diagrams must be in an editible form: preferrably plantuml, else powerpoint.
 
+## T-Con
+
+Every 2 weeks on Thursday, 7:00 – 8:00pm Central Time, Starting March 20
+
+- [Join the meeting](https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZTM3NTlhYzktNTFhMi00YWU0LWIyOGMtOTM3ODVlMGYyNGMy%40thread.v2/0?context=%7b%22Tid%22%3a%2202a9376b-a4f9-4a63-a240-52c43ebf9a89%22%2c%22Oid%22%3a%226459fea4-110a-4d17-85f0-00587211a0c0%22%7d)
+- Meeting ID: 258 433 850 452
+
 ### The Problem
 
 IHE IT Infrastructure Handbook (The handbook) was published in 2014. The handbook starts with introduction to the fundamental terms/concepts of de-identification, like, pseudonymization, de-identification, anonymization, technologies(algorithms) etc. Afterwards, it describes the process of de-identification which can be used in various scenarios in healthcare including educational materials, public health, clinical trials, etc.  The target audience of the handbook is IHE Profile editors and healthcare information technology implementers.
