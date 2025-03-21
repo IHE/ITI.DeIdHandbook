@@ -1,5 +1,5 @@
 
-## De-Identification and Pseudonymization for IHE Profile Editors
+### De-Identification and Pseudonymization for IHE Profile Editors
 
 A de-identification profile will specify the kind of source data, and for all of the attributes and data elements in that source data what data will be removed, what data will be modified, how data will be modified, and what data will be passed through unmodified. For example, in clinical trials, real patient names in the source data are replaced by clinical trial IDs assigned by the clinical trial manager for that person.
 

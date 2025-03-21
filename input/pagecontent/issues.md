@@ -1,5 +1,4 @@
 
-## Significant Changes
 
 ### Significant Changes from Revision x.x
 
@@ -7,15 +6,13 @@
 - change 2
 - etc.
 
-## Issues
+### Issues
 
-### Submit an Issue
-
-### Open Issues
+#### Open Issues
 
 - ToDo_001: this is open issue 1
 
-### Closed Issues
+#### Closed Issues
 
 - ToDo_002: this is closed issue 2
 
