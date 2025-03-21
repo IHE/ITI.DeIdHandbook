@@ -31,7 +31,7 @@ algorithms, and much more.
 
 ### DICOM
 
-[DICOM](https://dicom.nema.org/medical/dicom/current/output/chtml/index.html) current publication
+[DICOM](https://www.dicomstandard.org/current) current publication
 
 ### DICOM Part 15 Annex E
 
