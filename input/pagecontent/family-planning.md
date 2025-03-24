@@ -141,9 +141,12 @@ Planning CDA documents as inputs, and creating a new, De-Identified for
 Family Planning Comma Separated Value (CSV) file where each row in the
 CSV file corresponds to a de-Identified Family Planning CDA document.
 
-<img src="fp-image2.png" style="width:3.33465in;height:4.85433in" />
-
-Figure 2.1-1: De-Identification for Family Planning Process Diagram
+<figure>
+<img src="fp-image2.png"
+style="width:6.50694in;height:2.85347in" />
+<figcaption><strong>Figure: De-Identification for Family Planning Process Diagram</strong></figcaption>
+</figure>
+<br>
 
 The data elements must persist in some manner after de-identification
 algorithms have been applied for the purposes of health services
@@ -267,10 +270,12 @@ participants may also be submitting other types of CDA documents through
 the same or similar workflows. These other document types are out of
 scope for this whitepaper
 
-<img src="fp-flow.png" />
-
-Figure 2.4-1: Data Flows in the Title X Family Planning Annual Report
-Use Case
+<figure>
+<img src="fp-flow.png"
+style="width:6.50694in;height:2.85347in" />
+<figcaption><strong>Figure: Data Flows in the Title X Family Planning Annual Report Use Case</strong></figcaption>
+</figure>
+<br>
 
 ### De-Identification Methods
 

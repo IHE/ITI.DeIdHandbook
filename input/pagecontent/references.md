@@ -21,7 +21,7 @@ A United Kingdom government document describing a toolkit for removing content p
 
 ### DICOM
 
-[DICOM](https://dicom.nema.org/medical/dicom/current/output/chtml/index.html) current publication
+[DICOM](https://www.dicomstandard.org/current) current publication
 
 ### DICOM Part 15 Annex E
 

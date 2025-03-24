@@ -1,5 +1,5 @@
 
-## Navigating the Complexity of Privacy Concepts
+### Navigating the Complexity of Privacy Concepts
 Pseudonymization, de-identification, and anonymization, are the processes that mitigate the privacy risk of associating the disclosed information with an individual or a group of individuals when sharing personal data or anonymous information between different data environments. These concepts are widely used to protect individuals, especially in fields like healthcare. The most common healthcare use of these processes is to protect individual patients, but they may also be applied to protect healthcare clinicians and other individuals being involved.
 
 Applying risk mitigation processes like de-identification, anonymization, and pseudonymization is challenging due to unclear or conflicting interpretations across different frameworks. For example,[@ISO25237] defines pseudonymization as a type of de-identification process, while [@ISO20889] specifies it as a de-identification technique. Under [@GDPR2016a], pseudonymization is also defined as a processing of personal data, and further clarifies the condition under which the personal data can no longer be attributed to a specific data subject. The concept of pseudonymization under GDPR is similar to the definition of de-identification under [@PIPL2021]. Both of them emphasize the condition of without using additional information when considering whether or not the disclosed (transformed) personal data can be attributed to an individual. Unlike, pseudonymizatoin under the GDPR and de-identification under the PIPL, the HIPAA Rule (under 45 C.F.R §164.514(b)(1)(i)) does not restrict the concept of de-identification under the condition of without using additional information, instead it relies on the concept of a very small risk.
@@ -14,7 +14,7 @@ This handbook addresses these challenges by providing a practical lens. Rather t
 3. Pseudonymization typically allows precise tracing from pseudonyms back to original identifiers, as outlined in the UK Information Commissioner’s Office guidance on anonymization and pseudonymization [@ICO2022].
 4. De-identification, by contrast, supports secondary data use, such as generating aggregate statistics, without requiring a link between pseudonyms and original identifiers. This approach is endorsed by NIST SP 800-188 [@NIST2023] and OCR guidance [@OCR2025].
 
-## Identifiability
+### Identifiability
 
 The transformation of personal data to mitigate re-identification risk results in distinct levels of identifiability. GB/T 42460-2023 and Hintze (2017) each present a four-level identifiability framework. Although their definitions diverge, both frameworks share the principle that re-identification risk diminishes along the ordered levels, progressing from left to right (as illustrated in the figure below). (from left to the right as the figure below).
 
@@ -55,9 +55,9 @@ The table below summarizes the characteristics of the levels of identifiability 
 {:.grid}
 
 
-##  Pseudonymization, De-Identification and Anonymization Explained
+###  Pseudonymization, De-Identification and Anonymization Explained
 
-### Pseudonymization
+#### Pseudonymization
 According to GDPR Art. 4(5), pseudonymisation is defined as:
 
 > ‘pseudonymisation’ means the processing of personal data in such a manner that the personal data can no longer be attributed to a specific data subject without the use of additional information, provided that such additional information is kept separately and is subject to technical and organisational measures to ensure that the personal data are not attributed to an identified or identifiable natural person. [@GDPR2016]
@@ -80,7 +80,7 @@ Clinical trials usually employ pseudonymization. Clinical trial processes remove
 
 In this book, one-way/irreversible pseudonymization is considered as de-identification (irreversible).
 
-### De-Identification
+#### De-Identification
 De-identification is the process of removing or transforming sufficient information from the source data. The goal is that the risk of re-identification is reduced to an acceptable level while also achieving the objectives of the intended use. One of the definition is:
 > general term for any process of removing the association between a set of identifying data and the data subject.[@ISO25237]
 
@@ -113,12 +113,14 @@ In the above figures, each person is associated with specific characteristics su
 
 De-identification is also used to reduce risks such as bias in clinical studies or clinical reviews. De-identification is not often thought of in the context of treatment because you usually must associate the patient with his/her data in order to treat the patient. Some healthcare services, such as HIV testing, are delivered anonymously or pseudonymously. De-identification is more often an essential tool for secondary uses of data such as clinical trials and analytics.
 
+
 One-way/irreversible pseudonymization is considered as de-identification. One key use of irreversible pseudonymization is to preserve the relationships that associate data in many different documents to a specific individual. The pseudonymous identifier is a new characteristic that substitutes for the original person identifier. De-identification must use still be done after pseudonymization to remove the remaining non-essential characteristics.
 
 **Example Case**
 >A national government project in central Europe was seeking to identify prisons that had populations that were at high risk for outbreaks of certain disease so that they could intervene. They found that certain lifestyle traits, specifically a history of intravenous drug usage, piercings, and tattoos, had a high positive correlation with this disease. This lifestyle information was not codified and only existed in free form text notes. Their first solution was to manually redact the records and supply the remaining information to the researchers. But it failed to achieve privacy objectives. Specific prisoners could often be identified. Their second solution was to use manual free form text data mining tools to extract only certain key words, removing the entire record, and only supplying those keywords and the prison location. This proved successful. Their current plan is to use automated tools to identify key phrases, transform those into project-specific codified values, and then only supply that information along with the prison identifier to the researchers.
 
-### Anonymization
+
+#### Anonymization
 Unlike pseudonymization and de-identification (irreversible), anonymization requires released dataset is no loner ideantifiable even with the use of additional information.
 > The principles of data protection should therefore not apply to anonymous information, namely information which does not relate to an identified or identifiable natural person or to personal data rendered anonymous in such a manner that the data subject is not or no longer identifiable. [Recital 26, GDPR](https://gdpr-info.eu/recitals/no-26/).
 > "anonymization" refers to the process of processing personal information to make it impossible to identify specific natural persons and impossible to restore. [Art 73 (4), PIPL](http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559_3.htm)
@@ -144,7 +146,8 @@ In the USA, part of the clinical trial process is governed by an Institutional R
 Part of the human subject risk considered by IRBs is that to patient privacy, which most nations require protection of. In the US, regulations state “IRBs should determine the adequacy of the provisions to protect the **privacy** of subjects and to maintain the **confidentiality** of the data \[*see* Guidebook Chapter 3, Section D, "Privacy and Confidentiality"\]” One effective method to help reduce both study bias and privacy risk is to use data that has been pseudonymized. Since IHE profiles are not governed by IRBs, IHE writers need to provide enough info in their profiles to help implementers comply with anticipated future IRB policies.
 
 
-##  General Approach
+### General Approach
+
 
 While the risk levels vary, pseudonymization, de-identification (irreversible), and anonymization—as risk-based processes—follow a general approach that balances privacy risk with data utility. Typically, this approach begins by determining why the data is needed for your specific business context. With a clearly defined legal basis and business use case established, the next step is to evaluate the privacy risks associated with sharing or releasing the data to intended recipients. Finally, and equally important, a risk-based approach consistently considers the impacts on identified stakeholders.
 [UKAN2020ADF](references.html#UKAN2020ADF) introduces the Anonymisation Decision-Making Framework (ADF), offering a perspective on anonymisation and the reuse of personal data that moves beyond the limitations of overly technical or legalistic approaches. In the ADF, 'anonymisation' differs from its usage in GDPR and PIPL, being defined instead as Functional Anonymisation. This concept hinges on assessing anonymisation based on the data and its environment, without excluding any level of identifiability, and is not intended as legal advice. The framework effectively addresses the risk-based aspects of de-identification, making it a foundational approach adopted in this book.
@@ -155,7 +158,7 @@ While the risk levels vary, pseudonymization, de-identification (irreversible), 
 
 The figure above illustrates the key aspects of a risk-based general approach, namely, Data Situation Analysis, Disclosure Risk Control, and Impact Management.
 
-### Data Situation Analysis**
+#### Data Situation Analysis
 Data Situation Analysis is an activity designed to understand the data and its environment, enabling the appropriate scoping of the de-identification process for safe data sharing. It encompasses both high-level and detailed analyses. The high-level analysis involves confirming the legal basis and defining the objectives, which can be refined by specifying the required level of identifiability—pseudonymized, de-identified, or anonymized—based on the intended use of the disclosed data. The detailed analysis includes an end-to-end workflow to identify risks as data evolves and moves through various stages. Equally important is clarifying the legal responsibilities of all participants in the workflow, especially in cases involving multiple entities. Special attention must be paid to the data environment, which includes factors such as agents (systems or humans interacting with the data), other data, infrastructure, and governance.
 
 Understanding the data themselvs is the essience of the data situation analysis. It involves different level description of the data, including, data subjects/population, types of the dataset (e.g, mircodata, longitudinal, transaction, etc.), data collection time span, variable type (direct, quasi, or non identifiers), data type (date, free text, categrical etc).
@@ -180,13 +183,10 @@ At the end of the requirement analysis process a table of data elements, intende
 Ultimately there will be residual risk that will need to be documented as unmitigated. This may make it necessary to protect the resulting de-identified data through other means like access controls and physical limits.
 
 
-### Disclosure Risk Control (TBD)
+#### Disclosure Risk Control (TBD)
 Disclosure risk control starts with risk assessment. Re-Identification risks in a given data environment come from the interaction between agents and data (including the data discloused/released and other data available to the agents). Thus, both the data risk and the data environment risk (so called context risk) should be assessed. The The goverance and infrastructure within the data enviroment largly determine the likelyhood of a certain type of re-identification threats. The assessment can be conducted using either qualitative analysis or quantitative analysis. An initial risk assement may be required to make a quick decision whether a quantitative risk analysis is needed. [UKAN2020ADF](references.html#UKAN2020ADF) introduces a practical [initial risk assessment](https://ukanon.net/wp-content/uploads/2020/12/data-situation-evaluation-template-v1.1.docx) tool to help make a decision whether a quantitative risk assessment is needed.
 [ISO/IEC 27559 2022](references.html#isoiec27559) specifies an eqution for calculating the re-identificaiton risk:
 > P(identification) = P(identification | threat) × P(threat) 
-
-## Definitions
-
 
 P(identification | threat) represents data risk, while P(threat) denotes context risk. When quantifying data risk, a data privacy model must be selected based on the required dataset structure and the type of data access. k-Anonymity and Differential Privacy are the two primary privacy models.
 
@@ -194,7 +194,7 @@ Risk control is guided by the results of the risk assessment and typically invol
 
 ### Impact Management (TBD)
 
-## Definitions
+### Definitions
 
 **Anonymity:** Anonymity signifies that a subject's identity is indiscernible, ensuring, for instance, that a patient in a teaching file remains unidentifiable; from a threat actor's viewpoint, anonymity implies the inability to link any data to a specific individual. 
 
@@ -223,7 +223,7 @@ Risk control is guided by the results of the risk assessment and typically invol
 **Unlinkability:** A state whereby which two items cannot be associated.
 
 
-## Relinking or Re-identification
+### Relinking or Re-identification
 
 Re-identification is the process of re-associating the de-identified data with the original subject identity. The need for re-identification increases the complexity.
 
@@ -239,7 +239,8 @@ Reasons for re-identification include:
 - Law enforcement
 
 
-## Threat Categories
+### Threat Categories
+
 
 There are various kinds of threats that motivate de-identification. The following table is illustrative of these kinds of threats. As part of the risk assessment there is a threat analysis that will consider whether these and other threats apply in that situation.
 
