@@ -202,17 +202,32 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 
 ### Definitions
 
-**Pseudonymization:** particular type of de-identification that both removes the association with a data subject  and adds an association between a particular set of characteristics relating to the data subject and one or more pseudonyms. (Source: [ISO 25237:2017](references.html#ISO 25237:2017))
+**Pseudonymization:** particular type of de-identification that both removes the association with a data subject  and adds an association between a particular set of characteristics relating to the data subject and one or more pseudonyms. (Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
 
-**Anonymization**: A process that is intended to irreversibly remove the association between a subject and information that can identify the subject. If the process is intended to be reversible and a new identifier is substituted for the subject’s real identifiers, then the process is called **pseudonymization**.
+*Note 1:* This includes irreversible and reversible pseudonymization which is similar to the concept of pseudonymization uner the GDPR.
 
-**Anonymous identifier**: An identifier for a subject that, in contrast to pseudonymization, is not intended to allow relinking to the subject. It may be created from one-way mapping from a subject to an identifier that cannot be reversed. This is different than pseudonymization, see below.
+*Note 2:* The pseudonymised data can no longer be attributed to a specific data subject without the use of additional information, but could be attributed to a natural person by the use of additional information (Source: [GDPR Recital 26](https://www.privacy-regulation.eu/en/recital-26-GDPR.htm)).
 
-**De-identification**: Any process that removes the association between a subject’s identity and the subject’s data elements. Anonymization and pseudonymization are types of de-identification.
+**De-identification**: general term for any process of reducing the association between a set of identifying data and the data subject. (Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
 
-**Direct identifying data:** Data that directly identifies a single individual. Direct identifiers include data that can be cross-referenced through commonly available information sources, e.g., telephone number. Locally used identifiers (such as hospital IDs) can be considered directly identifying to personnel of the local domain.
+*Note 1:* The term De-Identification is distinguished from the term Anonymization under the [PIPL](references.html#pipl-2021-august-20). De-Identification under the PIPL is similar to the concept of pseudonymization in this book.
 
-**Identifiable person**: A person who can be identified, directly or indirectly. For example through one or more factors specific to their physical, physiological, mental, economic, cultural or social identity (see “Directive 95/46/EC of the European Parliament and of the Council of 24 October 1995 on the protection of individuals with regard to the processing of personal data and on the free movement of such data”).
+**Anonymization**: process by which personal data is irreversibly altered in such a way that a data subject can no longer be identified directly or indirectly, either by the data controller alone or in collaboration with any other party (Source: [ISO 25237:2017](references.html#isoiec-27559-2022)).
+
+*Note 1:* The term is defined in a simimar way under the PIPL ([Art. 73(4)](http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559_3.htm)).
+
+*Note 2:* An absolute concept of anonymization is not feasible in practice. This book interprets it as a relative concept, where the risk of re-identification, even with reasonable additional information, is minimized to a very low level.
+
+**Anonymous identifier**: identifier of a person which does not allow the identification of the natural person. (Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
+
+
+**Directly identifying data:** data that directly identifies a single individual. (Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
+
+*Note 1:* Direct identifiers are those data that can be used to identify a person without additional information or with cross-linking through other information that is in the public domain.
+
+**Identifiable person**: one who can be identified, directly or indirectly, in particular by reference to an identification number or to one or more factors specific to his physical, physiological, mental, economic, cultural or social identity. (Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
+
+*Note 1:* Similar to the concept of identifiable natural persoan under the GDPR ([Art 4(1)](https://gdpr-info.eu/art-4-gdpr/)).
 
 **Indirect identifying data**: “Data that does not directly identify a single individual but may be used in collaboration with other indirect identifiers to identify an individual. … Examples: Zipcode(sic), Sex, Age, Date-of-Birth, Race.” \[ISO 25237\]
 
