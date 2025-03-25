@@ -1,0 +1,8 @@
+baseurl: "."
+plugins:
+  - jekyll-scholar
+scholar:
+  style: apa  #  APA style
+  bibliography: references.bib  # default BibTeX file
+kramdown:
+  toc_levels: 1..3
