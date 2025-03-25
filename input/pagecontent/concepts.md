@@ -183,7 +183,7 @@ At the end of the requirement analysis process a table of data elements, intende
 Ultimately there will be residual risk that will need to be documented as unmitigated. This may make it necessary to protect the resulting de-identified data through other means like access controls and physical limits.
 
 
-#### Disclosure Risk Control (TBD)
+#### Disclosure Risk Control
 Disclosure risk control starts with risk assessment. Re-Identification risks in a given data environment come from the interaction between agents and data (including the data discloused/released and other data available to the agents). Thus, both the data risk and the data environment risk (so called context risk) should be assessed. The The goverance and infrastructure within the data enviroment largly determine the likelyhood of a certain type of re-identification threats. The assessment can be conducted using either qualitative analysis or quantitative analysis. An initial risk assement may be required to make a quick decision whether a quantitative risk analysis is needed. [UKAN2020ADF](references.html#UKAN2020ADF) introduces a practical [initial risk assessment](https://ukanon.net/wp-content/uploads/2020/12/data-situation-evaluation-template-v1.1.docx) tool to help make a decision whether a quantitative risk assessment is needed.
 [ISO/IEC 27559 2022](references.html#isoiec27559) specifies an eqution for calculating the re-identificaiton risk:
 > P(identification) = P(identification | threat) × P(threat) 
@@ -192,11 +192,17 @@ P(identification | threat) represents data risk, while P(threat) denotes context
 
 Risk control is guided by the results of the risk assessment and typically involves a combination of technical and organizational measures. Technical measures include techniques to transform direct identifiers—such as secure hashing, encryption, random replacement, and suppression—as well as quasi-identifiers, through methods like generalization and noise addition. Organizational measures consist of secure data infrastructure, data access controls, usage agreements, auditing, and monitoring etc.
 
-### Impact Management (TBD)
+### Impact Management
+
+The purpose of a risk-based process is to reduce or mitigate the risk of re-identification. Completely eliminating this risk is not feasible. Therefore, the residual re-identification risk must be managed. Impact management involves addressing situations when adverse events occur. The first step is to identify the stakeholders who might be affected by such events. Maintaining stakeholder trust is essential. Practices such as transparency, timely updates on changes, and designating a responsible point of contact are common communication techniques used to enhance and sustain trustworthiness.
+
+Impact management also requires a predefined plan to respond to adverse events. Typically, this plan is outlined within the crisis management policy and includes breach management, notification, review, and communication steps.
+
+Monitoring the data-sharing environment is essential, as technology and the contexts in which data exists are constantly evolving. Technological advancements may increase the likelihood of re-identifying individuals by enhancing computational complexity or power. Similarly, changes in the availability of auxiliary data can heighten the risk of linking attacks. Therefore, data-sharing conditions must be closely monitored and managed to prevent adverse outcomes.
 
 ### Definitions
 
-**Anonymity:** Anonymity signifies that a subject's identity is indiscernible, ensuring, for instance, that a patient in a teaching file remains unidentifiable; from a threat actor's viewpoint, anonymity implies the inability to link any data to a specific individual. 
+**Pseudonymization:** particular type of de-identification that both removes the association with a data subject  and adds an association between a particular set of characteristics relating to the data subject and one or more pseudonyms. (Source: [ISO 25237:2017](references.html#ISO 25237:2017))
 
 **Anonymization**: A process that is intended to irreversibly remove the association between a subject and information that can identify the subject. If the process is intended to be reversible and a new identifier is substituted for the subject’s real identifiers, then the process is called **pseudonymization**.
 

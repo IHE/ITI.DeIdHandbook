@@ -5,17 +5,17 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="Whh8B8QUoMx5QqMh04Pi-8" value="De-Identification" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="90" y="255" width="340" height="125" as="geometry" />
+          <mxGeometry x="80" y="255" width="360" height="175" as="geometry" />
         </mxCell>
-        <mxCell id="Whh8B8QUoMx5QqMh04Pi-10" value="Reversible De-Identification (Pseudonymization)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
-          <mxGeometry x="110" y="300" width="140" height="60" as="geometry" />
+        <mxCell id="Whh8B8QUoMx5QqMh04Pi-10" value="Reversible De-Identification" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="300" width="150" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Whh8B8QUoMx5QqMh04Pi-11" value="Irreversible De-Identification" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
-          <mxGeometry x="290" y="300" width="120" height="60" as="geometry" />
+          <mxGeometry x="275" y="300" width="150" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Whh8B8QUoMx5QqMh04Pi-13" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="466" y="390" as="sourcePoint" />
+            <mxPoint x="466" y="440" as="sourcePoint" />
             <mxPoint x="466" y="190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
@@ -26,10 +26,28 @@
           <mxGeometry x="485" y="200" width="180" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Whh8B8QUoMx5QqMh04Pi-30" value="De-Identification (Very Strong)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;dashed=1;dashPattern=12 12;" vertex="1" parent="1">
-          <mxGeometry x="490" y="255" width="175" height="125" as="geometry" />
+          <mxGeometry x="490" y="255" width="175" height="175" as="geometry" />
         </mxCell>
         <mxCell id="Whh8B8QUoMx5QqMh04Pi-17" value="Anonymization" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="515" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Whh8B8QUoMx5QqMh04Pi-31" value="Pseudonymization" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="110" y="380" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Whh8B8QUoMx5QqMh04Pi-32" value="Irreversible&lt;div&gt;Pseudonymization&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="275" y="380" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Whh8B8QUoMx5QqMh04Pi-35" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="Whh8B8QUoMx5QqMh04Pi-31" target="Whh8B8QUoMx5QqMh04Pi-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="390" as="sourcePoint" />
+            <mxPoint x="410" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Whh8B8QUoMx5QqMh04Pi-39" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="Whh8B8QUoMx5QqMh04Pi-32" target="Whh8B8QUoMx5QqMh04Pi-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="360" y="380" as="sourcePoint" />
+            <mxPoint x="410" y="330" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
