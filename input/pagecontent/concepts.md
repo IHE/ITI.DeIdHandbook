@@ -192,7 +192,7 @@ P(identification | threat) represents data risk, while P(threat) denotes context
 
 Risk control is guided by the results of the risk assessment and typically involves a combination of technical and organizational measures. Technical measures include techniques to transform direct identifiers—such as secure hashing, encryption, random replacement, and suppression—as well as quasi-identifiers, through methods like generalization and noise addition. Organizational measures consist of secure data infrastructure, data access controls, usage agreements, auditing, and monitoring etc.
 
-### Impact Management
+#### Impact Management
 
 The purpose of a risk-based process is to reduce or mitigate the risk of re-identification. Completely eliminating this risk is not feasible. Therefore, the residual re-identification risk must be managed. Impact management involves addressing situations when adverse events occur. The first step is to identify the stakeholders who might be affected by such events. Maintaining stakeholder trust is essential. Practices such as transparency, timely updates on changes, and designating a responsible point of contact are common communication techniques used to enhance and sustain trustworthiness.
 
@@ -225,19 +225,30 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 
 *Note 1:* Direct identifiers are those data that can be used to identify a person without additional information or with cross-linking through other information that is in the public domain.
 
-**Identifiable person**: one who can be identified, directly or indirectly, in particular by reference to an identification number or to one or more factors specific to his physical, physiological, mental, economic, cultural or social identity. (Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
+**Identifiable natural person:** one who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, location data, an online identifier or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity of that natural person. (Source: [GDPR Art 4(1)](https://gdpr-info.eu/art-4-gdpr/))
 
-*Note 1:* Similar to the concept of identifiable natural persoan under the GDPR ([Art 4(1)](https://gdpr-info.eu/art-4-gdpr/)).
+*Note 1:* Similar to the concept of identifiable person within [ISO 25237:2017](references.html#isoiec-27559-2022).
 
-**Indirect identifying data**: “Data that does not directly identify a single individual but may be used in collaboration with other indirect identifiers to identify an individual. … Examples: Zipcode(sic), Sex, Age, Date-of-Birth, Race.” \[ISO 25237\]
+**Indirectly identifying data**: data that can identify a single person only when used together with other indirectly identifying data.(Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
 
-**Irreversibility**: The inability to determine an original value, or set of values. This is not always a simple binary statement. It is often a measure of difficulty. It is computationally difficult to determine the original values once it has been subjected to a SHA-256 one-way hash with a salt. Some national organizations may have the resources to perform this computation, and changes in computer technology will change the degree of difficulty. 
+*Note 1:* Indirect identifiers can reduce the population to which the person belongs, possibly down to one if used in combination.
+*Example* Postcode, sex, age, date of birth.
 
-**Natural person**: The subject of the data, e.g., the patient.
+**Irreversibility**: situation when, for any passage from identifiable to pseudonymous, it is computationally unfeasible to trace back to the original identifier from the pseudonym.(Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
 
-**Pseudonym**: A computed or assigned value that is substituted for one or more data elements in that subject’s record. Alias and nickname are common terms for pseudonym. For example, a pseudonym of “csrk123” could be added to a subject’s record, and that subject’s first, last, middle, and national ID numbers could be removed. The protection provided by a pseudonym is dependent on the system used to create and protect the relationship between the pseudonym and the person’s real identity. Well known aliases are an example of pseudonyms that provide little protection. More people know the alias “Lenin” than his birth name. This differs from anonymization by preserving continuity throughout the resulting data set.
+**Natural person**: real human being as opposed to a legal person which may be a private or public organization.(Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
 
-**Pseudonymization**: A particular type of anonymization that removes the association between data and a subject and introduces a new identifier that establishes a bidirectional-mapping between that subject and the new identifier. Pronunciation guide: “soo-DON-imm-ization”, rhymes with optimization.
+**Personal identifier**: information with the purpose of uniquely identifying a person within a given context.(Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
+
+*Note 1:* Personal identifier can be used to directly identify a person, therefore is also directly identifying data.
+
+**Pseudonym**: personal identifier that is different from the normally used personal identifier and is used with pseudonymized data to provide dataset coherence linking all the information about a subject, without disclosing the real world person identity.(Source: [ISO 25237:2017](references.html#isoiec-27559-2022))
+
+*Note 1:* This may be either derived from the normally used personal identifier in a reversible or irreversible way or be totally unrelated.
+
+*Note 2:* Pseudonym is usually restricted to mean an identifier that does not allow the direct derivation of
+the normal personal identifier. Such pseudonymous information is thus functionally anonymous. A trusted third party may be able to obtain the normal personal identifier from the pseudonym.
+
 
 **Real name**: The recognized names of the subject (natural person). This is often also called the “legal name”, but there can be subtle differences between legal requirements and identification. The real name can be multiple or change over time as a result of changes like a legal name change due to a marriage. Real names can also include extensive optional elements, such as the family history components of Spanish names or the extended content of some Indian names.
 
