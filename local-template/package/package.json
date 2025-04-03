@@ -1,0 +1,13 @@
+
+{
+    "name": "ihe.iti.deid.template",
+    "version": "0.0.1",
+    "type": "fhir.template",
+    "license": "CC0-1.0",
+    "description": "Local template extension for DeID",
+    "author": "http://ihe.net",
+      "base":  "ihe.fhir.template",
+    "dependencies": {
+      "ihe.fhir.template": "current"
+    }
+  }
