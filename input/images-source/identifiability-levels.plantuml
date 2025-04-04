@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+
+[*] --> Identified
+state "Identified" as Identified
+state "Readily-Identifiable" as Identifiable
+state "De-Identified" as DeIdentified
+state "Anonymized" as Anonymized
+
+Identified --> Identifiable
+Identifiable --> DeIdentified
+DeIdentified --> Anonymized
+Anonymized --> [*]
+
+@enduml
