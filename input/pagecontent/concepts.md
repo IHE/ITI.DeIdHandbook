@@ -221,17 +221,20 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 **Anonymous identifier**: identifier of a person which does not allow the identification of the natural person. (Source: {% cite ISO25237 %})
 
 
-**Directly identifying data:** data that directly identifies a single individual. (Source: {% cite ISO25237 %})
+**direct identifier:** data that directly identifies a single individual. (Source: {% cite ISO25237 %})
 
 *Note 1:* Direct identifiers are those data that can be used to identify a person without additional information or with cross-linking through other information that is in the public domain.
+*Note 2:* The term “directly identifying data” in {% cite ISO25237 %} has been simplified according to {% cite ISO20889 %}.
 
 **Identifiable natural person:** one who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, location data, an online identifier or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity of that natural person. (Source: [GDPR Art 4(1)](https://gdpr-info.eu/art-4-gdpr/))
 
 *Note 1:* Similar to the concept of identifiable person within {% cite ISO25237 %}.
 
-**Indirectly identifying data**: data that can identify a single person only when used together with other indirectly identifying data.(Source: {% cite ISO25237 %})
+**Indirect identifier**: data that can identify a single person only when used together with other indirectly identifying data.(Source: {% cite ISO25237 %}, modified)
 
 *Note 1:* Indirect identifiers can reduce the population to which the person belongs, possibly down to one if used in combination.
+*Note 2:* The term "indirectly identifying data" in {% cite ISO25237 %} has been simplified according to {% cite ISO20889 %}.
+*Note 3:* The term "indirect identifier" in this handbook is identical to the definitions of "indirect identifer" and "quasi-identifier".
 *Example* Postcode, sex, age, date of birth.
 
 **Irreversibility**: situation when, for any passage from identifiable to pseudonymous, it is computationally unfeasible to trace back to the original identifier from the pseudonym.(Source: {% cite ISO25237 %})
@@ -249,8 +252,6 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 *Note 2:* Pseudonym is usually restricted to mean an identifier that does not allow the direct derivation of
 the normal personal identifier. Such pseudonymous information is thus functionally anonymous. A trusted third party may be able to obtain the normal personal identifier from the pseudonym.
 
-
-**Real name**: The recognized names of the subject (natural person). This is often also called the “legal name”, but there can be subtle differences between legal requirements and identification. The real name can be multiple or change over time as a result of changes like a legal name change due to a marriage. Real names can also include extensive optional elements, such as the family history components of Spanish names or the extended content of some Indian names.
 
 **Unlinkability:** A state whereby which two items cannot be associated.
 
