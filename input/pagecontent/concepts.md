@@ -202,23 +202,31 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 
 ### Definitions
 
-**Pseudonymization:** particular type of de-identification that both removes the association with a data subject  and adds an association between a particular set of characteristics relating to the data subject and one or more pseudonyms. (Source: {% cite ISO25237 %})
+**pseudonymization:** particular type of de-identification that both removes the association with a data subject  and adds an association between a particular set of characteristics relating to the data subject and one or more pseudonyms. (Source: {% cite ISO25237 %})
 
 *Note 1:* This includes irreversible and reversible pseudonymization which is similar to the concept of pseudonymization uner the GDPR.
 
 *Note 2:* The pseudonymised data can no longer be attributed to a specific data subject without the use of additional information, but could be attributed to a natural person by the use of additional information (Source: [GDPR Recital 26](https://www.privacy-regulation.eu/en/recital-26-GDPR.htm)).
 
-**De-identification**: general term for any process of reducing the association between a set of identifying data and the data subject. (Source: {% cite ISO25237 %})
+*Note 3:* The term defined in the handbook is different from the defintion specified in the {% cite ISO20889 %} where "pseudonymization" refers to a type of de-identification technique.
 
-*Note 1:* The term De-Identification is distinguished from the term Anonymization under the PIPL{% cite PIPL2021 %}. De-Identification under the PIPL is similar to the concept of pseudonymization in this book.
+**de-identification**: general term for any process of reducing the association between a set of identifying data and the data subject. (Source: {% cite ISO25237 %})
 
-**Anonymization**: process by which personal data is irreversibly altered in such a way that a data subject can no longer be identified directly or indirectly, either by the data controller alone or in collaboration with any other party (Source: {% cite ISO25237 %}).
+*Note 1:* The term "de-identification" is distinguished from the term "anonymization" under the PIPL{% cite PIPL2021 %}. De-identification under the PIPL is similar to the concept of pseudonymization in this book.
+
+*Note 2:* The term "de-identification" in this handbook is identical to the definition of "de-identification process" within the {% cite ISO20889 %}.
+
+**data subject** person to whom data refer (Source: {% cite ISO25237 %}).
+
+*Note 1*: The term "data subject" is identical to the term "data principal" defined in the {% cite ISO20889 %}
+
+**anonymization**: process by which personal data is irreversibly altered in such a way that a data subject can no longer be identified directly or indirectly, either by the data controller alone or in collaboration with any other party (Source: {% cite ISO25237 %}).
 
 *Note 1:* The term is defined in a simimar way under the PIPL ([Art. 73(4)](http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559_3.htm)).
 
 *Note 2:* An absolute concept of anonymization is not feasible in practice. This book interprets it as a relative concept, where the risk of re-identification, even with reasonable additional information, is minimized to a very low level.
 
-**Anonymous identifier**: identifier of a person which does not allow the identification of the natural person. (Source: {% cite ISO25237 %})
+**anonymous identifier**: identifier of a person which does not allow the identification of the natural person. (Source: {% cite ISO25237 %})
 
 
 **direct identifier:** data that directly identifies a single individual. (Source: {% cite ISO25237 %})
@@ -233,19 +241,22 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 **Indirect identifier**: data that can identify a single person only when used together with other indirectly identifying data.(Source: {% cite ISO25237 %}, modified)
 
 *Note 1:* Indirect identifiers can reduce the population to which the person belongs, possibly down to one if used in combination.
+
 *Note 2:* The term "indirectly identifying data" in {% cite ISO25237 %} has been simplified according to {% cite ISO20889 %}.
-*Note 3:* The term "indirect identifier" in this handbook is identical to the definitions of "indirect identifer" and "quasi-identifier".
+
+*Note 3:* The term "indirect identifier" in this handbook is identical to the definitions of "indirect identifer" and "quasi-identifier" within the {% cite ISO20889 %}
+
 *Example* Postcode, sex, age, date of birth.
 
-**Irreversibility**: situation when, for any passage from identifiable to pseudonymous, it is computationally unfeasible to trace back to the original identifier from the pseudonym.(Source: {% cite ISO25237 %})
+**irreversibility**: situation when, for any passage from identifiable to pseudonymous, it is computationally unfeasible to trace back to the original identifier from the pseudonym.(Source: {% cite ISO25237 %})
 
-**Natural person**: real human being as opposed to a legal person which may be a private or public organization.(Source: {% cite ISO25237 %})
+**natural person**: real human being as opposed to a legal person which may be a private or public organization.(Source: {% cite ISO25237 %})
 
-**Personal identifier**: information with the purpose of uniquely identifying a person within a given context.(Source: {% cite ISO25237 %})
+**personal identifier**: information with the purpose of uniquely identifying a person within a given context.(Source: {% cite ISO25237 %})
 
 *Note 1:* Personal identifier can be used to directly identify a person, therefore is also directly identifying data.
 
-**Pseudonym**: personal identifier that is different from the normally used personal identifier and is used with pseudonymized data to provide dataset coherence linking all the information about a subject, without disclosing the real world person identity.(Source: {% cite ISO25237 %})
+**pseudonym**: personal identifier that is different from the normally used personal identifier and is used with pseudonymized data to provide dataset coherence linking all the information about a subject, without disclosing the real world person identity.(Source: {% cite ISO25237 %})
 
 *Note 1:* This may be either derived from the normally used personal identifier in a reversible or irreversible way or be totally unrelated.
 
@@ -253,7 +264,12 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 the normal personal identifier. Such pseudonymous information is thus functionally anonymous. A trusted third party may be able to obtain the normal personal identifier from the pseudonym.
 
 
-**Unlinkability:** A state whereby which two items cannot be associated.
+**linkability** property for a dataset that it is possible to associate (by linking) a record concerning a data subject with a record concerning the same data subject in a separate dataset. (Source: {% cite ISO20889 %})
+
+**data linking** matching and combining data from multiple databases (Source: {% cite ISO25237 %}).
+
+*Note 1*: The term "data linking" is identical to the term "linking" defined in the {% cite ISO20889 %}
+
 
 
 ### Relinking or Re-identification
