@@ -244,7 +244,6 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 
 *Example* Postcode, sex, age, date of birth.
 
-*Example:* Postcode, sex, age, date of birth.
 
 **irreversibility**: situation when, for any passage from identifiable to pseudonymous, it is computationally unfeasible to trace back to the original identifier from the pseudonym (Source: [(ISO 25237, 2017)](#ISO25237)).
 
@@ -295,15 +294,44 @@ There is another type of re-identificaton which is required by certain use cases
 
 Unlike the re-identificaiton attack, a planned re-identification requries technical and organisational measures to ensure a relaible correctly re-identified result, meaning any de-identified data must be linked back to it's origianl personal identifier correctly.
 
-### Threat Categories
+### Threats & Attacks
+
+#### Threat Modeling
+
+Data sharing environment needs to be assessed to identify potentioal risk of re-identification attack. [(ISO/IEC 27559,2022 )](#ISOIEC27559) specifies a structured approach (known as threat modeling) which requires examing the other external datas sources avaialbe to data recipients, the profile of the data recipients and why the data recipients would perform the re-identificaiton attack (motiviation).
+
+Potential threats can be:
+> - Deliberate: A targeted attempt to reveal or uncover PII in the data that are made available to them by an insider to the group or organization that is the data recipient.
+> - Accidental: A disclosure can also be unintentional, for example a data principal being recognized while a data recipient is working with the shared or released data.
+> - Environmental: The data can also be lost or stolen in the case where all the controls put in place have failed to prevent a data disclosure.
+>
+> (Source: [(ISO/IEC 27559,2022 )](#ISOIEC27559))
+
+The security and privacy practices of the data recipient will influnce the likelihood of the internal or external (legal or illegal) user of the data recipient being able to re-identify the de-identified data. Therefore, the thread modeling should also assess the maturitity level of the security and privacy practices of the data recipient.
+
+#### Types of Attacks
+
+Attack happens under a given threat, it make the potential risk of re-identification becomes a real privacy breach event through re-identification action done by attackers. [(Article 29 Data Protection Working Party, 2014)](#Article29WP2014) identified Three types of attack:
+- Singling out , which corresponds to the possibility to isolate some or all records which identify an individual in the dataset;
+- Linkability, which is the ability to link, at least, two records concerning the same data subject or a group of data subjects (either in the same database or in two different databases). If an attacker can establish (e.g. by means of correlation analysis) that two records are assigned to a same group of individuals but cannot single out individuals in this group, the technique provides resistance against “singling out” but not against linkability;
+- Inference, which is the possibility to deduce, with significant probability, the value of an attribute from the values of a set of other attributes.
 
 
-There are various kinds of threats that motivate de-identification. The following table is illustrative of these kinds of threats. As part of the risk assessment there is a threat analysis that will consider whether these and other threats apply in that situation.
+Depending on the background knowledge of the attacker, the attack can be modeled in the following ways [(ISO/IEC 27559,2022 )](#ISOIEC27559):
+- attack where the adversary knows that a target individual entity is in the data;
+- attack where the adversary does not, or cannot, know if a target individual entity is in the data;
+- attack on all entities (rather than a target individual entity) that can be in the data.
 
-**Table: Threat Categories**
+*Note 1:* These are sometimes eferred to as prosecutor, journalist, or marketer risk, respectively.
+
+*Note 2:* Defining the matrics of measuring the probability of re-identification should consider the privacy model applied and attack type modeled.
+
+There are various kinds of re-identification attack techniques. The following table is illustrative of these kinds of attack techniques.
+
+**Table: Attack Technique Categories**
 
 
-| Category of Threat | Threat Description     | Scenario            | Example           | Candidate Mitigations          |
+| Category of Attack Technique | Attack Technique Description     | Scenario            | Example           | Candidate Mitigations          |
 |--------------------|----------------------- |---------------------|-------------------|--------------------------------|
 | 1| Attacker will determine the identity of the subject by combining directly available data elements such as first name, last name, and  address, identification numbers, email, facial image, etc.| Direct identifiers| Full name and address left in the data (e.g., free text field) in one database| Removal of clearly identifying data; removal of text narratives|
 | 2| Attacker will correlate and aggregate fields from other data sources to determine a subjects identity| Multiple data sources| Combining pseudonymized gender and postal code in one data source, address in another, name in another. <br><br>Using publicly available data (e.g., auto license plate number). <br><br>Dates left in the data correlate to known health events for individual (e.g., attacker surveillance of individual knows dates of service). | Attempt to remove data elements that provide for direct correlation, or generalize or fuzz these elements (such as using only first 3 digits of USA Zip postal codes) to make direct correlation harder. <br><br>Using only first 3 digits of USA Zip postal codes.<br><br>Fuzz the dates-of-service.
@@ -331,3 +359,4 @@ There are various kinds of threats that motivate de-identification. The followin
 12. <a name="UKAN2024"></a>University of Manchester. (2024). *Anonymisation decision-making framework: European practitioners’ guide* (2nd ed.). University of Manchester. [https://ukanon.net/wp-content/uploads/2024/01/adf-2nd-edition-european-practitioners-guide-final-version-cover-2024-version-2.pdf](https://ukanon.net/wp-content/uploads/2024/01/adf-2nd-edition-european-practitioners-guide-final-version-cover-2024-version-2.pdf)
 13. <a name="DICOMPart15AnnexE"></a>National Electrical Manufacturers Association. (2025). *DICOM Part 15, Annex E: Security and System Management Profiles — Attribute Confidentiality Profiles* (PS3.15 Annex E; Number PS3.15 Annex E). National Electrical Manufacturers Association. [https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html)
 14. <a name="ISOIEC27559"></a>ISO/IEC 27559. (2022). *Information security, cybersecurity and privacy protection — Privacy enhancing data de-identification framework* (ISO/IEC 27559:2022; Number ISO/IEC 27559:2022). International Organization for Standardization. [https://www.iso.org/standard/71659.html](https://www.iso.org/standard/71659.html)
+15. <a name="Article29WP2014"></a>Article 29 Data Protection Working Party. (2014, April 10). *Opinion 05/2014 on anonymisation techniques (WP216)*. European Commission. https://ec.europa.eu/justice/article-29/documentation/opinion-recommendation/files/2014/wp216_en.pdf
