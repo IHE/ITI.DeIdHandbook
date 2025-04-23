@@ -5,6 +5,8 @@ This is the Update to the De-Identification Handbook.
 - [DeIdentification Handbook GitHub](https://github.com/IHE/ITI.DeIdHandbook)
 - [CI build](https://build.fhir.org/ig/IHE/ITI.DeIdHandbook/branches/main/index.html)
 
+.poke
+
 ## Plan
 
 - Lead: John Moehrke
