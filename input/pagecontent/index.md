@@ -14,12 +14,14 @@ This guide is organized into the following sections:
 
 1. [Introduction to This Handbook](intro.html)
 2. [De-Identification, Pseudonymization, and Relinking](concepts.html)
-   - [General Approach](concepts.html#general-approach)
+   - [Navigating the Complexity of Privacy Concepts](concepts.html#navigating-the-complexity-of-privacy-concepts)
+   - [Identifiability](concepts.html#identifiability)
+   - [Pseudonymization, De-Identification and Anonymization Explained](concepts.html#pseudonymization-de-identification-and-anonymization-explained)
+   - [Overall De-Identification Approach](concepts.html#overall-de-identification-approach)
    - [Definitions](concepts.html#definitions)
-   - [De-identification Background](concepts.html#de-identification-background)
-   - [Pseudonymization](concepts.html#pseudonymization)
-   - [Relinking or Re-identification](concepts.html#relinking-or-re-identification)
-   - [Threat Categories](concepts.html#threat-categories)
+   - [Re-identification](concepts.html#re-identification)
+   - [Threats & Attacks](concepts.html#threats--attacks)
+   - [References](concepts.html#references)
 3. [Data Types](data-types.html)
 4. [Algorithms](algorithms.html)
    - [Redaction](algorithms.html#redaction)
@@ -57,8 +59,8 @@ IHE uses the normative words: Shall, Should, and May according to [standards con
 
 #### Must Support
 
-The use of ```mustSupport``` in StructureDefinition profiles equivalent to the IHE use of **R2** as defined in [Appendix Z](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.10-profiling-conventions-for-constraints-on-fhir).
+The use of ```mustSupport``` in StructureDefinition profiles is equivalent to the IHE use of **R2** as defined in [Appendix Z](https://profiles.ihe.net/ITI/TF/Volume2/ch-Z.html#z.10-profiling-conventions-for-constraints-on-fhir).
 
-mustSupport of true - only has a meaning on items that are minimal cardinality of zero (0), and applies only to the source actor populating the data. The source actor shall populate the elements marked with MustSupport, if the concept is supported by the actor, a value exists, and security and consent rules permit.
+```mustSupport``` only has a meaning on items that are minimal cardinality of zero (0), and applies only to the source actor populating the data. The source actor shall populate the elements marked with MustSupport, if the concept is supported by the actor, a value exists, and security and consent rules permit.
 The consuming actors should handle these elements being populated or being absent/empty.
 Note that sometimes mustSupport will appear on elements with a minimal cardinality greater than zero (0), this is due to inheritance from a less constrained profile.

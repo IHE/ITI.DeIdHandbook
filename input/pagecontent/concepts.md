@@ -3,7 +3,7 @@
 
 Pseudonymization, de-identification, and anonymization, are the processes that mitigate the privacy risk of associating the disclosed information with an individual or a group of individuals when sharing personal data or anonymous information between different data environments. These concepts are widely used to protect individuals, especially in fields like healthcare. The most common healthcare use of these processes is to protect individual patients, but they may also be applied to protect healthcare clinicians and other individuals being involved.
 
-Applying risk mitigation processes like de-identification, anonymization, and pseudonymization is challenging due to unclear or conflicting interpretations across different frameworks. For example,[(ISO 25237, 2017) ](#ISO25237) defines pseudonymization as a type of de-identification process, while [(ISO/IEC 20889, 2018)](#ISO20889) specifies it as a de-identification technique. Under [(GDPR, 2016)](#GDPR2016a), pseudonymization is also defined as a processing of personal data, and further clarifies the condition under which the personal data can no longer be attributed to a specific data subject. The concept of pseudonymization under GDPR is similar to the definition of de-identification under[(PIPL, 2021)](#PIPL2021). Both of them emphasize the condition of without using additional information when considering whether or not the disclosed (transformed) personal data can be attributed to an individual. Unlike, pseudonymization under the GDPR and de-identification under the PIPL, the HIPAA Rule (under 45 C.F.R §164.514(b)(1)(i)) does not restrict the concept of de-identification under the condition of without using additional information, instead it relies on the concept of a very small risk.
+Applying risk mitigation processes such as de-identification, anonymization, and pseudonymization can be challenging due to varying and sometimes conflicting interpretations across different frameworks. For instance,[(ISO 25237, 2017) ](#ISO25237) describes pseudonymization as a form of de-identification, while [(ISO/IEC 20889, 2018)](#ISO20889) refers to it as a de-identification technique. Under the [(GDPR, 2016)](#GDPR2016a), pseudonymization is defined as a type of personal data processing and further specifies the conditions under which personal data can no longer be attributed to a specific individual. This aligns closely with the concept of de-identification under China’s Personal Information Protection Law [(PIPL, 2021)](#PIPL2021),as both emphasize that personal data should not be attributable to an individual without the use of additional information. In contrast, the HIPAA Rule (under 45 C.F.R §164.514(b)(1)(i)) does not frame de-identification in terms of whether additional information is used. Instead, it focuses on achieving a “very small risk” that the data could be used to identify an individual.
 
 The treatment of anonymous data also varies. Both GDPR and PIPL agree that data protection rules do not apply to anonymous data—defined in GDPR Recital 26 as “information which does not relate to an identified or identifiable natural person or to personal data rendered anonymous in such a manner that the data subject is not or no longer identifiable.”. PIPL defines anonymization as a process of processing personal information to make it impossible to identify specific data subject and impossible to restore. PIPL (2021) describes anonymization as a process that makes personal information untraceable to a specific individual and irreversible, a view echoed by ISO 25237, which stresses that the data subject cannot be identified directly or indirectly. However, GDPR stops short of formally defining anonymization, despite referencing “anonymous information” in Recital 26.
 
@@ -22,7 +22,7 @@ The transformation of personal data to mitigate re-identification risk results i
 
 <figure>
   <img src="identifiability-levels.png" alt="levels of identifiability">
-  <figcaption><strong>Figure 2-2: Levels of Identifiability </strong></figcaption>
+  <figcaption><strong>Figure Levels of Identifiability </strong></figcaption>
 </figure>
 
 
@@ -72,7 +72,7 @@ A typical process of pseudonymization is hiding the direct identifies from the r
 
 <figure>
   <img src="relationships-in-original-data.png" style="width:6.50694in;height:2.85347in" />
-  <figcaption><strong>Figure 2.3.1-1: Relationships in original data</strong></figcaption>
+  <figcaption><strong>Figure: Relationships in original data</strong></figcaption>
 </figure>
 
 Clinical trials usually employ pseudonymization. Clinical trial processes remove identifying information, such as the patients’ demographics, that are not required. Where attributes about the patient must be preserved, different methods are used to obscure the real identity while maintaining the needed information. For example, most clinical trials replace the original patient ID and record numbers with a clinical trial ID and a subject ID. Only the clinical trial manager knows both numbers. A reviewer that needs to inform a patient about a finding must contact the clinical trial manager. Only the trial manager can determine the actual patient hospital and patient ID from the clinical trial ID and subject ID. 
@@ -95,7 +95,7 @@ The definition above aligns closely with the HIPAA Rule (see 45 CFR § 164.514(a
 
 <figure>
   <img src="relationships-between-concepts.drawio.png" />
-  <figcaption><strong>Figure 2.3.2-1: Relationships between different concepts of de-identification</strong></figcaption>
+  <figcaption><strong>Figure: Relationships between different concepts of de-identification</strong></figcaption>
 </figure>
  
 The figure above illustrates the concept of de-identification across various levels. The outermost zones depict a broad perspective, encompassing all forms of de-identification distinguished only by the extent of their outcomes. However, this wide-ranging view lacks precision and may lead to confusion, particularly when addressing implementation for compliance purposes. To address this, this book adopts a more specific framework: reversible de-identification (pseudonymization), irreversible de-identification (commonly referred to simply as de-identification), and anonymization. These distinctions are applied especially in contexts where the level of identifiability or legal requirements must be precisely defined. Simultaneously, the book uses 'de-identification' as a general term when the specific level of identifiability is less critical, such as when outlining a general risk-based approach.
@@ -114,7 +114,7 @@ Irreversible de-identification, often simply referred to as de-identification, d
 
 <figure>
 	<img src="relationships-removed-by-deid.png" style="width:6.50694in;height:2.85347in" />
-	<figcaption><strong>Figure 2.3.2-2: Relationships removed by De-identification</strong></figcaption>
+	<figcaption><strong>Figure: Relationships removed by De-identification</strong></figcaption>
 </figure>
 
 In the above figures, each person is associated with specific characteristics such as age, administrate gender, given name, etc. Starting with zero knowledge, an attacker can only identify a large set of people as candidates. But each time the attacker obtains a characteristic, the set of candidate individuals is reduced. If an attacker can collect enough characteristics about a person, then the set of candidate individuals is reduced to a single person. De-identification techniques are used, to ensure that all these sets remain sufficiently large that the risk of identifying a specific individual is acceptable.
@@ -158,14 +158,14 @@ In the USA, part of the clinical trial process is governed by an Institutional R
 
 Part of the human subject risk considered by IRBs is that to patient privacy, which most nations require protection of. In the US, regulations state “IRBs should determine the adequacy of the provisions to protect the **privacy** of subjects and to maintain the **confidentiality** of the data \[*see* Guidebook Chapter 3, Section D, "Privacy and Confidentiality"\]” One effective method to help reduce both study bias and privacy risk is to use data that has been pseudonymized. Since IHE profiles are not governed by IRBs, IHE writers need to provide enough info in their profiles to help implementers comply with anticipated future IRB policies.
 
-### General Approach
+### Overall De-Identification Approach
 
 While the risk levels vary, pseudonymization, de-identification (irreversible), and anonymization—as risk-based processes—follow a general approach that balances privacy risk with data utility. Typically, this approach begins by determining why the data is needed for your specific business context. With a clearly defined legal basis and business use case established, the next step is to evaluate the privacy risks associated with sharing or releasing the data to intended recipients. Finally, and equally important, a risk-based approach consistently considers the impacts on identified stakeholders.
 [(University of Manchester, 2024)](#UKAN2024) introduces the Anonymisation Decision-Making Framework (ADF), offering a perspective on anonymisation and the reuse of personal data that moves beyond the limitations of overly technical or legalistic approaches. In the ADF, 'anonymisation' differs from its usage in GDPR and PIPL, being defined instead as Functional Anonymisation. This concept hinges on assessing anonymisation based on the data and its environment, without excluding any level of identifiability, and is not intended as legal advice. The framework effectively addresses the risk-based aspects of de-identification, making it a foundational approach adopted in this book.
 
 <figure>
 	<img src="risk-based-general-approach.drawio.png"/>
-	<figcaption><strong>Risk-Based General Approach of De-Identification</strong></figcaption>
+	<figcaption><strong>Figure: Risk-Based General Approach of De-Identification</strong></figcaption>
 </figure>
 
 The figure above illustrates the key aspects of a risk-based general approach, namely, Data Situation Analysis, Disclosure Risk Control, and Impact Management.
@@ -370,5 +370,5 @@ There are various kinds of re-identification attack techniques. The following ta
 11. <a name="GB/T_42460_2023"></a>GB/T 42460. (2023). *Information security technology - Guide for evaluating the effectiveness of personal information de-identification* (Standard GB/T 42460—2023; Number GB/T 42460—2023). State Administration for Market Regulation Standardization Administration of China. [https://www.iso.org/standard/69373.html](https://www.iso.org/standard/69373.html)
 12. <a name="UKAN2024"></a>University of Manchester. (2024). *Anonymisation decision-making framework: European practitioners’ guide* (2nd ed.). University of Manchester. [https://ukanon.net/wp-content/uploads/2024/01/adf-2nd-edition-european-practitioners-guide-final-version-cover-2024-version-2.pdf](https://ukanon.net/wp-content/uploads/2024/01/adf-2nd-edition-european-practitioners-guide-final-version-cover-2024-version-2.pdf)
 13. <a name="DICOMPart15AnnexE"></a>National Electrical Manufacturers Association. (2025). *DICOM Part 15, Annex E: Security and System Management Profiles — Attribute Confidentiality Profiles* (PS3.15 Annex E; Number PS3.15 Annex E). National Electrical Manufacturers Association. [https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html)
-14. <a name="ISOIEC27559"></a>ISO/IEC 27559. (2022). *Information security, cybersecurity and privacy protection — Privacy enhancing data de-identification framework* (ISO/IEC 27559:2022; Number ISO/IEC 27559:2022). International Organization for Standardization. [https://www.iso.org/standard/71659.html](https://www.iso.org/standard/71659.html)
+14. <a name="ISOIEC27559"></a>ISO/IEC 27559. (2022). *Information security, cybersecurity and privacy protection — Privacy enhancing data de-identification framework* (ISO/IEC 27559:2022; Number ISO/IEC 27559:2022). International Organization for Standardization. [https://www.iso.org/standard/71677.html](https://www.iso.org/standard/71677.html)
 15. <a name="Article29WP2014"></a>Article 29 Data Protection Working Party. (2014, April 10). *Opinion 05/2014 on anonymisation techniques (WP216)*. European Commission. https://ec.europa.eu/justice/article-29/documentation/opinion-recommendation/files/2014/wp216_en.pdf
