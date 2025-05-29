@@ -10,7 +10,7 @@ De-identification is used to reduce privacy risks in a wide variety of situation
 
 Public health and clinical trials might also have a requirement to be able to contact a person based on their de-identified records. This poses further constraints on the methods used to de-identify the records.
 
-***It is important to understand that you can only reduce the risks. The only way to absolutely assure a person cannot be relinked to their data is to provide no data at all. De-identified data can still be full of identifying information, and may still need extensive privacy protections.***
+***It is important to note that risk can only be reduced. The only way to absolutely assure a person cannot be relinked to their data is to provide no data at all. De-identified data can still be full of identifying information, and may still need extensive privacy protections.***
 
 This handbook describes a general process that should be adapted to specific situations. This handbook does not define a universal de-identification profile. Each situation must be evaluated according to its data needs and the environment. This must be specific to the information being processed, applicable laws and regulations, organizational policies, the operational environment, and more.
 
