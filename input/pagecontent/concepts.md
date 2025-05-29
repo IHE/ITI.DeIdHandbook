@@ -292,9 +292,12 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 
 ### Re-identification
 
-Re-identification is a process of associating data in a de-identified dataset with the original data subject (Source: [(ISO/IEC 20889, 2018)](#ISO20889)). When the process is done by an attacker, re-identification is considered as an attack. In the case of re-identification attack, the additional information can be used to re-identify data subject depends on the background knowledge of and available data resources to the attacker. Usually, the results of the re-identification is not reliable, meaning there are uncertainties/probabilities in the matched results. The extend of the uncertainties of the result of re-identification can be measured by re-identification risk measurement.
+Re-identification is a process of associating data in a de-identified dataset with the original data subject (Source: [(ISO/IEC 20889, 2018)](#ISO20889)). Depending on the situation where re-identification is perfomed, it can be categrized into two types, namely, authorized re-identification and unauthorized re-identification (alternatively, re-identification attack). 
 
-There is another type of re-identification which is required by certain use cases which usually is reviewed, approved, well planned and managed by the institution (planned re-identification for short). The need for a planned re-identification may include:
+#### Authorized Re-Identification
+When a re-identification is part of the normal data processing or a planned/approved exceptional activity, the re-identification is considered as Authorized Re-Identification.  [(ISO 25237, 2017)](#ISO25237)) suggests a integrity check or review for the cases that re-identification is approved as part of a normal processing due to the fact that re-identification is usually done automaticly. As for the cases where re-identification is approved as an exceptional activity, a well defined security policy is required to describe the circumstances that can lead to re-identification.
+
+The need for a planned re-identification may include:
 
 - Verification and validation of data integrity
 - Checking for suspected duplicate records
@@ -305,7 +308,12 @@ There is another type of re-identification which is required by certain use case
 - Facilitating follow-up research
 - Law enforcement
 
-Unlike the re-identification attack, a planned re-identification requires technical and organizational measures to ensure a reliable correctly re-identified result, meaning any de-identified data must be linked back to it's original personal identifier correctly.
+Technically, several methods can be used to enable re-identification. For example, identifiers can be encrypted and kept along with the pseudonimized data. Only a trusted party can decrypt the encrypted identifiers and associate them with the data subject. Identity Linking table is another commonly used method which keeps a linking list between the original personal identifiers and the pseudonyms.
+
+#### Unauthorized Re-Identification (Re-Identification Attack)
+An unauthorized re-identification, commonly known as a re-identification attack, occurs when an attacker links data in a de-identified dataset to the original data subject using additional information. Unlike authorized re-identification, the quality and quantity of this additional information in unauthorized cases are unpredictable. For instance, some attackers may lack access to Type I additional information (e.g., due to a data breach), while others may have it. Generally, it’s reasonable to assume Type I information is unavailable, shifting focus to Type II additional information. Type II information relies on statistical methods, leading to uncertain or probabilistic re-identification outcomes. The degree of uncertainty can be quantified using re-identification risk measurement.
+
+Mitigating re-identification risk involves technical and organizational measures. Technical measures transform data to minimize re-identification data risk, while organizational measures emphasize security policies to reduce contextual risks.
 
 ### Threats & Attacks
 
