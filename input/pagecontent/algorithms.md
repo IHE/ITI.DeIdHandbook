@@ -10,9 +10,40 @@
 7. **Randomization techniques:** A category of de-identification techniques in which values of an attribute are modified so that their new values differ from their true values in a random way. Such a process reduces the ability of an attacker to deduce the value of an attribute from the values of other attributes in the same data record, thereby reducing the effectiveness of inference attempts. Techniques include: Noise addition, Permutation, Microaggregation.
 8. **Synthetic data:** Synthetic data is an approach to generating microdata artificially to represent a predefined statistical data model. By definition, a synthetic dataset does not contain any data collected from or about existing data principals, but looks realistic for the intended purposes. In practice, the generation of synthetic data can involve multiple or continuous transformations on real datasets using randomization techniques, sampling, and AI.
 
+### Transforming Identifiers
+
+Identifiers including direct and indirect identifiers help reidentify individuals directly or indirectly. To reduce the re-identification risk, those identifiers need to be transformed in a way that is unlikely be used to link the de-identified records back to original personal identifiers. There are various techniques can be used to tansform those identifiers.
+
+#### Removing or Transforming of Direct Identifiers
+
+The purpose of tansforming direct identifiers is hidding the original personal direct identifers in the pseudonymized data without damaging the quality of data consistency regarding linking relationships between records. Usually, records are linked together via personal direct identifiers. There might be multiple direct identifiers in the dataset that are need to be processed, for example, patient ID, patient Name, mobile phome number, email etc. However, not all of them are required in order to ensure the consitency of the transformed records. Thus, it's important to correctly select direct identifiers to be replaced with the pseudonyms. Those direct identifires that are not selected to be pseudonymized should be removed or masked completely. For example, when patient ID is the only direct identifier selected to be pseudonymized, then patient name, mobile phone number, email should be removed or masked in a secure way. Typical masking techniques include[(NIST 800-188)](#):
+1. Replace identifers with a repeating character, such as XXXXXX or 999999.
+2. Replacement with keywords. This approach transforms identifers such as George Washington to PATIENT. Note that some keywords may be equally identifying, such as transforming George Washington to PRESIDENT.
+3. Replacement with realistic surrogate values. This approach transforms identifers, such as George Washington, to surrogates that blend in, such as Abraham Polk.
+
+For those direct identifers, serving as maintaining the relationships between records and data subjects, pseudonymization techniques should be used. The orginal personal identifiers should be replaced with pseudonyms. Pseudonyms are special kind of personal identifier that is different from the normally used personal identifier and is used with pseudonymized data to provide dataset coherence linking all the information about a subject, without disclosing the real world person identity[(ISO/IEC 20889, 2018)](#ISO20889).
+
+Various techniques can be used to create pseudonyms, and they can be classified into two groups, A) Pseudonyms independent of identifying attributes; B)Pseudonyms derived from identifying attributes using cryptography. The decision on which method to use hinges on considerations like the expenses involved in producing pseudonyms, the hash function's ability to avoid collisions (that is, the chance of two distinct inputs yielding identical outputs), and the approach for re-establishing the identity of the data subject in a managed re-identification process[(mayer2011implementation)](#mayer2011implementation).
+
+When multiple organizations use the same pseudonymization scheme, they can trade data and perform matching on the pseudonyms. This approach is sometimes called privacy preserving record linkage (PPRL). Some PPRL approaches perform record linkage within a secure data enclave to minimize the risk of unauthorized re-identifcation. As an alternative, organizations can participate in a private set intersection protocol.
+
+##### Pseudonyms independent of identifying attributes
+The pseudonysm values are created in a way that they are independent of the original personal identifiers. Usually, random values are used to create unique pseudonyms. In order to link the pseudonyms back to it's original personal identifiers, a table (usually called linking table) is used to maintain the relationship between the pseudonyms created independently and the original personal identifiers. The linking table should not be released togeter with the pseudonymized data, and appropriate technical and organizational measures should be established to protect it from unauthorized access.
+
+##### Pseudonyms derived from identifying attributes using cryptography
+
+Pseudonyms can be cryptographically derived from the values of the attributes that they replace through encryption or hashing.
+
+**Encryption** Encrypt the identifers with a strong encryption algorithm. After encryption, the key can be discarded to prevent decryption. However, if there is a desire to employ the same transformation at a later point in time, the key should be stored in a secure location that is separate from the de-identifed dataset. Encryption used for this purpose carries special risks that need to be addressed with specifc controls
+
+**Hashing with a keyed hash** A keyed hash is a special kind of hash function that produces different hash values for different keys. The hash key should have suffcient randomness to defeat a brute force attack aimed at recovering the hash key (e.g.,SHA-256 HMAC with a 256-bit randomly generated key). As with encryption, the key should be secret and should be discarded unless there is a desire for repeatability. Hashing used for this purpose carries special risks that need to be addressed with specifc controls. Hashing without a key generally does not confer security because an attacker can brute force all possible values to be hashed.
+
+
 ### References
 
 1. <a name="ISO20889"></a>ISO/IEC 20889. (2018). *Privacy enhancing data de-identification terminology and classification of techniques* (Standard ISO/IEC 20889:2018(E); Number ISO/IEC 20889:2018(E)). International Organization for Standardization. [https://www.iso.org/standard/69373.html](https://www.iso.org/standard/69373.html)
+2. <a name="NIST_SP_800-188_2023"></a>NIST 800-188. (2023). *De-identifying Government Datasets* (Special Publication No. 800-188; Numbers 800-188). National Institute of Standards and Technology. [https://doi.org/10.6028/nist.sp.800-188](https://doi.org/10.6028/nist.sp.800-188)
+3. <a name="mayer2011implementation"></a>Mayer, D. A., Teubert, D., Wetzel, S., & Meyer, U. (2011). Implementation and performance evaluation of privacy-preserving fair reconciliation protocols on ordered sets. In Proceedings of the First ACM Conference on Data and Application Security and Privacy (pp. 109–120). Association for Computing Machinery. https://doi.org/10.1145/1943513.1943529
 
 The major algorithms used in de-identification are:
 
