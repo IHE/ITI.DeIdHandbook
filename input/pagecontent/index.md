@@ -21,7 +21,6 @@ This guide is organized into the following sections:
    - [Definitions](concepts.html#definitions)
    - [Re-identification](concepts.html#re-identification)
    - [Threats & Attacks](concepts.html#threats--attacks)
-   - [References](concepts.html#references)
 3. [Data Types](data-types.html)
 4. [Algorithms](algorithms.html)
    - [Redaction](algorithms.html#redaction)
@@ -49,7 +48,8 @@ This guide is organized into the following sections:
    - [Family Planning](family-planning.html)
 9. Other
    - [Download and Analysis](download.html)
-   - [References](references.html)
+   - [Significant Changes and Issues](issues.html)
+10. [References](references.html)
 
 See also the [Table of Contents](toc.html) and the index of [Artifacts](artifacts.html) defined as part of this implementation guide.
 

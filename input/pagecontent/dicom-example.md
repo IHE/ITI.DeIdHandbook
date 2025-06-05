@@ -1,9 +1,9 @@
 
 The DICOM standard has defined a set of confidentiality options for common de-identification situations. These apply directly to many real world situations, and can be used as the starting point for specialized adaptation to other situations. Many clinical trial plans and RFPs require use of these standard de-identification methods, and the DICOM standard is recognized by the FDA.
 
-There is a very large table in [DICOM PS 3.15, Annex E](references.html#dicom-part-15-annex-e) that specifies how every possible attribute should be de-identified. There is a default de-identification profile and several common options that modify that default. An extract is shown below as an example of how to read that table.
+There is a very large table in [DICOM PS 3.15, Annex E](references.html#DICOM-part-15-annex-e) that specifies how every possible attribute should be de-identified. There is a default de-identification profile and several common options that modify that default. An extract is shown below as an example of how to read that table.
 
-[DICOM](references.html#dicom) defines standard actions. The following is the subset that used in the example below.
+[DICOM](references.html#DICOM) defines standard actions. The following is the subset that used in the example below.
 
 **Table: DICOM Algorithms (Subset for example)**
 
@@ -73,4 +73,4 @@ In the snippet below, you can see that Acquisition DateTime (0008,002A) has not 
 </tbody>
 </table>
 
-The [DICOM standard PS 3.15 Annex-E](references.html#dicom-part-15-annex-e) and [all of DICOM](references.html#dicom).
+The [DICOM standard PS 3.15 Annex-E](references.html#DICOM-part-15-annex-e) and [all of DICOM](references.html#DICOM).

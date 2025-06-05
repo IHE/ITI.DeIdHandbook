@@ -14,7 +14,7 @@ Two examples of de-identification profiles from other organizations are describe
 
 The Biosurveillance Specification describes one intended use, and describes how expected data elements in the input should be processed.
 
-The [DICOM standard](references.html#dicom) describes a default intended use, plus several options regarding how this use might be modified, and describes how data elements in the input should be processed.
+The [DICOM standard](references.html#DICOM) describes a default intended use, plus several options regarding how this use might be modified, and describes how data elements in the input should be processed.
 
 The developers of an actual de-identification process must still do their own design, but this is greatly simplified by starting with a generic profile. They can compare their intended use with the one from the profile. They can examine the expected data elements and make adjustments where necessary. This is much easier than starting from scratch. It is fairly common in the case of DICOM data to find developers for a specific use determine that the default profile plus one or more of the options are suitable.
 

@@ -184,7 +184,7 @@ This algorithm is potentially applicable to any fuzzing algorithm. It most often
 
 #### Other Considerations
 
-The extent to which longitudinal consistency matters is very sensitive to details of the intended use. [DICOM](references.html#dicom) objects make extensive use of UIDs for references to other objects. These references often must be preserved in order to maintain the usability of the collection of images created in a study. The de-identification process must consider whether original UIDs can be re-used, or whether new UIDs should be created.
+The extent to which longitudinal consistency matters is very sensitive to details of the intended use. [DICOM](references.html#DICOM) objects make extensive use of UIDs for references to other objects. These references often must be preserved in order to maintain the usability of the collection of images created in a study. The de-identification process must consider whether original UIDs can be re-used, or whether new UIDs should be created.
 
 ### Recoverable Substitution
 
