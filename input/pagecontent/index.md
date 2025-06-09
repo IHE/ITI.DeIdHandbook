@@ -40,6 +40,8 @@ This guide is organized into the following sections:
    - [Step 6 – Periodic Review of Implementation](process.html#step-6--periodic-review-of-implementation)
 6. [De-Identification and Pseudonymization for IHE Profile Editors](ihe-use.html)
 7. [Security Considerations](security.html)
+   - [Design of De-Identification Algorithm](security.html#design-of-de-identification-algorithm)
+   - [Execution of De-Identification on Data](security.html#execution-of-de-identification-on-data)
    - [ATNA and Other Logging Considerations](security.html#atna-and-other-logging-considerations)
 8. Exemplar
    - [FHIR Examples](fhir-example.html)

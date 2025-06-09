@@ -51,6 +51,12 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
 # valueSets and codeSystems should be given OIDs, this is especially required if that codeSystem or valueSet is going to be used by CDA. IHE has an OID root that is managed https://wiki.ihe.net/index.php/OID_Registration, with a branch assigned to each IHE domain. Each IHE domain should have a page where they manage assignments within their branch. an OID should be assigned to each IG, and that OID placed below so that the IG publisher will manage OID assignment to all valueSets and codeSystems defined in that IG. The IG publisher will create an ./oids.ini in the project root that will need to be checked into your github repository.
 #  auto-oid-root: 1.3.6.1.4.1.19376.1.5....
 
+dependencies:
+  ihe.iti.balp:
+    id: iheitibasicaudit
+    uri: https://profiles.ihe.net/ITI/BALP/ImplementationGuide/ihe.iti.balp
+    version: current # 1.1.x
+    
 #resources:
 # list every example here with a name, description and that exampleBoolean is true; These are used to populate the artifacts page, and are needed to eliminate build warnings 
 # You may delay filling out this section until you approach publication as it is merely a nice to have and eliminates build warnings -- If you do this then you will need above the autoload-resources true
