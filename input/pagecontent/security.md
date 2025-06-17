@@ -26,16 +26,19 @@ An agent that De-Identifies data could declare their capabilities using the [IHE
 
 The following profiles of AuditEvent encourage an identifier be given to the De-Identification algorithm being used, so that each time that algorithm is used it can be tracked in the Audit log.
 
+The following profiles of AuditEvent defines a general pattern. This pattern would tend to be further refined by a given De-Identification Profile or Project to add specific codes and guidance. Such as defining a specific code for `purposeOfEvent`, additional agents or entities, specificity to the De-Identification algorithm identifier, specificity to the Consent, etc.
+
 ##### De-Identification
 
 When a given patients data are de-identified, an Audit Log could be recorded to indicate that this has happened and what was the authorizing consent or other factors. The data recorded in the AuditEvent are a subset of those recorded for a Disclosure. Was the data **anonymized** or **pseudonymized**. Note that the recording of this audit log is not required and may be discouraged by policy. It is provided here for those that choose to record it.
 
-The De-Identification AuditLog profile](StructureDefinition-IHE.BasicAudit.DeIdentification.Source.html)
+The [De-Identification AuditLog profile](StructureDefinition-IHE.BasicAudit.DeIdentification.Source.html)
 - [Example AuditEvent instances](StructureDefinition-IHE.BasicAudit.DeIdentification.Source-examples.html)
 
 ##### Re-Identification (authorized)
 
-Authorized Re-Identification should also be recorded, and is defined in the same above profile.
+Authorized Re-Identification should also be recorded, and is defined in the [same above profile](StructureDefinition-IHE.BasicAudit.DeIdentification.Source.html).
+- [Example AuditEvent instance for Re-Identification](AuditEvent-ex-auditReIdentification-source.html)
 
 ##### Disclosure
 
