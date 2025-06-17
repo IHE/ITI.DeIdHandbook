@@ -1,113 +1,35 @@
-Instance: IHE.ToDo.client
+
+Instance: IHE.DeId.AuditCreator
 InstanceOf: CapabilityStatement
-Title: "ToDo Actor"
 Usage: #definition
 * description = """
-CapabilityStatement for Client Actor 
+CapabilityStatement for [DeIdentification Audit Creator](security.html) Actor in [DeIdentification Handbook](index.html).
 
-Explain
-- blah
-- blah
+This Actor is derived off of the [ATNA Secure Application](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1.1.2) 
+or [ATNA Secure Node](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1.1.1) actor 
+with [ATNA ATX:FHIR Feed Option](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html). 
+
+This Actor is involved in the generation of De-Identified data, and thus would record [De-Identification Audit Events](StructureDefinition-IHE.BasicAudit.DeIdentification.Source.html)
+
+This Actor may be involved in events that uncover a Privacy Disclosure, and thus would record [Privacy Disclosure Audit Events](https://build.fhir.org/ig/IHE/ITI.BasicAudit/StructureDefinition-IHE.BasicAudit.PrivacyDisclosure.Source.html).
 """
-* url = "https://profiles.ihe.net/Domain/Profile/CapabilityStatement/IHE.ToDo.client"
-* name = "IHE_ToDo_client"
-* title = "IHE ToDo client"
+* name = "IHE_DeId_AuditCreator"
+* title = "IHE DeId Audit Creator"
 * status = #active
 * experimental = false
-* date = "2022-10-27"
+* date = "2025-06-17"
 * kind = #requirements
 * fhirVersion = #4.0.1
 * format[+] = #application/fhir+xml
 * format[+] = #application/fhir+json
 * rest
   * mode = #client
-  * documentation = "ToDo Client provides capability to blah blah."
+  * documentation = "DeId **Audit Creator** will CREATE AuditEvent resources, and send them to the **Audit Record Repository** with **ATNA ATX:FHIR Feed Option** using ITI-20 FHIR support."
   * security
-    * description = "Recommend [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html), encouraged [IHE-IUA](https://profiles.ihe.net/ITI/IUA/index.html) or [SMART-app-launch](http://www.hl7.org/fhir/smart-app-launch/)"
+    * description = "[ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) required, encouraged [IHE-IUA](https://profiles.ihe.net/ITI/IUA/index.html) or SMART-on-FHIR"
   * resource[+]
-    * type = #Observation
-    * supportedProfile[+] = "https://profiles.ihe.net/Domain/Profile/StructureDefinition/IHE.ToDo.laugh"
-    * documentation = """
-ToDo transaction [ITI-00]
-"""
-    * interaction[+].code = #read
-    * interaction[+].code = #search-type
-    * searchParam[+]
-      * name = "_lastUpdated"
-      * type = #date
-      * documentation = "When the resource version last changed"
-    * searchParam[+]
-      * name = "_id"
-      * type = #token
-      * documentation = "Logical id of this artifact"
-    * searchParam[+]
-      * name = "category"
-      * type = #token
-      * documentation = "The classification of the type of observation"
-    * searchParam[+]
-      * name = "code"
-      * type = #token
-      * documentation = "The code of the observation type"
-    * searchParam[+]
-      * name = "patient"
-      * type = #token
-      * documentation = "The subject that the observation is about (if patient)"
-  * interaction.code = #search-system
-
-
-Instance: IHE.ToDo.server
-InstanceOf: CapabilityStatement
-Title: "ToDo Server Actor"
-Usage: #definition
-* description = """
-CapabilityStatement for Server Actor.
-
-Explain
-- blah
-- blah
-"""
-* url = "https://profiles.ihe.net/Domain/Profile/CapabilityStatement/IHE.ToDo.server"
-* name = "IHE_ToDo_supplier"
-* title = "IHE ToDo Server"
-* status = #active
-* experimental = false
-* date = "2022-10-27"
-* kind = #requirements
-* fhirVersion = #4.0.1
-* format[+] = #application/fhir+xml
-* format[+] = #application/fhir+json
-* rest
-  * mode = #server
-  * documentation = "ToDo Client provides capability to blah blah."
-  * security
-    * description = "Recommend [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html), encouraged [IHE-IUA](https://profiles.ihe.net/ITI/IUA/index.html) or [SMART-app-launch](http://www.hl7.org/fhir/smart-app-launch/)"
-  * resource[+]
-    * type = #Observation
-    * supportedProfile[+] = "https://profiles.ihe.net/Domain/Profile/StructureDefinition/IHE.ToDo.laugh"
-    * documentation = """
-ToDo transaction [ITI-00]
-"""
-    * interaction[+].code = #read
-    * interaction[+].code = #search-type
-    * searchParam[+]
-      * name = "_lastUpdated"
-      * type = #date
-      * documentation = "When the resource version last changed"
-    * searchParam[+]
-      * name = "_id"
-      * type = #token
-      * documentation = "Logical id of this artifact"
-    * searchParam[+]
-      * name = "category"
-      * type = #token
-      * documentation = "The classification of the type of observation"
-    * searchParam[+]
-      * name = "code"
-      * type = #token
-      * documentation = "The code of the observation type"
-    * searchParam[+]
-      * name = "patient"
-      * type = #token
-      * documentation = "The subject that the observation is about (if patient)"
-  * interaction.code = #search-system
-
+    * type = #AuditEvent
+    * documentation = "For ATNA Record Audit Event [ITI-20] using FHIR."
+    * interaction[+].code = #create
+    * supportedProfile[+] = "https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source"
+    * supportedProfile[+] = "https://profiles.ihe.net/ITI/DeId/StructureDefinition/IHE.BasicAudit.DeIdentification.Source"

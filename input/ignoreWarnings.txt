@@ -1,6 +1,12 @@
 == Suppressed Messages ==
 # instructions for ignoreWarnings.txt https://confluence.hl7.org/pages/viewpage.action?pageId=66938614#ImplementationGuideParameters-ManagingWarningsandHints
-# IHE valueset that is not yet a real valueset
-Code System URI 'urn:ihe:event-type-code' is unknown so the code cannot be validated
 
+# in the example there are more subtypes 
+INFORMATION: AuditEvent/ex-auditDeIdentification-source: AuditEvent.subtype[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/DeId/StructureDefinition/IHE.BasicAudit.DeIdentification.Source|0.0.1-current (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditReIdentification-source: AuditEvent.subtype[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/DeId/StructureDefinition/IHE.BasicAudit.DeIdentification.Source|0.0.1-current (this may not be a problem, but you should check that it's not intended to match a slice)
 
+# inherited from fhir core
+MSG_DEPENDS_ON_DEPRECATED
+
+# not interested in fixing the vocabulary version
+TYPE_SPECIFIC_CHECKS_DT_CANONICAL_MULTIPLE_POSSIBLE_VERSIONS
