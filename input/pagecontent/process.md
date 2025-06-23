@@ -78,7 +78,7 @@ During the design phase determine the potential for re-identification from remai
 
 One key element of the design is an element by element listing of how each possible data element in the input data set will be processed. Two examples are given in Appendix E. It is not possible to create a single universally appropriate table. Examples like these can act as a starting point for purpose specific designs.
 
-The [DICOM standard](references.html#dicom) provides initial starting point tables for commonplace de-identification requirements for imaging results in the DICOM format. These are in [PS 3.15 Annex E](references.html#dicom-part-15-annex-e), especially Table E.1-1. The DICOM standard is freely available for use and permission is granted for public and private use of extracts. It is provided in Word format to simplify such use. Note: The DICOM standard identifies private attributes that are claimed to lack personal information. Other treatment of private attributes must be part of the design process.
+The [DICOM standard](references.html#DICOM) provides initial starting point tables for commonplace de-identification requirements for imaging results in the DICOM format. These are in [PS 3.15 Annex E](references.html#DICOM-part-15-annex-e), especially Table E.1-1. The DICOM standard is freely available for use and permission is granted for public and private use of extracts. It is provided in Word format to simplify such use. Note: The DICOM standard identifies private attributes that are claimed to lack personal information. Other treatment of private attributes must be part of the design process.
 
 There are also project and other examples available, such as the Biosurveillance Use Case Minimum Data Elements Specification.
 

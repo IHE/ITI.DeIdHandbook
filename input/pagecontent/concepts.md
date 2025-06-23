@@ -3,30 +3,30 @@
 
 Pseudonymization, de-identification, and anonymization, are the processes that mitigate the privacy risk of associating the disclosed information with an individual or a group of individuals when sharing personal data or anonymous information between different data environments. These concepts are widely used to protect individuals, especially in fields like healthcare. The most common healthcare use of these processes is to protect individual patients, but they may also be applied to protect healthcare clinicians and other individuals being involved.
 
-Applying risk mitigation processes like de-identification, anonymization, and pseudonymization is challenging due to unclear or conflicting interpretations across different frameworks. For example,[(ISO 25237, 2017) ](#ISO25237) defines pseudonymization as a type of de-identification process, while [(ISO/IEC 20889, 2018)](#ISO20889) specifies it as a de-identification technique. Under [(GDPR, 2016)](#GDPR2016a), pseudonymization is also defined as a processing of personal data, and further clarifies the condition under which the personal data can no longer be attributed to a specific data subject. The concept of pseudonymization under GDPR is similar to the definition of de-identification under[(PIPL, 2021)](#PIPL2021). Both of them emphasize the condition of without using additional information when considering whether or not the disclosed (transformed) personal data can be attributed to an individual. Unlike, pseudonymization under the GDPR and de-identification under the PIPL, the HIPAA Rule (under 45 C.F.R §164.514(b)(1)(i)) does not restrict the concept of de-identification under the condition of without using additional information, instead it relies on the concept of a very small risk.
+Applying risk mitigation processes such as de-identification, anonymization, and pseudonymization can be challenging due to varying and sometimes conflicting interpretations across different frameworks. For instance,[(ISO 25237, 2017) ](references.html#ISO25237) describes pseudonymization as a form of de-identification, while [(ISO/IEC 20889, 2018)](references.html#ISO20889) refers to it as a de-identification technique. Under the [(GDPR, 2016)](references.html#GDPR2016a), pseudonymization is defined as a type of personal data processing and further specifies the conditions under which personal data can no longer be attributed to a specific individual. This aligns closely with the concept of de-identification under China’s Personal Information Protection Law [(PIPL, 2021)](references.html#PIPL2021),as both emphasize that personal data should not be attributable to an individual without the use of additional information. In contrast, the HIPAA Rule (under 45 C.F.R §164.514(b)(1)(i)) does not frame de-identification in terms of whether additional information is used. Instead, it focuses on achieving a “very small risk” that the data could be used to identify an individual.
 
 The treatment of anonymous data also varies. Both GDPR and PIPL agree that data protection rules do not apply to anonymous data—defined in GDPR Recital 26 as “information which does not relate to an identified or identifiable natural person or to personal data rendered anonymous in such a manner that the data subject is not or no longer identifiable.”. PIPL defines anonymization as a process of processing personal information to make it impossible to identify specific data subject and impossible to restore. PIPL (2021) describes anonymization as a process that makes personal information untraceable to a specific individual and irreversible, a view echoed by ISO 25237, which stresses that the data subject cannot be identified directly or indirectly. However, GDPR stops short of formally defining anonymization, despite referencing “anonymous information” in Recital 26.
 
-The varied interpretations of these concepts often spark disputes when implementing privacy compliance measures. Notable examples include the debate over absolute versus relative anonymization and the differing scopes of pseudonymization versus de-identification. Absolute anonymization, which assumes no risk of linking data to an individual, is often impractical since some possibility of re-identification typically remains. The EDPB (2025) broadens pseudonymization to cover not just direct identifiers (like names) but also quasi-identifiers (like age ranges), incorporating techniques such as randomization and generalization. This expanded scope clashes with narrower pseudonymization methods outlined in ISO 20889 and [(NIST 800-188, 2023)](#NIST_SP_800-188_2023). These conflicts may persist, potentially driven by underlying factors—such as the EDPB’s reliance on GDPR terminology, which avoids the term “de-identification” altogether.
+The varied interpretations of these concepts often spark disputes when implementing privacy compliance measures. Notable examples include the debate over absolute versus relative anonymization and the differing scopes of pseudonymization versus de-identification. Absolute anonymization, which assumes no risk of linking data to an individual, is often impractical since some possibility of re-identification typically remains. The EDPB (2025) broadens pseudonymization to cover not just direct identifiers (like names) but also quasi-identifiers (like age ranges), incorporating techniques such as randomization and generalization. This expanded scope clashes with narrower pseudonymization methods outlined in ISO 20889 and [(NIST 800-188, 2023)](references.html#NIST_SP_800-188_2023). These conflicts may persist, potentially driven by underlying factors—such as the EDPB’s reliance on GDPR terminology, which avoids the term “de-identification” altogether.
 
 This handbook addresses these challenges by providing a practical lens. Rather than adhering strictly to any single definition, it synthesizes widely accepted ideas and adapts them for actionable use. By clarifying the relationships between these concepts—how they overlap, diverge, and serve distinct purposes—we aim to equip you with a flexible framework tailored to real-world needs, whether you’re ensuring compliance or enabling data utility. Key consensus points include:
 
-1. Data protection principles in privacy laws like GDPR and PIPL do not apply to anonymous data. For instance, GDPR Recital 26 states that these principles exclude anonymous information [(GDPR, 2016)](#GDPR2016a), while PIPL Article 4 defines personal information as data linked to identifiable individuals, explicitly excluding anonymized data [(PIPL, 2021)](#PIPL2021).
-2. Pseudonymized and de-identified data are generally still considered identifiable and thus remain personal data. GDPR Recital 26 notes that pseudonymized data, which can be linked to a person using additional information, qualifies as personal data [(GDPR, 2016)](#GDPR2016a). This is echoed in broader data protection guidance from the European Commission [(European Data Protection Board, 2025)](#edpb2025).
-3. Pseudonymization typically allows precise tracing from pseudonyms back to original identifiers, as outlined in the UK Information Commissioner’s Office guidance on anonymization and pseudonymization[(Information Commissioner’s Office, 2025)](#ICO2025).
-4. De-identification, by contrast, supports secondary data use, such as generating aggregate statistics, without requiring a link between pseudonyms and original identifiers. This approach is endorsed by NIST SP 800-188 [(NIST 800-188, 2023)](#NIST_SP_800-188_2023) and OCR guidance [(Office for Civil Rights, 2025)](#ocr2025).
+1. Data protection principles in privacy laws like GDPR and PIPL do not apply to anonymous data. For instance, GDPR Recital 26 states that these principles exclude anonymous information [(GDPR, 2016)](references.html#GDPR2016a), while PIPL Article 4 defines personal information as data linked to identifiable individuals, explicitly excluding anonymized data [(PIPL, 2021)](references.html#PIPL2021).
+2. Pseudonymized and de-identified data are generally still considered identifiable and thus remain personal data. GDPR Recital 26 notes that pseudonymized data, which can be linked to a person using additional information, qualifies as personal data [(GDPR, 2016)](references.html#GDPR2016a). This is echoed in broader data protection guidance from the European Commission [(European Data Protection Board, 2025)](references.html#edpb2025).
+3. Pseudonymization typically allows precise tracing from pseudonyms back to original identifiers, as outlined in the UK Information Commissioner’s Office guidance on anonymization and pseudonymization[(Information Commissioner’s Office, 2025)](references.html#ICO2025).
+4. De-identification, by contrast, supports secondary data use, such as generating aggregate statistics, without requiring a link between pseudonyms and original identifiers. This approach is endorsed by NIST SP 800-188 [(NIST 800-188, 2023)](references.html#NIST_SP_800-188_2023) and OCR guidance [(Office for Civil Rights, 2025)](references.html#ocr2025).
 
 ### Identifiability
 
-The transformation of personal data to mitigate re-identification risk results in distinct levels of identifiability. GB/T 42460-2023 and [(Hintze, 2017)](#Hintze_2017) each present a four-level identifiability framework. Although their definitions diverge, both frameworks share the principle that re-identification risk diminishes along the ordered levels, progressing from left to right (as illustrated in the figure below). (from left to the right as the figure below).
+The transformation of personal data to mitigate re-identification risk results in distinct levels of identifiability. GB/T 42460-2023 and [(Hintze, 2017)](references.html#Hintze_2017) each present a four-level identifiability framework. Although their definitions diverge, both frameworks share the principle that re-identification risk diminishes along the ordered levels, progressing from left to right (as illustrated in the figure below). (from left to the right as the figure below).
 
 <figure>
   <img src="identifiability-levels.png" alt="levels of identifiability">
-  <figcaption><strong>Figure 2-2: Levels of Identifiability </strong></figcaption>
+  <figcaption><strong>Figure Levels of Identifiability </strong></figcaption>
 </figure>
 
 
-The identifiability concepts presented herein are largely derived from the definitions in [(Hintze, 2017)](#Hintze_2017). Specifically, the first three levels are consistent with those outlined in that work. The definition for the last level, anonymous data, is adjusted considering the other sources including the [(GDPR, 2016)](#GDPR2016a),[(PIPL, 2021)](#PIPL2021), and [(U.S. Congress, 1996)](HIPAA1996).
+The identifiability concepts presented herein are largely derived from the definitions in [(Hintze, 2017)](references.html#Hintze_2017). Specifically, the first three levels are consistent with those outlined in that work. The definition for the last level, anonymous data, is adjusted considering the other sources including the [(GDPR, 2016)](references.html#GDPR2016a),[(PIPL, 2021)](references.html#PIPL2021), and [(U.S. Congress, 1996)](references.html#HIPAA1996).
 
 **Identified Data**
 
@@ -44,9 +44,9 @@ De-Identified data relates to a specific person whose identity is not apparent f
 
 Information that does not relate to an identified or identifiable natural person, or personal data that has been rendered anonymous through an anonymization process such that the data subject is no longer identifiable.
 
-> **Notes:** (1) The original definition in [(Hintze, 2017)](#Hintze_2017) considers only aggregated data at this level. In this book, the definition is derived from the GDPR Article 26 and [(ISO 25237, 2017)](#ISO25237).(2) Practical/relative concept in understanding the idea of "no longer identifiable". The GDPR Article 26 further explains the meaning of "identifiable" as "To determine whether a natural person is identifiable, account should be taken of all the means reasonably likely to be used, such as singling out, either by the controller or by another person to identify the natural person directly or indirectly.". 
+> **Notes:** (1) The original definition in [(Hintze, 2017)](references.html#Hintze_2017) considers only aggregated data at this level. In this book, the definition is derived from the GDPR Article 26 and [(ISO 25237, 2017)](references.html#ISO25237).(2) Practical/relative concept in understanding the idea of "no longer identifiable". The GDPR Article 26 further explains the meaning of "identifiable" as "To determine whether a natural person is identifiable, account should be taken of all the means reasonably likely to be used, such as singling out, either by the controller or by another person to identify the natural person directly or indirectly.". 
 
-The table below summarizes the characteristics of the levels of identifiability by comparing it with [(U.S. Congress, 1996)](#HIPAA1996) and [(GB/T_42460, 2023)](#GB/T_42460_2023).
+The table below summarizes the characteristics of the levels of identifiability by comparing it with [(U.S. Congress, 1996)](references.html#HIPAA1996) and [(GB/T_42460, 2023)](references.html#GB/T_42460_2023).
 
 **Table 2.1-1: Characteristics of Levels of Identifiability**
 
@@ -64,7 +64,7 @@ The table below summarizes the characteristics of the levels of identifiability 
 
 According to GDPR Art. 4(5), pseudonymization is defined as:
 
-> ‘pseudonymization’ means the processing of personal data in such a manner that the personal data can no longer be attributed to a specific data subject without the use of additional information, provided that such additional information is kept separately and is subject to technical and organizational measures to ensure that the personal data are not attributed to an identified or identifiable natural person. [(GDPR, 2016)](#GDPR2016a)
+> ‘pseudonymization’ means the processing of personal data in such a manner that the personal data can no longer be attributed to a specific data subject without the use of additional information, provided that such additional information is kept separately and is subject to technical and organizational measures to ensure that the personal data are not attributed to an identified or identifiable natural person. [(GDPR, 2016)](references.html#GDPR2016a)
 
 The term 'additional information' is used in the definition above without a clear explanation in GDPR. There are two kinds of 'additional information', type I) information generated during the process of pseudonymization, serving the purpose of generating secure pseudonyms. type II) any other personal information including the public dataset and social media. To avoid ambiguous, in this book, we interpret the 'additional information' used in the definition as the type I additional information, so that it can be 'kept separately' by the controller and/or processors.
 
@@ -72,7 +72,7 @@ A typical process of pseudonymization is hiding the direct identifies from the r
 
 <figure>
   <img src="relationships-in-original-data.png" style="width:6.50694in;height:2.85347in" />
-  <figcaption><strong>Figure 2.3.1-1: Relationships in original data</strong></figcaption>
+  <figcaption><strong>Figure: Relationships in original data</strong></figcaption>
 </figure>
 
 Clinical trials usually employ pseudonymization. Clinical trial processes remove identifying information, such as the patients’ demographics, that are not required. Where attributes about the patient must be preserved, different methods are used to obscure the real identity while maintaining the needed information. For example, most clinical trials replace the original patient ID and record numbers with a clinical trial ID and a subject ID. Only the clinical trial manager knows both numbers. A reviewer that needs to inform a patient about a finding must contact the clinical trial manager. Only the trial manager can determine the actual patient hospital and patient ID from the clinical trial ID and subject ID. 
@@ -89,13 +89,13 @@ In this book, one-way/irreversible pseudonymization is considered as de-identifi
 
 De-identification is the process of removing or transforming sufficient information from the source data. The goal is that the risk of re-identification is reduced to an acceptable level while also achieving the objectives of the intended use. One of the definition is:
 
-> general term for any process of removing the association between a set of identifying data and the data subject[(ISO 25237, 2017)](#ISO25237).
+> general term for any process of removing the association between a set of identifying data and the data subject[(ISO 25237, 2017)](references.html#ISO25237).
 
 The definition above aligns closely with the HIPAA Rule (see 45 CFR § 164.514(a), (b), (c)). Under this rule, the process may follow the Safe Harbor method, the Expert Determination method, or a combination of both. Although the GDPR does not explicitly define de-identification—whether formally or informally—its concept of pseudonymization, as outlined in Art. 4(5) GDPR, can be regarded as a specific type of de-identification. In contrast, China’s Personal Information Protection Law (PIPL) distinguishes de-identification from anonymization as distinct processes with different legal requirements and implications. Under PIPL, de-identified data remains classified as personal data, while anonymized data is considered non-personal data. Comparing pseudonymization under GDPR (Art. 4(5)) with de-identification under PIPL (Art. 73(3)) highlights two key similarities: first, the data resulting from both processes is still treated as personal data; second, both stipulate that an individual cannot be re-identified from the processed dataset—whether pseudonymized or de-identified—without additional information. To align these concepts with modern privacy laws, this book defines de-identification as a process that produces a de-identified (including Readily-Identifiable)  dataset, which remains personal data identifiable only with additional information.
 
 <figure>
   <img src="relationships-between-concepts.drawio.png" />
-  <figcaption><strong>Figure 2.3.2-1: Relationships between different concepts of de-identification</strong></figcaption>
+  <figcaption><strong>Figure: Relationships between different concepts of de-identification</strong></figcaption>
 </figure>
  
 The figure above illustrates the concept of de-identification across various levels. The outermost zones depict a broad perspective, encompassing all forms of de-identification distinguished only by the extent of their outcomes. However, this wide-ranging view lacks precision and may lead to confusion, particularly when addressing implementation for compliance purposes. To address this, this book adopts a more specific framework: reversible de-identification (pseudonymization), irreversible de-identification (commonly referred to simply as de-identification), and anonymization. These distinctions are applied especially in contexts where the level of identifiability or legal requirements must be precisely defined. Simultaneously, the book uses 'de-identification' as a general term when the specific level of identifiability is less critical, such as when outlining a general risk-based approach.
@@ -114,7 +114,7 @@ Irreversible de-identification, often simply referred to as de-identification, d
 
 <figure>
 	<img src="relationships-removed-by-deid.png" style="width:6.50694in;height:2.85347in" />
-	<figcaption><strong>Figure 2.3.2-2: Relationships removed by De-identification</strong></figcaption>
+	<figcaption><strong>Figure: Relationships removed by De-identification</strong></figcaption>
 </figure>
 
 In the above figures, each person is associated with specific characteristics such as age, administrate gender, given name, etc. Starting with zero knowledge, an attacker can only identify a large set of people as candidates. But each time the attacker obtains a characteristic, the set of candidate individuals is reduced. If an attacker can collect enough characteristics about a person, then the set of candidate individuals is reduced to a single person. De-identification techniques are used, to ensure that all these sets remain sufficiently large that the risk of identifying a specific individual is acceptable.
@@ -139,11 +139,11 @@ Unlike pseudonymization and de-identification (irreversible), anonymization requ
 
 Recital 26 of the GDPR defines anonymous information as data that cannot be linked to an identifiable individual, without specifying whether this holds with or without additional information. By contrast, the GDPR describes pseudonymized data as identifiable only with the use of additional information. Thus, anonymization under the GDPR implies that released data must remain non-identifiable in both cases—regardless of additional information. A comparable principle applies to China’s Personal Information Protection Law (PIPL), where de-identification entails processing personal information to prevent identification of specific individuals without additional information, though it similarly omits explicit mention of scenarios involving such information in its anonymization definition.
 
-[(ISO 25237, 2017)](#ISO25237) defines the concept of anonymization as:
+[(ISO 25237, 2017)](references.html#ISO25237) defines the concept of anonymization as:
 
 > process by which personal data is irreversibly altered in such a way that a data subject can no longer be identified directly or indirectly, either by the data controller alone or in collaboration with any other party.
 
-[(ISO 25237, 2017)](#ISO25237) acknowledges that an absolute definition of anonymization is difficult to achieve and often impractical, favoring a practical approach that is increasingly widely accepted. In Case [C-582/14](https://curia.europa.eu/juris/liste.jsf?num=C-582/14), the Court of Justice of the European Union (CJEU) held that a dynamic IP address qualifies as personal data for a website operator only if the operator has legal means reasonably likely to access additional identifying information, such as from an internet service provider. More recently, Case [T-557/20](https://curia.europa.eu/juris/liste.jsf?language=en&td=ALL&num=T-557/20) from the CJEU provided a key precedent by delineating pseudonymized from anonymized data in cross-entity data-sharing contexts. The court introduced the "reasonable likelihood" standard, stressing that data’s status as personal hinges on the recipient’s actual re-identification capability, not theoretical potential. This pragmatic stance aligns with the Expert Determination method under the HIPAA Privacy Rule (45 C.F.R. §164.514(b)). Likewise, China is crafting data anonymization standards that adopt a practical lens, assessing re-identification risk from the recipient’s perspective. Recognizing that such risks cannot be fully eradicated, these standards prioritize governance measures alongside technical safeguards.
+[(ISO 25237, 2017)](references.html#ISO25237) acknowledges that an absolute definition of anonymization is difficult to achieve and often impractical, favoring a practical approach that is increasingly widely accepted. In Case [C-582/14](https://curia.europa.eu/juris/liste.jsf?num=C-582/14), the Court of Justice of the European Union (CJEU) held that a dynamic IP address qualifies as personal data for a website operator only if the operator has legal means reasonably likely to access additional identifying information, such as from an internet service provider. More recently, Case [T-557/20](https://curia.europa.eu/juris/liste.jsf?language=en&td=ALL&num=T-557/20) from the CJEU provided a key precedent by delineating pseudonymized from anonymized data in cross-entity data-sharing contexts. The court introduced the "reasonable likelihood" standard, stressing that data’s status as personal hinges on the recipient’s actual re-identification capability, not theoretical potential. This pragmatic stance aligns with the Expert Determination method under the HIPAA Privacy Rule (45 C.F.R. §164.514(b)). Likewise, China is crafting data anonymization standards that adopt a practical lens, assessing re-identification risk from the recipient’s perspective. Recognizing that such risks cannot be fully eradicated, these standards prioritize governance measures alongside technical safeguards.
 
 **Example Cases**
 
@@ -158,14 +158,14 @@ In the USA, part of the clinical trial process is governed by an Institutional R
 
 Part of the human subject risk considered by IRBs is that to patient privacy, which most nations require protection of. In the US, regulations state “IRBs should determine the adequacy of the provisions to protect the **privacy** of subjects and to maintain the **confidentiality** of the data \[*see* Guidebook Chapter 3, Section D, "Privacy and Confidentiality"\]” One effective method to help reduce both study bias and privacy risk is to use data that has been pseudonymized. Since IHE profiles are not governed by IRBs, IHE writers need to provide enough info in their profiles to help implementers comply with anticipated future IRB policies.
 
-### General Approach
+### Overall De-Identification Approach
 
 While the risk levels vary, pseudonymization, de-identification (irreversible), and anonymization—as risk-based processes—follow a general approach that balances privacy risk with data utility. Typically, this approach begins by determining why the data is needed for your specific business context. With a clearly defined legal basis and business use case established, the next step is to evaluate the privacy risks associated with sharing or releasing the data to intended recipients. Finally, and equally important, a risk-based approach consistently considers the impacts on identified stakeholders.
-[(University of Manchester, 2024)](#UKAN2024) introduces the Anonymisation Decision-Making Framework (ADF), offering a perspective on anonymisation and the reuse of personal data that moves beyond the limitations of overly technical or legalistic approaches. In the ADF, 'anonymisation' differs from its usage in GDPR and PIPL, being defined instead as Functional Anonymisation. This concept hinges on assessing anonymisation based on the data and its environment, without excluding any level of identifiability, and is not intended as legal advice. The framework effectively addresses the risk-based aspects of de-identification, making it a foundational approach adopted in this book.
+[(University of Manchester, 2024)](references.html#UKAN2024) introduces the Anonymisation Decision-Making Framework (ADF), offering a perspective on anonymisation and the reuse of personal data that moves beyond the limitations of overly technical or legalistic approaches. In the ADF, 'anonymisation' differs from its usage in GDPR and PIPL, being defined instead as Functional Anonymisation. This concept hinges on assessing anonymisation based on the data and its environment, without excluding any level of identifiability, and is not intended as legal advice. The framework effectively addresses the risk-based aspects of de-identification, making it a foundational approach adopted in this book.
 
 <figure>
 	<img src="risk-based-general-approach.drawio.png"/>
-	<figcaption><strong>Risk-Based General Approach of De-Identification</strong></figcaption>
+	<figcaption><strong>Figure: Risk-Based General Approach of De-Identification</strong></figcaption>
 </figure>
 
 The figure above illustrates the key aspects of a risk-based general approach, namely, Data Situation Analysis, Disclosure Risk Control, and Impact Management.
@@ -180,7 +180,7 @@ For each element you must consider the associated re-identification risk. A basi
 
 This analysis will also be affected by regulatory requirements. Most nations have laws that identify particular sensitive data that must be given special protection, and other laws that may mandate disclosure of other information. Local regulatory expertise will be needed.
 
-At the end of the requirement analysis process a table of data elements, intended use, risks, mitigations, and residual risks will be created. Some standards, e.g., DICOM [ (National Electrical Manufacturers Association, 2025)](#DICOMPart15AnnexE), provide tables that can act as the starting point for creating a use specific final table. Table 2.1-1 illustrates what a final table might contain.
+At the end of the requirement analysis process a table of data elements, intended use, risks, mitigations, and residual risks will be created. Some standards, e.g., DICOM [ (National Electrical Manufacturers Association, 2025)](references.html#DICOMPart15AnnexE), provide tables that can act as the starting point for creating a use specific final table. Table 2.1-1 illustrates what a final table might contain.
 
 **Table: Illustrative List of Fields and Risks**
 
@@ -196,8 +196,8 @@ Ultimately there will be residual risk that will need to be documented as unmiti
 
 #### Disclosure Risk Control
 
-Disclosure risk control starts with risk assessment. Re-Identification risks in a given data environment come from the interaction between agents and data (including the data disclosed/released and other data available to the agents). Thus, both the data risk and the data environment risk (so called context risk) should be assessed. The The governance and infrastructure within the data environment largely determine the likelihood of a certain type of re-identification threats. The assessment can be conducted using either qualitative analysis or quantitative analysis. An initial risk assessment may be required to make a quick decision whether a quantitative risk analysis is needed. [(University of Manchester, 2024)](#UKAN2024) introduces a practical [initial risk assessment](https://ukanon.net/wp-content/uploads/2020/12/data-situation-evaluation-template-v1.1.docx) tool to help make a decision whether a quantitative risk assessment is needed.
-[(ISO/IEC 27559, 2022)](#ISOIEC27559) specifies an equation for calculating the re-identification risk:
+Disclosure risk control starts with risk assessment. Re-Identification risks in a given data environment come from the interaction between agents and data (including the data disclosed/released and other data available to the agents). Thus, both the data risk and the data environment risk (so called context risk) should be assessed. The The governance and infrastructure within the data environment largely determine the likelihood of a certain type of re-identification threats. The assessment can be conducted using either qualitative analysis or quantitative analysis. An initial risk assessment may be required to make a quick decision whether a quantitative risk analysis is needed. [(University of Manchester, 2024)](references.html#UKAN2024) introduces a practical [initial risk assessment](https://ukanon.net/wp-content/uploads/2020/12/data-situation-evaluation-template-v1.1.docx) tool to help make a decision whether a quantitative risk assessment is needed.
+[(ISO/IEC 27559, 2022)](references.html#ISOIEC27559) specifies an equation for calculating the re-identification risk:
 
 > P(identification) = P(identification | threat) × P(threat) 
 
@@ -215,86 +215,89 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 
 ### Definitions
 
-**anonymization**: process by which personal data is irreversibly altered in such a way that a data subject can no longer be identified directly or indirectly, either by the data controller alone or in collaboration with any other party (Source: [(ISO 25237, 2017)](#ISO25237).
+**anonymization**: process by which personal data is irreversibly altered in such a way that a data subject can no longer be identified directly or indirectly, either by the data controller alone or in collaboration with any other party (Source: [(ISO 25237, 2017)](references.html#ISO25237).
 
 *Note 1:* The term is defined in a similar way under the PIPL ([Art. 73(4)](http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559_3.htm)).
 
 *Note 2:* An absolute concept of anonymization is not feasible in practice. This book interprets it as a relative concept, where the risk of re-identification, even with reasonable additional information, is minimized to a very low level.
 
-**anonymous identifier**: identifier of a person which does not allow the identification of the natural person(Source: [(ISO 25237, 2017)](#ISO25237)).
+**anonymous identifier**: identifier of a person which does not allow the identification of the natural person(Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
-**data linking**: matching and combining data from multiple databases (Source: [(ISO 25237, 2017)](#ISO25237)).
+**data linking**: matching and combining data from multiple databases (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
-*Note 1*: The term "data linking" is identical to the term "linking" defined in the [(ISO/IEC 20889, 2018)](#ISO20889).
+*Note 1*: The term "data linking" is identical to the term "linking" defined in the [(ISO/IEC 20889, 2018)](references.html#ISO20889).
 
-**data subject**: person to whom data refer (Source: [(ISO 25237, 2017)](#ISO25237)).
+**data subject**: person to whom data refer (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
-*Note 1*: The term "data subject" is identical to the term "data principal" defined in the [(ISO/IEC 20889, 2018)](#ISO20889).
+*Note 1*: The term "data subject" is identical to the term "data principal" defined in the [(ISO/IEC 20889, 2018)](references.html#ISO20889).
 
-**de-identification**: general term for any process of reducing the association between a set of identifying data and the data subject.  (Source: [(ISO 25237, 2017)](#ISO25237)).
+**de-identification**: general term for any process of reducing the association between a set of identifying data and the data subject.  (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
-*Note 1:* The term "de-identification" is distinguished from the term "anonymization" under the PIPL[(PIPL, 2021)](#PIPL2021). De-identification under the PIPL is similar to the concept of pseudonymization in this book.
+*Note 1:* The term "de-identification" is distinguished from the term "anonymization" under the PIPL[(PIPL, 2021)](references.html#PIPL2021). De-identification under the PIPL is similar to the concept of pseudonymization in this book.
 
-*Note 2:* The term "de-identification" in this handbook is identical to the definition of "de-identification process" within the [(ISO/IEC 20889, 2018)](#ISO20889).
+*Note 2:* The term "de-identification" in this handbook is identical to the definition of "de-identification process" within the [(ISO/IEC 20889, 2018)](references.html#ISO20889).
 
-**direct identifier**: data that directly identifies a single individual. (Source: [(ISO 25237, 2017)](#ISO25237)).
+**direct identifier**: data that directly identifies a single individual. (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
 *Note 1:* Direct identifiers are those data that can be used to identify a person without additional information or with cross-linking through other information that is in the public domain.
 
-*Note 2:* The term “directly identifying data” in [(ISO 20237,2017)](#ISO25237) has been simplified according to [(ISO/IEC 20889, 2018)](#ISO20889).
+*Note 2:* The term “directly identifying data” in [(ISO 20237,2017)](references.html#ISO25237) has been simplified according to [(ISO/IEC 20889, 2018)](references.html#ISO20889).
 
 **identifiable natural person**: one who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, location data, an online identifier or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity of that natural person. (Source: [GDPR Art 4(1)](https://gdpr-info.eu/art-4-gdpr/)).
 
-*Note 1:* Similar to the concept of identifiable person within [(ISO 25237, 2017)](#ISO25237).
+*Note 1:* Similar to the concept of identifiable person within [(ISO 25237, 2017)](references.html#ISO25237).
 
-**indirect identifier**: data that can identify a single person only when used together with other indirectly identifying data. (Source: [(ISO 25237, 2017)](#ISO25237)), modified).
+**indirect identifier**: data that can identify a single person only when used together with other indirectly identifying data. (Source: [(ISO 25237, 2017)](references.html#ISO25237)), modified).
 
 *Note 1:* Indirect identifiers can reduce the population to which the person belongs, possibly down to one if used in combination.
 
-*Note 2:* The term "indirectly identifying data" in [(ISO 25237, 2017)](#ISO25237) has been simplified according to [(ISO/IEC 20889, 2018)](#ISO20889).
+*Note 2:* The term "indirectly identifying data" in [(ISO 25237, 2017)](references.html#ISO25237) has been simplified according to [(ISO/IEC 20889, 2018)](references.html#ISO20889).
 
 *Note 3:* The term "indirect identifier" in this handbook is identical to the definitions of "indirect identifer" and "quasi-identifier".
 
 *Example* Postcode, sex, age, date of birth.
 
 
-**irreversibility**: situation when, for any passage from identifiable to pseudonymous, it is computationally unfeasible to trace back to the original identifier from the pseudonym (Source: [(ISO 25237, 2017)](#ISO25237)).
+**irreversibility**: situation when, for any passage from identifiable to pseudonymous, it is computationally unfeasible to trace back to the original identifier from the pseudonym (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
-**linkability**: property for a dataset that it is possible to associate (by linking) a record concerning a data subject with a record concerning the same data subject in a separate dataset. (Source:  [(ISO/IEC 20889, 2018)](#ISO20889)).
+**linkability**: property for a dataset that it is possible to associate (by linking) a record concerning a data subject with a record concerning the same data subject in a separate dataset. (Source:  [(ISO/IEC 20889, 2018)](references.html#ISO20889)).
 
-**natural person**: real human being as opposed to a legal person which may be a private or public organization (Source:[(ISO 25237, 2017)](#ISO25237)).
+**natural person**: real human being as opposed to a legal person which may be a private or public organization (Source:[(ISO 25237, 2017)](references.html#ISO25237)).
 
-**personal identifier**: information with the purpose of uniquely identifying a person within a given context (Source: [(ISO 25237, 2017)](#ISO25237)).
+**personal identifier**: information with the purpose of uniquely identifying a person within a given context (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
 *Note 1:* Personal identifier can be used to directly identify a person, therefore is also directly identifying data.
 
-**pseudonym**: personal identifier that is different from the normally used personal identifier and is used with pseudonymized data to provide dataset coherence linking all the information about a subject, without disclosing the real world person identity (Source: [(ISO 25237, 2017)](#ISO25237)).
+**pseudonym**: personal identifier that is different from the normally used personal identifier and is used with pseudonymized data to provide dataset coherence linking all the information about a subject, without disclosing the real world person identity (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
 *Note 1:* This may be either derived from the normally used personal identifier in a reversible or irreversible way or be totally unrelated.
 
 *Note 2:* Pseudonym is usually restricted to mean an identifier that does not allow the direct derivation of the normal personal identifier. Such pseudonymous information is thus functionally anonymous. A trusted third party may be able to obtain the normal personal identifier from the pseudonym.
 
-**pseudonymization**: particular type of de-identification that both removes the association with a data subject and adds an association between a particular set of characteristics relating to the data subject and one or more pseudonyms. (Source:  [(ISO 25237, 2017)](#ISO25237)).
+**pseudonymization**: particular type of de-identification that both removes the association with a data subject and adds an association between a particular set of characteristics relating to the data subject and one or more pseudonyms. (Source:  [(ISO 25237, 2017)](references.html#ISO25237)).
 
 *Note 1:* This includes irreversible and reversible pseudonymization which is similar to the concept of pseudonymization under the GDPR.
 
 *Note 2:* The pseudonymised data can no longer be attributed to a specific data subject without the use of additional information, but could be attributed to a natural person by the use of additional information (Source: [GDPR Recital 26](https://www.privacy-regulation.eu/en/recital-26-GDPR.htm)).
 
-*Note 3:* The term defined in the handbook is different from the definition specified in the [(ISO/IEC 20889, 2018)](#ISO20889) where "pseudonymization" refers to a type of de-identification technique.
+*Note 3:* The term defined in the handbook is different from the definition specified in the [(ISO/IEC 20889, 2018)](references.html#ISO20889) where "pseudonymization" refers to a type of de-identification technique.
 
-**re-identification**: process of associating data in a de-identified dataset with the original data subject (Source: [(ISO/IEC 20889, 2018)](#ISO20889)).
+**re-identification**: process of associating data in a de-identified dataset with the original data subject (Source: [(ISO/IEC 20889, 2018)](references.html#ISO20889)).
 
 *Note 1:* A process that establishes the presence of a particular data subject in a dataset is included in this definition.
 
-**re-identification attack**: action performed on de-identified data by an attacker with the purpose of re-identification (Source: [(ISO/IEC 20889, 2018)](#ISO20889)).
+**re-identification attack**: action performed on de-identified data by an attacker with the purpose of re-identification (Source: [(ISO/IEC 20889, 2018)](references.html#ISO20889)).
 
-**re-identification risk**: risk of a successful re-identification attack (Source: [(ISO/IEC 20889, 2018)](#ISO20889)).
+**re-identification risk**: risk of a successful re-identification attack (Source: [(ISO/IEC 20889, 2018)](references.html#ISO20889)).
 
 ### Re-identification
 
-Re-identification is a process of associating data in a de-identified dataset with the original data subject (Source: [(ISO/IEC 20889, 2018)](#ISO20889)). When the process is done by an attacker, re-identification is considered as an attack. In the case of re-identification attack, the additional information can be used to re-identify data subject depends on the background knowledge of and available data resources to the attacker. Usually, the results of the re-identification is not reliable, meaning there are uncertainties/probabilities in the matched results. The extend of the uncertainties of the result of re-identification can be measured by re-identification risk measurement.
+Re-identification is a process of associating data in a de-identified dataset with the original data subject (Source: [(ISO/IEC 20889, 2018)](references.html#ISO20889)). Depending on the situation where re-identification is perfomed, it can be categrized into two types, namely, authorized re-identification and unauthorized re-identification (alternatively, re-identification attack). 
 
-There is another type of re-identification which is required by certain use cases which usually is reviewed, approved, well planned and managed by the institution (planned re-identification for short). The need for a planned re-identification may include:
+#### Authorized Re-Identification
+When a re-identification is part of the normal data processing or a planned/approved exceptional activity, the re-identification is considered as Authorized Re-Identification.  [(ISO 25237, 2017)](references.html#ISO25237)) suggests a integrity check or review for the cases that re-identification is approved as part of a normal processing due to the fact that re-identification is usually done automaticly. As for the cases where re-identification is approved as an exceptional activity, a well defined security policy is required to describe the circumstances that can lead to re-identification.
+
+The need for a planned re-identification may include:
 
 - Verification and validation of data integrity
 - Checking for suspected duplicate records
@@ -305,13 +308,18 @@ There is another type of re-identification which is required by certain use case
 - Facilitating follow-up research
 - Law enforcement
 
-Unlike the re-identification attack, a planned re-identification requires technical and organizational measures to ensure a reliable correctly re-identified result, meaning any de-identified data must be linked back to it's original personal identifier correctly.
+Technically, several methods can be used to enable re-identification. For example, identifiers can be encrypted and kept along with the pseudonimized data. Only a trusted party can decrypt the encrypted identifiers and associate them with the data subject. Identity Linking table is another commonly used method which keeps a linking list between the original personal identifiers and the pseudonyms.
+
+#### Unauthorized Re-Identification (Re-Identification Attack)
+An unauthorized re-identification, commonly known as a re-identification attack, occurs when an attacker links data in a de-identified dataset to the original data subject using additional information. Unlike authorized re-identification, the quality and quantity of this additional information in unauthorized cases are unpredictable. For instance, some attackers may lack access to Type I additional information (e.g., due to a data breach), while others may have it. Generally, it’s reasonable to assume Type I information is unavailable, shifting focus to Type II additional information. Type II information relies on statistical methods, leading to uncertain or probabilistic re-identification outcomes. The degree of uncertainty can be quantified using re-identification risk measurement.
+
+Mitigating re-identification risk involves technical and organizational measures. Technical measures transform data to minimize re-identification data risk, while organizational measures emphasize security policies to reduce contextual risks.
 
 ### Threats & Attacks
 
 #### Threat Modeling
 
-Data sharing environment needs to be assessed to identify potential risk of re-identification attack. [(ISO/IEC 27559,2022 )](#ISOIEC27559) specifies a structured approach (known as threat modeling) which requires examining the other external data sources available to data recipients, the profile of the data recipients and why the data recipients would perform the re-identification attack (motivation).
+Data sharing environment needs to be assessed to identify potential risk of re-identification attack. [(ISO/IEC 27559,2022 )](references.html#ISOIEC27559) specifies a structured approach (known as threat modeling) which requires examining the other external data sources available to data recipients, the profile of the data recipients and why the data recipients would perform the re-identification attack (motivation).
 
 Potential threats can be:
 
@@ -319,19 +327,19 @@ Potential threats can be:
 > - Accidental: A disclosure can also be unintentional, for example a data principal being recognized while a data recipient is working with the shared or released data.
 > - Environmental: The data can also be lost or stolen in the case where all the controls put in place have failed to prevent a data disclosure.
 >
-> (Source: [(ISO/IEC 27559,2022 )](#ISOIEC27559))
+> (Source: [(ISO/IEC 27559,2022 )](references.html#ISOIEC27559))
 
 The security and privacy practices of the data recipient will influence the likelihood of the internal or external (legal or illegal) user of the data recipient being able to re-identify the de-identified data. Therefore, the thread modeling should also assess the maturity level of the security and privacy practices of the data recipient.
 
 #### Types of Attacks
 
-Attack happens under a given threat, it make the potential risk of re-identification becomes a real privacy breach event through re-identification action done by attackers. [(Article 29 Data Protection Working Party, 2014)](#Article29WP2014) identified Three types of attack:
+Attack happens under a given threat, it make the potential risk of re-identification becomes a real privacy breach event through re-identification action done by attackers. [(Article 29 Data Protection Working Party, 2014)](references.html#Article29WP2014) identified Three types of attack:
 - Singling out , which corresponds to the possibility to isolate some or all records which identify an individual in the dataset;
 - Linkability, which is the ability to link, at least, two records concerning the same data subject or a group of data subjects (either in the same database or in two different databases). If an attacker can establish (e.g. by means of correlation analysis) that two records are assigned to a same group of individuals but cannot single out individuals in this group, the technique provides resistance against “singling out” but not against linkability;
 - Inference, which is the possibility to deduce, with significant probability, the value of an attribute from the values of a set of other attributes.
 
 
-Depending on the background knowledge of the attacker, the attack can be modeled in the following ways [(ISO/IEC 27559,2022 )](#ISOIEC27559):
+Depending on the background knowledge of the attacker, the attack can be modeled in the following ways [(ISO/IEC 27559,2022 )](references.html#ISOIEC27559):
 - attack where the adversary knows that a target individual entity is in the data;
 - attack where the adversary does not, or cannot, know if a target individual entity is in the data;
 - attack on all entities (rather than a target individual entity) that can be in the data.
@@ -355,20 +363,3 @@ There are various kinds of re-identification attack techniques. The following ta
 | 7| Previously protected information is compromised| | Old court records made publicly available, by mistake, authorized individual, or social engineering attack| |
 {:.grid}
 
-### References
-
-1. <a name="ISO25237"></a>ISO 25237. (2017). *Health informatics — Pseudonymization* (ISO 25237:2017; Number ISO 25237:2017). International Organization for Standardization. [https://www.iso.org/standard/63553.html](https://www.iso.org/standard/63553.html)
-2. <a name="ISO20889"></a>ISO/IEC 20889. (2018). *Privacy enhancing data de-identification terminology and classification of techniques* (Standard ISO/IEC 20889:2018(E); Number ISO/IEC 20889:2018(E)). International Organization for Standardization. [https://www.iso.org/standard/69373.html](https://www.iso.org/standard/69373.html)
-3. <a name="GDPR2016a"></a>GDPR. (2016). *Regulation (EU) 2016/679 of the European Parliament and of the Council*. European Parliament and Council of the European Union. [https://data.europa.eu/eli/reg/2016/679/oj](https://data.europa.eu/eli/reg/2016/679/oj)
-4. <a name="PIPL2021"></a>PIPL. (2021). *Personal Information Protection Law of the People’s Republic of China*. National People’s Congress of the People’s Republic of China (NPC). [http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559.htm](http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559.htm)
-5. <a name="NIST_SP_800-188_2023"></a>NIST 800-188. (2023). *De-identifying Government Datasets* (Special Publication No. 800-188; Numbers 800-188). National Institute of Standards and Technology. [https://doi.org/10.6028/nist.sp.800-188](https://doi.org/10.6028/nist.sp.800-188)
-6. <a name="edpb2025"></a>European Data Protection Board. (2025). *Guidelines 01/2025 on Pseudonymisation*. [https://www.edpb.europa.eu/system/files/2025-01/edpb_guidelines_202501_pseudonymisation_en.pdf](https://www.edpb.europa.eu/system/files/2025-01/edpb_guidelines_202501_pseudonymisation_en.pdf)
-7. <a name="ICO2025"></a>Information Commissioner’s Office. (2025). *Pseudonymisation*. Information Commissioner’s Office. [https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-sharing/anonymisation/pseudonymisation/#pseudonymiseddatastillpersonal](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-sharing/anonymisation/pseudonymisation/#pseudonymiseddatastillpersonal)
-8. <a name="ocr2025"></a>Office for Civil Rights. (2025). *Methods for De-identification of PHI*. HHS.gov. [https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html#rationale](https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html#rationale)
-9. <a name="Hintze_2017"></a>Hintze, M. (2017). Viewing the GDPR through a de-identification lens: a tool for compliance, clarification, and consistency. *International Data Privacy Law*, *8*(1), 86–101. [https://doi.org/10.1093/IDPL/IPX020](https://doi.org/10.1093/IDPL/IPX020)
-10. <a name="HIPAA1996"></a>U.S. Congress. (1996). *Health Insurance Portability and Accountability Act of 1996*. Public Law 104-191. [https://www.govinfo.gov/content/pkg/PLAW-104publ191/pdf/PLAW-104publ191.pdf](https://www.govinfo.gov/content/pkg/PLAW-104publ191/pdf/PLAW-104publ191.pdf)
-11. <a name="GB/T_42460_2023"></a>GB/T 42460. (2023). *Information security technology - Guide for evaluating the effectiveness of personal information de-identification* (Standard GB/T 42460—2023; Number GB/T 42460—2023). State Administration for Market Regulation Standardization Administration of China. [https://www.iso.org/standard/69373.html](https://www.iso.org/standard/69373.html)
-12. <a name="UKAN2024"></a>University of Manchester. (2024). *Anonymisation decision-making framework: European practitioners’ guide* (2nd ed.). University of Manchester. [https://ukanon.net/wp-content/uploads/2024/01/adf-2nd-edition-european-practitioners-guide-final-version-cover-2024-version-2.pdf](https://ukanon.net/wp-content/uploads/2024/01/adf-2nd-edition-european-practitioners-guide-final-version-cover-2024-version-2.pdf)
-13. <a name="DICOMPart15AnnexE"></a>National Electrical Manufacturers Association. (2025). *DICOM Part 15, Annex E: Security and System Management Profiles — Attribute Confidentiality Profiles* (PS3.15 Annex E; Number PS3.15 Annex E). National Electrical Manufacturers Association. [https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html)
-14. <a name="ISOIEC27559"></a>ISO/IEC 27559. (2022). *Information security, cybersecurity and privacy protection — Privacy enhancing data de-identification framework* (ISO/IEC 27559:2022; Number ISO/IEC 27559:2022). International Organization for Standardization. [https://www.iso.org/standard/71659.html](https://www.iso.org/standard/71659.html)
-15. <a name="Article29WP2014"></a>Article 29 Data Protection Working Party. (2014, April 10). *Opinion 05/2014 on anonymisation techniques (WP216)*. European Commission. https://ec.europa.eu/justice/article-29/documentation/opinion-recommendation/files/2014/wp216_en.pdf

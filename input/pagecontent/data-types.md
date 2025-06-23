@@ -75,7 +75,7 @@ data. Mitigations of such identifiable data in the structured and coded
 DICOM header should be in accordance with DICOM PS 3.15 Annex E.
 Additional risk assessment shall be considered for identifiable
 characteristics of the image or notations that are part of the image.
-See [DICOM PS 3.15 Annex E](references.html#dicom-part-15-annex-e)|
+See [DICOM PS 3.15 Annex E](references.html#DICOM-part-15-annex-e)|
 {:.grid}
 
 
