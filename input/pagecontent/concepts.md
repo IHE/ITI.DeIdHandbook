@@ -32,19 +32,98 @@ The identifiability concepts presented herein are largely derived from the defin
 
 Identified data relates to a specific natural person whose identity is apparent from the data; contains data that identifies the person (such as a name, e-mail address, or government-issued ID number); or is directly linked to data that is accessible and identifies the person.
 
+Table: Identified Patient Records (Crafted Data Samples, assuming the value of Patient ID and Patient Name are real personal identifers)
+
+| Patient ID | Patient Name | Age | Gender | Weight (kg) | Height (cm) | City | Zip Code | Diagnosis Code (ICD-10) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| P001 | John Smith | 35 | Male | 84 | 180 | New York | 10011 | J45.909 |
+| P002 | Emily Johnson | 52 | Female | 65 | 164 | Beverly Hills | 90210 | E11.9 |
+| P003 | Michael Williams | 38 | Male | 91 | 178 | New York | 10012 | I10 |
+| P004 | Jessica Brown | 41 | Female | 62 | 167 | Manhattan Beach | 90266 | O24.419 |
+| P005 | David Jones | 51 | Male | 95 | 182 | Beverly Hills | 90210 | K29.70 |
+| P006 | Sarah Davis | 44 | Female | 59 | 165 | New York | 10011 | J45.909 |
+| P007 | James Miller | 55 | Male | 78 | 173 | Beverly Hills | 90210 | C34.90 |
+| P008 | Linda Wilson | 58 | Female | 70 | 160 | Manhattan Beach | 90266 | I10 |
+| P009 | Robert Moore | 33 | Male | 88 | 179 | New York | 10012 | E11.9 |
+| P010 | Patricia Taylor | 42 | Female | 70 | 170 | New York | 10011 | O24.419 |
+{:.grid}
+
 **Readily-Identifiable Data**
 
 Readily-Identifiable data relates to a specific person whose identity is not apparent from the data, does not contain data that identifies the person, and the data is not directly linked with data that identifies the person; but there is a known, systematic way to reliably create or re-create a link with identifying data. To the data controller that pseudonymizes data, but retains the raw data set, additional data that allows re-identification, or a key that would allow the pseudonymization to be reversed, that pseudonymous data would be Readily-Identifiable data.
 
+Table: Data with Mapped Pseudonyms
+
+| Mapped Pseudonym | Patient Name | Age | Gender | Weight (kg) | Height (cm) | City | Zip Code | Diagnosis Code (ICD-10) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| AP-84351 | **\*** | 35 | Male | 84 | 180 | New York | 10011 | J45.909 |
+| AP-22978 | **\*** | 52 | Female | 65 | 164 | Beverly Hills | 90210 | E11.9 |
+| AP-61224 | **\*** | 38 | Male | 91 | 178 | New York | 10012 | I10 |
+| AP-73451 | **\*** | 41 | Female | 62 | 167 | Manhattan Beach | 90266 | O24.419 |
+| AP-90087 | **\*** | 51 | Male | 95 | 182 | Beverly Hills | 90210 | K29.70 |
+| AP-15243 | **\*** | 44 | Female | 59 | 165 | New York | 10011 | J45.909 |
+| AP-44432 | **\*** | 55 | Male | 78 | 173 | Beverly Hills | 90210 | C34.90 |
+| AP-58199 | **\*** | 58 | Female | 70 | 160 | Manhattan Beach | 90266 | I10 |
+| AP-01128 | **\*** | 33 | Male | 88 | 179 | New York | 10012 | E11.9 |
+| AP-33567 | **\*** | 42 | Female | 70 | 170 | New York | 10011 | O24.419 |
+{:.grid}
+
+Table: [Controlled Access] Key Mapping Table (Held by Data Controller)
+
+| Original Patient ID | Mapped Pseudonym | Patient Name |
+| :--- | :--- | :--- |
+| P001 | AP-84351 | John Smith |
+| P002 | AP-22978 | Emily Johnson |
+| P003 | AP-61224 | Michael Williams |
+| P004 | AP-73451 | Jessica Brown |
+| P005 | AP-90087 | David Jones |
+| P006 | AP-15243 | Sarah Davis |
+| P007 | AP-44432 | James Miller |
+| P008 | AP-58199 | Linda Wilson |
+| P009 | AP-01128 | Robert Moore |
+| P010 | AP-33567 | Patricia Taylor |
+{:.grid}
+
 **De-Identified Data**
 
 De-Identified data relates to a specific person whose identity is not apparent from the data; and the data is not directly linked with data that identifies the person. The data could potentially be re-identified if matched to additional identifying data provided by the data subject or a third party, but there is no known, systematic way for the controller to reliably create or re-create a link with identifying data.
+
+Table: De-Identified Records with Hashed IDs (Assumption: re-identificaton risk is above the predefined threshold)
+
+| Hashed ID | Patient Name | Age | Gender | Weight (kg) | Height (cm) | City | Zip Code | Diagnosis Code (ICD-10) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 0x9e107d... | **\*** | **30-39** | Male | **90** | 180 | New York | **100** | J45.909 |
+| 0x2c77d0... | **\*** | **50-59** | Female | **62** | 164 | Beverly Hills | **902** | E11.9 |
+| 0x3e4a2c... | **\*** | **30-39** | Male | **90** | 178 | New York | **100** | I10 |
+| 0x8f4b2f... | **\*** | **40-49** | Female | **62** | 167 | Manhattan Beach | **902** | O24.419 |
+| 0x5a8f6f... | **\*** | **50-59** | Male | **90** | 182 | Beverly Hills | **902** | K29.70 |
+| 0xf2d1a9... | **\*** | **40-49** | Female | **62** | 165 | New York | **100** | J45.909 |
+| 0x1b3a5c... | **\*** | **50-59** | Male | **71** | 173 | Beverly Hills | **902** | C34.90 |
+| 0x6d9f3b... | **\*** | **50-59** | Female | **71** | 160 | Manhattan Beach | **902** | I10 |
+| 0x7e8c1d... | **\*** | **30-39** | Male | **90** | 179 | New York | **100** | E11.9 |
+| 0x4c5e6f... | **\*** | **40-49** | Female | **71** | 170 | New York | **100** | O24.419 |
+{:.grid}
 
 **Anonymous Data**
 
 Information that does not relate to an identified or identifiable natural person, or personal data that has been rendered anonymous through an anonymization process such that the data subject is no longer identifiable.
 
 > **Notes:** (1) The original definition in [(Hintze, 2017)](references.html#Hintze_2017) considers only aggregated data at this level. In this book, the definition is derived from the GDPR Article 26 and [(ISO 25237, 2017)](references.html#ISO25237).(2) Practical/relative concept in understanding the idea of "no longer identifiable". The GDPR Article 26 further explains the meaning of "identifiable" as "To determine whether a natural person is identifiable, account should be taken of all the means reasonably likely to be used, such as singling out, either by the controller or by another person to identify the natural person directly or indirectly.". 
+
+Table: Anonymous Microdata with Hashed IDs (Assumption: re-identification is very small (below the predefined threshold) and is no longer identifieble)
+
+| Hashed ID | Patient Name | Age | Gender | Weight (kg) | Height (cm) | City | Zip Code | Diagnosis Code (ICD-10) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 0x9e107d... | **\*** | **30-39** | Male | **90** | **\*** | **\*** | **\*** | J45.909 |
+| 0x2c77d0... | **\*** | **50-59** | Female | **62** | **\*** | **\*** | **\*** | E11.9 |
+| 0x3e4a2c... | **\*** | **30-39** | Male | **90** | **\*** | **\*** | **\*** | I10 |
+| 0x8f4b2f... | **\*** | **40-49** | Female | **62** | **\*** | **\*** | **\*** | O24.419 |
+| 0x5a8f6f... | **\*** | **50-59** | Male | **90** | **\*** | **\*** | **\*** | K29.70 |
+| 0xf2d1a9... | **\*** | **40-49** | Female | **62** | **\*** | **\*** | **\*** | J45.909 |
+| 0x1b3a5c... | **\*** | **50-59** | Male | **71** | **\*** | **\*** | **\*** | C34.90 |
+| 0x6d9f3b... | **\*** | **50-59** | Female | **71** | **\*** | **\*** | **\*** | I10 |
+| 0x7e8c1d... | **\*** | **30-39** | Male | **90** | **\*** | **\*** | **\*** | E11.9 |
+| 0x4c5e6f... | **\*** | **40-49** | Female | **71** | **\*** | **\*** | **\*** | O24.419 |
 
 The table below summarizes the characteristics of the levels of identifiability by comparing it with [(U.S. Congress, 1996)](references.html#HIPAA1996) and [(GB/T_42460, 2023)](references.html#GB/T_42460_2023).
 
