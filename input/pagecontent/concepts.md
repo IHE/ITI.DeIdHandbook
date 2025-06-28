@@ -16,7 +16,7 @@ This handbook addresses these challenges by providing a practical lens. Rather t
 3. Pseudonymization typically allows precise tracing from pseudonyms back to original identifiers, as outlined in the UK Information Commissioner’s Office guidance on anonymization and pseudonymization[(Information Commissioner’s Office, 2025)](references.html#ICO2025).
 4. De-identification, by contrast, supports secondary data use, such as generating aggregate statistics, without requiring a link between pseudonyms and original identifiers. This approach is endorsed by NIST SP 800-188 [(NIST 800-188, 2023)](references.html#NIST_SP_800-188_2023) and OCR guidance [(Office for Civil Rights, 2025)](references.html#ocr2025).
 
-### Identifiability
+### Identifiability {#Identifiability}
 
 The transformation of personal data to mitigate re-identification risk results in distinct levels of identifiability. GB/T 42460-2023 and [(Hintze, 2017)](references.html#Hintze_2017) each present a four-level identifiability framework. Although their definitions diverge, both frameworks share the principle that re-identification risk diminishes along the ordered levels, progressing from left to right (as illustrated in the figure below). (from left to the right as the figure below).
 
@@ -145,7 +145,7 @@ De-identification is a general term for any process of removing the association 
 
 The definition specified by ISO 25237 aligns closely with the HIPAA Rule (see 45 CFR § 164.514(a), (b), (c)). Under this rule, the process may follow the Safe Harbor method, the Expert Determination method, or a combination of both. Although the GDPR does not explicitly define de-identification—whether formally or informally—its concept of pseudonymization, as outlined in Art. 4(5) GDPR, can be regarded as a specific type of de-identification. In contrast, China’s Personal Information Protection Law (PIPL) distinguishes de-identification from anonymization as distinct processes with different legal requirements and implications. Under PIPL, de-identified data remains classified as personal data, while anonymized data is considered non-personal data. Comparing pseudonymization under GDPR (Art. 4(5)) with de-identification under PIPL (Art. 73(3)) highlights two key similarities: first, the data resulting from both processes is still treated as personal data; second, both stipulate that an individual cannot be re-identified from the processed dataset—whether pseudonymized or de-identified—without additional information. To align these concepts with modern privacy laws, the concept of de-identification in this book should be properly interpreted or mapped onto the relavent concepts with specific privacy protection laws.
 
-<figure>
+<figure id="fig_de_id_process_general">
   <img src="relationships-between-concepts.drawio.png" />
   <figcaption><strong>Figure: Relationships between different concepts of de-identification</strong></figcaption>
 </figure>
@@ -224,7 +224,7 @@ Recital 26 of the GDPR defines anonymous information as data that cannot be link
 [(ISO 25237, 2017)](references.html#ISO25237) acknowledges that an absolute definition of anonymization is difficult to achieve and often impractical, favoring a practical approach that is increasingly widely accepted. In Case [C-582/14](https://curia.europa.eu/juris/liste.jsf?num=C-582/14), the Court of Justice of the European Union (CJEU) held that a dynamic IP address qualifies as personal data for a website operator only if the operator has legal means reasonably likely to access additional identifying information, such as from an internet service provider. More recently, Case [T-557/20](https://curia.europa.eu/juris/liste.jsf?language=en&td=ALL&num=T-557/20) from the CJEU provided a key precedent by delineating pseudonymized from anonymized data in cross-entity data-sharing contexts. The court introduced the "reasonable likelihood" standard, stressing that data’s status as personal hinges on the recipient’s actual re-identification capability, not theoretical potential. This pragmatic stance aligns with the Expert Determination method under the HIPAA Privacy Rule (45 C.F.R. §164.514(b)). Likewise, China is crafting data anonymization standards that adopt a practical lens, assessing re-identification risk from the recipient’s perspective. Recognizing that such risks cannot be fully eradicated, these standards prioritize governance measures alongside technical safeguards.
 
 **Example Cases**
-
+ 
 A teaching file is an example of an anonymization scrubbing process. Teaching files, such as radiological images illustrating a specific patient condition, are manually reviewed, file-by-file, field-by-field, to determine which fields are needed for the intended instructional purpose, and to determine if the field (or fields) could be used to re-identify the subject of the images. Often textual descriptions of the patient condition are rewritten to retain the useful meaning, because narrative text is often critical to the purpose of instruction. There is no requirement to be able to identify the patient later, so all traces of the patient should be removed and the data made fully anonymous.
 
 Maintenance and repair logs for equipment and software are a frequent patient disclosure risk where anonymization is very appropriate.
@@ -235,6 +235,71 @@ processes must be adaptable.
 In the USA, part of the clinical trial process is governed by an Institutional Review Board (IRB). This body is sometimes known as an Independent Ethics Committee, or an Ethical Review Board. The IRB is governed by Title 45 CFR Part 46 of the federal regulations which are subject to the “Common Rule” which states that federally funded clinical trials must have an IRB, and that the IRB must guarantee that it will provide and enforce protection of human subjects. The IRB accomplishes this, in part, by a pre-trial review of the protocol, and specifically reviews risks (both to human subjects and to the learning objectives of the trial).
 
 Part of the human subject risk considered by IRBs is that to patient privacy, which most nations require protection of. In the US, regulations state “IRBs should determine the adequacy of the provisions to protect the **privacy** of subjects and to maintain the **confidentiality** of the data \[*see* Guidebook Chapter 3, Section D, "Privacy and Confidentiality"\]” One effective method to help reduce both study bias and privacy risk is to use data that has been pseudonymized. Since IHE profiles are not governed by IRBs, IHE writers need to provide enough info in their profiles to help implementers comply with anticipated future IRB policies.
+
+#### Example of De-Identification processes
+
+Above section of [Identifiability](#Identifiability) illustrates samples of four levels of identifiability, namely, Identified Data, Readily-Identifiable Data, De-Identified Data, Anonymous Data. Various de-identification processes can be used to achive each level of the idantifieability. The summary below outlines the journey of the sample dataset from its original, fully identifiable state to anonymous information. The transformation at each step is governed by four distinct types of de-identification processes and judged against the specified re-identification data risk threshold of **0.35 (35%)** (Note: a context risk of 0.14 leads a an overall re-identification of 0.049 = context risk(0.14) x data risk(0.35).
+
+##### Stage 1: Transforming Identified Data into Readily-Identifiable Data
+
+* **De-Identification Process Applied:** `Reversible Pseudonymization`.
+
+* **How the Process is Applied:**
+    1.  The direct identifier `Patient Name` is suppressed from the primary dataset.
+    2.  The original `Patient ID` (e.g., P001) is replaced with a new, reversible `Mapped Pseudonym` (e.g., AP-84351).
+    3.  A **mapping table (key)** that links the original ID, the mapped pseudonym, and the patient's name is created and securely held by the data controller. The existence of this key makes the process reversible.
+
+* **Resulting Data Classification:** This process transforms the `Identified Data` into `Readily-Identifiable Data`.
+
+* **Risk Analysis:** The calculated k-anonymity risk for this data remains at **100%** because the underlying quasi-identifiers are still specific, and the data controller can easily re-identify individuals. This risk is well above the 0.35 threshold.
+
+---
+
+##### Stage 2: Transforming Data into De-Identified Data
+
+According to the provided [framework](#fig_de_id_process_general) , there are two distinct processes that both result in `De-Identified Data`. Our example dataset demonstrates both.
+
+* **De-Identification Process Applied (Path A):** `Irreversible Pseudonymization`.
+
+* **How the Process is Applied:**
+    1.  The original `Patient ID` is replaced with a `Hashed ID` (e.g., 0x9e107d...) generated by a one-way cryptographic hash function like SHA-256.
+    2.  Critically, no key exists to reverse the hash and retrieve the original ID. This irreversibility is the key feature of the process.
+
+* **De-Identification Process Applied (Path B):** `Anonymization with Non-Negligible Risk`.
+
+* **How the Process is Applied:**
+    1.  We apply several anonymization techniques to the dataset, including **Age Generalization** (into 10-year ranges) and **Weight Microaggregation**.
+    2.  We then calculate the k-anonymity risk on the resulting dataset using the quasi-identifiers (`Gender`, `Age Range`, `3-Digit Zip`).
+    3.  As shown in our previous analysis, this process resulted in a dataset with an average data risk of **50% (0.5)**.
+
+* **Resulting Data Classification:**
+    * The `Irreversible Pseudonymization` directly produces `De-Identified Data`.
+    * Simultaneously, the anonymization techniques result in a risk of 0.5. Since **0.5 > 0.35**, this is considered a **"non-negligible risk"**. Therefore, this process also produces `De-Identified Data`. The state of our "De-Identified" table in the example perfectly matches this definition.
+
+---
+
+##### Stage 3: Transforming Data into Anonymous Information
+
+* **De-Identification Process Applied:** `Anonymization with Negligible Risk`.
+
+* **How the Process is Applied:**
+    1.  We begin with the `De-Identified Data` (which has a 50% risk).
+    2.  We apply an **additional, more aggressive anonymization technique**: the **suppression of the `Zip Code` attribute**.
+    3.  We then recalculate the k-anonymity risk on this final dataset using the remaining quasi-identifiers (`Gender`, `Age Range`).
+    4.  As shown in our engineered example, this final step reduced the average data risk to **30% (0.3)**.
+
+* **Resulting Data Classification:**
+    * Since the resulting risk of **0.3 is less than the 0.35 threshold**, it qualifies as a **"negligible risk"**.
+    * Therefore, only this final transformation step successfully produces `Anonymous Information`.
+
+##### Summary Table of Transformations
+
+| De-Identification Process                                      | Key Techniques Applied to Sample Data                        | Resulting Average Risk | Risk vs. Threshold (0.35) | Final Data Identifiability Level |
+| :------------------------------------------------------------- | :----------------------------------------------------------- | :--------------------- | :------------------------ | :------------------------------- |
+| **Reversible Pseudonymization** | Mapped IDs, Name Suppression                                 | 100%                   | > 0.35                    | **Readily-Identifiable Data** |
+| **Irreversible Pseudonymization & Anonymization with Non-Negligible Risk** | Hashed IDs, Age Generalization, Weight Microaggregation      | 50%                    | > 0.35                    | **De-Identified Data** |
+| **Anonymization with Negligible Risk** | All of the above + **Zip Code Suppression** | 30%                    | < 0.35                    | **Anonymous Information** |
+{:.grid}
 
 ### Overall De-Identification Approach
 
