@@ -5,13 +5,11 @@ This is the Update to the De-Identification Handbook.
 - [DeIdentification Handbook GitHub](https://github.com/IHE/ITI.DeIdHandbook)
 - [CI build](https://build.fhir.org/ig/IHE/ITI.DeIdHandbook/branches/main/index.html)
 
-.poke
-
 ## Plan
 
 - Lead: John Moehrke
-- Proposal Editor: Alan Zhang, Soyean Kim, John Moehrke … (TBD)
-- Work item Editor: Alan Zhang, Soyean Kim, John Moehrke … (TBD)
+- Proposal Editor: Alan Zhang, John Moehrke
+- Work item Editor: Alan Zhang, John Moehrke 
 - Date: 2025-02-18
 - Version: 0.1
 - Domain: ITI
