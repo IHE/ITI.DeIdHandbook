@@ -20,9 +20,9 @@ Note: Diagrams must be in an editible form: preferrably plantuml, else powerpoin
 
 ## T-Con
 
-Every 2 weeks on Thursday, 7:00 – 8:00pm Central Time, Starting March 20
+Every 2 weeks on Thursday, 8:00 – 9:00am Central Time, Starting May 29, 2025
 
-- [Join the meeting](https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZTM3NTlhYzktNTFhMi00YWU0LWIyOGMtOTM3ODVlMGYyNGMy%40thread.v2/0?context=%7b%22Tid%22%3a%2202a9376b-a4f9-4a63-a240-52c43ebf9a89%22%2c%22Oid%22%3a%226459fea4-110a-4d17-85f0-00587211a0c0%22%7d)
+- [Join the meeting](https://www.google.com/url?q=https://teams.microsoft.com/l/meetup-join/19%253ameeting_ZTM3NTlhYzktNTFhMi00YWU0LWIyOGMtOTM3ODVlMGYyNGMy%2540thread.v2/0?context%3D%257b%2522Tid%2522%253a%252202a9376b-a4f9-4a63-a240-52c43ebf9a89%2522%252c%2522Oid%2522%253a%25226459fea4-110a-4d17-85f0-00587211a0c0%2522%257d&sa=D&source=calendar&usd=2&usg=AOvVaw0XmBjXweNwetLyvml6DcK0)
 - Meeting ID: 258 433 850 452
 
 ### The Problem
