@@ -1,4 +1,3 @@
-
 ### Navigating the Complexity of Privacy Concepts
 
 De-identification, pseudonymization, and anonymization, are the processes that mitigate the privacy risk of associating the disclosed information with an individual or a group of individuals when sharing personal data or anonymous information between different data environments. These concepts are widely used to protect individuals, especially in fields like healthcare. The most common healthcare use of these processes is to protect individual patients, but they may also be applied to protect healthcare clinicians and other individuals being involved.
@@ -18,7 +17,7 @@ This handbook addresses these challenges by providing a practical lens. Rather t
 
 ### Identifiability {#Identifiability}
 
-The transformation of personal data to mitigate re-identification risk results in distinct levels of identifiability. GB/T 42460-2023 and [(Hintze, 2017)](references.html#Hintze_2017) each present a four-level identifiability framework. Although their definitions diverge, both frameworks share the principle that re-identification risk diminishes along the ordered levels, progressing from left to right (as illustrated in the figure below). (from left to the right as the figure below).
+The transformation of personal data to mitigate re-identification risk results in distinct levels of identifiability. Standards like China's GB/T 42460-2023 and academic frameworks like [(Hintze, 2017)](references.html#Hintze_2017) each present a four-level identifiability framework. While GB/T 42460-2023 provides a risk-based classification for data security—from direct identifiers to data with no identifiers—Hintze's work offers a complementary view focused on data processing contexts. Although their specific definitions diverge, both frameworks share the principle that re-identification risk diminishes along the ordered levels, progressing from left to right (as illustrated in the figure below).
 
 <figure>
   <img src="identifiability-levels.png" alt="levels of identifiability">
@@ -84,11 +83,11 @@ Table: [Controlled Access] Key Mapping Table (Held by Data Controller)
 | P010 | AP-33567 | Patricia Taylor |
 {:.grid}
 
-**De-Identified Data**
+**Irreversibly Pseudonymized Data**
 
-De-Identified data relates to a specific person whose identity is not apparent from the data; and the data is not directly linked with data that identifies the person. The data could potentially be re-identified if matched to additional identifying data provided by the data subject or a third party, but there is no known, systematic way for the controller to reliably create or re-create a link with identifying data.
+Irreversibly pseudonymized data relates to a specific person whose identity is not apparent from the data, and the data is not directly linked with data that identifies the person. The data could potentially be re-identified if matched to additional identifying data provided by the data subject or a third party, but there is no known, systematic way for the controller to reliably create or re-create a link with identifying data.
 
-Table: De-Identified Records with Hashed IDs (Assumption: re-identificaton risk is above the predefined threshold)
+Table: Irreversibly Pseudonymized Records with Hashed IDs (Assumption: re-identificaton risk is above the predefined threshold)
 
 | Hashed ID | Patient Name | Age | Gender | Weight (kg) | Height (cm) | City | Zip Code | Diagnosis Code (ICD-10) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -129,7 +128,7 @@ The table below summarizes the characteristics of the levels of identifiability 
 
 **Table 2.1-1: Characteristics of Levels of Identifiability**
 
-|               |Identified|Readily-Identifiable|De-Identified|Anonymous|
+|               |Identified|Readily-Identifiable|Irreversibly Pseudonymized|Anonymous|
 |---------------|----------|--------------------|-------------|---------|
 |Data Included  |Direct Identifiers|Quasi Identifiers + Additional Information(a known, systematic way to reliably create or re-create a link with identifying data)|Quasi Identifiers|Aggregated Data or Candidates of Quasi Identifiers + Small Risk|
 |GB/T_42460_2023|Level 1: direct identifiers  |Level 2: Quasi Identifiers + High Risk|Level 3: Quasi Identifiers + Acceptable Risk      |Level 4: No Identifiers  |
@@ -152,7 +151,7 @@ To align these concepts with modern privacy frameworks, de-identification in thi
   <figcaption><strong>Figure: Relationships between different concepts of de-identification</strong></figcaption>
 </figure>
  
-The figure above illustrates the concept of de-identification across various levels and also the outcomes (identifiability) of each processes. De-Identifcatoin is the top level sitting above pseudonymization and anonymization. Pseudonymization,as a particular type of de-identification focusing on tranforming direct identifiers. It can be further break down to reversible pseudonymization and irreversible pseudonymization. Reversible pseudonymization generates Readily-Identifiable data, and Irreversible pseudonymization produces De-Identified data. Anonymization, depending on the risk level, can be seperated into anonymization with non-negligible risk, and anonymization with negligible risk processes. The outcome of the anonymization with non-negligible risk is still considered as de-identified data. Only the anonymization with negligible risk generates anonymous data, which is deemed as non-personal information in the morder privacy laws. Without specificity, sometimes, the term de-identification can be confusing, especially when addressing implementation for compliance purposes. To address this, this book adopts a more specific framework: reversible pseudonymization, irreversible pseudonymization, anonymization with non-negligible risk, and anonymization with negligible risk. These distinctions are applied especially in contexts where the level of identifiability or legal requirements must be precisely defined. Simultaneously, the book uses 'de-identification' as a general term when the specific level of identifiability is less critical, such as when outlining a general risk-based approach. 
+The figure above illustrates the concept of de-identification across various levels and also the outcomes (identifiability) of each processes. De-Identifcatoin is the top level sitting above pseudonymization and anonymization. Pseudonymization,as a particular type of de-identification focusing on tranforming direct identifiers. It can be further break down to reversible pseudonymization and irreversible pseudonymization. Reversible pseudonymization generates Readily-Identifiable data, and Irreversible pseudonymization produces Irreversibly Pseudonymized data. Anonymization, depending on the risk level, can be seperated into anonymization with non-negligible risk, and anonymization with negligible risk processes. The outcome of the anonymization with non-negligible risk is still considered as Irreversibly Pseudonymized data. Only the anonymization with negligible risk generates anonymous data, which is deemed as non-personal information in modern privacy laws. Without specificity, sometimes, the term de-identification can be confusing, especially when addressing implementation for compliance purposes. To address this, this book adopts a more specific framework: reversible pseudonymization, irreversible pseudonymization, anonymization with non-negligible risk, and anonymization with negligible risk. These distinctions are applied especially in contexts where the level of identifiability or legal requirements must be precisely defined. Simultaneously, the book uses 'de-identification' as a general term when the specific level of identifiability is less critical, such as when outlining a general risk-based approach. 
 
 
 When determining the extent of a de-identification process, there is a trade-off between the fidelity of the resulting de-identified dataset and the risk of re-identification considering the purpose of using data. According to [(ISO 25237, 2017)](references.html#ISO25237), "There is no single de-identification procedure that can meet the diverse needs of all medical applications while ensuring identity concealment. Every record release process must undergo a risk analysis to evaluate the balance between data utility and privacy protection". Every data release process shall be subject to risk analysis to evaluate:
@@ -191,9 +190,7 @@ According to GDPR Art. 4(5), pseudonymization is defined as:
 
 The term 'additional information' is used in the definition above without a clear explanation in GDPR. There are two kinds of 'additional information', type I) information generated during the process of pseudonymization, serving the purpose of generating secure pseudonyms. type II) any other personal information including the public dataset and social media. To avoid ambiguous, in this book, we interpret the 'additional information' used in the definition as the type I additional information, so that it can be 'kept separately' by the controller and/or processors.
 
-A typical process of pseudonymization is hiding the direct identifies from the rest of the personal data, and keeping the additional information used for replacing personal direct identifiers with secure pseudonyms as secrets. In this way, it can serve the use cases where linking the pseudonymized personal data back to the original personal identifier. As mentioned in the beginning of this section, EDPB (European Data Protection Board) tends to extends the typical concept of pseudonymization to an extend that the type I 'additional information' is no longer needed (sometimes called one-way/irreversible pseudonymization), and also quasi identifies can be transformed to further reduce the risk of re-identification. [@Hintz_2017](references.html#Hintze_2017) names the extended level of pseudonymization as 'strong pseudonymization'. In this book, we limit the scope of the term 'pseudonymization' to handling direct indentifiers only, meaning a typical process of pseudonymization will output: 1) pseudonyms; 2) additional information that enables a systematic way to reliably create or re-create a link with identifying data. In other words, pseudonymization separates personal identifiers from payload data by assigning new identifiers. This approach maintains a connection between payload data in all the records by means of the new identifiers. It can allow for re-identification under prescribed circumstances and protections if the relationship between the new identifiers and original identifiers is preserved.
-
-One-way/irreversible pseudonymization is an alternative term of irreversible de-identification. In this case, the additional information generated during the pseudonymized process will be destoryed immediately after the generation of the pseudonyms. One key use of irreversible pseudonymization is to preserve the relationships that associate data in many different documents to a specific individual. The pseudonymous identifier is a new characteristic that substitutes for the original person identifier. De-identification must use still be done after pseudonymization to remove the remaining non-essential characteristics. Figure below illustrates the relationships between the outcomes of the process of pseudonymization with the identifiable person.
+A typical process of pseudonymization is hiding the direct identifies from the rest of the personal data, and keeping the additional information used for replacing personal direct identifiers with secure pseudonyms as secrets. In this way, it can serve the use cases where linking the pseudonymized personal data back to the original personal identifier. However, it is important to note that some frameworks, like guidance from the EDPB (European Data Protection Board), interpret pseudonymization more broadly. Their interpretation can include processes where the linking key is destroyed (sometimes called one-way/irreversible pseudonymization) and where quasi-identifiers are also transformed to reduce re-identification risk. To maintain a clear and distinct terminology, this handbook limits the scope of 'pseudonymization' to its reversible form that primarily targets direct identifiers and produces Readily-Identifiable Data. Processes that are irreversible are discussed under the concepts of Irreversibly Pseudonymized Data and Anonymous Data.
 
 <figure>
   <img src="relationships-in-original-data.png" style="width:6.50694in;height:2.85347in" />
@@ -242,7 +239,7 @@ Part of the human subject risk considered by IRBs is that to patient privacy, wh
 
 #### Example of De-Identification processes
 
-Above section of [Identifiability](#Identifiability) illustrates samples of four levels of identifiability, namely, Identified Data, Readily-Identifiable Data, De-Identified Data, Anonymous Data. Various de-identification processes can be used to achive each level of the idantifieability. The summary below outlines the journey of the sample dataset from its original, fully identifiable state to anonymous information. The transformation at each step is governed by four distinct types of de-identification processes and judged against the specified re-identification data risk threshold of **0.35 (35%)** (Note: a context risk of 0.14 leads a an overall re-identification of 0.049 = context risk(0.14) x data risk(0.35).
+Above section of [Identifiability](#Identifiability) illustrates samples of four levels of identifiability, namely, Identified Data, Readily-Identifiable Data, Irreversibly Pseudonymized Data, Anonymous Data. Various de-identification processes can be used to achive each level of the idantifieability. The summary below outlines the journey of the sample dataset from its original, fully identifiable state to anonymous information. The transformation at each step is governed by four distinct types of de-identification processes and judged against the specified re-identification data risk threshold of **0.35 (35%)** (Note: a context risk of 0.14 leads a an overall re-identification of 0.049 = context risk(0.14) x data risk(0.35).
 
 ##### Stage 1: Transforming Identified Data into Readily-Identifiable Data
 
@@ -259,9 +256,9 @@ Above section of [Identifiability](#Identifiability) illustrates samples of four
 
 ---
 
-##### Stage 2: Transforming Data into De-Identified Data
+##### Stage 2: Transforming Data into Irreversibly Pseudonymized Data
 
-According to the provided [framework](#fig_de_id_process_general) , there are two distinct processes that both result in `De-Identified Data`. Our example dataset demonstrates both.
+According to the provided [framework](#fig_de_id_process_general) , there are two distinct processes that both result in `Irreversibly Pseudonymized Data`. Our example dataset demonstrates both.
 
 * **De-Identification Process Applied (Path A):** `Irreversible Pseudonymization`.
 
@@ -277,8 +274,8 @@ According to the provided [framework](#fig_de_id_process_general) , there are tw
     3.  As shown in our previous analysis, this process resulted in a dataset with an average data risk of **50% (0.5)**.
 
 * **Resulting Data Classification:**
-    * The `Irreversible Pseudonymization` directly produces `De-Identified Data`.
-    * Simultaneously, the anonymization techniques result in a risk of 0.5. Since **0.5 > 0.35**, this is considered a **"non-negligible risk"**. Therefore, this process also produces `De-Identified Data`. The state of our "De-Identified" table in the example perfectly matches this definition.
+    * The `Irreversible Pseudonymization` directly produces `Irreversibly Pseudonymized Data`.
+    * Simultaneously, the anonymization techniques result in a risk of 0.5. Since **0.5 > 0.35**, this is considered a **"non-negligible risk"**. Therefore, this process also produces `Irreversibly Pseudonymized Data`. The state of our "Irreversibly Pseudonymized" table in the example perfectly matches this definition.
 
 ---
 
@@ -287,7 +284,7 @@ According to the provided [framework](#fig_de_id_process_general) , there are tw
 * **De-Identification Process Applied:** `Anonymization with Negligible Risk`.
 
 * **How the Process is Applied:**
-    1.  We begin with the `De-Identified Data` (which has a 50% risk).
+    1.  We begin with the `Irreversibly Pseudonymized Data` (which has a 50% risk).
     2.  We apply an **additional, more aggressive anonymization technique**: the **suppression of the `Zip Code` attribute**.
     3.  We then recalculate the k-anonymity risk on this final dataset using the remaining quasi-identifiers (`Gender`, `Age Range`).
     4.  As shown in our engineered example, this final step reduced the average data risk to **30% (0.3)**.
@@ -301,7 +298,7 @@ According to the provided [framework](#fig_de_id_process_general) , there are tw
 | De-Identification Process                                      | Key Techniques Applied to Sample Data                        | Resulting Average Risk | Risk vs. Threshold (0.35) | Final Data Identifiability Level |
 | :------------------------------------------------------------- | :----------------------------------------------------------- | :--------------------- | :------------------------ | :------------------------------- |
 | **Reversible Pseudonymization** | Mapped IDs, Name Suppression                                 | 100%                   | > 0.35                    | **Readily-Identifiable Data** |
-| **Irreversible Pseudonymization & Anonymization with Non-Negligible Risk** | Hashed IDs, Age Generalization, Weight Microaggregation      | 50%                    | > 0.35                    | **De-Identified Data** |
+| **Irreversible Pseudonymization & Anonymization with Non-Negligible Risk** | Hashed IDs, Age Generalization, Weight Microaggregation      | 50%                    | > 0.35                    | **Irreversibly Pseudonymized Data** |
 | **Anonymization with Negligible Risk** | All of the above + **Zip Code Suppression** | 30%                    | < 0.35                    | **Anonymous Information** |
 {:.grid}
 
@@ -319,7 +316,7 @@ The figure above illustrates the key aspects of a risk-based general approach, n
 
 #### Data Situation Analysis
 
-Data Situation Analysis is an activity designed to understand the data and its environment, enabling the appropriate scoping of the de-identification process for safe data sharing. It encompasses both high-level and detailed analyses. The high-level analysis involves confirming the legal basis and defining the objectives, which can be refined by specifying the required level of identifiability—pseudonymized, de-identified, or anonymized—based on the intended use of the disclosed data. The detailed analysis includes an end-to-end workflow to identify risks as data evolves and moves through various stages. Equally important is clarifying the legal responsibilities of all participants in the workflow, especially in cases involving multiple entities. Special attention must be paid to the data environment, which includes factors such as agents (systems or humans interacting with the data), other data, infrastructure, and governance.
+Data Situation Analysis is an activity designed to understand the data and its environment, enabling the appropriate scoping of the de-identification process for safe data sharing. It encompasses both high-level and detailed analyses. The high-level analysis involves confirming the legal basis and defining the objectives, which can be refined by specifying the required level of identifiability—pseudonymized, irreversibly pseudonymized, or anonymized—based on the intended use of the disclosed data. The detailed analysis includes an end-to-end workflow to identify risks as data evolves and moves through various stages. Equally important is clarifying the legal responsibilities of all participants in the workflow, especially in cases involving multiple entities. Special attention must be paid to the data environment, which includes factors such as agents (systems or humans interacting with the data), other data, infrastructure, and governance.
 
 Understanding the data themselves is the essence of the data situation analysis. It involves different level description of the data, including, data subjects/population, types of the dataset (e.g, micro-data, longitudinal, transaction, etc.), data collection time span, variable type (direct, quasi, or non identifiers), data type (date, free text, categorical etc).
 
@@ -480,7 +477,7 @@ The security and privacy practices of the data recipient will influence the like
 
 #### Types of Attacks
 
-Attack happens under a given threat, it make the potential risk of re-identification becomes a real privacy breach event through re-identification action done by attackers. [(Article 29 Data Protection Working Party, 2014)](references.html#Article29WP2014) identified Three types of attack:
+Attack happens under a given threat, it make the potential risk of re-identification becomes a real privacy breach event through re-identification action done by attackers. The Article 29 Data Protection Working Party (predecessor to the European Data Protection Board) identified three types of attack in its 2014 opinion [(Article 29 Data Protection Working Party, 2014)](references.html#Article29WP2014):
 - Singling out , which corresponds to the possibility to isolate some or all records which identify an individual in the dataset;
 - Linkability, which is the ability to link, at least, two records concerning the same data subject or a group of data subjects (either in the same database or in two different databases). If an attacker can establish (e.g. by means of correlation analysis) that two records are assigned to a same group of individuals but cannot single out individuals in this group, the technique provides resistance against “singling out” but not against linkability;
 - Inference, which is the possibility to deduce, with significant probability, the value of an attribute from the values of a set of other attributes.
@@ -509,4 +506,3 @@ There are various kinds of re-identification attack techniques. The following ta
 | 6| Weak pseudonym algorithm is compromised|A specific pseudonymization approach may use a vulnerable algorithm (such as a non-cryptographic hash) of an identifier|A USA domain Social Security Number is hashed using MD5 with no salt where a “rainbow table” attack is highly viable.| Use a cryptographic hash (with a salt) or create a random identifier that is not a mathematical function of any real identifiers.|
 | 7| Previously protected information is compromised| | Old court records made publicly available, by mistake, authorized individual, or social engineering attack| |
 {:.grid}
-
