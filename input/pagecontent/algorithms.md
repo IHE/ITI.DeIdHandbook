@@ -55,7 +55,7 @@ Common techniques for de-identifying categorical variables include:
 
 **Randomization:** Randomization techniques like permutation can be used to exchange values of categorical variables between records to obscure individual identities while maintaining overall distributions.
 
-**Blanking and imputing:** Specific values that are highly identifying can be removed and replaced with imputed values.
+**Blanking and imputing:** Specific values that are highly identifying can be removed and replaced with imputed values. Methods for generating imputed values range from simple to statistically complex, aiming to replace sensitive, missing, or identifying data points with plausible substitutes while preserving data utility and privacy. Basic techniques include replacing values with the mean, median, or mode of the observed data, or a fixed constant. More advanced methods leverage statistical models, such as regression imputation, which predicts values based on other variables, or K-Nearest Neighbors (KNN) imputation, which uses values from similar records. For robust analysis, multiple imputation is often preferred, generating several complete datasets with different plausible imputed values and combining the results to account for uncertainty.
 
 ##### De-Identifying Numeric Quasi-Identifiers
 
