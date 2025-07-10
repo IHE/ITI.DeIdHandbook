@@ -32,3 +32,4 @@
 1. <a name="Poulis2013"></a>Poulis, G., Loukides, G., Gkoulalas-Divanis, A., & Skiadopoulos, S. (2013). Anonymizing Data with Relational and Transaction Attributes. ECML/PKDD.
 1. <a name="Liu2008"></a>Liu, K., & Terzi, E. (2008). Towards identity anonymization on graphs. *Proceedings of the 2008 ACM SIGMOD international conference on Management of data*.
 1. <a name="NIST_SP_800-226"></a>NIST. (2024). *Guidelines for Evaluating Differential Privacy Guarantees* (Special Publication No. 800-226). National Institute of Standards and Technology. [https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-226.pdf](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-226.pdf)
+2. <a name="Future_of_Privacy_Forum_2020"></a>Future of Privacy Forum. (2020, April). A practical path toward genetic privacy. https://fpf.org/wp-content/uploads/2020/04/APracticalPathTowardGeneticPrivacy_April2020.pdf
