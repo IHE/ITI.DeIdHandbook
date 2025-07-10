@@ -22,7 +22,7 @@ This guide is organized into the following sections:
    - [Re-identification](concepts.html#re-identification)
    - [Threats & Attacks](concepts.html#threats--attacks)
 3. [Data Types](data-types.html)
-4. [Techniques](algorithms.html)
+4. [Classification of de-identification techniques](algorithms.html)
 5. [Process](process.html)
    - [Step 1 – Requirements Design](process.html#step-1--requirements-design)
    - [Step 2 – De-identification Design](process.html#step-2--de-identification-design)

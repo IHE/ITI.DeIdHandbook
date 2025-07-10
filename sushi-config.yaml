@@ -77,7 +77,7 @@ pages:
     title: Data Types 
     generation: markdown
   algorithms.md:
-    title: Techniques 
+    title: Classification of de-identification techniques 
     generation: markdown
   process.md:
     title: Process 
