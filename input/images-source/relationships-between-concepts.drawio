@@ -13,9 +13,7 @@
         <mxCell id="goUDq_pYEBTL2sT22o5k-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Whh8B8QUoMx5QqMh04Pi-10" target="goUDq_pYEBTL2sT22o5k-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="goUDq_pYEBTL2sT22o5k-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Whh8B8QUoMx5QqMh04Pi-10" target="Whh8B8QUoMx5QqMh04Pi-11">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
+
         <mxCell id="Whh8B8QUoMx5QqMh04Pi-10" value="Reversible Pseudonymization" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="100" y="300" width="150" height="60" as="geometry" />
         </mxCell>
@@ -52,7 +50,7 @@
         <mxCell id="goUDq_pYEBTL2sT22o5k-5" value="&lt;div&gt;De-Identification&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="392.5" y="159" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="goUDq_pYEBTL2sT22o5k-9" value="&lt;span style=&quot;box-sizing: border-box; caret-color: rgb(51, 51, 51); color: rgb(51, 51, 51); font-family: verdana; text-align: start;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Readily-Identifiable&lt;span style=&quot;&quot; class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="goUDq_pYEBTL2sT22o5k-9" value="&lt;span style=&quot;box-sizing: border-box; caret-color: rgb(51, 51, 51); color: rgb(51, 51, 51); font-family: verdana; text-align: start;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Reversible-Pseudonymized&lt;span style=&quot;&quot; class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="125" y="401" width="99" height="60" as="geometry" />
         </mxCell>
         <mxCell id="goUDq_pYEBTL2sT22o5k-10" value="&lt;span style=&quot;box-sizing: border-box; caret-color: rgb(51, 51, 51); color: rgb(51, 51, 51); font-family: verdana; text-align: start;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Irreversibly Pseudonymized&lt;/font&gt;&lt;/span&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;" vertex="1" parent="1">

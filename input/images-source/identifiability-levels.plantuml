@@ -3,7 +3,7 @@ left to right direction
 
 [*] --> Identified
 state "Identified" as Identified
-state "Readily-Identifiable" as Identifiable
+state "Reversible-Pseudonymized" as Identifiable
 state "Irreversibly Pseudonymized" as DeIdentified
 state "Anonymized" as Anonymized
 
