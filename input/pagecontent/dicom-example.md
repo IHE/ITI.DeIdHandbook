@@ -1,3 +1,19 @@
+DICOM (Digital Imaging and Communications in Medicine) is a standard for storing, transmitting, and managing medical imaging data, such as X-rays, MRIs, and CT scans. In secondary use, DICOM data is repurposed beyond its primary clinical applications, such as diagnosis and treatment planning, for research, education, and analytics. This involves extracting de-identified data for studies, training AI models, or quality improvement initiatives. Secondary use leverages the rich metadata and imaging information in DICOM files to advance medical research, improve healthcare outcomes, and develop innovative tools, while ensuring compliance with privacy regulations like HIPAA.
+
+The Teaching File and Clinical Trial Export (TCE) Profile facilitates the selection and export of DICOM instances, series, or studies—such as images, key image notes, reports, evidence documents, and presentation states—for use in teaching files or clinical trials. It specifies an Export Selection actor, typically integrated with an Image Display or Acquisition Modality, and an Export Processing actor, which must support configurable de-identification of exported instances. The profile also offers options for de-identifying pixel data, remapping identifiers to pseudonymous values, including additional teaching file information, and delaying export for various reasons[(IHE RAD TF Vol1)](references.html#IHE_RAD_TF_Vol1). The TCE introduces thres actors, Export Selector, Export Manager, and Receiver. The Export Selector selects and makes DICOM instances availale to the Export Manager for exporting. The Export Manager performs the task of de-identifying DICOM data before sending it to the Receiver.
+
+As we explained in the section of de-identification process, some cases requries a multi-stage de-identification. The diagram below shows a two stages of de-identification based on TCE profile. The first stage is pseudonymization, and the second stage is anonymization.
+
+<figure>
+  <img src="example-multi-stage-deid-dicom.png" alt="levels of identifiability">
+  <figcaption><strong>Two stages of de-identification based on TCE Profile </strong></figcaption>
+</figure>
+
+This example demostrats a scenario that the de-identification function deployed on a modality works together with a dedicated or centrally managed de-identification service based on TCE profile. We assume a portable media is used to transfer the pseudonymized DICOM data from the enviroment where original DICOM data is generated or managed to the enviroment where a dedicated de-identification service is deployed. The two stages shares a similar structure which includes Export Selector, Export Manager, Receiver, and Portable Media Creator. The only difference between them is that the second stage requires one more component, Portable Media Importor, which is used for reading the pseudonymized DICOM stored on the portable media. We also assume the modality in this example implements TCE(Teaching File and Clinical Trial Export) and PDI (Portable Data for Imaging Integration Profile) specified in the [(IHE RAD TF Vol1)](references.html#IHE_RAD_TF_Vol1).
+
+
+
+------- old conent --------
 
 The DICOM standard has defined a set of confidentiality options for common de-identification situations. These apply directly to many real world situations, and can be used as the starting point for specialized adaptation to other situations. Many clinical trial plans and RFPs require use of these standard de-identification methods, and the DICOM standard is recognized by the FDA.
 

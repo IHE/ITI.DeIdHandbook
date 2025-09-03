@@ -28,4 +28,5 @@
 1. <a name="NIH_BIO"></a>NHN Biosurveillance Test Scenarios. *NHN Testing Work Group document *Biosurveillance Test Case Scenarios*. 2008-10-03.xls* file, draft. 
 1. <a name="DRESDEN_ANONYMITY"></a>Dresden Anonymity. *A proposed vocabulary for pseudonymization and related concepts*. [Anonymity, Unlinkability, Undetectability, Unobservability, Pseudonymity, and Identity Management – A onsolidated Proposal for Terminology* (Version v0.31 Feb. 15, 2008)](http://dud.inf.tu-dresden.de/literatur/Anon_Terminology_v0.31.pdf)
 1. <a name="MIT_REID"></a>MIT Reidentification. *Shows that a large percentage of people can be re-identified with Date-of-Birth, Current ZIP Code, and Sex*. [Reidentification of Individuals in Chicago's Homicide Database A Technical and Legal Study](http://web.mit.edu/sem083/www/assignments/reidentification.html#_Toc354562093)
+1. <a name="IHE_RAD_TF_Vol1"></a>IHE International. (2025). IHE radiology technical framework, volume 1: Integration profiles (Rev. 23.0). https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol1.pdf
 
