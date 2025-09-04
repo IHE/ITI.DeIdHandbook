@@ -9,7 +9,13 @@ As we explained in the section of de-identification process, some cases requries
   <figcaption><strong>Two stages of de-identification based on TCE Profile </strong></figcaption>
 </figure>
 
-This example demostrats a scenario that the de-identification function deployed on a modality works together with a dedicated or centrally managed de-identification service based on TCE profile. We assume a portable media is used to transfer the pseudonymized DICOM data from the enviroment where original DICOM data is generated or managed to the enviroment where a dedicated de-identification service is deployed. The two stages shares a similar structure which includes Export Selector, Export Manager, Receiver, and Portable Media Creator. The only difference between them is that the second stage requires one more component, Portable Media Importor, which is used for reading the pseudonymized DICOM stored on the portable media. We also assume the modality in this example implements TCE(Teaching File and Clinical Trial Export) and PDI (Portable Data for Imaging Integration Profile) specified in the [(IHE RAD TF Vol1)](references.html#IHE_RAD_TF_Vol1).
+This example demostrats a scenario that the de-identification function deployed on a modality works together with a dedicated or centrally managed de-identification service based on TCE profile. The example is based on the following assumptions:
+- The modality implements funcationalities of Export Selector, Export Manager and Portable Media Creator. Since these actors are all grouped together, it's not necessary to follow the transactions between them specified the TCE Profile.
+- De-Identification function on the modality is builtin function of the modality, and the de-identification function is based on a pseudonymization policy.
+- The pseudonymized DICOM data is exported to a portable media.
+- A dedicated centralized DICOM data for secondary use is established based on the TCE profile, which more advanced DICOM anonymization can be performed.
+- A portable media is used to transfer the pseudonymized DICOM data from the modality to the secondary data use environment due to the unavailability of DICOM network service between them.
+
 
 
 
