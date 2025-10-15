@@ -1,15 +1,18 @@
 
 ### Classification of de-identification techniques
-[(ISO20889)](references.html#ISO20889) classified de-identification techniques as eight categories, namely, statistical, cryptographic, suppression, pseudonymization, anatomization, generalization, randomization, and synthetic data.
+De-identification technically involves two primary tasks: transforming identifiers and modeling privacy (re-identification) risks. Consequently, de-identification techniques can be categorized into two groups: those focused on transforming or de-identifying identifiers, and those dedicated to modeling re-identification privacy risks. Techniques for transforming/de-identifying identifiers are typically applied to element-level data types ([Level 1: Element Level](data-types.html#level-1-element-level)), while methods for modeling re-identification risks are primarily used for dataset-level data types ([Level 2: Dataset Level](data-types.html#level-2-dataset-level)).
 
-#### Statistical tools
+[(ISO20889)](references.html#ISO20889) outlines eight categories of techniques for de-identifying identifiers in Chapter 8: statistical, cryptographic, suppression, pseudonymization, anatomization, generalization, randomization, and synthetic data. Chapter 9 details methods for modeling re-identification privacy risks. Sensitive attributes are typically treated as distinct special identifiers; therefore, in this chapter, we address them separately from standard identifiers (direct and indirect/quasi-identifiers).
+
+#### Techniques of de-identifying identifiers
+##### Statistical tools
 Statistical tools are methods of a statistical nature that change the overall structure of the data. Such methods are commonly used to either de-identify datasets or to enhance the effectiveness of de-identification techniques. Techniques include: Sampling, Aggregation.
 
 **Sampling:** Data sampling is a statistical analysis technique that selects a representative subset of a larger dataset in order to analyse and recognize patterns in the original dataset. To reduce the risk of re-identification, the sampling is performed on the data principals.
 
 **Aggregation:** Aggregation involves the combination of related attributes, or of attribute values, to provide information at a broader level than at which detailed observations are taken.
 
-#### Cryptographic tools
+##### Cryptographic tools
 Cryptographic tools can be used to implement security measures that enhance the effectiveness of de-identification techniques, as well as acting as a part of de-identification techniques themselves (see, for example, Pseudonyms derived from identifying attributes using cryptography). Techniques include: Deterministic encryption, Order-preserving encryption, Format-preserving encryption, Homomorphic encryption, Homomorphic secret sharing.
 
 **Deterministic encryption:** Deterministic encryption is a form of non-randomized encryption. When employed as part of a de-identification technique, deterministic encryption can be used to replace any identifying or sensitive attribute within a data record with an encrypted value. The property of deterministic encryption that enables the usefulness of the de-identified data is that two equal values encrypted under the same private key produce two equal ciphertexts.
@@ -22,7 +25,7 @@ Cryptographic tools can be used to implement security measures that enhance the 
 
 **Homomorphic secret sharing:** Homomorphic secret sharing enables a secret to be divided into “shares”, specified subsets of which are usable to reconstruct the secret, such that if the same mathematical operation is performed on all the shares used to reconstruct the secret then the result is the effect of performing this mathematical operation on the original secret. When employed as part of a de-identification technique, homomorphic secret sharing can be used to replace any identifying or sensitive attribute within a data record with two or more shares produced by a message sharing algorithm. These shares can then be distributed to two or more share-holders, the number of which is determined by the instantiation of the secret sharing scheme. The property of homomorphic secret sharing that enables the usefulness of the de-identified data is that two values secret-shared among the same share-holders can be combined with the homomorphic operation of the cryptographic scheme to produce new shares representing the result of the operation on the original attribute. Furthermore, homomorphic secret sharing can be combined with secure multi-party computation to perform any secure operation on the de-identified data. 
 
-#### Suppression techniques
+##### Suppression techniques
 Suppression techniques aslo known as Redaction, involve removing selected attributes across all records (e.g. masking), selected attribute values (e.g. local suppression), or selected records from a dataset (e.g. record suppression). Suppression techniques are mostly applicable to categorical data. Techniques include: Masking, Local suppression, Record suppression.
 
 **Masking:** The term “masking” refers to a de-identification technique that involves removing all direct identifiers from the dataset, and potentially stripping out some or all of the additional remaining identifying attributes for all records in the dataset. Removing a portion of a direct identifier so that it is no longer a unique identifier is also considered to be a masking technique.
@@ -31,7 +34,7 @@ Suppression techniques aslo known as Redaction, involve removing selected attrib
 
 **Record suppression;** The term “record suppression” refers to a de-identification technique that involves removing an entire record or records from a dataset. Typical candidates for removal are records that contain rare combinations of attributes.
 
-#### Pseudonymization techniques
+##### Pseudonymization techniques
 Pseudonymization techniques is a category of de-identification techniques that involve replacing a data principal's identifier (or identifiers) with pseudonyms specifically created for each data. As such, pseudonymization is a technique that enables linking of associated records from different datasets without revealing the identities of the data principals. There are two methods of creating pseudonyms, namely, linking table (containing the mappings between original personal identifiers to the corresponding pseudonyms), derived from identifying attributes using cryptography including Encryption, and Hashing. Linking table and encryption are the techniques usually applied in a reversbile pseudonymization, aslo known as recoverable substitution of personal identifiers. Hashing and random number generation can be used in irreversible pseudonymization.
 
 **Pseudonyms independent of identifying attributes:** The pseudonym values can be independent of the replaced attributes’ original values. Such methods
@@ -44,7 +47,7 @@ include generation of random values. When pseudonyms are generated independently
 #### Anatomization
 The term "anatomization" refers to a category of de-identification techniques that disassociate identifiers from the remainder of the data by splitting a dataset into two tables: a table containing the existing identifiers (such as quasi-identifiers) and a table containing the remainder of the useful attributes. The attributes table is created in such a way that its rows represent the equivalence classes of records in the original table. A new attribute specifying an equivalence class is added to both tables. The two tables are subject to different access rights. For example, the identifiers table can be securely guarded, while the table with useful attributes can be made public. 
 
-#### Generalization techniques
+##### Generalization techniques
 Generalization techniques is a category of de-identification techniques that reduce the granularity of information contained in a selected attribute or in a set of related attributes in a dataset. Generalization techniques preserve data truthfulness at the record level. As a result, data that is de-identified using generalization is useful for cases involving traceable data principal specific patterns, such as for fraud detection, healthcare outcome assessments, etc. Techniques include: Rounding, Top and bottom coding, Combining a set of attributes into a single attribute, Local generalization.
 
 **Rounding:** Rounding involves deciding on a rounding base for a selected attribute and then rounding each value up or down to the nearest multiple of the rounding base. Whether to round up or down is decided probabilistically based on how close the observation is to the nearest multiple of a rounding base. For example, if the rounding base is 10 and 7 was observed, 7 is rounded up to 10 with probability 0,7 and rounded down to 0 with probability 0,3.
@@ -56,7 +59,7 @@ Generalization techniques is a category of de-identification techniques that red
 **Local generalization:** Local generalization involves generalizing specific values of attributes from selected records; such a procedure is used if it is possible that the attribute values, in combination with other identifying attributes, can be used to identify the data principal. Typically, local generalization is applied to remove rare values (or rare combinations of values) of indirect identifiers without modifying the remaining values of this attribute across all records. Local generalization is typically applied to numerical values with the common goal of increasing the number of records sharing the values of their identifying attributes.
 
 
-#### Randomization techniques
+##### Randomization techniques
 Randomization techniques is a type of fuzzing techniques in which values of an attribute are modified so that their new values differ from their true values in a random way. Such a process reduces the ability of an attacker to deduce the value of an attribute from the values of other attributes in the same data record, thereby reducing the effectiveness of inference attempts. Techniques include: Noise addition, Permutation, Microaggregation.
 
 **Noise addition:** Noise addition is a randomization technique that modifies a dataset by adding random values, “random noise”, to the values of a selected attribute with continuous values, while as much as possible retaining the original statistical properties of the attribute across all records in the dataset. Such statistical properties include the distribution, mean, variance, standard deviation, covariance, and correlation of the attribute. Noise addition to a selected continuous attribute is performed by adding, or multiplying by, a stochastic or randomized number. Many different noise addition algorithms have been developed with the goal of preserving the statistical properties of the de-identified data and its usefulness for different use cases.
@@ -65,8 +68,14 @@ Randomization techniques is a type of fuzzing techniques in which values of an a
 
 **Microaggregation:** The term “microaggregation” refers to a category of de-identification techniques that replace all values of continuous attributes with their averages computed in a certain algorithmic way. For each continuous attribute (or for a selected set of continuous attributes), all records in the dataset are grouped such that the records with closest values of the attribute (or attributes) belong to the same group and there are at least k records in each group, for a sufficiently large value of k. The new value of each attribute is then computed to be the average of the attribute’s values in the group. The closer the values in each group are, the more data usefulness is preserved. The output of microaggregation is microdata. Microaggregation does not preserve data truthfulness.
 
-#### Synthetic data
+##### Synthetic data
 Synthetic data is an approach to generating microdata artificially to represent a predefined statistical data model. By definition, a synthetic dataset does not contain any data collected from or about existing data principals, but looks realistic for the intended purposes. In practice, the generation of synthetic data can involve multiple or continuous transformations on real datasets using randomization techniques, sampling, and AI.
+
+#### Techniques of modeling privacy risk
+
+**K-Anonymity:** K-anonymity is a formal privacy measurement model that ensures that for each identifier there is a corresponding equivalence class containing at least K records. While the resulting dataset has limited (i.e. 1/K) linkability, it does not contain measures designed to prevent potential inference attempts.
+
+**Differential privacy:** Differential privacy is a formal privacy measurement model that, if incorporated in the design of a particular statistical analysis, provides mathematical guarantees that the probability distribution of the output of this analysis differs by a factor no greater than a specified parameter regardless of whether any particular data principal is included in the input dataset.
 
 ### De-Identifying Identifiers
 
