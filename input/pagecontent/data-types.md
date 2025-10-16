@@ -6,7 +6,7 @@ The element-level focus is on selecting techniques like removal, pseudonymizatio
 
 Data elements are categorized by re-identification risk, with techniques tailored to each. This section integrates detailed examples and approaches from standards like [ISO/TS 22220](references.html#ISO22220) and [DICOM PS3.15](references.html#DICOMPart15AnnexE) to enhance specificity.
 
-#### Categories and Techniques
+Table:Element Level Types and Techniques
 
 | Category | Description | Examples | De-Identification Techniques | Risk Focus |
 |----------|-------------|----------|-------------------------------|------------|
@@ -21,7 +21,7 @@ Data elements are categorized by re-identification risk, with techniques tailore
 
 Datasets are collections of elements organized in specific formats (e.g., HL7 FHIR, [DICOM](references.html#DICOM)). Risk analysis involves: (1) Identifying risky elements using standard-specific lists; (2) Applying per-element mitigations from the element-level categories; (3) Quantifying dataset-wide re-identification risk using statistical models (e.g., k-anonymity, l-diversity, t-closeness) to address linkage or inference risks not visible at the element level. This section incorporates [DICOM](references.html#DICOM)-specific tag guidance and generalizes approaches for other dataset types.
 
-#### Dataset Types and Approaches
+Table:Dataset Level Types and Approaches
 
 | Dataset Type | Description & Organization | Risky Elements Identification | Per-Element Mitigation | Dataset-Wide Risk Quantification |
 |--------------|----------------------------|-------------------------------|-------------------------|----------------------------------|
