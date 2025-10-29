@@ -202,26 +202,26 @@ The typical application of *k*-anonymity is for microdata. Microdata refers to d
 
 For this example, we assume the quasi-identifiers are {Age, Gender, Zip Code}. The `Name` is a direct identifier and `Diagnosis` is a sensitive attribute. Consider the following original patient data (microdata):
 
-| Name    | Age | Gender | Zip Code | Diagnosis      |
-| :------ | :-: | :----: | :------: | :------------- |
-| Alice   | 28  | Female | 10021    | Hypertension   |
-| Carol   | 29  | Female | 10023    | Asthma         |
-| Eve     | 27  | Female | 10025    | Migraine       |
-| Bob     | 31  | Male   | 10032    | Diabetes       |
-| David   | 32  | Male   | 10034    | Hypertension   |
+| Name    | Age | Gender | Zip Code | Diagnosis        |
+| :------ | :-: | :----: | :------: | :--------------- |
+| Alice   | 28  | Female | 10021    | HIV/AIDS         |
+| Carol   | 29  | Female | 10023    | Bipolar Disorder |
+| Eve     | 27  | Female | 10025    | Substance Abuse  |
+| Bob     | 31  | Male   | 10032    | Schizophrenia    |
+| David   | 32  | Male   | 10034    | HIV/AIDS         |
 {:.grid}
 
 To achieve 2-anonymity (*k*=2), we replace the direct identifier `Name` with a 5-digit random number pseudonym and generalize the `Age` and `Zip Code` quasi-identifiers.
 
 **2-Anonymous Data:**
 
-| Pseudonym | Age Range | Gender | Zip Code | Diagnosis      |
-| :-------- | :-------- | :----: | :------: | :------------- |
-| 83451     | 25-29     | Female | 1002x    | Hypertension   |
-| 49281     | 25-29     | Female | 1002x    | Asthma         |
-| 10358     | 25-29     | Female | 1002x    | Migraine       |
-| 62215     | 30-34     | Male   | 1003x    | Diabetes       |
-| 90872     | 30-34     | Male   | 1003x    | Hypertension   |
+| Pseudonym | Age Range | Gender | Zip Code | Diagnosis        |
+| :-------- | :-------- | :----: | :------: | :--------------- |
+| 83451     | 25-29     | Female | 1002x    | HIV/AIDS         |
+| 49281     | 25-29     | Female | 1002x    | Bipolar Disorder |
+| 10358     | 25-29     | Female | 1002x    | Substance Abuse  |
+| 62215     | 30-34     | Male   | 1003x    | Schizophrenia    |
+| 90872     | 30-34     | Male   | 1003x    | HIV/AIDS         |
 {:.grid}
 
 In this transformed table, the data is 2-anonymous. The records have been grouped into two equivalence classes based on the quasi-identifiers {Age Range, Gender, Zip Code}:
@@ -248,9 +248,9 @@ Imagine a hospital database with patient records. An attacker knows their target
 **The Attack (on a Non-Private System):**
 An attacker could perform a "differencing attack" if they can query the database at two different points in time or query two different versions of it.
 
-1. **Query 1:** The attacker queries the database: `SELECT COUNT(*) FROM Patients WHERE Diagnosis = 'Diabetes';` The system returns the true, exact count: **100**.
+1. **Query 1:** The attacker queries the database: `SELECT COUNT(*) FROM Patients WHERE Diagnosis = 'HIV/AIDS';` The system returns the true, exact count: **100**.
 2. **Query 2:** The attacker finds a way to query the database again after Bob has been removed (e.g., Bob is discharged, or the attacker uses a public version of the data from the previous week before Bob was admitted). They run the exact same query. The system now returns the new true count: **99**.
-3. **The Inference:** By subtracting the results (100 - 99 = 1), the attacker can confidently infer that Bob's presence in the database was the reason for the difference. They have now learned Bob's sensitive diagnosis.
+3. **The Inference:** By subtracting the results (100 - 99 = 1), the attacker can confidently infer that Bob's presence in the database was the reason for the difference. They have now learned Bob's sensitive HIV/AIDS diagnosis.
 
 **The Defense (with a Differentially Private System):**
 
@@ -258,4 +258,4 @@ A system using Differential Privacy prevents this by adding calibrated random no
 
 1. **Query 1 (with Bob):** The true answer is 100. The DP system adds random noise (e.g., +4) and returns **104**.
 2. **Query 2 (without Bob):** The true answer is 99. The DP system adds new, independent random noise (e.g., -2) and returns **97**.
-3. **The Failed Inference:** The attacker now compares the two results: 104 and 97. The difference is 7. This number is meaningless because it is dominated by the random noise. The attacker cannot tell if the change was due to Bob's data or just the randomness. They learn nothing meaningful about Bob's diagnosis, and his privacy is preserved.
+3. **The Failed Inference:** The attacker now compares the two results: 104 and 97. The difference is 7. This number is meaningless because it is dominated by the random noise. The attacker cannot tell if the change was due to Bob's data or just the randomness. They learn nothing meaningful about Bob's HIV/AIDS status, and his privacy is preserved.
