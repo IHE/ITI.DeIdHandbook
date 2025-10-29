@@ -204,8 +204,8 @@ For this example, we assume the quasi-identifiers are {Age, Gender, Zip Code}. T
 | Alice   | 28  | Female | 10021    | HIV/AIDS         |
 | Carol   | 29  | Female | 10023    | Bipolar Disorder |
 | Eve     | 27  | Female | 10025    | Substance Abuse  |
-| Bob     | 31  | Male   | 10032    | Schizophrenia    |
-| David   | 32  | Male   | 10034    | HIV/AIDS         |
+| Bob     | 31  | Male   | 10321    | Schizophrenia    |
+| David   | 32  | Male   | 10334    | HIV/AIDS         |
 {:.grid}
 
 To achieve 2-anonymity (*k*=2), we replace the direct identifier `Name` with a 5-digit random number pseudonym and generalize the `Age` and `Zip Code` quasi-identifiers.
@@ -214,17 +214,17 @@ To achieve 2-anonymity (*k*=2), we replace the direct identifier `Name` with a 5
 
 | Pseudonym | Age Range | Gender | Zip Code | Diagnosis        |
 | :-------- | :-------- | :----: | :------: | :--------------- |
-| 83451     | 25-29     | Female | 1002x    | HIV/AIDS         |
-| 49281     | 25-29     | Female | 1002x    | Bipolar Disorder |
-| 10358     | 25-29     | Female | 1002x    | Substance Abuse  |
-| 62215     | 30-34     | Male   | 1003x    | Schizophrenia    |
-| 90872     | 30-34     | Male   | 1003x    | HIV/AIDS         |
+| 83451     | 25-29     | Female | 100xx    | HIV/AIDS         |
+| 49281     | 25-29     | Female | 100xx    | Bipolar Disorder |
+| 10358     | 25-29     | Female | 100xx    | Substance Abuse  |
+| 62215     | 30-34     | Male   | 103xx    | Schizophrenia    |
+| 90872     | 30-34     | Male   | 103xx    | HIV/AIDS         |
 {:.grid}
 
 In this transformed table, the data is 2-anonymous. The records have been grouped into two equivalence classes based on the quasi-identifiers {Age Range, Gender, Zip Code}:
 
-1. The records with pseudonyms 83451, 49281, and 10358 form the equivalence class: {25-29, Female, 1002x}. This group has 3 members.
-2. The records with pseudonyms 62215 and 90872 form the equivalence class: {30-34, Male, 1003x}. This group has 2 members.
+1. The records with pseudonyms 83451, 49281, and 10358 form the equivalence class: {25-29, Female, 100xx}. This group has 3 members.
+2. The records with pseudonyms 62215 and 90872 form the equivalence class: {30-34, Male, 103xx}. This group has 2 members.
 
 Since the smallest equivalence class has 2 records, the dataset satisfies 2-anonymity. An attacker cannot distinguish any individual from at least one other person in the dataset, and the pseudonyms allow for internal record linkage without revealing real names.
 
