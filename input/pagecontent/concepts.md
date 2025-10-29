@@ -408,6 +408,8 @@ Monitoring the data-sharing environment is essential, as technology and the cont
 
 **linkability**: property for a dataset that it is possible to associate (by linking) a record concerning a data subject with a record concerning the same data subject in a separate dataset. (Source:  [(ISO/IEC 20889, 2018)](references.html#ISO20889)).
 
+**microdata**: dataset comprised of records related to individual data principals  (Source:  [(ISO/IEC 20889, 2018)](references.html#ISO20889)). 
+
 **natural person**: real human being as opposed to a legal person which may be a private or public organization (Source:[(ISO 25237, 2017)](references.html#ISO25237)).
 
 **personal identifier**: information with the purpose of uniquely identifying a person within a given context (Source: [(ISO 25237, 2017)](references.html#ISO25237)).

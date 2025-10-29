@@ -193,10 +193,7 @@ While l-diversity prevents exact disclosure by ensuring variety, it can still be
 
 This is achieved by generalizing or suppressing quasi-identifiers until each record's set of quasi-identifiers is identical to at least *k*-1 other records in the dataset. These groups of identical records are called "equivalence classes." For example, if *k*=5, for any combination of quasi-identifiers (e.g., age, gender, zip code), there must be at least 5 records with those same generalized values. This makes it harder for an attacker to re-identify individuals by linking the data with other sources.
 
-The typical application of *k*-anonymity is for microdata. Microdata refers to datasets where each row corresponds to a specific individual or unit of observation (like a person, a household, or a single transaction), and the columns correspond to different variables or attributes of that unit. The example table below is a form of microdata. For other data types, extensions have been developed:
-
-* **For Relational and transactional data**, which contains both standard quasi-identifiers and set-valued transactional attributes (e.g., a patient's diagnoses and the set of medications they take), standard *k*-anonymity is insufficient. An attacker could use the unique combination of transactions to re-identify individuals. The paper by [(Poulis, G., et al., 2013)](references.html#Poulis2013) addresses this by proposing a method that anonymizes both types of attributes simultaneously, ensuring that the combination of relational and transactional data meets a specified anonymity standard.
-* **For graph data** (e.g., social networks), anonymizing nodes is not enough, as an attacker can use structural information, like the number of connections (degree) a node has, to re-identify it. To address this, [(Liu, K., & Terzi, E. (2008))](references.html#Liu2008) proposed a *k*-degree anonymity model. The solution involves strategically adding or removing edges in the graph to ensure that for any node, there are at least *k*-1 other nodes with the same degree, thus preventing degree-based attacks.
+The typical application of *k*-anonymity is for microdata. Microdata refers to datasets where each row corresponds to a specific individual or unit of observation (like a person, a household, or a single transaction), and the columns correspond to different variables or attributes of that unit. The example table below is a form of microdata.
 
 ##### Example of 2-Anonymity in Healthcare
 
@@ -230,6 +227,11 @@ In this transformed table, the data is 2-anonymous. The records have been groupe
 2. The records with pseudonyms 62215 and 90872 form the equivalence class: {30-34, Male, 1003x}. This group has 2 members.
 
 Since the smallest equivalence class has 2 records, the dataset satisfies 2-anonymity. An attacker cannot distinguish any individual from at least one other person in the dataset, and the pseudonyms allow for internal record linkage without revealing real names.
+
+The typical K-Anonymity can only be used in microdata, for other data types, the extensions need to be considered:
+
+* **For Relational and transactional data**, which contains both standard quasi-identifiers and set-valued transactional attributes (e.g., a patient's diagnoses and the set of medications they take), standard *k*-anonymity is insufficient. An attacker could use the unique combination of transactions to re-identify individuals. The paper by [(Poulis, G., et al., 2013)](references.html#Poulis2013) addresses this by proposing a method that anonymizes both types of attributes simultaneously, ensuring that the combination of relational and transactional data meets a specified anonymity standard.
+* **For graph data** (e.g., social networks), anonymizing nodes is not enough, as an attacker can use structural information, like the number of connections (degree) a node has, to re-identify it. To address this, [(Liu, K., & Terzi, E. (2008))](references.html#Liu2008) proposed a *k*-degree anonymity model. The solution involves strategically adding or removing edges in the graph to ensure that for any node, there are at least *k*-1 other nodes with the same degree, thus preventing degree-based attacks.
 
 #### Differential Privacy
 
