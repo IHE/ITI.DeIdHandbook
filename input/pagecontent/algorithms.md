@@ -228,14 +228,16 @@ In this transformed table, the data is 2-anonymous. The records have been groupe
 
 Since the smallest equivalence class has 2 records, the dataset satisfies 2-anonymity. An attacker cannot distinguish any individual from at least one other person in the dataset, and the pseudonyms allow for internal record linkage without revealing real names.
 
-##### Limitations and Complementary Techniques
-
-While *k*-anonymity effectively prevents re-identification attacks, it does not protect against attribute disclosure attacks where an attacker can infer sensitive information without identifying specific individuals. To address these limitations, complementary privacy models such as *l*-diversity and *t*-closeness have been developed. *l*-diversity ensures that each equivalence class contains at least *l* distinct values for sensitive attributes, while *t*-closeness requires that the distribution of sensitive attributes within each equivalence class closely matches the overall dataset distribution. These techniques are discussed in detail in the [De-Identifying Sensitive Attributes](#de-identifying-sensitive-attributes) section.
-
 The typical K-Anonymity can only be used in microdata, for other data types, the extensions need to be considered:
 
 * **For Relational and transactional data**, which contains both standard quasi-identifiers and set-valued transactional attributes (e.g., a patient's diagnoses and the set of medications they take), standard *k*-anonymity is insufficient. An attacker could use the unique combination of transactions to re-identify individuals. The paper by [(Poulis, G., et al., 2013)](references.html#Poulis2013) addresses this by proposing a method that anonymizes both types of attributes simultaneously, ensuring that the combination of relational and transactional data meets a specified anonymity standard.
 * **For graph data** (e.g., social networks), anonymizing nodes is not enough, as an attacker can use structural information, like the number of connections (degree) a node has, to re-identify it. To address this, [(Liu, K., & Terzi, E. (2008))](references.html#Liu2008) proposed a *k*-degree anonymity model. The solution involves strategically adding or removing edges in the graph to ensure that for any node, there are at least *k*-1 other nodes with the same degree, thus preventing degree-based attacks.
+
+
+##### Limitations and Complementary Techniques
+
+While *k*-anonymity effectively prevents re-identification attacks, it does not protect against attribute disclosure attacks where an attacker can infer sensitive information without identifying specific individuals. To address these limitations, complementary privacy models such as *l*-diversity and *t*-closeness have been developed. *l*-diversity ensures that each equivalence class contains at least *l* distinct values for sensitive attributes, while *t*-closeness requires that the distribution of sensitive attributes within each equivalence class closely matches the overall dataset distribution. These techniques are discussed in detail in the [De-Identifying Sensitive Attributes](#de-identifying-sensitive-attributes) section.
+
 
 #### Differential Privacy
 
