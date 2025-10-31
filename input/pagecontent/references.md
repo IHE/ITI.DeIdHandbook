@@ -28,4 +28,7 @@
 1. <a name="NIH_BIO"></a>NHN Biosurveillance Test Scenarios. *NHN Testing Work Group document *Biosurveillance Test Case Scenarios*. 2008-10-03.xls* file, draft. 
 1. <a name="DRESDEN_ANONYMITY"></a>Dresden Anonymity. *A proposed vocabulary for pseudonymization and related concepts*. [Anonymity, Unlinkability, Undetectability, Unobservability, Pseudonymity, and Identity Management – A onsolidated Proposal for Terminology* (Version v0.31 Feb. 15, 2008)](http://dud.inf.tu-dresden.de/literatur/Anon_Terminology_v0.31.pdf)
 1. <a name="MIT_REID"></a>MIT Reidentification. *Shows that a large percentage of people can be re-identified with Date-of-Birth, Current ZIP Code, and Sex*. [Reidentification of Individuals in Chicago's Homicide Database A Technical and Legal Study](http://web.mit.edu/sem083/www/assignments/reidentification.html#_Toc354562093)
+1. <a name="IHE_RAD_TF_Vol1"></a>IHE International. (2025). IHE radiology technical framework, volume 1: Integration profiles (Rev. 23.0). https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol1.pdf
+1. <a name="OKeefe2017"></a> O'Keefe, C., Otorepec, S., Elliot, M., Mackey, E., & O'Hara, K. (2017). *The de-identification decision-making framework*. CSIRO Data61. https://doi.org/10.4225/08/59c169433efd4
+1. <a name="IPC2016"></a> Information and Privacy Commissioner of Ontario. (2016). De-identification guidelines for structured data. https://www.ipc.on.ca/sites/default/files/legacy/2016/08/Deidentification-Guidelines-for-Structured-Data.pdf
 
