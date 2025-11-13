@@ -147,6 +147,18 @@ Dates are a common quasi-identifier and must be handled carefully to prevent re-
 * **Coarsening:** The precision of the date is reduced. For example, a specific birth date (e.g., "1985-04-12") is replaced with just the year ("1985") or a broader range (e.g., "1985-1990").
 * **Converting to Age:** Dates can be converted into an age at the time of an event. This age can then be generalized (e.g., grouped into 5-year brackets) to further reduce risk.
 
+##### De-Identifying Time
+
+Time-of-day information in timestamps can be a quasi-identifier, particularly when combined with other attributes. However, the decision to de-identify time depends on the threat model and the adversary's access to auxiliary data. Common techniques include:
+
+* **Time Shifting:** All times for a specific individual are shifted by a random (but consistent) offset. This preserves the temporal intervals between events while obscuring the actual times. Time shifting is often applied in conjunction with date shifting to maintain consistency across the entire datetime value.
+* **Coarsening/Rounding:** The precision of time is reduced by rounding to broader time units. For example, "14:37:22" can be rounded to "14:00" (nearest hour) or "14:30" (nearest 30 minutes). This reduces granularity while retaining some temporal information.
+* **Binning:** Times are grouped into categorical periods such as "Morning" (6am-12pm), "Afternoon" (12pm-6pm), "Evening" (6pm-12am), or "Night" (12am-6am). This approach is useful when only general time patterns are needed for analysis.
+* **Removal:** The time component can be stripped entirely, retaining only the date. This is appropriate when precise timing is not required for the intended use case.
+* **Retention:** In many scenarios, time-of-day can be retained without modification if the threat model assumes that adversaries lack access to precise timing information in auxiliary datasets. This decision should be based on a risk assessment that considers what external data sources might contain timestamps and whether they could be linked to the de-identified dataset. Retaining time is often justified when temporal patterns are critical for analysis (e.g., medication timing, emergency department arrival patterns) and the re-identification risk from time alone is deemed acceptably low.
+
+The choice of technique should be guided by the specific use case, the sensitivity of the data, and an assessment of what timing information adversaries might realistically possess. When time is retained, this assumption should be explicitly documented as part of the de-identification risk assessment.
+
 ##### De-Identifying Geographical Locations and Geolocation Data
 
 Geographic data is highly identifying. Techniques for de-identifying it include:
