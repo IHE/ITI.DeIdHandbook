@@ -1,0 +1,98 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2">
+  <diagram name="Page-1" id="DmNn3R1rQyoYinCKob3h">
+    <mxGraphModel dx="920" dy="493" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-1" value="Data Export&lt;div&gt;Module&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="215" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-2" value="Pseudonymization&lt;div&gt;Service&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="265" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-15" value="Secure Transfer" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="315" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-16" value="Data Import&lt;div&gt;Module&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="385" y="370" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="d5JXJLdV3Z-HjTpF7kOQ-17" target="d5JXJLdV3Z-HjTpF7kOQ-18" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-20" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Submit pseudonymized data&lt;/font&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;with anonymization policy&lt;/font&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=left;verticalAlign=middle;resizable=0;points=[];" parent="d5JXJLdV3Z-HjTpF7kOQ-19" vertex="1" connectable="0">
+          <mxGeometry x="0.0753" y="1" relative="1" as="geometry">
+            <mxPoint x="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-17" value="Policy&lt;div&gt;Selector&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="465" y="370" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="d5JXJLdV3Z-HjTpF7kOQ-18" target="d5JXJLdV3Z-HjTpF7kOQ-21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-24" value="&lt;span style=&quot;font-size: 9px;&quot;&gt;Export anonymized FHIR data&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="d5JXJLdV3Z-HjTpF7kOQ-22" vertex="1" connectable="0">
+          <mxGeometry x="-0.0603" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-18" value="Anonymization&lt;div&gt;Service&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="465" y="265" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-21" value="Risk&lt;div&gt;Assessment&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="465" y="170" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-23" value="Data Export" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="545" y="170" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="d5JXJLdV3Z-HjTpF7kOQ-25" target="d5JXJLdV3Z-HjTpF7kOQ-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-25" value="FHIR Data (P)" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;fontSize=10;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="290" y="370" width="58" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.419;exitY=0.988;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="d5JXJLdV3Z-HjTpF7kOQ-15" target="d5JXJLdV3Z-HjTpF7kOQ-25" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-29" value="FHIR Data (A)" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;fontSize=10;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="670" y="170" width="58" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="d5JXJLdV3Z-HjTpF7kOQ-23" target="d5JXJLdV3Z-HjTpF7kOQ-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="d5JXJLdV3Z-HjTpF7kOQ-31" target="d5JXJLdV3Z-HjTpF7kOQ-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-31" value="FHIR Data (I)" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.multi-document;whiteSpace=wrap;fontSize=10;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="290" y="160" width="58" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-33" value="" style="line;strokeWidth=2;direction=south;html=1;" parent="1" vertex="1">
+          <mxGeometry x="361" y="110" width="10" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-34" value="Stage 1: Pseudonymization" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="90" y="110" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-35" value="Stage 2: Anonymization" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="460" y="110" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" parent="1" source="d5JXJLdV3Z-HjTpF7kOQ-36" target="d5JXJLdV3Z-HjTpF7kOQ-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-36" value="Pseudonymization Policy" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;fontSize=9;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="258" y="270" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" parent="1" source="d5JXJLdV3Z-HjTpF7kOQ-38" target="d5JXJLdV3Z-HjTpF7kOQ-18" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-38" value="Anonymization&lt;div&gt;Policy&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;fontSize=9;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="638" y="270" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-40" value="EHR System" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2" parent="1" vertex="1">
+          <mxGeometry x="80" y="180" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="d5JXJLdV3Z-HjTpF7kOQ-41" value="Research Data Center" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2" parent="1" vertex="1">
+          <mxGeometry x="465" y="140" width="160" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
