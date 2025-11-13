@@ -69,3 +69,148 @@ The Export Manager performs the anonymization after receiving the pseudonymized 
 
 5. Export anonymized DICOM to a portable media.
 After receiving the anoymization, the Receiver triggers the grouped Portable Media Creator to perform a task of exporting the anonymized DICOM data to a portable media. We asssume follows the Portable Data for Imaging Integration Profile (PDI) specified in [(IHE RAD TF Vol1)](references.html#IHE_RAD_TF_Vol1).
+
+### Marking De-identification Status in DICOM
+
+According to the DICOM standard, when de-identification has been performed, specific attributes must be added or modified to indicate that patient identity has been removed and to document the de-identification method used.
+
+**Required Attributes for De-identified DICOM Data:**
+
+The Attribute Patient Identity Removed (0012,0062) shall be replaced or added to the Data Set with a value of YES. Additionally, one or more codes from CID 7050 "De-identification Method" corresponding to the Profile and Options used shall be added to De-identification Method Code Sequence (0012,0064), and/or a text string describing the method used shall be inserted in or added to De-identification Method (0012,0063).
+
+| Attribute Name | Tag | VR | Description |
+|----------------|-----|-----|-------------|
+| Patient Identity Removed | (0012,0062) | CS | Indicates that the patient's identity has been removed. Value shall be YES |
+| De-identification Method | (0012,0063) | LO | Free-text description of the de-identification method used |
+| De-identification Method Code Sequence | (0012,0064) | SQ | Coded values from CID 7050 "De-identification Method" |
+{:.grid}
+
+**DICOM CID 7050 De-identification Method Codes (Subset):**
+
+| Code Value | Code Meaning | Description |
+|------------|--------------|-------------|
+| 113100 | Basic Application Confidentiality Profile | Basic profile from DICOM PS3.15 Annex E |
+| 113101 | Clean Pixel Data Option | Pixel data has been cleaned of burnt-in annotations |
+| 113102 | Clean Recognizable Visual Features Option | Facial features and other recognizable features removed |
+| 113103 | Clean Graphics Option | Graphics overlays removed |
+| 113104 | Clean Structured Content Option | Structured content cleaned |
+| 113105 | Clean Descriptors Option | Descriptive text cleaned |
+| 113106 | Retain Longitudinal Temporal Information Full Dates Option | Original dates retained |
+| 113107 | Retain Longitudinal Temporal Information Modified Dates Option | Dates modified but temporal relationships preserved |
+| 113108 | Retain Patient Characteristics Option | Patient demographic characteristics retained |
+| 113109 | Retain Device Identity Option | Device identity retained |
+| 113110 | Retain UIDs Option | UIDs retained |
+| 113111 | Retain Safe Private Option | Safe private attributes retained |
+{:.grid}
+
+### Example: DICOM Attribute De-identification
+
+The following examples show key DICOM attributes at each stage of the de-identification process.
+
+**Before De-identification (Identified Data):**
+
+```
+(0008,0018) SOP Instance UID: 1.2.840.113619.2.55.3.123456789.987654321
+(0010,0010) Patient's Name: Smith^John^Robert
+(0010,0020) Patient ID: MRN123456
+(0010,0030) Patient's Birth Date: 19850315
+(0010,0040) Patient's Sex: M
+(0010,1010) Patient's Age: 038Y
+(0010,1040) Patient's Address: 123 Main Street, Springfield, IL 62701
+(0010,2154) Patient's Telephone Numbers: +1-555-123-4567
+(0020,000D) Study Instance UID: 1.2.840.113619.2.55.3.123456789.111111111
+(0020,000E) Series Instance UID: 1.2.840.113619.2.55.3.123456789.222222222
+(0032,1032) Requesting Physician: Jones^Mary^A
+(0008,0090) Referring Physician's Name: Brown^David^L
+(0008,1030) Study Description: CT Chest with Contrast
+(0008,103E) Series Description: Axial Images
+```
+
+**After Stage 1 (Pseudonymized Data):**
+
+```
+(0012,0062) Patient Identity Removed: YES
+(0012,0063) De-identification Method: Stage 1 Pseudonymization - Direct identifiers replaced
+(0012,0064) De-identification Method Code Sequence:
+  >Item 1:
+    (0008,0100) Code Value: 113111
+    (0008,0102) Coding Scheme Designator: DCM
+    (0008,0104) Code Meaning: Retain Safe Private Option
+  >Item 2:
+    (0008,0100) Code Value: 113108
+    (0008,0102) Coding Scheme Designator: DCM
+    (0008,0104) Code Meaning: Retain Patient Characteristics Option
+
+(0008,0018) SOP Instance UID: 2.25.123456789012345678901234567890123456
+(0010,0010) Patient's Name: [REMOVED]
+(0010,0020) Patient ID: STUDY-PSEUDO-12345
+(0010,0030) Patient's Birth Date: 19850315
+(0010,0040) Patient's Sex: M
+(0010,1010) Patient's Age: 038Y
+(0010,1040) Patient's Address: [REMOVED]
+(0010,2154) Patient's Telephone Numbers: [REMOVED]
+(0020,000D) Study Instance UID: 2.25.234567890123456789012345678901234567
+(0020,000E) Series Instance UID: 2.25.345678901234567890123456789012345678
+(0032,1032) Requesting Physician: [REMOVED]
+(0008,0090) Referring Physician's Name: [REMOVED]
+(0008,1030) Study Description: CT Chest with Contrast
+(0008,103E) Series Description: Axial Images
+```
+
+**After Stage 2 (Anonymized Data):**
+
+```
+(0012,0062) Patient Identity Removed: YES
+(0012,0063) De-identification Method: Stage 2 Anonymization - Basic Profile with Patient Characteristics and Modified Dates Options
+(0012,0064) De-identification Method Code Sequence:
+  >Item 1:
+    (0008,0100) Code Value: 113100
+    (0008,0102) Coding Scheme Designator: DCM
+    (0008,0104) Code Meaning: Basic Application Confidentiality Profile
+  >Item 2:
+    (0008,0100) Code Value: 113108
+    (0008,0102) Coding Scheme Designator: DCM
+    (0008,0104) Code Meaning: Retain Patient Characteristics Option
+  >Item 3:
+    (0008,0100) Code Value: 113107
+    (0008,0102) Coding Scheme Designator: DCM
+    (0008,0104) Code Meaning: Retain Longitudinal Temporal Information Modified Dates Option
+
+(0008,0018) SOP Instance UID: 2.25.123456789012345678901234567890123456
+(0010,0010) Patient's Name: [REMOVED]
+(0010,0020) Patient ID: STUDY-PSEUDO-12345
+(0010,0030) Patient's Birth Date: 1985
+(0010,0040) Patient's Sex: M
+(0010,1010) Patient's Age: 035Y-039Y
+(0010,1040) Patient's Address: [REMOVED]
+(0010,2154) Patient's Telephone Numbers: [REMOVED]
+(0020,000D) Study Instance UID: 2.25.234567890123456789012345678901234567
+(0020,000E) Series Instance UID: 2.25.345678901234567890123456789012345678
+(0032,1032) Requesting Physician: [REMOVED]
+(0008,0090) Referring Physician's Name: [REMOVED]
+(0008,1030) Study Description: CT Chest
+(0008,103E) Series Description: Axial Images
+```
+
+**Key De-identification Actions Applied:**
+
+**Stage 1 (Pseudonymization):**
+- Patient's Name (0010,0010): Removed
+- Patient ID (0010,0020): Replaced with study-specific pseudonym
+- Patient's Address (0010,1040): Removed
+- Patient's Telephone Numbers (0010,2154): Removed
+- UIDs (0008,0018, 0020,000D, 0020,000E): Replaced with new pseudonymous UIDs
+- Physician Names (0032,1032, 0008,0090): Removed
+- Patient's Birth Date, Sex, Age: Retained for Stage 2 processing
+- Patient Identity Removed (0012,0062): Set to YES
+- De-identification Method Code Sequence (0012,0064): Added with codes 113111 and 113108
+
+**Stage 2 (Anonymization):**
+- Patient's Birth Date (0010,0030): Generalized to year only
+- Patient's Age (0010,1010): Generalized to 5-year range
+- Study Description (0008,1030): Generalized (removed "with Contrast")
+- Patient Identity Removed (0012,0062): Remains YES
+- De-identification Method (0012,0063): Updated with Stage 2 description
+- De-identification Method Code Sequence (0012,0064): Updated with codes 113100, 113108, and 113107
+
+These attributes provide transparency about the de-identification process and help data recipients understand what transformations have been applied to the dataset. The codes from CID 7050 allow for standardized, machine-readable documentation of the specific de-identification profile and options used.
