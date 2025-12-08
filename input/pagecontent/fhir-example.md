@@ -1,5 +1,24 @@
 ### HL7 FHIR IPS data for secondary use
 
+#### Regulatory Context: EHDS 2 Secondary Use Framework
+
+The European Health Data Space (EHDS) Regulation (EU) 2025/327 establishes a comprehensive framework for the secondary use of electronic health data across the European Union. Articles 53 and 54 define the permitted and prohibited purposes for secondary use of health data, including IPS FHIR and mortality data:
+
+**Permitted Purposes (Article 53):**
+- Improving the delivery of healthcare and treatment optimization
+- Public health and occupational health surveillance, disease control, and policy-making
+- Scientific research contributing to public health or health technology assessment with the aim of benefitting end users
+- Education and professional training in healthcare
+
+**Prohibited Purposes (Article 54):**
+- Taking decisions detrimental to natural persons based on their electronic health data
+- Developing products or services that may harm individuals, public health, or society (e.g., illicit drugs, weapons, addictive products)
+- Carrying out activities in conflict with ethical provisions laid down in national law
+
+The de-identification and data minimization techniques demonstrated in this use case ensure that FHIR IPS and mortality data can be safely used for **permitted secondary uses** (specifically, scientific research for public health purposes) while protecting individual privacy through pseudonymization and anonymization in compliance with EHDS regulations and GDPR requirements.
+
+#### HL7 FHIR and IPS Overview
+
 HL7 FHIR (Fast Healthcare Interoperability Resources) is a modern standard for exchanging healthcare information electronically. FHIR uses RESTful APIs and represents healthcare data as modular "resources" such as Patient, Observation, Condition, and MedicationStatement. The International Patient Summary (IPS) is a FHIR-based standard for sharing essential health information across care settings. In secondary use, FHIR IPS data is repurposed beyond direct patient care for research, public health surveillance, quality improvement, and analytics. This involves extracting and de-identifying data while preserving its utility for analysis. Secondary use of FHIR IPS data enables large-scale studies, population health management, and the development of clinical decision support tools, while ensuring compliance with privacy regulations like HIPAA and GDPR.
 
 FHIR provides several mechanisms to support de-identification:
