@@ -1,145 +1,100 @@
 
-This section, the IHE IT Infrastructure (ITI) Analysis of Optimal
-De-Identification Algorithms for Family Planning Data Elements White
-Paper, describes the analysis performed by the ITI Technical Committee
-when selecting the optimal de-identification algorithms to fulfill the
-De-Identification for Family Planning use case published in the IHE
-Quality, Research, and Public Health (QRPH) Family Planning Trial
-Implementation Supplement, Volume 4.
+This section, the IHE IT Infrastructure (ITI) Analysis of Optimal De-Identification for Family Planning Data Elements, demonstrates the application of the IHE De-Identification Handbook's systematic process framework. It describes the comprehensive de-identification analysis performed by the ITI Technical Committee for the Family Planning Annual Report (FPAR) use case published in the IHE Quality, Research, and Public Health (QRPH) Family Planning Trial Implementation Supplement, Volume 4.
 
-### Purpose of the De-Identification Algorithms for Family Planning Data Elements White Paper
+### Purpose and Overview
 
-This white paper is intended to describe the rationale for the selection
-of the de-identification algorithms for each IHE QRPH Family Planning
-data element. The Family Planning Annual Report (FPAR) de-identification
-analysis was conducted balancing two conflicting perspectives:
+This document serves as a practical demonstration of the de-identification process framework detailed in the [De-Identification Process](process.html) chapter. It follows the systematic, multi-stage approach that balances privacy protection with data utility for public health reporting.
 
--   The clinical subject matter expert whose tendency will be to want to
-    keep as many data elements as possible at as high a level of
-    fidelity as possible; and
+The FPAR de-identification analysis demonstrates:
 
--   The security and privacy subject matter expert whose goal it is to
-    apply the most restrictive algorithm possible to safeguard the
-    overall data set as much as possible.
+1.  **Context Analysis**: Clearly defining the data collection purpose, recipients, and data flow within the Title X family planning service network
+2.  **Data Assessment**: Comprehensive evaluation of data content, including attribute classification using the updated [Data Types](data-types.html) framework (Direct Identifiers, Quasi-Identifiers, Sensitive Attributes)
+3.  **Goal Determination**: Establishing specific de-identification objectives that balance clinical and privacy perspectives
+4.  **Risk Assessment**: Both qualitative and quantitative evaluation of re-identification risks
+5.  **Risk Mitigation Design**: Multi-stage de-identification architecture with element-by-element algorithm selection using techniques from the [Algorithms](algorithms.html) chapter
+6.  **Implementation and Validation**: Process validation and governance framework
+7.  **Identifiability Transitions**: Demonstrating the transformation from Identified Data through Reversible-Pseudonymized Data to achieve the target identifiability level as defined in [Concepts](concepts.html#Identifiability)
 
-To do this, we:
-
-1.  Identified whether each data element is a direct identifier,
-    indirect identifier, or simply data that does not need to be
-    de-identified
-
-2.  Discussed the purpose and need for each data element
-
-3.  Asked a subset of the following questions from the De-Identification
-    spreadsheet for each of the data elements:
-
--   Can it be deleted?
-
--   Can it be left in with no value?
-
--   Can it contain a substitute value as a random number? (Fixed length
-    or original length?)
-
--   Can the attribute name or value be substituted?
-
--   Can the value be substituted for a different but meaningful value?
-
--   Can the value be substituted for a different but meaningless value?
-
--   Can the value be kept in escrow or provided by a third party and
-    therefore segregated from the main data set?
-
--   Can the value be pseudonymized?
-
--   Can the value be made fuzzier by using a numeric or statistical
-    algorithm?
-
--   Can the value be made fuzzier by using a random code set?
-
--   Can the date/time be collapsed?
-
--   Can the days be generalized to weekly values?
-
--   Can the date of birth (DOB) be generalized to age?
-
--   Can the value be generalized by statistical adjustment?
-
--   Can the time of day be generalized to a specialized time of day?
-
--   Can the day be generalized to a date of the week? (Weekend vs
-    weekday)?
-
--   Can the value be shifted by a random offset?
-
--   Can the value be moved to a day of the week/month?
-
--   Can the day, month or year be removed?
-
--   Can the value be truncated?
-
--   Can the value be substituted by a code?
-
--   Can it be generalized to a geographical location?
-
--   If/when date and time is generalized, must longitudinal consistency
-    be maintained?
-
--   When geographical locations are generalized, must longitudinal
-    consistency be maintained?
-
--   When the value we are trying to mask is substituted by a code, must
-    longitudinal consistency be maintained?
-
--   When precision is removed, must longitudinal consistency be
-    maintained?
-
--   When outliers for values that usually lie in a specific range are
-    substituted with floor/ceiling values, must longitudinal consistency
-    be maintained?
-
--   Can the value be replaced by a pseudorandom value that is
-    recoverable?
-
--   Can the value be replaced by a sequential value that is recoverable?
-
--   Can the value be manually edited to be less identifiable?
-
-4.  After the first pass through each data element was completed, and a
-    preliminary de-identification method selected, the entire set of
-    de-identification algorithms was reviewed as a whole to evaluate
-    both their effectiveness at reducing risk, as well as identifying if
-    any of the de-identification algorithms went too far and negatively
-    impacted the performance measures for which the data is needed.
-    These secondary passes through the data set and additional
-    fine-tuning of algorithms are documented as “usability” and “threat”
-    analyses later in this document.
+The detailed design questions that guide algorithm selection are organized by attribute type in the **Project and Data Details** subsection under **De-identification Goals**.
 
 ## Intended Audience
 
-There are two intended audiences for the De-Identification for Family
-Planning supplement and whitepaper:
+This implementation guide serves three primary audiences:
 
-1.  Developers who will implement the de-identification algorithms into
-    their software. This audience should start with the IHE QRPH
-    De-Identification for Family Planning supplement, and only refer to
-    this whitepaper for background information where needed.
+1.  **Software Developers and Implementers**: Those who will implement the de-identification algorithms into their software systems. This audience should use the IHE QRPH De-Identification for Family Planning supplement for technical specifications, referring to this document for the rationale behind design decisions. Familiarity with the [Algorithms](algorithms.html) chapter is recommended.
 
-2.  Clinicians, researchers, data analysts, and others who seek to
-    understand how and why the selected de-identification algorithms
-    were chosen for each data element. This whitepaper is targeted at
-    this audience.
+2.  **Privacy and Security Professionals**: Those responsible for designing, validating, and governing de-identification processes. This document demonstrates the application of the systematic [Process](process.html) framework, including context analysis, risk assessment, and mitigation design. It serves as a template for other de-identification projects.
 
-## De-Identification goals for Family Planning Data Elements
+3.  **Clinicians, Researchers, and Data Analysts**: Those who seek to understand how and why specific de-identification algorithms were selected for each data element, and how the resulting dataset maintains utility for public health reporting while protecting patient privacy. This audience will benefit from understanding the [Data Types](data-types.html) classification and the [Concepts](concepts.html#Identifiability) of identifiability levels.
 
-This section contains a high-level analysis of the data elements
-described in the QRPH Family Planning Profile Volume 1 Appendix B.
+## Context Analysis
 
-### Problem Description
+This section analyzes the environment in which Family Planning data is collected, processed, and shared, following the framework established in the [Process](process.html) chapter.
 
-The De-Identification process involves consuming the original Family
-Planning CDA documents as inputs, and creating a new, De-Identified for
-Family Planning Comma Separated Value (CSV) file where each row in the
-CSV file corresponds to a de-Identified Family Planning CDA document.
+### Purpose of Data Collection
+
+The intended use of the de-identified data determines the extent of de-identification and acceptable risk levels. The primary purpose for collecting Family Planning data is:
+
+**Primary Purpose**: To support the U.S. Office of Population Affairs (OPA) Title X Family Planning Annual Reports (FPAR) for:
+-   Program planning and budgeting at federal and grantee levels
+-   Basic monitoring of program performance and adherence to funded project scope
+-   Clinical quality improvement initiatives
+-   Ensuring clients receive access to a broad range of family planning services and methods
+-   Verifying services are delivered to intended populations
+-   Budget justification to Congress for family planning service funding
+-   Allocation of funding to address unmet needs in specific geographic areas
+
+**Scope Constraints**: The de-identified dataset is specifically designed for public health reporting and program evaluation. It is *not* intended to support:
+-   General-purpose research requiring high-fidelity individual-level data
+-   Clinical treatment or patient care (data has already been used for that purpose)
+-   Re-identification for adverse event notification (not applicable to this non-interventional use case)
+
+### Data Recipients
+
+The de-identified FPAR data will be accessed by the following categories of recipients:
+
+**Organizational Recipients**:
+-   OPA headquarters staff (federal employees)
+-   Title X grantees (approximately 89 organizations)
+-   Sub-recipient agencies under Title X grantees
+-   Service sites within the Title X network (approximately 4,100 sites)
+
+**Recipient Profiles**:
+-   Public health professionals and program managers responsible for Title X program oversight
+-   Data analysts conducting performance measurement and quality improvement
+-   Grant administrators monitoring compliance and resource allocation
+
+**Relationship to Data Custodian**: The data flows from service sites to sub-recipients to grantees to OPA, creating a hierarchical reporting structure. All recipients operate under Title X grant agreements with confidentiality obligations.
+
+**Background Knowledge Assessment**: Recipients have varying levels of background knowledge:
+-   High knowledge: Service site staff may know individual patients in their local community
+-   Medium knowledge: Grantee-level staff may have regional demographic knowledge
+-   Lower knowledge: OPA headquarters staff have limited local community knowledge
+-   External risk: With potential access numbering in the thousands, the risk posture requires treating this as a controlled-public sharing model rather than fully internal use
+
+### Data Flow
+
+The de-identification architecture for Family Planning data follows a centralized model to ensure consistency and apply specialized expertise:
+
+**Original Data Source**: Family Planning CDA documents generated at approximately 4,100 service sites that provide family planning and related preventive health services
+
+**De-identification Architecture**: Based on public comment feedback, a single, centralized de-identification intermediary was selected over multiple distributed de-identification points. This decision was driven by:
+-   Need for consistent pseudonymization across all sources
+-   Requirement for specialized expertise in privacy-preserving transformations
+-   Maintaining accuracy and longitudinal consistency
+-   Centralized application of risk assessment methodologies
+
+**Data Transformation Process**: The de-identification process transforms Family Planning CDA documents (identified data) into de-identified CSV format suitable for FPAR reporting:
+
+1.  **Input**: Family Planning CDA documents from 4,100 service sites (Identified Data per [Concepts](concepts.html#Identifiability))
+2.  **Stage 1 - Preliminary De-identification**: At source or early in pipeline, basic transformations remove direct identifiers and apply reversible pseudonymization
+3.  **Stage 2 - Advanced De-identification**: Centralized intermediary applies:
+    -   Irreversible pseudonymization for patient identifiers
+    -   Generalization for quasi-identifiers (dates, geographic data)
+    -   Suppression for unnecessary direct identifiers
+    -   Risk assessment and validation
+4.  **Output**: De-identified CSV file where each row represents a de-identified Family Planning visit
+5.  **Distribution**: To OPA and authorized Title X network recipients
 
 <figure>
 <img src="fp-image2.png"
@@ -148,46 +103,154 @@ style="width:6.50694in;height:2.85347in" />
 </figure>
 <br>
 
-The data elements must persist in some manner after de-identification
-algorithms have been applied for the purposes of health services
-research (e.g., performance measurement in family planning). The data
-collected may be used for program planning and budgeting, basic
-monitoring of program performance and adherence to the scope of a funded
-project, clinical quality improvement initiatives, to determine whether
-clients are receiving access to a broad range of family planning
-services and methods, and whether services are being delivered to the
-intended populations.
+**Data Flow Diagram**: The complete data flow in the Title X FPAR use case is illustrated in the figure below, showing the movement of Family Planning CDA documents from service sites through the de-identification intermediary to final recipients.
 
-In order to focus discussions, we have selected the U.S. Office of
-Population Affairs (OPA) Title X Family Planning Annual Reports
-(FPAR)[^3] use case as our example.
+<figure>
+<img src="fp-flow.png"
+style="width:6.50694in;height:2.85347in" />
+<figcaption><strong>Figure: Data Flows in the Title X Family Planning Annual Report Use Case</strong></figcaption>
+</figure>
+<br>
 
-### Definitions
+**Important Note**: All data flows indicate submission of Family Planning CDA documents only. Other document types that may be submitted by the same participants through similar workflows are out of scope for this analysis.
 
-Anonymization: A process that is intended to irreversibly remove the
-association between a subject and information that can identify the
-subject. If the process is intended to be reversible and a new
-identifier is substituted for the subject’s real identifiers, then the
-process is called pseudonymization
+### Regulatory and Policy Context
 
-De-Identification: Any process that removes the association between a
-subject’s identity and the subject’s data elements. Anonymization and
-pseudonymization are types of de-identification.
+**Applicable Regulations**:
+-   HIPAA Privacy Rule (45 CFR Part 160 and Subparts A and E of Part 164)
+-   Title X of the Public Health Service Act
+-   Federal grant requirements for OPA Title X program
 
-PHIN VADS: Public Health Information Network Vocabulary Access and
-Distribution System (PHIN VADS) from CDC
-<https://phinvads.cdc.gov/vads/SearchVocab.action>. Public resource to
-document standard code sets like race, health insurance.
+**Data Sensitivity**: Family Planning data involves sensitive reproductive health information requiring enhanced privacy protection for a potentially vulnerable patient population.
 
-Pseudonymization: A particular type of anonymization that removes the
-association between data and a subject and introduces a new identifier
-that establishes a bidirectional-mapping between that subject and the
-new identifier. Pronunciation guide: “soo-DON-imm-ization”, rhymes with
-optimization
+## Data Assessment
 
-### Conventions
+This section provides a comprehensive evaluation of the Family Planning data following the assessment framework in the [Process](process.html) chapter.
 
-This section intentionally left blank.
+### Data Subject Characteristics
+
+**Population**: Individuals receiving family planning services at Title X-funded clinics
+
+**Key Characteristics**:
+-   **Age Range**: Predominantly reproductive age (15-44 years), including adolescents and older individuals
+-   **Geographic Distribution**: Nationwide across U.S. states and territories, concentrated in underserved areas
+-   **Gender**: Predominantly female patients, with male patients also served
+-   **Socioeconomic Status**: Primarily low-income (Title X targets ≤250% federal poverty level)
+-   **Vulnerable Population Status**: Enhanced re-identification risks due to potential social stigma, concentrated service delivery, and overlapping demographic characteristics
+
+### Data Type and Content
+
+**Structured Data** (Primary format): Family Planning CDA documents containing:
+-   Demographics: age, gender, race, ethnicity, language
+-   Socioeconomic: income, health insurance status
+-   Clinical: pregnancy history, services provided
+-   Identifiers: patient, provider, facility IDs
+-   Temporal: dates of birth, visit dates
+-   Geographic: ZIP codes, facility locations
+
+**Free Text**: Limited presence; requires NLP-based identifier scrubbing
+
+**Format**: CDA/XML requiring XML parsing capabilities for de-identification processing
+
+### Data Attribute Classification
+
+Following the [Data Types](data-types.html) framework:
+
+**Direct Identifiers**: Patient Name (excluded from FPAR), Facility Name (transformed to ID), Provider Name (transformed to ID)
+
+**Quasi-Identifiers**: Date of Birth/Age, Visit Date, Sex, Race, Ethnicity, ZIP Code, Language, Pregnancy History, Income, Insurance Status
+
+**Sensitive Attributes**: Services Received, Clinical Procedures, Pregnancy Outcomes, STI Test Results
+
+### Dataset Properties
+
+-   **Currency**: Operational data; annual FPAR compilation
+-   **Scale**: ~3.9 million patients annually from 4,100 service sites
+-   **Quality**: High-quality structured data with standard terminologies (SNOMED CT, LOINC, ICD, CDC PHIN VADS)
+-   **Longitudinal Characteristic**: Multiple visits per patient increase re-identification risk
+
+### Attack Modeling
+
+**Sharing Model**: Controlled Public Sharing (Data Use Agreement)
+-   Accessible to thousands of authorized Title X participants
+-   Federal grant agreements prohibit re-identification
+-   Risk level: Moderate-to-high protection required
+
+**Attack Types**: Identity attacks (journalist risk), attribute attacks on small groups, membership attacks
+
+**Privacy Model**: k-anonymity (provides measurable, interpretable guarantees for quasi-identifier linkage attacks)
+
+### Terminology Reference
+
+This analysis uses core terminology defined in the [Concepts](concepts.html) chapter, including de-identification, pseudonymization, anonymization, and identifiability levels. For complete definitions, refer to that chapter.
+
+**Domain-Specific Terms**:
+
+-   **PHIN VADS**: Public Health Information Network Vocabulary Access and Distribution System from CDC (<https://phinvads.cdc.gov/vads/SearchVocab.action>) - standard code sets for demographics
+-   **FPAR**: Family Planning Annual Report required for Title X program
+-   **Title X**: Federal grant program (Public Health Service Act) for family planning services
+## De-identification Goals
+
+This section establishes specific objectives for the FPAR de-identification process per the [Process](process.html) framework, balancing privacy protection with data utility.
+
+### General Goals
+
+1.  **Prevent Identification**: Remove/transform direct identifiers; reduce combinability of quasi-identifiers
+2.  **Control Risk**: Achieve acceptable residual risk for controlled-public sharing
+3.  **Preserve Utility**: Maintain fidelity for FPAR reporting, performance measurement, trend analysis, and geographic analysis
+
+### Specific FPAR Goals
+
+**Scope**: U.S. Title X context; reporting purpose only (NOT general research); protects vulnerable reproductive health patients
+
+**Entity De-identification**: Patients (primary), facilities and providers (secondary, to prevent indirect identification)
+
+**Data Fidelity**: Maintain aggregate accuracy, preserve longitudinal relationships, support geographic analysis
+
+**Identifiability Target**: **Irreversibly Pseudonymized Data** ([Concepts](concepts.html#Identifiability)) - stronger than reversible pseudonymization, practical for longitudinal utility
+
+**Risk Threshold**: Average re-identification risk ≤ 0.05 (5%); k-anonymity with k ≥ 20 as working target
+
+**Rationale**: Non-public controlled sharing + medium-high attack possibility + medium-high impact (sensitive data, vulnerable population) = conservative threshold needed
+
+### Project and Data Details (attribute-specific design questions)
+
+To select algorithms per element, the following questions are applied by attribute type:
+
+**Direct Identifiers (DI)**
+-   Can it be deleted entirely?
+-   If retained, can it be pseudonymized (reversible or irreversible)?
+
+**Categorical Quasi-Identifiers (QI)** (e.g., race, ethnicity, language, insurance)
+-   Can the value be generalized or grouped (e.g., broader categories)?
+-   Can rare categories be suppressed or recoded?
+-   Is code substitution acceptable (meaningful vs. meaningless)?
+
+**Numerical Quasi-Identifiers (QI)** (e.g., income, counts)
+-   Can the value be truncated, rounded, top/bottom coded, or statistically adjusted?
+-   Can outliers be replaced with floor/ceiling values?
+
+**Temporal Quasi-Identifiers** (e.g., DOB, visit date, time of day)
+-   Can dates be collapsed (e.g., to month/year) or shifted by random offset?
+-   Can time of day be generalized (e.g., weekend/weekday)?
+-   Must longitudinal consistency be maintained after transformation?
+
+**Geographic Quasi-Identifiers** (e.g., ZIP, facility location)
+-   Can geography be generalized (e.g., 3-digit ZIP, county/region)?
+-   Must longitudinal/geographic consistency be maintained across records?
+
+**Free Text / Sensitive Attributes**
+-   Can free text be removed or NLP-scrubbed? Can attributes be made fuzzier (noise/random code set)?
+-   Can values be substituted with pseudorandom or sequential recoverable values when utility requires?
+
+**Iterative Review**
+-   After initial selections, perform holistic review to ensure transformations reduce risk without over-suppressing utility; document usability and threat analyses.
+
+### Balancing Clinical and Privacy Perspectives
+
+**Clinical/Public Health**: Maintain FPAR performance measures, analytical utility for program evaluation
+
+**Privacy/Security**: Protect vulnerable patients, minimize combinable quasi-identifiers, account for thousands of potential recipients
 
 ### Use Cases 
 
@@ -277,70 +340,59 @@ style="width:6.50694in;height:2.85347in" />
 </figure>
 <br>
 
-### De-Identification Methods
+## Risk Assessment and Mitigation Design
 
-De-identification, anonymization, and pseudonymization are processes
-that reduce the probability of data being associated with a specific
-individual.
+### Qualitative Risk Evaluation
 
-Anonymization and pseudonymization are the two types of
-de-identification. Anonymization is used for one-way de-identification
-for situations where there is no requirement to identify the patient
-based on these records. Pseudonymization is a type of de-identification
-that can be reversed, and is used when there is a requirement to be able
-to identify the patient based on these records at a later date.
-Re-identification may require contacting third parties to perform this
-task.
+Following the [Process](process.html) framework qualitative assessment:
 
-De-identification is also used to reduce risks such as bias in clinical
-studies or clinical reviews. De-identification is not often thought of
-in the context of treatment because you usually must associate the
-patient with his/her data in order to treat the patient. Some healthcare
-services, such as HIV testing, are delivered anonymously or
-pseudonymously. De-identification is more often an essential tool for
-secondary uses of data such as clinical trials and analytics.
+**Initial State**: Family Planning CDA documents contain direct identifiers → **Identified Data**
 
-De-identification removes data that are not strictly required for the
-intended purpose of those data.
+**After Preliminary Transformations**: Direct identifiers pseudonymized; quasi-identifiers remain → **Quantitative evaluation required**
 
--   Anonymization disassociates all identifiers from the data;
+### Risk Mitigation Strategy
 
--   Pseudonymization uses controlled replacements to allow longitudinal
-    linking and authorized re-identification. An example of
-    pseudonymization is the use of an alias when that person is admitted
-    to a hospital.
+Using k-anonymity model (target: k ≥ 20, average risk ≤ 0.05):
 
-Clinical trials usually employ pseudonymization. Clinical trial
-processes remove identifying information, such as the patients’
-demographics, that are not required. Where attributes about the patient
-must be preserved, different methods are used to obscure the real
-identity while maintaining the needed information. For example, most
-clinical trials replace the original patient ID and record numbers with
-a clinical trial ID and a subject ID. Only the clinical trial manager
-knows both numbers. A reviewer that needs to inform a patient about a
-finding must contact the clinical trial manager. Only the trial manager
-can determine the actual patient hospital and patient ID from the
-clinical trial ID and subject ID.
+**Data Risk**: Calculated from equivalence class sizes after generalization
 
-De-identification lowers, but does not eliminate, the risk of
-re-identification. The mapping table relating facility ID to provider ID
-and patient ID must be well protected to preserve privacy. A poor choice
-of pseudonymous ID, such as a hash of patient name, enables easy
-re-identification.
+**Context Risk**: Estimated 0.3-0.5 for controlled-public sharing
 
-A teaching file is an example of an anonymization scrubbing process.
-Teaching files, such as radiological images illustrating a specific
-patient condition, are manually reviewed, file-by-file, field-by-field,
-to determine which fields are needed for the intended instructional
-purpose, and to determine if the field (or fields) could be used to
-re-identify the subject of the images. Often textual descriptions of the
-patient condition are rewritten to retain the useful meaning, because
-narrative text is often critical to the purpose of instruction. There is
-no requirement to be able to identify the patient later, so all traces
-of the patient should be removed and the data made fully anonymous.
+**Overall Risk**: R = R_d × R_c must stay below 0.05 threshold
 
-Maintenance and repair logs for equipment and software are a frequent
-patient disclosure risk where anonymization is very appropriate.
+### Multi-Stage De-identification Architecture
+
+**Two-stage centralized model** per [Process](process.html):
+
+**Stage 1 (Preliminary)**: At source - suppress direct identifiers, basic pseudonymization → Reversible-Pseudonymized Data
+
+**Stage 2 (Advanced - Central Intermediary)**: 
+-   Irreversible pseudonymization (SHA-512 hash with salt)
+-   Generalization of quasi-identifiers
+-   k-anonymity validation
+-   Output: Irreversibly Pseudonymized CSV
+
+**Rationale**: 4,100 service sites lack privacy expertise; centralized approach ensures consistency and applies sophisticated risk analysis
+
+### De-identification Techniques Applied
+
+Per [Algorithms](algorithms.html):
+
+**Suppression**: Remove patient/provider names (masking)
+
+**Pseudonymization**: Irreversible cryptographic hashing for patient IDs  
+
+**Generalization**: Age bands, date truncation, ZIP code truncation, categorical grouping
+
+**Statistical Analysis**: k-anonymity to identify/suppress small equivalence classes
+
+### Design Considerations
+
+**Semantic Compliance**: Use standard terminologies; avoid facility-specific codes
+
+**Longitudinal Consistency**: Pseudonymized IDs enable repeat visit linkage while preventing external linkage
+
+**Linkage Attack Protection**: Generalized dates/ages/geography prevent matching with public records
 
 ### Data Models 
 
@@ -570,13 +622,40 @@ inches.</p>
 </tbody>
 </table>
 
-### De-Identification algorithm analysis
+## Element-by-Element De-identification Analysis
+
+This section provides detailed rationale for the de-identification algorithm selected for each Family Planning data element, demonstrating the practical application of the systematic framework established in previous sections.
+
+### Analysis Methodology
+
+Each element analysis follows a structured approach integrating concepts from the updated handbook:
+
+1.  **Data Type Classification**: Classifying the element per the [Data Types](data-types.html) framework (Direct Identifier, Quasi-Identifier, Sensitive Attribute, or Non-Identifier)
+
+2.  **Utility Assessment**: Evaluating the element's necessity for FPAR reporting and performance measurement (per De-identification Goals)
+
+3.  **Algorithm Selection**: Choosing appropriate techniques from the [Algorithms](algorithms.html) catalog:
+    -   Suppression techniques (masking, local suppression)
+    -   Pseudonymization techniques (irreversible hashing)
+    -   Generalization techniques (rounding, top/bottom coding, truncation)
+
+4.  **Longitudinal Consistency**: Determining if consistent values across multiple visits are required
+
+5.  **Risk Contribution**: Assessing how the element contributes to re-identification risk (particularly for quasi-identifiers)
+
+6.  **Threat Analysis**: Considering specific attack scenarios and background knowledge that could enable re-identification
+
+7.  **Usability Validation**: Confirming the transformed element maintains sufficient utility for intended purposes
+
+The following subsections analyze each data element in the IHE QRPH Family Planning Profile. For each element, the analysis documents the decision process leading to the selected algorithm, balancing the clinical/analytical requirements against privacy protection needs.
+
+### Data Element Analyses
 
 #### Facility identifier
 
-From a health services research perspective, the facility identifier is
-needed, at a minimum, to compare services or outcomes at the level of a
-small geographic region such as a county or township. When measuring
+**Data Type Classification**: Direct Identifier / Quasi-Identifier (transforms to QI after pseudonymization)
+
+**Utility Assessment**: From a health services research perspective, the facility identifier is needed, at a minimum, to compare services or outcomes at the level of a small geographic region such as a county or township. When measuring
 outcomes or service provision, it may also be beneficial to compare
 different sites. Additionally, data contributors consuming this
 de-identified data set for their own planning purposes would need some
@@ -2523,6 +2602,118 @@ such as:
     individual grantees, sub-recipients, and researchers via research
     request which is performed by a limited number of OPA-trusted staff
     with enhanced privacy and security training.
+
+## Implementation and Governance
+
+This section addresses the implementation, validation, and governance aspects of the FPAR de-identification process per the [Process](process.html) framework.
+
+### Implementation Approach
+
+**Software Implementation**: The de-identification algorithms specified in this analysis can be implemented using:
+-   Established de-identification tools configured for FPAR requirements
+-   Custom software developed following the IHE QRPH De-Identification for Family Planning supplement specifications
+-   Standard software development methodologies with privacy-by-design principles
+
+**Technology Stack Considerations**:
+-   XML/CDA parsing capabilities for input processing
+-   Cryptographic libraries for secure hashing (SHA-512 or equivalent)
+-   Statistical analysis tools for k-anonymity validation
+-   Secure data transfer mechanisms (SFTP, HTTPS)
+-   Encrypted storage (AES-256 or equivalent)
+
+### Validation Requirements
+
+**Design Validation** (Pre-Implementation):
+1.  Review element-by-element algorithm selections with privacy experts and clinical stakeholders
+2.  Create prototype de-identified dataset using sample data
+3.  Validate prototype against FPAR reporting requirements with end-users
+4.  Conduct risk assessment on prototype data to confirm k-anonymity targets achieved
+5.  IRB or Privacy Board review as required by organizational policies
+
+**Implementation Validation** (Operational Testing):
+1.  Test with subset of real operational data
+2.  Verify all CDA elements processed correctly
+3.  Confirm cryptographic operations produce expected pseudonyms with consistency
+4.  Validate k-anonymity analysis on test output
+5.  Confirm CSV output format meets recipient system requirements
+6.  Verify no direct identifiers remain in output
+
+**Ongoing Monitoring**:
+-   Periodic re-assessment of re-identification risk (annually or when threats evolve)
+-   Audit logs of de-identification processing
+-   Review of data recipient access patterns
+-   Incident response for any suspected privacy breaches
+
+### Governance Framework
+
+**Role Responsibilities**:
+
+-   **Policy Manager Team**: OPA privacy officials, legal counsel, IT security - establish de-identification policies and standards
+-   **Executor Team**: Dedicated de-identification intermediary staff - perform the transformation process
+-   **Supervisor/Auditor**: Privacy Officer or designated authority - audit compliance, review incident reports
+
+**Access Control and Security Policies**:
+
+-   **Principle of Least Privilege**: Personnel access only data necessary for their roles
+-   **Secrets Management**: Cryptographic salts, hash keys stored in secure vault with strict access controls
+-   **Secure Data Transfer**: All data transfers encrypted in transit (SFTP/HTTPS)
+-   **Data Encryption at Rest**: AES-256 encryption for all datasets at rest
+-   **Secure Data Disposal**: DOD-level secure wipe for media containing identifiable data before decommissioning
+
+**Data Use Agreements**:
+-   All Title X recipients must sign data use agreements prohibiting re-identification attempts
+-   Agreements specify permitted uses aligned with FPAR reporting purposes
+-   Contractual penalties for misuse
+-   Regular training for recipients on data handling obligations
+
+**Documentation and Record Keeping**:
+-   Service request and use case documentation
+-   Complete re-identification risk assessment reports
+-   Element-by-element algorithm specification (this document)
+-   Configuration parameters and transformation scripts
+-   Records of all data transfers and access
+-   Validation and approval reports
+-   Audit logs with minimum 3-year retention
+
+**Incident Management**:
+-   Follow organizational security incident response policy
+-   Immediate reporting of suspected or actual privacy breaches
+-   Containment procedures for unauthorized data access
+-   Post-incident review and corrective action processes
+
+### Continuous Improvement
+
+**Periodic Review Triggers**:
+-   Annual scheduled review of de-identification approach
+-   New re-identification attack methodologies published in literature
+-   Changes to public data availability (e.g., new census releases)
+-   Technology advances affecting computational re-identification costs
+-   Regulatory or policy changes affecting privacy requirements
+-   Changes to FPAR reporting requirements necessitating data element modifications
+
+**Threat Evolution Examples**:
+-   Sweeney's ZIP+DOB+Sex analysis (historical but foundational)
+-   Advances in genetic re-identification techniques
+-   Commercial availability of consumer databases for linkage
+-   Machine learning advances in pattern recognition
+-   Mobile phone location tracking enabling healthcare facility visit correlation
+
+The de-identification landscape is dynamic. What is considered sufficient protection today may become inadequate as technology and available data evolve. The governance framework must include mechanisms for regular reassessment and adaptation.
+
+### Integration with IHE QRPH Supplement
+
+This analysis document provides the rationale and framework for the technical specifications in the IHE QRPH De-Identification for Family Planning Trial Implementation Supplement. Implementers should:
+
+1.  Use the IHE QRPH supplement for precise technical specifications (CDA templates, value sets, transformation rules)
+2.  Refer to this document for understanding the "why" behind each algorithm selection
+3.  Apply the [Process](process.html) framework when adapting this approach for different contexts or jurisdictions
+4.  Consult the [Algorithms](algorithms.html), [Data Types](data-types.html), and [Concepts](concepts.html) chapters for foundational de-identification knowledge
+
+### Conclusion
+
+The Family Planning de-identification analysis demonstrates a comprehensive, systematic approach to privacy-preserving data sharing for public health reporting. By following the structured process framework - from context analysis through risk assessment to element-by-element mitigation design - the FPAR use case achieves the target identifiability level (Irreversibly Pseudonymized Data) while maintaining analytical utility for program evaluation and policy decisions.
+
+This implementation guide serves as both a specification for the Title X FPAR use case and a template demonstrating how to apply the IHE De-Identification Handbook methodology to other health data secondary use scenarios.
 
 ### References 
 
