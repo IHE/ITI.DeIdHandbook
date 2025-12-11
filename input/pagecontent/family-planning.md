@@ -1,5 +1,5 @@
 
-This section, the IHE IT Infrastructure (ITI) Analysis of Optimal De-Identification for Family Planning Data Elements, demonstrates the application of the IHE De-Identification Handbook's systematic process framework. It describes the comprehensive de-identification analysis performed by the ITI Technical Committee for the Family Planning Annual Report (FPAR) use case published in the IHE Quality, Research, and Public Health (QRPH) Family Planning Trial Implementation Supplement, Volume 4.
+This section, the IHE IT Infrastructure (ITI) Analysis of Optimal De-Identification for Family Planning Data Elements, demonstrates the application of the IHE De-Identification Handbook's systematic process framework. It describes the comprehensive de-identification analysis performed by the ITI Technical Committee for the Family Planning Annual Report (FPAR) use case published in the IHE Quality, Research, and Public Health (QRPH) Family Planning version 2 (FPv2) Trial Implementation Supplement, Rev. 1.4 (December 29, 2021).
 
 ### Purpose and Overview
 
@@ -21,7 +21,7 @@ The detailed design questions that guide algorithm selection are organized by at
 
 This implementation guide serves three primary audiences:
 
-1.  **Software Developers and Implementers**: Those who will implement the de-identification algorithms into their software systems. This audience should use the IHE QRPH De-Identification for Family Planning supplement for technical specifications, referring to this document for the rationale behind design decisions. Familiarity with the [Algorithms](algorithms.html) chapter is recommended.
+1.  **Software Developers and Implementers**: Those who will implement the de-identification algorithms into their software systems. This audience should use the IHE QRPH Family Planning version 2 (FPv2) supplement for technical specifications, referring to this document for the rationale behind design decisions. Familiarity with the [Algorithms](algorithms.html) chapter is recommended.
 
 2.  **Privacy and Security Professionals**: Those responsible for designing, validating, and governing de-identification processes. This document demonstrates the application of the systematic [Process](process.html) framework, including context analysis, risk assessment, and mitigation design. It serves as a template for other de-identification projects.
 
@@ -103,12 +103,13 @@ style="width:6.50694in;height:2.85347in" />
 </figure>
 <br>
 
-**Data Flow Diagram**: The complete data flow in the Title X FPAR use case is illustrated in the figure below, showing the movement of Family Planning CDA documents from service sites through the de-identification intermediary to final recipients.
+**Data Flow Diagram**: The complete data flow in the Title X FPAR use case is illustrated in the figure below. The diagram reflects a multi-stage de-identification process, where Family Planning CDA documents move from service sites through preliminary de-identification (Stage 1), then through a centralized advanced de-identification intermediary (Stage 2), before reaching final recipients. Each stage applies distinct privacy-preserving transformations, as described in the text above.
 
 <figure>
 <img src="fp-flow.png"
 style="width:6.50694in;height:2.85347in" />
-<figcaption><strong>Figure: Data Flows in the Title X Family Planning Annual Report Use Case</strong></figcaption>
+<figcaption><strong>Figure: Multi-Stage De-Identification Data Flows in the Title X Family Planning Annual Report Use Case</strong><br>
+This diagram illustrates the two-stage de-identification architecture: Stage 1 (Preliminary De-identification) occurs at the source or early in the pipeline, and Stage 2 (Advanced De-identification) is performed by a centralized intermediary. Data flows and process points in the diagram correspond to these stages, showing how privacy risk is progressively reduced before data reaches authorized recipients.</figcaption>
 </figure>
 <br>
 
@@ -252,42 +253,33 @@ To select algorithms per element, the following questions are applied by attribu
 
 **Privacy/Security**: Protect vulnerable patients, minimize combinable quasi-identifiers, account for thousands of potential recipients
 
-### Use Cases 
+### Use Cases from FPv2 Supplement
 
-OPA requires the collection of family planning service delivery data in
-the form of the FPAR as a condition of its grant awards. The office uses
-the data for purposes similar to those listed above in Section 2.1, but
-also requires the data in order to justify its budget to Congress and to
-allocate sufficient funding to support unmet need for family planning
-services in specific areas of the U.S. and its territories. While
-de-identification discussions may include international scope and use
-cases, the conclusions as to optimal de-identification algorithms for a
-given data element relate to the Title X use case in the United States.
-Notes may be included to increase applicability to international
-perspectives but must not be considered complete or exhaustive. Anyone
-wishing to utilize these data elements in programs other than Title X
-should conduct their own analysis, considering local needs and
-legislation.
+OPA requires the collection of family planning service delivery data in the form of the FPAR as a condition of its grant awards. The office uses the data for program planning and budgeting, monitoring program performance, clinical quality improvement, budget justification to Congress, and allocation of funding to address unmet need for family planning services in specific areas of the U.S. and its territories.
 
-The FPAR use case involves collection of family planning and reporting
-data from Title X grantees, sub-recipients, and service sites that
-provide a wide range of family planning and related preventive health
-services.
+The IHE QRPH Family Planning version 2 (FPv2) supplement defines five use cases for family planning data collection and reporting:
 
-The identified data that might result from the data set described in the
-IHE QRPH Family Planning Profile is used for clinical purposes. A
+1.  **Use Case #1: FP Manual Data Entry** - Manual data entry into family planning forms at service sites
+2.  **Use Case #2: FP with Pre-pop Option** - Forms pre-populated with existing patient data from clinical systems
+3.  **Use Case #3: FP with Pre-pop Option with Supplemental Data** - Pre-populated forms supplemented with additional clinical data sources
+4.  **Use Case #4: Forms Data Capture with Document Submission** - Structured data capture with subsequent document submission
+5.  **Use Case #5: EHR FP Document Submission** - Direct submission of family planning documents from EHR systems
+
+All five use cases involve collection of family planning data from Title X grantees, sub-recipients, and service sites that provide a wide range of family planning and related preventive health services. The de-identification analysis in this document applies to all FPv2 use cases.
+
+**Important Scope Limitation**: This analysis is specific to the Title X FPAR context in the United States. The conclusions regarding optimal de-identification algorithms relate exclusively to this use case. Organizations wishing to utilize these data elements in other programs must conduct their own de-identification analysis, considering local needs and applicable legislation.
+
+The identified data described in the FPv2 supplement is used for clinical purposes at the point of care. A
 de-identified data set is needed for reporting and performance
-measurement purposes. It is important to note that the de-Identified
-data set is not intended to be suitable for all research purposes, as
-that will result in too broad and identifiable a data set[^4]. Data
-elements that may be useful to some researchers for some purposes may
-still be redacted or segregated into separate reports in order to lower
-the risk to vulnerable patients.
+measurement purposes. The de-identified data set is **not** intended to be suitable for general research purposes, as that would result in too broad and identifiable a data set. Data
+elements that may be useful for some research purposes may
+be redacted or segregated into separate reports to reduce
+risk to vulnerable patients.
 
 For purposes of risk analysis and exposure of the de-identified data
 set, our assumptions include:
 
--   Data is collected by the up to 4100 service sites that comprise the
+-   Data is collected by the up to 4,100 service sites that comprise the
     Title X network
 
 -   Data is de-identified by a single, central de-identification third
@@ -300,23 +292,11 @@ set, our assumptions include:
     and their subrecipient agencies
 
 The risk posture of this data set is not the same as making the data
-publicly available, however with potential access numbering in the
-thousands, securing this data set is still a significant challenge that
+publicly available; however, with potential access numbering in the
+thousands, securing this data set is a significant challenge that
 must be considered during the de-identification process.
 
-Additional scoping discussion:
-
--   In clinical trials, there is a regulatory requirement to notify
-    patients of potential adverse events resulting from clinical trial
-    activity, which may require re-identification of the individual.
-    Unlike clinical trials, there is no regulatory requirements to
-    notify patients of potential adverse events resulting from service
-    performance reviews. As a result, re-identification of patients is
-    not as critical for this use case.
-
--   Additionally, since the FPAR data will have already been used to
-    provide treatment and services to the patient, the de-Identified
-    data is not needed for that purpose.
+**Architectural Context**: Since the FPAR data will have already been used to provide treatment and services to the patient at the point of care, the de-identified data is not needed for clinical purposes. The de-identified data supports program evaluation, performance measurement, and policy decisions for the Title X network.
 
 From an architectural perspective, the FPAR use case depends on
 de-identification being performed prior to submission to the host
@@ -728,27 +708,7 @@ protection needed for the data changes once it has been de-identified.
 These regulations are subject to change, so the de-identification
 processes must be adaptable.
 
-In the USA, part of the clinical trial process is governed by an
-Institutional Review Board (IRB). This body is sometimes known as an
-Independent Ethics Committee, or an Ethical Review Board. The IRB is
-governed by Title 45 CFR Part 46 of the federal regulations which are
-subject to the “Common Rule” which states that federally funded clinical
-trials must have an IRB, and that the IRB must guarantee that it will
-provide and enforce protection of human subjects. The IRB accomplishes
-this, in part, by a pre-trial review of the protocol, and specifically
-reviews risks (both to human subjects and to the learning objectives of
-the trial).
-
-Part of the human subject risk considered by IRBs is that to patient
-privacy, which most nations require protection of. In the U.S.,
-regulations state “IRBs should determine the adequacy of the provisions
-to protect the privacy of subjects and to maintain the confidentiality
-of the data \[see Guidebook Chapter 3, Section D, "Privacy and
-Confidentiality"\]” One effective method to help reduce both study bias
-and privacy risk is to use data that has been pseudonymized.
-
-The answers to the above questions, as well as consideration of the IRB
-requirements, indicate that some form of pseudonymization is ideal for a
+The answers to the above questions indicate that some form of pseudonymization is ideal for a
 Facility Identifier due to the requirement for longitudinal consistency,
 as well as the need to be able to group observations for a single
 facility (cross-sectional consistency) and facility based analysis
@@ -1045,13 +1005,8 @@ realm, this data element may not be necessary.
 
 Number of pregnancies and number of births may be valuable information
 to assist in understanding the population and to group women by parity
-level. For the purposes of use identified by Title X, this data element
-will not be collected at the national level. Outside of Title X, it
-could still be of use to measure performance such as certain providers
-not wanting to provide specific services to women of certain age or
-profiles. If other use cases exist that need this data element,
-implementers will need its conduct their own analysis to determine the
-best de-identification algorithm for that use case.
+level. For the Title X FPAR use case, this data element
+will not be collected at the national level. Organizations outside of Title X requiring this data element must conduct their own de-identification analysis considering their specific context and applicable regulations.
 
 #### Limited Language Proficiency
 
@@ -1581,6 +1536,326 @@ pregnancy according to the 2011 PRAMS. As a result, these are fairly
 large categories. This data can be passed through unchanged.
 
 ### Appendix A: Sample FP CDA documents and their De-Identified documents
+
+#### A.5 Sample of Multi-Stage CDA De-Identification (Based on Patient JB)
+
+This section demonstrates the multi-stage de-identification process for a Family Planning CDA document, using the scenario of Patient JB (see A.1). Three versions are shown:
+
+1. **Original CDA** (identified)
+2. **Stage 1: Pseudonymized CDA** (direct identifiers replaced, reversible pseudonyms)
+3. **Stage 2: Anonymized CDA** (irreversible pseudonyms, generalization, suppression)
+
+**Original CDA**
+```xml
+<ClinicalDocument>
+    <recordTarget>
+        <patientRole>
+            <id extension="123456789" root="2.16.840.1.113883.19.5"/>
+            <addr>
+                <streetAddressLine>123 Main St</streetAddressLine>
+                <city>Sampletown</city>
+                <state>NC</state>
+                <postalCode>12345</postalCode>
+            </addr>
+            <patient>
+                <name>
+                    <given>Jane</given>
+                    <family>Brown</family>
+                </name>
+                <administrativeGenderCode code="F"/>
+                <birthTime value="19980605"/>
+                <raceCode code="2106-3" displayName="White"/>
+                <ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino"/>
+                <languageCommunication>
+                    <languageCode code="en-US"/>
+                </languageCommunication>
+            </patient>
+        </patientRole>
+    </recordTarget>
+    <author>
+        <assignedAuthor>
+            <id extension="PROV-12345"/>
+            <assignedPerson>
+                <name>
+                    <given>Mary</given>
+                    <family>Smith</family>
+                </name>
+            </assignedPerson>
+        </assignedAuthor>
+    </author>
+    <custodian>
+        <assignedCustodian>
+            <representedCustodianOrganization>
+                <id extension="FAC-00123"/>
+                <name>Sample Clinic</name>
+            </representedCustodianOrganization>
+        </assignedCustodian>
+    </custodian>
+    <component>
+        <structuredBody>
+            <component>
+                <section>
+                    <code code="11450-4" displayName="Problem List"/>
+                    <entry>
+                        <observation>
+                            <code code="10162-6" displayName="Pregnancy History"/>
+                            <value xsi:type="ST">G0P0</value>
+                        </observation>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <code code="29545-1" displayName="Physical Findings"/>
+                    <entry>
+                        <observation>
+                            <code code="8480-6" displayName="Systolic Blood Pressure"/>
+                            <value xsi:type="PQ" value="110" unit="mm[Hg]"/>
+                        </observation>
+                        <observation>
+                            <code code="8462-4" displayName="Diastolic Blood Pressure"/>
+                            <value xsi:type="PQ" value="75" unit="mm[Hg]"/>
+                        </observation>
+                        <observation>
+                            <code code="8302-2" displayName="Height"/>
+                            <value xsi:type="PQ" value="157.5" unit="cm"/>
+                        </observation>
+                        <observation>
+                            <code code="3141-9" displayName="Weight"/>
+                            <value xsi:type="PQ" value="58" unit="kg"/>
+                        </observation>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <code code="11348-0" displayName="History of Past Illness"/>
+                    <entry>
+                        <observation>
+                            <code code="72148-1" displayName="Date of Last Pap test"/>
+                            <effectiveTime value=""/>
+                        </observation>
+                        <observation>
+                            <code code="69442-2" displayName="HPV Co-Test"/>
+                            <effectiveTime value="20141222"/>
+                        </observation>
+                        <observation>
+                            <code code="21613-5" displayName="Chlamydia trachomatis Screen Order"/>
+                            <effectiveTime value="20141222"/>
+                        </observation>
+                        <observation>
+                            <code code="21614-3" displayName="Neisseria gonorrhoeae Screen Order"/>
+                            <effectiveTime value="20141222"/>
+                        </observation>
+                        <observation>
+                            <code code="56888-1" displayName="HIV Screen Result"/>
+                            <value code="260373001" displayName="Negative"/>
+                        </observation>
+                    </entry>
+                </section>
+            </component>
+        </structuredBody>
+    </component>
+</ClinicalDocument>
+```
+
+
+**Stage 1: Pseudonymized CDA (with nullFlavor for masked elements)**
+```xml
+<ClinicalDocument>
+    <recordTarget>
+        <patientRole>
+            <id extension="JB-001" root="2.16.840.1.113883.19.5"/>
+            <addr nullFlavor="MSK"/>
+            <patient>
+                <name nullFlavor="MSK"/>
+                <administrativeGenderCode code="F"/>
+                <birthTime value="19980605"/>
+                <raceCode code="2106-3" displayName="White"/>
+                <ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino"/>
+                <languageCommunication>
+                    <languageCode code="en-US"/>
+                </languageCommunication>
+            </patient>
+        </patientRole>
+    </recordTarget>
+    <author>
+        <assignedAuthor>
+            <id extension="PROV-001"/>
+            <assignedPerson>
+                <name nullFlavor="MSK"/>
+            </assignedPerson>
+        </assignedAuthor>
+    </author>
+    <custodian>
+        <assignedCustodian>
+            <representedCustodianOrganization>
+                <id extension="FAC-001"/>
+                <name nullFlavor="MSK"/>
+            </representedCustodianOrganization>
+        </assignedCustodian>
+    </custodian>
+    <component>
+        <structuredBody>
+            <component>
+                <section>
+                    <code code="11450-4" displayName="Problem List"/>
+                    <entry>
+                        <observation>
+                            <code code="10162-6" displayName="Pregnancy History"/>
+                            <value xsi:type="ST">G0P0</value>
+                        </observation>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <code code="29545-1" displayName="Physical Findings"/>
+                    <entry>
+                        <observation>
+                            <code code="8480-6" displayName="Systolic Blood Pressure"/>
+                            <value xsi:type="PQ" value="110" unit="mm[Hg]"/>
+                        </observation>
+                        <observation>
+                            <code code="8462-4" displayName="Diastolic Blood Pressure"/>
+                            <value xsi:type="PQ" value="75" unit="mm[Hg]"/>
+                        </observation>
+                        <observation>
+                            <code code="8302-2" displayName="Height"/>
+                            <value xsi:type="PQ" value="157.5" unit="cm"/>
+                        </observation>
+                        <observation>
+                            <code code="3141-9" displayName="Weight"/>
+                            <value xsi:type="PQ" value="58" unit="kg"/>
+                        </observation>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <code code="11348-0" displayName="History of Past Illness"/>
+                    <entry>
+                        <observation>
+                            <code code="72148-1" displayName="Date of Last Pap test"/>
+                            <effectiveTime nullFlavor="UNK"/>
+                        </observation>
+                        <observation>
+                            <code code="69442-2" displayName="HPV Co-Test"/>
+                            <effectiveTime value="20141222"/>
+                        </observation>
+                        <observation>
+                            <code code="21613-5" displayName="Chlamydia trachomatis Screen Order"/>
+                            <effectiveTime value="20141222"/>
+                        </observation>
+                        <observation>
+                            <code code="21614-3" displayName="Neisseria gonorrhoeae Screen Order"/>
+                            <effectiveTime value="20141222"/>
+                        </observation>
+                        <observation>
+                            <code code="56888-1" displayName="HIV Screen Result"/>
+                            <value code="260373001" displayName="Negative"/>
+                        </observation>
+                    </entry>
+                </section>
+            </component>
+        </structuredBody>
+    </component>
+</ClinicalDocument>
+```
+
+
+**Stage 2: Anonymized CDA (with nullFlavor for masked/removed elements)**
+```xml
+<ClinicalDocument>
+    <recordTarget>
+        <patientRole>
+            <id extension="333-333" root="2.16.840.1.113883.19.5"/>
+            <addr nullFlavor="MSK"/>
+            <patient>
+                <administrativeGenderCode code="F"/>
+                <age value="16"/>
+                <raceCode code="2106-3" displayName="White"/>
+                <ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino"/>
+                <languageCommunication>
+                    <LEP value="FALSE"/>
+                </languageCommunication>
+            </patient>
+        </patientRole>
+    </recordTarget>
+    <author>
+        <assignedAuthor>
+            <id extension="222-222"/>
+            <assignedPerson nullFlavor="MSK"/>
+        </assignedAuthor>
+    </author>
+    <custodian>
+        <assignedCustodian>
+            <representedCustodianOrganization>
+                <id extension="111-111"/>
+                <name nullFlavor="MSK"/>
+            </representedCustodianOrganization>
+        </assignedCustodian>
+    </custodian>
+    <component>
+        <structuredBody>
+            <component>
+                <section>
+                    <code code="29545-1" displayName="Physical Findings"/>
+                    <entry>
+                        <observation>
+                            <code code="8480-6" displayName="Systolic Blood Pressure"/>
+                            <value xsi:type="PQ" value="110" unit="mm[Hg]"/>
+                        </observation>
+                        <observation>
+                            <code code="8462-4" displayName="Diastolic Blood Pressure"/>
+                            <value xsi:type="PQ" value="75" unit="mm[Hg]"/>
+                        </observation>
+                        <observation>
+                            <code code="8302-2" displayName="Height"/>
+                            <value xsi:type="PQ" value="62" unit="in"/>
+                        </observation>
+                        <observation>
+                            <code code="3141-9" displayName="Weight"/>
+                            <value xsi:type="PQ" value="128" unit="lb"/>
+                        </observation>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <code code="11348-0" displayName="History of Past Illness"/>
+                    <entry>
+                        <observation>
+                            <code code="69442-2" displayName="HPV Co-Test"/>
+                            <effectiveTime value="2014W52"/>
+                        </observation>
+                        <observation>
+                            <code code="21613-5" displayName="Chlamydia trachomatis Screen Order"/>
+                            <effectiveTime value="2014W52"/>
+                        </observation>
+                        <observation>
+                            <code code="21614-3" displayName="Neisseria gonorrhoeae Screen Order"/>
+                            <effectiveTime value="2014W52"/>
+                        </observation>
+                    </entry>
+                </section>
+            </component>
+        </structuredBody>
+    </component>
+</ClinicalDocument>
+```
+
+**Stage 1: Pseudonymized CSV (after CDA to CSV conversion)**
+
+| patient_id | gender | birth_date | race     | ethnicity | language | provider_id | facility_id | systolic_bp | diastolic_bp | height_cm | weight_kg | hpv_cotest_date | chlamydia_date | gc_date |
+|------------|--------|------------|----------|-----------|----------|-------------|-------------|-------------|--------------|-----------|-----------|-----------------|---------------|--------|
+| JB-001     | F      | 19980605   | 2106-3   | 2186-5    | en-US    | PROV-001    | FAC-001     | 110         | 75           | 157.5     | 58        | 20141222        | 20141222      | 20141222 |
+
+**Stage 2: Anonymized CSV (after advanced de-identification)**
+
+| patient_id | gender | age | race     | ethnicity | lep      | provider_id | facility_id | systolic_bp | diastolic_bp | height_in | weight_lb | hpv_cotest_week | chlamydia_week | gc_week |
+|------------|--------|-----|----------|-----------|----------|-------------|-------------|-------------|--------------|-----------|-----------|-----------------|---------------|--------|
+| 333-333    | F      | 16  | 2106-3   | 2186-5    | FALSE    | 222-222     | 111-111     | 110         | 75           | 62        | 128       | 2014W52         | 2014W52       | 2014W52 |
 
 #### A.1 Patient: JB
 
