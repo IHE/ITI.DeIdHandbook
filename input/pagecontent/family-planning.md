@@ -1751,15 +1751,6 @@ This section demonstrates the multi-stage de-identification process for a Family
 </ClinicalDocument>
 ```
 
-*CSV Output:*
-
-| patient_id | gender | birth_date | race     | ethnicity | language | provider_id | facility_id | systolic_bp | diastolic_bp | height_cm | weight_kg | hpv_cotest_date | chlamydia_date | gc_date |
-|------------|--------|------------|----------|-----------|----------|-------------|-------------|-------------|--------------|-----------|-----------|-----------------|---------------|--------|
-| JB-001     | F      | 19980605   | 2106-3   | 2186-5    | en-US    | PROV-001    | FAC-001     | 110         | 75           | 157.5     | 58        | 20141222        | 20141222      | 20141222 |
-{:.grid}
-
----
-
 **Stage 2: Anonymized Data**
 
 *CDA XML:*
@@ -1842,14 +1833,6 @@ This section demonstrates the multi-stage de-identification process for a Family
     </component>
 </ClinicalDocument>
 ```
-
-*CSV Output:*
-
-| patient_id | gender | age | race     | ethnicity | lep      | provider_id | facility_id | systolic_bp | diastolic_bp | height_in | weight_lb | hpv_cotest_week | chlamydia_week | gc_week |
-|------------|--------|-----|----------|-----------|----------|-------------|-------------|-------------|--------------|-----------|-----------|-----------------|---------------|--------|
-| 333-333    | F      | 16  | 2106-3   | 2186-5    | FALSE    | 222-222     | 111-111     | 110         | 75           | 62        | 128       | 2014W52         | 2014W52       | 2014W52 |
-{:.grid}
-
 
 ### Appendix B: Usability
 
