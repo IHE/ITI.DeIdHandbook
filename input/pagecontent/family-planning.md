@@ -393,7 +393,7 @@ for that data element should be to delete it. For unexpected dates that
 are submitted, either delete them if possible or otherwise generalize
 them to month and year.
 
-Table 2.6-1: Data Element De-identification Algorithms
+Table 2.6-1: Data Element De-identification Techniques
 
 <table>
 <colgroup>
@@ -405,7 +405,7 @@ Table 2.6-1: Data Element De-identification Algorithms
 <tr class="header">
 <th>Element</th>
 <th>Patient Id type</th>
-<th>De-Identification algorithm</th>
+<th>De-Identification technique</th>
 </tr>
 </thead>
 <tbody>
@@ -604,7 +604,7 @@ inches.</p>
 
 ## Element-by-Element De-identification Analysis
 
-This section provides detailed rationale for the de-identification algorithm selected for each Family Planning data element, demonstrating the practical application of the systematic framework established in previous sections.
+This section provides detailed rationale for the de-identification technique selected for each Family Planning data element, demonstrating the practical application of the systematic framework established in previous sections.
 
 ### Analysis Methodology
 
@@ -614,7 +614,7 @@ Each element analysis follows a structured approach integrating concepts from th
 
 2.  **Utility Assessment**: Evaluating the element's necessity for FPAR reporting and performance measurement (per De-identification Goals)
 
-3.  **Algorithm Selection**: Choosing appropriate techniques from the [Algorithms](algorithms.html) catalog:
+3.  **Technique Selection**: Choosing appropriate techniques from the [Algorithms](algorithms.html) catalog:
     -   Suppression techniques (masking, local suppression)
     -   Pseudonymization techniques (irreversible hashing)
     -   Generalization techniques (rounding, top/bottom coding, truncation)
@@ -627,7 +627,7 @@ Each element analysis follows a structured approach integrating concepts from th
 
 7.  **Usability Validation**: Confirming the transformed element maintains sufficient utility for intended purposes
 
-The following subsections analyze each data element in the IHE QRPH Family Planning Profile. For each element, the analysis documents the decision process leading to the selected algorithm, balancing the clinical/analytical requirements against privacy protection needs.
+The following subsections analyze each data element in the IHE QRPH Family Planning Profile. For each element, the analysis documents the decision process leading to the selected technique, balancing the clinical/analytical requirements against privacy protection needs.
 
 ### Data Element Analyses
 
@@ -701,7 +701,7 @@ No. This does not apply to this type of data.
 
 Maybe, depending on the purposes of the analysis. If geographic
 reporting is good for the consumer of this data set, then this is an
-acceptable algorithm.
+acceptable technique.
 
 It is important to note that in certain legal jurisdictions the legal
 protection needed for the data changes once it has been de-identified.
@@ -744,7 +744,7 @@ mapped to. For example:
 |                       | 777-777                                  |
 {:.grid}
 
-Identifier mapping should be generated using a standardized algorithm,
+Identifier mapping should be generated using a standardized technique,
 using a cryptographically strong randomly assigned identifier.
 
 #### Clinical Provider identifier
@@ -800,11 +800,10 @@ When implementing, it is important to consider the tolerance for errors
 in longitudinal consistency. For example: A very tight/low tolerance may
 require a centralized authority to create tight pseudonyms and maintain
 them. If you have a higher tolerance, you may be able to leverage a
-hashed/random algorithmic pseudonymization.
+hashed/random technique for pseudonymization.
 
-Higher tolerance may be possible in this use case. Algorithmic
-substitution would provide some level of pseudonymization provided the
-algorithm is strong enough. E.g., “Use a random number generator to
+Higher tolerance may be possible in this use case. Substitution would provide some level of pseudonymization provided the
+technique is strong enough. E.g., “Use a random number generator to
 replace the ID with a random ID number”. The issues with this approach
 are that the random number generation needs to be sufficiently random,
 AND loss of the mapping table makes re-identification and longitudinal
@@ -820,30 +819,30 @@ are challenging to implement. (i.e., changing sites, sites may not
 request pseudonyms in a timely manner, etc.)
 
 This is a value that could be pseudonymized, and a potential
-de-identification method is to agree on a hashing method. For example,
+de-identification technique is to agree on a hashing technique. For example,
 identify the Patient ID as a value that must be included in a hashed
 section of the document, and agree on how the Patient IDs will be
 represented so that the hashed values will always be interpreted in the
-same way. A flaw with this method is that it is vulnerable to a brute
+same way. A flaw with this technique is that it is vulnerable to a brute
 force attack.
 
-Another possible method of pseudonymization is to use two-stage
+Another possible technique of pseudonymization is to use two-stage
 pseudonymization. For example, assign a block of pseudonyms to the site,
 and then download the responsibility to the site to manage
 pseudonymization for their own internal patient IDs. Currently,
-site-specific IDs are difficult to track, so this method does not
+site-specific IDs are difficult to track, so this technique does not
 significantly impact the quality of the data. A potential issue is the
-method may not be consistently applied and would be difficult to manage.
+technique may not be consistently applied and would be difficult to manage.
 
 A third possibility is the use of a one-time key generator be used. The
-typical algorithm is to identify a short data block, like the name of
+typical technique is to identify a short data block, like the name of
 the clinic and a sequence number and then encrypt it with AES. The key
 secrecy is not that critical, but you can use the encrypted result as a
 unique patient ID.
 
 This analysis indicates that, assuming workflow, policy and access
 control safeguards make escrow an impractical solution, one-way
-algorithmic pseudonymization may be optimal; however, the requirement
+pseudonymization technique may be optimal; however, the requirement
 for implementations to specify the retention duration of the local
 mapping table must be made clear.
 
@@ -894,7 +893,7 @@ Our conclusion is that the time component must be omitted if present.
 Dates must be generalized to week of year values.
 
 Note 1: Measures that involve the calculation of days may be affected by
-this algorithm. Reporting periods may need to be fuzzed +- one week to
+this technique. Reporting periods may need to be fuzzed +- one week to
 account for this.
 
 Note 2: For smaller service sites that have low volume weeks, using
@@ -1088,7 +1087,7 @@ In areas where there are very few of a given category, rules for cell
 suppression may be needed if the number of people reported in any kind
 of analysis would be lower than a pre-determined limit.
 
-The recommended algorithm is to collapse the data set to the 5 OMB
+The recommended technique is to collapse the data set to the 5 OMB
 categories using the OMB guidelines
 https://www.whitehouse.gov/omb/fedreg_1997standards/, plus one
 additional category of “2131-1 Other” to be used for unknown races,
@@ -2120,9 +2119,9 @@ States of Micronesia, Guam, Marshall Islands, and Republic of Palau)
 
 Analysis of de-Identified data
 
-Based on the initial set of de-identification algorithms, and an
+Based on the initial set of de-identification techniques, and an
 analysis of the sample de-identified Family Planning reports listed in
-Section X.2 using those algorithms, the following concerns have been
+Section X.2 using those techniques, the following concerns have been
 raised with regards to the usability of the de-Identified data for
 performance measurement purposes:
 
@@ -2246,7 +2245,7 @@ information as their date of birth, gender, and 5-digit zip code.
 In the section below we follow best practices and explore the most
 likely sources of threats to the Family Planning de-identified data set
 in order to ensure that we have considered whether the de-identification
-algorithms selected address such issues as the very high risk of
+techniques selected address such issues as the very high risk of
 including date of birth and gender in a data set.
 
 ##### B.1.1 Threat motivators and threat agents:
@@ -2372,7 +2371,7 @@ individual will be using after the ECP, such as condoms, etc.
 Conclusion: There is still a significant amount of risk related to this
 threat case. These data are still potentially PHI. The only way to
 determine whether the data included in this set is still identifiable is
-to apply the algorithms to a representative data set and perform a
+to apply the techniques to a representative data set and perform a
 statistical analysis following one of the accepted statistical models.
 
 32. Underage contraception or sexual activity:
@@ -2386,7 +2385,7 @@ individuals could be highly identifiable.
     will become possible to identify the birth month and year of a given
     individual when their age increments.
 
--   Age categories or a fuzzing algorithm could help reduce this risk,
+-   Age categories or a fuzzing technique could help reduce this risk,
     as well as infrequent submission of documents to the FPAR 2.0
     repository – i.e., perform reporting on an annual or less frequent
     basis (Even though the FPAR 2.0 CDA documents may be submitted
@@ -2545,7 +2544,7 @@ targets.
 
 Other approach: if you take the table that we have and eliminate the
 identifiers that we’ve deleted and the items that we have said are just
-data, you have the focused list of indirect identifiers and algorithms –
+data, you have the focused list of indirect identifiers and techniques –
 what correlations are obvious there?
 
 #### B.2 Theoretical K-analysis:
@@ -2580,7 +2579,7 @@ to look at two factors for each indirect identifier:
 <thead>
 <tr class="header">
 <th>Element</th>
-<th>De-Identification algorithm</th>
+<th>De-Identification technique</th>
 <th>Type after de-ID</th>
 <th>Smallest pool percentage</th>
 </tr>
@@ -2884,7 +2883,7 @@ This section addresses the implementation, validation, and governance aspects of
 
 ### Implementation Approach
 
-**Software Implementation**: The de-identification algorithms specified in this analysis can be implemented using:
+**Software Implementation**: The de-identification techniques specified in this analysis can be implemented using:
 -   Established de-identification tools configured for FPAR requirements
 -   Custom software developed following the IHE QRPH De-Identification for Family Planning supplement specifications
 -   Standard software development methodologies with privacy-by-design principles
@@ -2899,7 +2898,7 @@ This section addresses the implementation, validation, and governance aspects of
 ### Validation Requirements
 
 **Design Validation** (Pre-Implementation):
-1.  Review element-by-element algorithm selections with privacy experts and clinical stakeholders
+1.  Review element-by-element technique selections with privacy experts and clinical stakeholders
 2.  Create prototype de-identified dataset using sample data
 3.  Validate prototype against FPAR reporting requirements with end-users
 4.  Conduct risk assessment on prototype data to confirm k-anonymity targets achieved
@@ -2944,7 +2943,7 @@ This section addresses the implementation, validation, and governance aspects of
 **Documentation and Record Keeping**:
 -   Service request and use case documentation
 -   Complete re-identification risk assessment reports
--   Element-by-element algorithm specification (this document)
+-   Element-by-element technique specification (this document)
 -   Configuration parameters and transformation scripts
 -   Records of all data transfers and access
 -   Validation and approval reports
@@ -2980,9 +2979,9 @@ The de-identification landscape is dynamic. What is considered sufficient protec
 This analysis document provides the rationale and framework for the technical specifications in the IHE QRPH De-Identification for Family Planning Trial Implementation Supplement. Implementers should:
 
 1.  Use the IHE QRPH supplement for precise technical specifications (CDA templates, value sets, transformation rules)
-2.  Refer to this document for understanding the "why" behind each algorithm selection
+2.  Refer to this document for understanding the "why" behind each technique selection
 3.  Apply the [Process](process.html) framework when adapting this approach for different contexts or jurisdictions
-4.  Consult the [Algorithms](algorithms.html), [Data Types](data-types.html), and [Concepts](concepts.html) chapters for foundational de-identification knowledge
+4.  Consult the [Techniques](algorithms.html), [Data Types](data-types.html), and [Concepts](concepts.html) chapters for foundational de-identification knowledge
 
 ### Conclusion
 
