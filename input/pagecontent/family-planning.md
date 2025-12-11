@@ -1534,7 +1534,264 @@ Approximately 10% of women reported smoking during the last 3 months of
 pregnancy according to the 2011 PRAMS. As a result, these are fairly
 large categories. This data can be passed through unchanged.
 
+
 ### Appendix A: Sample FP CDA documents and their De-Identified documents
+
+#### A.1 Patient: JB
+
+JB is a 16-year-old G-0 P-0 in the clinic for STI screening and well
+woman exam. Last menstrual period (LMP) was 3 weeks ago. No history of
+STI. BP: 110/75. Height: 157.5 cm. Weight: 58 kg. Intermittent condom
+use. Last unprotected sex was 2 weeks ago after which she used oral
+emergency contraception. Since JB’s condom use is only intermittent and
+emergency contraception is not an effective method, her method at intake
+is listed as “none”. Wants to have children “at some point, but no time
+soon”. Wants to use pills for contraception going forward. Non-smoker.
+Rapid HIV test is negative. Post visit, chlamydia results are positive
+and gonorrhea results are negative. No insurance can be billed at the
+time of the visit. Demographics: White, native U.S. English speaker.
+Since 16 year olds seldom know their family income, JB’s FPL is
+calculated based on her own $5000 income from a part-time job, and her
+household size of 1. White, native U.S. English speaker. JB’s household
+size is 3, and her family’s annual income is $9000 therefore the Income
+for JB is approximately 44% of the Federal Poverty Level (see ASPE here:
+<http://aspe.hhs.gov/2015-poverty-guidelines#guidelines>).
+
+Visit date: 22 Dec 2014
+
+Geographic location: HHS Region 4 (Alabama, Florida, Georgia, Kentucky,
+Mississippi, North Carolina, South Carolina, and Tennessee)
+
+| Data Element                                            | Original Data                                                        | Data after application of de-identification |
+| ------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------- |
+| **Patient Identifier**                                  | \[patient ID from service site\]                                     | \[Mapped patient ID=333-333\]               |
+| **Date of Birth**                                       | 5 June 1998                                                          | 16                                          |
+| **Administrative Sex**                                  | Female                                                               | Female                                      |
+| **Language of Communication**                           | en-US                                                                | LEP FALSE                                   |
+| **Language Proficiency**                                | r                                                                    |                                             |
+| **Preferred Language**                                  | True                                                                 |                                             |
+| **Race**                                                | White=2106-3                                                         | 2106-3                                      |
+| **Ethnicity**                                           | Not Hispanic or Latina=2186-5                                        | 2186-5                                      |
+| **Clinical Provider**                                   | \[provider ID from service site\]                                    | \[Mapped Provider ID = 222-222\]            |
+| **Visit Date**                                          | 22 Dec 2014                                                          | 2014W52-A                                   |
+| **Facility identifier**                                 | \[facility ID and address from service site, but from HHS Region 4\] | \[Mapped facility ID = 111-111\]            |
+| **Number of Total Pregnancies**                         | 0                                                                    | DELETED                                     |
+| **Current Pregnancy Status**                            | Not pregnant, by test=2                                              | NO                                          |
+| **Pregnancy Intention**                                | No, but maybe in the future= N                                       | N                                           |
+| **Sexual Activity**                                    | True                                                                 | True                                        |
+| **Contraceptive Method at Intake**                      | None=20                                                              | None=20                                     |
+| **Reason for No Contraceptive Method at Intake**        | NULL                                                                 | NULL                                        |
+| **Last Cervical Cancer Screen (Date of last Pap test)** | NULL                                                                 | NULL                                        |
+| **HPV Co-Test**                                         | 22 Dec 2014                                                          | W52 2014                                    |
+| **Contraceptive Method at Exit**                        | OCP=7                                                                | 7                                           |
+| **Reason for No Contraceptive Method at Exit**          | NULL                                                                 | NULL                                        |
+| **Chlamydia trachomatis Screen Order**                  | 22 Dec 2014                                                          | 2014W52                                     |
+| **Neisseria gonorrhoeae Screen Order**                  | 22 Dec 2014                                                          | 2014W52                                     |
+| **HIV Screen Order**                                    | 22 Dec 2014                                                          | 2014W52                                     |
+| **HIV Rapid Screen Result**                             | HIV Rapid Screen Result, Negative=NEG                                | DELETED                                     |
+| **HIV Supplemental Result**                             | NULL                                                                 | DELETED                                     |
+| **Referrals Planned**                                   | NULL                                                                 | DELETED                                     |
+| **Referrals Completed**                                 | NULL                                                                 | NULL                                        |
+| **Height**                                              | 157.5 cm                                                             | 62 inches                                   |
+| **Weight**                                              | 58 kg                                                                | 128                                         |
+| **Systolic Blood Pressure**                             | 110                                                                  | 110                                         |
+| **Diastolic Blood Pressure**                            | 75                                                                   | 75                                          |
+| **Smoking Status**                                      | Never smoker=266919005                                               | 266919005                                   |
+| **Annual Household Income**                             | $9,000                                                               | FPL 44%                                     |
+| **Household Size**                                      | 3                                                                    | DELETED                                     |
+| **Insurance**                                           | No Insurance=NA                                                      | NA                                          |
+{:.grid}
+
+#### A.2 Patient: MT
+
+MT is a 52-year-old G-7 P-5 TAB-1 SAB-1 in the clinic to follow up on
+the results of an abnormal pap test she had at a different provider 4
+months ago. LMP 1 week ago. History of herpes, but no other STI. Smokes
+1 pack of cigarettes a day for past 30 years. BMI 29. BP 145/96 P 80 R
+1.  Prior pap history unknown, but she is pretty sure she had one when
+she was pregnant 9 years ago. Says she is certain that she doesn’t want
+any more children and will use condoms for contraception in future. She
+brings in a copy of the letter from a visit 6 months ago that was sent
+to her regarding the abnormal pap test results. The letter advises her
+of the High-Grade Squamous Intraepithelial Lesion (HSIL) result, and
+tells her to make an appointment for a colposcopy. She has been unable
+to schedule an appointment until now. Rapid HIV test is negative.
+Declines gonorrhea and chlamydia screening as they were performed 6
+months ago and found negative. 1 sexual partner for the last year.
+Demographics: Latina, native Spanish speaker. Private health insurance
+can be billed.
+
+Visit date: 18 Mar 2014
+
+Geographic location: HHS Region 6 (Arkansas, Louisiana, New Mexico,
+Oklahoma, and Texas)
+
+| **Patient Identifier**                           | \[patient ID from service site\]                                     | \[Patient Mapping Table Entry 2\]  |
+| ------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------- |
+| **Date of Birth**                                | 1 Oct 1962                                                           | Over 50                            |
+| **Administrative Sex**                           | Female                                                               | Female                             |
+| **Language of Communication**                    | en-US                                                                | LEP NO                             |
+| **Language Proficiency**                         | NULL                                                                 |                                    |
+| **Preferred Language**                           | False                                                                |                                    |
+| **Race**                                         | White=2106-3                                                         | 2106-3                             |
+| **Ethnicity**                                    | Hispanic or Latina=2135-2                                            | 2135-2                             |
+| **Clinical Provider**                            | \[provider ID from service site\]                                    | \[Provider Mapping Table Entry 2\] |
+| **Visit Date**                                   | 18 Mar 2014                                                          | 2014W12-A                          |
+| **Facility identifier**                          | \[facility ID and address from service site, but from HHS Region 6\] | \[Facility Mapping Table Entry 2\] |
+| **Number of Total Pregnancies**                  | 7                                                                    | DELETED                            |
+| **Current Pregnancy Status**                     | Not Pregnant, By Patient Report=1                                    | No                                 |
+| **Pregnancy Intention**                          | NEVER                                                                | NEVER                              |
+| **Sexual Activity**                              | True                                                                 | True                               |
+| **Contraceptive Method at Intake**               | Male Condom=10                                                       | 10                                 |
+| **Reason for No Contraceptive Method at Intake** | NULL                                                                 | NULL                               |
+| **Last Cervical Cancer Screen**                  | 12 September 2013                                                    | W37 2013                           |
+| **Contraceptive Method at Exit**                 | Male Condom=10                                                       | 10                                 |
+| **Reason for No Contraceptive Method at Exit**   | NULL                                                                 | NULL                               |
+| **Chlamydia trachomatis Screen Order**           | 12 Sept 2013                                                         | 2013W37                            |
+| **Neisseria gonorrhoeae Screen Order**           | 12 Sept 2013                                                         | 2013W37                            |
+| **HIV Screen Order**                             | 18 Mar 2014                                                          | 2014W12                            |
+| **HIV Rapid Screen Result**                      | HIV Rapid Screen Result, Negative=NEG                                | DELETED                            |
+| **HIV Supplemental Result**                      | NULL                                                                 | DELETED                            |
+| **Referrals Planned**                            | NULL                                                                 | DELETED                            |
+| **Referrals Completed**                          | NULL                                                                 | DELETED                            |
+| **Height**                                       | 160 cm                                                               | 160 cm                             |
+| **Weight**                                       | 74.8 kg                                                              | 74.8 kg                            |
+| **Systolic Blood Pressure**                      | 145                                                                  | 145                                |
+| **Diastolic Blood Pressure**                     | 96                                                                   | 96                                 |
+| **Smoking Status**                               | 449868002                                                            | 449868002                          |
+| **Annual Household Income**                      | $24,738                                                              | FPL 125%                           |
+| **Household Size**                               | 3                                                                    | DELETED                            |
+| **Insurance**                                    | 5                                                                    | 5                                  |
+{:.grid}
+
+<u>Visit 1</u>
+
+LD is a 36-year-old black male native English speaker who presents to
+clinic for STI screening and pain during urination. Non-smoker. He has
+had more than ten lifetime partners. BP is 110/80, Ht:5’11” Wt: 185. He
+reports using condoms consistently. He would like to have children “if
+possible” in the next 2 years. He tests positive for Gonorrhea and also
+has a positive rapid HIV result. He is treated with rocephin and
+azithromycin onsite at your facility for Gonorrhea and is referred to
+HIV primary care co-located in the same facility. He is started on the
+standard beginning ARV regimen (NNRTI, a PI with Ritonavir and an
+INSTI).
+
+Visit date: 2 Jul 2014
+
+Geographic location: HHS Region 3 (Delaware, District of Columbia,
+Maryland, Pennsylvania, Virginia, and West Virginia)
+
+<u>Visit 2</u>
+
+HIV supplemental result (HIV-1/2 Antibody differentiation Multispot) was
+HIV-1 positive and client referred to HIV primary care.
+
+Visit date: 4 Jul 2014
+
+<u>Visit 3</u>
+
+Clinic staff confirmed that offsite appointment with HIV primary care
+was completed 42 days after the family planning visit. The record for
+this client-visit can be closed out.
+
+Visit date: 15 Aug 2014
+
+| **Patient Identifier**                           | \[patient ID from service site\]                                     | \[Patient Mapping Table Entry 3\]  |
+| ------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------- |
+| **Date of Birth**                                | 2 Jan 1978                                                           | 36                                 |
+| **Administrative Sex**                           | Male                                                                 | Male                               |
+| **Language of Communication**                    | en-US                                                                | LEP No                             |
+| **Language Proficiency**                         | NULL                                                                 |                                    |
+| **Preferred Language**                           | True                                                                 |                                    |
+| **Race**                                         | 2054-5                                                               | 2054-5                             |
+| **Ethnicity**                                    | 2186-5                                                               | 2186-5                             |
+| **Clinical Provider**                            | \[provider ID from service site\]                                    | \[Provider Mapping Table Entry 3\] |
+| **Visit Date**                                   | 2 Jul 2014                                                           | 2014W27-A                          |
+| **Facility identifier**                          | \[facility ID and address from service site, but from HHS Region 3\] | \[Facility Mapping Table Entry 3\] |
+| **Number of Total Pregnancies**                  | NULL                                                                 | DELETED                            |
+| **Current Pregnancy Status**                     | NULL                                                                 | NO                                 |
+| **Pregnancy Intention**                          | No, but maybe in the future                                          | No, but maybe in the future        |
+| **Sexual Activity**                              | True                                                                 | True                               |
+| **Contraceptive Method at Intake**               | Male Condom=10                                                       | 10                                 |
+| **Reason for No Contraceptive Method at Intake** | NULL                                                                 | NULL                               |
+| **Last Cervical Cancer Screen**                  | NULL                                                                 | NULL                               |
+| **Contraceptive Method at Exit**                 | Male Condom=10                                                       | 10                                 |
+| **Reason for No Contraceptive Method at Exit**   | NULL                                                                 | NULL                               |
+| **Chlamydia trachomatis Screen Order**           | 2 Jul 2014                                                           | 2014W27                            |
+| **Neisseria gonorrhoeae Screen Order**           | 2 Jul 2014                                                           | 2014W27                            |
+| **HIV Screen Order**                             | 2 Jul 2014                                                           | 2014W27                            |
+| **HIV Rapid Screen Result**                      | HIV Rapid Screen Result, Reactive=RE                                 | DELETED                            |
+| **HIV Supplemental Result**                      | POS1                                                                 | DELETED                            |
+| **Referrals Planned**                            | 4 Jul 2014                                                           | DELETED                            |
+| **Referrals Completed**                          | 15 Aug 2014                                                          | DELETED                            |
+| **Height**                                       | 180.3 cm                                                             | 180.3cm                            |
+| **Weight**                                       | 83.9 kg                                                              | 83.9kg                             |
+| **Systolic Blood Pressure**                      | 110                                                                  | 110                                |
+| **Diastolic Blood Pressure**                     | 80                                                                   | 80                                 |
+| **Smoking Status**                               | 266919005                                                            | 266919005                          |
+| **Annual Household Income**                      | $47,252                                                              | FPL 235%                           |
+| **Household Size**                               | 3                                                                    | DELETED                            |
+| **Insurance**                                    | NA                                                                   | NA                                 |
+{:.grid}
+
+#### A.4 Patient: JW
+
+JW is a 23-year-old G-0 Black female who has been with her partner for 2
+years and they have decided to start a family. She is seeing you today
+for her Well Woman Exam. She is seeking advice as to how to proceed to
+assure a safe pregnancy. She smokes one cigarette per day and has a
+glass of wine every evening. She stopped her birth control pills 2
+months ago and her LMP was 2 weeks ago. She takes multivitamins. BP
+130/82, Pulse 80, Wt 190, Ht. 5’3”. Screening today will include a Pap
+smear with HPV co-testing and HIV testing (results are negative),
+according to ASCCP and CDC STD guidelines. Preconception counseling will
+include tobacco and alcohol restriction, folic acid recommendations and
+assessment of her immunization status.
+
+Visit date: 2 Aug 2014
+
+Geographic location: HHS Region 9 (Arizona, California, Hawaii, Nevada,
+American Samoa, Commonwealth of the Northern Mariana Islands, Federated
+States of Micronesia, Guam, Marshall Islands, and Republic of Palau)
+
+| **Patient Identifier**                           | \[patient ID from service site\]                                     | \[Patient Mapping Table Entry 4\]  |
+| ------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------- |
+| **Date of Birth**                                | 17 Jun 1991                                                          | 23                                 |
+| **Administrative Sex**                           | Female                                                               | Female                             |
+| **Language of Communication**                    | en-US                                                                | LEP No                             |
+| **Language Proficiency**                         | NULL                                                                 |                                    |
+| **Preferred Language**                           | True                                                                 |                                    |
+| **Race**                                         | 2054-5                                                               | 2054-5                             |
+| **Ethnicity**                                    | 2186-5                                                               | 2186-5                             |
+| **Clinical Provider**                            | \[provider ID from service site\]                                    | \[Provider Mapping Table Entry 4\] |
+| **Visit Date**                                   | 2 Aug 2014                                                           | 2014W31-A                          |
+| **Facility identifier**                          | \[facility ID and address from service site, but from HHS Region 9\] | \[Facility Mapping Table Entry 4\] |
+| **Number of Total Pregnancies**                  | 0                                                                    | DELETED                            |
+| **Current Pregnancy Status**                     | 1                                                                    | No                                 |
+| **Pregnancy Intention**                          | Y                                                                    | Yes                                |
+| **Sexual Activity**                              | True                                                                 | True                               |
+| **Contraceptive Method at Intake**               | None=20                                                              | 20                                 |
+| **Reason for No Contraceptive Method at Intake** | Seeking Pregnancy=C                                                  | C                                  |
+| **Last Cervical Cancer Screen**                  | 2 Aug 2014                                                           | 2014W31                            |
+| **Contraceptive Method at Exit**                 | None=20                                                              | 20                                 |
+| **Reason for No Contraceptive Method at Exit**   | Seeking Pregnancy=C                                                  | C                                  |
+| **Chlamydia trachomatis Screen Order**           | 2 Aug 2014                                                           | 2014W31                            |
+| **Neisseria gonorrhoeae Screen Order**           | 2 Aug 2014                                                           | 2014W31                            |
+| **HIV Screen Order**                             | 2 Aug 2014                                                           | 2014W31                            |
+| **HIV Rapid Screen Result**                      | HIV Rapid Screen Result, Negative=NEG                                | DELETED                            |
+| **HIV Supplemental Result**                      | NULL                                                                 | DELETED                            |
+| **Referrals Planned**                            | NULL                                                                 | NULL                               |
+| **Referrals Completed**                          | NULL                                                                 | DELETED                            |
+| **Height**                                       | 5 foot 3 inches                                                      | 5’ 3”                              |
+| **Weight**                                       | 190 pounds                                                           | 190#                               |
+| **Systolic Blood Pressure**                      | 130                                                                  | 130                                |
+| **Diastolic Blood Pressure**                     | 82                                                                   | 82                                 |
+| **Smoking Status**                               | 449868002                                                            | 449868002                          |
+| **Annual Household Income**                      | $22,738                                                              | FPL 143%                           |
+| **Household Size**                               | 2                                                                    | DELETED                            |
+| **Insurance**                                    | Self-Pay=81                                                          | 81                                 |
+{:.grid}
 
 #### A.5 Sample of Multi-Stage CDA De-Identification (Based on Patient JB)
 
