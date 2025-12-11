@@ -1612,15 +1612,16 @@ States of Micronesia, Guam, Marshall Islands, and Republic of Palau)
 | **Insurance**                                    | Self-Pay=81                                                          | 81                                 |
 {:.grid}
 
+
 #### A.5 Sample of Multi-Stage CDA De-Identification (Based on Patient JB)
 
-This section demonstrates the multi-stage de-identification process for a Family Planning CDA document, using the scenario of Patient JB (see A.1). Three versions are shown:
+This section demonstrates the multi-stage de-identification process for a Family Planning CDA document, using the scenario of Patient JB (see A.1). For each stage, both the CDA XML and the corresponding CSV output (if present) are shown together for direct comparison.
 
-1. **Original CDA** (identified)
-2. **Stage 1: Pseudonymized CDA** (direct identifiers replaced, reversible pseudonyms)
-3. **Stage 2: Anonymized CDA** (irreversible pseudonyms, generalization, suppression)
+---
 
-**Original CDA**
+**Original Identified Data**
+
+*CDA XML:*
 ```xml
 <ClinicalDocument>
     <recordTarget>
@@ -1628,7 +1629,6 @@ This section demonstrates the multi-stage de-identification process for a Family
             <id extension="123456789" root="2.16.840.1.113883.19.5"/>
             <addr>
                 <streetAddressLine>123 Main St</streetAddressLine>
-                <city>Sampletown</city>
                 <state>NC</state>
                 <postalCode>12345</postalCode>
             </addr>
@@ -1638,7 +1638,6 @@ This section demonstrates the multi-stage de-identification process for a Family
                     <family>Brown</family>
                 </name>
                 <administrativeGenderCode code="F"/>
-                <birthTime value="19980605"/>
                 <raceCode code="2106-3" displayName="White"/>
                 <ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino"/>
                 <languageCommunication>
@@ -1668,7 +1667,6 @@ This section demonstrates the multi-stage de-identification process for a Family
     </custodian>
     <component>
         <structuredBody>
-            <component>
                 <section>
                     <code code="11450-4" displayName="Problem List"/>
                     <entry>
@@ -1734,8 +1732,11 @@ This section demonstrates the multi-stage de-identification process for a Family
 </ClinicalDocument>
 ```
 
+---
 
-**Stage 1: Pseudonymized CDA (with nullFlavor for masked elements)**
+**Stage 1: Pseudonymized Data**
+
+*CDA XML:*
 ```xml
 <ClinicalDocument>
     <recordTarget>
@@ -1838,8 +1839,18 @@ This section demonstrates the multi-stage de-identification process for a Family
 </ClinicalDocument>
 ```
 
+*CSV Output:*
 
-**Stage 2: Anonymized CDA (with nullFlavor for masked/removed elements)**
+| patient_id | gender | birth_date | race     | ethnicity | language | provider_id | facility_id | systolic_bp | diastolic_bp | height_cm | weight_kg | hpv_cotest_date | chlamydia_date | gc_date |
+|------------|--------|------------|----------|-----------|----------|-------------|-------------|-------------|--------------|-----------|-----------|-----------------|---------------|--------|
+| JB-001     | F      | 19980605   | 2106-3   | 2186-5    | en-US    | PROV-001    | FAC-001     | 110         | 75           | 157.5     | 58        | 20141222        | 20141222      | 20141222 |
+{:.grid}
+
+---
+
+**Stage 2: Anonymized Data**
+
+*CDA XML:*
 ```xml
 <ClinicalDocument>
     <recordTarget>
@@ -1920,17 +1931,12 @@ This section demonstrates the multi-stage de-identification process for a Family
 </ClinicalDocument>
 ```
 
-**Stage 1: Pseudonymized CSV (after CDA to CSV conversion)**
-
-| patient_id | gender | birth_date | race     | ethnicity | language | provider_id | facility_id | systolic_bp | diastolic_bp | height_cm | weight_kg | hpv_cotest_date | chlamydia_date | gc_date |
-|------------|--------|------------|----------|-----------|----------|-------------|-------------|-------------|--------------|-----------|-----------|-----------------|---------------|--------|
-| JB-001     | F      | 19980605   | 2106-3   | 2186-5    | en-US    | PROV-001    | FAC-001     | 110         | 75           | 157.5     | 58        | 20141222        | 20141222      | 20141222 |
-
-**Stage 2: Anonymized CSV (after advanced de-identification)**
+*CSV Output:*
 
 | patient_id | gender | age | race     | ethnicity | lep      | provider_id | facility_id | systolic_bp | diastolic_bp | height_in | weight_lb | hpv_cotest_week | chlamydia_week | gc_week |
 |------------|--------|-----|----------|-----------|----------|-------------|-------------|-------------|--------------|-----------|-----------|-----------------|---------------|--------|
 | 333-333    | F      | 16  | 2106-3   | 2186-5    | FALSE    | 222-222     | 111-111     | 110         | 75           | 62        | 128       | 2014W52         | 2014W52       | 2014W52 |
+{:.grid}
 
 #### A.1 Patient: JB
 
