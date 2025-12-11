@@ -268,7 +268,7 @@ The IHE QRPH Family Planning version 2 (FPv2) supplement defines five use cases 
 All five use cases involve collection of family planning data from Title X grantees, sub-recipients, and service sites that provide a wide range of family planning and related preventive health services. The de-identification analysis in this document applies to all FPv2 use cases.
 
 **Important Scope Limitation**: This analysis is specific to the Title X FPAR context in the United States. The conclusions regarding optimal de-identification algorithms relate exclusively to this use case. Organizations wishing to utilize these data elements in other programs must conduct their own de-identification analysis, considering local needs and applicable legislation.
-
+This section, the IHE IT Infrastructure (ITI) Analysis of Optimal De-Identification for Family Planning Data Elements, demonstrates the application of the IHE De-Identification Handbook's systematic process framework. It describes the comprehensive de-identification analysis performed by the ITI Technical Committee for the Family Planning Annual Report (FPAR) use case published in the IHE Quality, Research, and Public Health (QRPH) Family Planning version 2 (FPv2) Trial Implementation Supplement, Rev. 1.4 (December 29, 2021).
 The identified data described in the FPv2 supplement is used for clinical purposes at the point of care. A
 de-identified data set is needed for reporting and performance
 measurement purposes. The de-identified data set is **not** intended to be suitable for general research purposes, as that would result in too broad and identifiable a data set. Data
@@ -305,41 +305,20 @@ party intermediary performed at the source EHR. However, multiple points
 and levels of de-identification pose a risk to the accuracy and
 longitudinal consistency of the data and therefore after public comment
 feedback a single, centralized de-identification third party
-architecture was agreed upon.
-
-It is important to note that all data flows below indicate the
-</tr>
-<tr class="even">
-<td>Sexual Activity</td>
-<td>Data</td>
 <td>Unchanged</td>
 </tr>
-<tr class="odd">
-<td>Contraceptive Method at Intake</td>
-<td>Data</td>
 <td>Unchanged.</td>
 </tr>
 <tr class="even">
 <td>Reason for no contraceptive method</td>
 <td>Data</td>
 <td>Unchanged.</td>
-</tr>
-<tr class="odd">
-<td>Contraceptive Method at Exit</td>
-<td>Data</td>
 <td>Unchanged.</td>
 </tr>
-<tr class="even">
-<td>Date of Last Pap test</td>
-<td>Indirect</td>
 <td>Redact the day of the month, and use Week and Year only in the
 format of yyyyWww where week 52 of 2014 would appear 2014W52</td>
 </tr>
 <tr class="odd">
-<td>HPV Co-test Ordered</td>
-<td>Indirect</td>
-<td>Redact the day of the month, and use Week and Year only in the
-format of yyyyWww where week 52 of 2014 would appear 2014W52</td>
 </tr>
 <tr class="even">
 <td>CT Screen Ordered</td>
@@ -348,10 +327,6 @@ format of yyyyWww where week 52 of 2014 would appear 2014W52</td>
 format of yyyyWww where week 52 of 2014 would appear 2014W52</td>
 </tr>
 <tr class="odd">
-<td>GC Screen Ordered</td>
-<td>Indirect</td>
-<td>Redact the day of the month, and use Week and Year only in the
-format of yyyyWww where week 52 of 2014 would appear 2014W52</td>
 </tr>
 <tr class="even">
 <td>HIV Screen Ordered</td>
@@ -378,9 +353,6 @@ format of yyyyWww where week 52 of 2014 would appear 2014W52</td>
 <td>Referral Visit Completed Date</td>
 <td>Indirect</td>
 <td><p>Delete HIV referrals. HIV reporting is required for the HHS HIV
-linkage to care performance measure, however HIV data is sensitive and
-the HIV pools sufficiently small that a separate mechanism will be
-established for reporting on these data, such as reporting these values
 to a separate aggregate database.</p>
 <p>For non-HIV referrals redact the day of the month and use Month and
 Year only</p></td>
@@ -393,21 +365,10 @@ Year only</p></td>
 <tr class="even">
 <td>Diastolic blood pressure</td>
 <td>Data</td>
-<td>Unchanged</td>
-</tr>
-<tr class="odd">
-<td>Height</td>
-<td>Indirect</td>
 <td><p>Unchanged, except for values below 59 inches or above 76
 inches.</p>
 <p>For values below 59 inches, convert to 59 inches</p>
 <p>For values above 76 inches, convert to 76 inches</p></td>
-</tr>
-<tr class="even">
-<td>Weight</td>
-<td>Indirect</td>
-<td><p>Unchanged, except for values below 100 lbs. or above 299 lbs.</p>
-<p>For values below 100 lbs., convert to 100 lbs.</p>
 <p>For values above 299 lbs., convert to 299 lbs.</p></td>
 </tr>
 <tr class="odd">
@@ -426,16 +387,9 @@ This section provides detailed rationale for the de-identification technique sel
 
 Each element analysis follows a structured approach integrating concepts from the updated handbook:
 
-1.  **Data Type Classification**: Classifying the element per the [Data Types](data-types.html) framework (Direct Identifier, Quasi-Identifier, Sensitive Attribute, or Non-Identifier)
-
-2.  **Utility Assessment**: Evaluating the element's necessity for FPAR reporting and performance measurement (per De-identification Goals)
-
 3.  **Technique Selection**: Choosing appropriate techniques from the [Algorithms](algorithms.html) catalog:
     -   Suppression techniques (masking, local suppression)
     -   Pseudonymization techniques (irreversible hashing)
-    -   Generalization techniques (rounding, top/bottom coding, truncation)
-
-4.  **Longitudinal Consistency**: Determining if consistent values across multiple visits are required
 
 5.  **Risk Contribution**: Assessing how the element contributes to re-identification risk (particularly for quasi-identifiers)
 
@@ -447,9 +401,6 @@ The following subsections analyze each data element in the IHE QRPH Family Plann
 
 ### Data Element Analyses
 
-#### Facility identifier
-
-**Data Type Classification**: Direct Identifier / Quasi-Identifier (transforms to QI after pseudonymization)
 
 **Utility Assessment**: From a health services research perspective, the facility identifier is needed, at a minimum, to compare services or outcomes at the level of a small geographic region such as a county or township. When measuring
 outcomes or service provision, it may also be beneficial to compare
@@ -479,33 +430,18 @@ Yes. For example, in order to stratify performance measures and service
 delivery by facility in order to monitor variations in quality efforts
 and patient outcomes.
 
--   Can it be deleted?
-
 No, as noted above.
 
--   Can it be left in with no value?
-
-No.
 
 -   Can it contain a substitute value as a random number? (Fixed length
-    or original length?)
-
 Yes, as long as we identify a way to keep this value longitudinally
 consistent.
 
--   Can the value be kept in escrow or provided by a third party and
-    therefore segregated from the main data set?
-
 Yes, but it may not be worth the cost of paying a third party for this
-purpose and effort of keeping them up to date. However, since the
-Clinical Provider ID, and Patient ID need to be pseudonymized using a
 confidential mapping table, it makes sense to use the same approach for
 Facility ID since we are doing it anyway.
 
--   Can the value be pseudonymized?[^7]
-
 Yes. A pseudonymized set of facility identifiers is possible. The
-pseudonyms must be: consistent, not shared with partners, etc.
 Deployments can determine whether to use a mapping table, or assign
 ownership of pseudonym updates.
 
@@ -539,15 +475,11 @@ Types of pseudonymization optimal for Facility Identifier:
 
 -   Request facilities to manage their own anonymized/different facility
     ID known only to them at the time of submission and will be used for
-    research submissions only.
 
 -   Hashed identifiers.
-
 As identified during the usability analysis of the de-Identified data
 elements, it was determined that a mapping table is the preferred
-approach to de-Identifying the Facility Identifier. This means that a
 table will be maintained by an appointed organization, such as a
-contracted third-party that contains all of the originating Facility
 identifiers, as well as the list of de-identified values that they are
 mapped to. For example:
 
@@ -731,28 +663,23 @@ needed at certain ages.
 The Date of Birth is needed to know how old the patient is, because
 according to various clinical guidelines certain procedures must be
 performed at certain ages, e.g., pap smears for women ages 21 and over.
-On the performance measure side, report data is often grouped according
 to age brackets for the population (for example, adolescents, adults
 over 20, etc.).
 
 Since the de-identified data set will not be used for clinical purposes,
 the performance measure side mentioned above is the core focus here.
 
-As per the De-Identification spreadsheet that accompanied the
 De-Identification whitepaper, the Date of Birth is equivalent to the DOB
 field. As such, the questions that must be answered in order to
 determine de-identification requirements are:
-
 Historically, the FPAR has collected age in “brackets.” Age brackets are
 fairly specific and may need to be fairly granular at some levels. 10
 year brackets may be a problem. 5 year intervals may be manageable
-except at the edges. Age brackets may not be acceptable without a
 standard pre-selected. In addition, for different measures, an
 individual may fall into a different age bracket.
 
 However, for certain performance measures, such as pap smears, the age
 groups need to be quite granular. Brackets that are too broad can be a
-problem due to guidelines changing frequently. If large groups were used
 it would be impossible to assess if those guidelines are being followed.
 
 When the Family Planning CDA document is produced, it will contain a
@@ -761,18 +688,15 @@ test, then the document will already contain an age, so it may be
 possible to remove the DOB. However, date of the test for which age is
 calculated may not be the same as age at the time of the document, so we
 may end up having an age at the top of the document as well as
-observation based ages.
 
 Current recommendation is to calculate the age at date of visit and
 submit that as a whole number (i.e., if the person is 18.6 at the time
 of the visit, the age reported will be “18”. For clients over 50,
 generalize their age to “over 50”.
 
-#### Administrative Sex
 
 Administrative Sex is not a clinical or genetic statement; it is used
 for administrative purposes. Administrative Sex also does not equal
-gender.
 
 Administrative Sex is driven by the administrative categories that are
 needed by the facility and the people they interact with.
@@ -791,15 +715,12 @@ as unknown.
 
 The risk to that approach is that differences in numbers reported may
 identify the number of unknowns at a given site; however, it is possible
-to lose encounter level reports for other reasons so we need to
 determine the likelihood of identifying unknown genders. As a result, a
 two-step approach may be best, where the service site itself would:
 
--   Use a binary and ask individuals to pick “Female” or “Male” if they
     can; and
 
 -   Redact entire encounter level data for patients that identify as
-    “other” and do not submit that encounter at all.
 
 After repeated discussion, the committee concluded that encounter
 documents where the Administrative sex was listed as “other” that this
@@ -941,12 +862,9 @@ standard referenced value set for these categories.
 In the U.S., Categories are set by the federal government every year and
 cannot be established independently. The income categories in 2013 FPAR,
 which are based on the HHS poverty guidelines published each year, are:
-Under 101%, 101-150%, 151%-200%, 201%-250%, over 250%, unknown/not
 reported
-
 The value could possibly be substituted by a code, but this will come at
 a functional cost. The most appropriate code would be reimbursement
-categories.
 
 It was decided that Annual Household Income is too difficult to
 generalize to categories. If this element is too identifiable it is
@@ -1053,10 +971,8 @@ Where there are multiple methods in use, the QRPH Family Planning
 Profile instructs users to report the most effective of the methods
 listed.
 
-The value set for this data element comprises a number of methods, but
 it is possible that not all are necessary for performance measurement.
 The full list, however, may be useful for analytic options.
-
 The current value list includes:
 
 | Diaphragm or cap                       | Emergency Contraception (EC) |
@@ -1278,13 +1194,9 @@ for pregnant female clients.
 These data elements are not considered to be highly sensitive and may be
 considered as just data rather than indirect or direct identifiers and
 do not require de-identification. As such, these values should be passed
-through unchanged.
 
-#### Height and Weight
 
-Height and weight are used in performance measurement of BMI. Weight may
 also be useful for measurement of effectiveness of contraception in
-patients over 175lbs/79kg. Additionally, there are multiple methods for
 calculation of BMI.
 
 While the data set discussed here should not be used for research,
