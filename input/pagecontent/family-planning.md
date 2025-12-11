@@ -1480,6 +1480,9 @@ Oklahoma, and Texas)
 | **Insurance**                                    | 5                                                                    | 5                                  |
 {:.grid}
 
+
+#### A.3 Patient: LD
+
 <u>Visit 1</u>
 
 LD is a 36-year-old black male native English speaker who presents to
