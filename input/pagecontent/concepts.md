@@ -85,7 +85,7 @@ Table: Data with Mapped Pseudonyms
 | AP-33567 | **\*** | 42 | Female | 70 | 170 | New York | 10011 | O24.419 |
 {:.grid}
 
-Table above is an illustration of a reversible-pseudonymized data generated via applying the process of [Stage 1: Transforming Identified Data into Reversible-Pseudonymized Data](stage-1-transforming-identified-data-into-reversible-pseudonymized-data) to the sample data specified in the Table: Identified Patient Records.
+Table above is an illustration of a reversible-pseudonymized data generated via applying the process of [Stage 1: Transforming Identified Data into Reversible-Pseudonymized Data](#stage-1-transforming-identified-data-into-reversible-pseudonymized-data) to the sample data specified in the Table: Identified Patient Records.
 
 **Irreversibly Pseudonymized Data**
 
