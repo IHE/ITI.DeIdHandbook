@@ -40,7 +40,7 @@
 
 *Note 2:* The term "indirectly identifying data" in [(ISO 25237, 2017)](references.html#ISO25237) has been simplified according to [(ISO/IEC 20889, 2018)](references.html#ISO20889).
 
-*Note 3:* The term "indirect identifier" in this handbook is identical to the definitions of "indirect identifer" and "quasi-identifier".
+*Note 3:* The term "indirect identifier" in this handbook is identical to the definitions of "indirect identifier" and "quasi-identifier".
 
 *Example* Postcode, sex, age, date of birth.
 
