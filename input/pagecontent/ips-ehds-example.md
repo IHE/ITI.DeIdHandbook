@@ -342,7 +342,59 @@ Primary: k-anonymity for structured IPS releases; Optional: Differential Privacy
 ### Multi-stage De-identification Design
 
 - Stage 1 (Preliminary, source/early pipeline): remove obvious direct identifiers; apply reversible pseudonyms where operationally required; prepare generalization plans (e.g., 3-digit postal code).
+
+  Stage 1 Element-level de-identification rules
+
+  | Section | Data Element | De-id Method |
+  | --- | --- | --- |
+  | Patient | Patient Name | Reversibly pseudonymized (name) |
+  | Patient | ID | Reversibly pseudonymized (identifier) |
+  | Patient | Telecom | Omitted for data minimization |
+  | Mortality | Name | Reversibly pseudonymized (name) |
+  | Mortality | Identifier | Reversibly pseudonymized (identifier) |
+  {:.grid}
+
 - Stage 2 (Advanced, HDAB Intermediation): irreversible pseudonymization; date shifting relative to birth/incident; generalization/suppression of quasi-identifiers; outlier review; quantitative risk check (equivalence classes); ensure semantic validity.
+
+  Stage 2 Element-level de-identification rules
+
+  | Section | Data Element | De-id Method |
+  | --- | --- | --- |
+  | Patient | Date of Birth | Date shifting within age-group; suppress rare age combinations |
+  | Patient | Gender | Included (QI) for stratification; monitor small cells |
+  | Patient | Deceased | Included (QI) for stratification |
+  | Patient | Deceased date | Date shifting relative to birth; suppress outliers |
+  | Patient | Address (postal code) | Generalize to 3-digit prefix; suppress unique areas |
+  | Patient | Preferred language | Omitted for data minimization |
+  | Patient | General Practitioner | Omitted for data minimization |
+  | Patient | Insurance | Omitted for data minimization |
+  | Problems | Onset date | Date shifting relative to diagnosis |
+  | Problems | Problem Status | Omitted for data minimization |
+  | Problems | Specialist Contact | Omitted for data minimization |
+  | Procedures | Procedure date | Date shifting relative to incident |
+  | Procedures | Body site | Included (QI) at coded granularity; suppress rare sites |
+  | Procedures | Procedure description | Omitted due to potential free-text privacy issues |
+  | Medication Summary | Period of medication use | Date shifting relative to incident |
+  | Medication Summary | Route of administration | Omitted for data minimization |
+  | Allergies/Intolerances | Onset date | Date shifting relative to incident |
+  | Allergies/Intolerances | End date | Date shifting relative to incident |
+  | Allergies/Intolerances | Diagnosis | Omitted for data minimization (outlier risk) |
+  | Results | Date of observation | Date shifting relative to incident |
+  | Results | Result description | Omitted for data minimization |
+  | Results | Performer | Omitted for data minimization |
+  | Results | Observer | Omitted for data minimization |
+  | Immunizations | Date of immunization | Date shifting relative to incident |
+  | Immunizations | Target disease | Omitted for data minimization |
+  | Immunizations | Product name | Omitted for data minimization |
+  | Immunizations | Product administration | Omitted for data minimization |
+  | Immunizations | Performer | Omitted for data minimization |
+  | Immunizations | Route of administration | Omitted for data minimization |
+  | Medical Devices | Device data required | Not needed for the study; data absent reason marked as 'masked' |
+  | Social History | Occupation & industry | Date shifting for employment dates; generalize industry categories |
+  | Pregnancy | Estimated date of delivery | Date shifting relative to birth |
+  | Mortality | Date of death | Date shifting relative to birth; suppress outliers |
+  | Mortality | Cause of death | Outlier review; suppress highly unique causes |
+  {:.grid}
 - Stage 3 (Recipient Verification): recipient-side verification of risk level and constraints; use enclave or controlled environments when appropriate.
 
 See [Process → Multi-stage design](process.html).
@@ -362,6 +414,78 @@ Batch IDs, transformation logs, and audit trails generated during de-identificat
 Released dataset classification: Irreversibly Pseudonymized Data for non-public controlled sharing, meeting average risk ≤ 0.075 with safeguards. Residual risks are managed via suppression/generalization and contractual controls; utility confirmed for population metrics and longitudinal trends.
 
 ### FHIR Example
+
+#### IPS Data Element Mappings (FHIR)
+
+The table maps IPS data elements to their FHIR paths and summarizes the applied de-identification method across stages (Stage 1 for direct identifiers; Stage 2 for quasi-identifiers and minimization). Where elements are removed, Data Absent Reason (`masked`) is used per FHIR guidance.
+
+| Section | Data Element | FHIR Path | De-id Method |
+| --- | --- | --- | --- |
+| Patient | Patient Name | Patient.name | Stage 1: pseudonymize; retain pseudonym |
+| Patient | ID | Patient.identifier | Stage 1: pseudonymize; retain pseudonym |
+| Patient | Telecom | Patient.telecom.extension(data-absent-reason) | Stage 1: omit value + DAR masked |
+| Patient | Date of Birth | Patient.birthDate | Stage 2: date shift (age-group policy) |
+| Patient | Gender | Patient.gender | Included (QI) |
+| Patient | Deceased indicator | Patient.deceasedBoolean | Included |
+| Patient | Deceased date | Patient.deceasedDateTime | Stage 2: date shift |
+| Patient | Address (postal code) | Patient.address[0].postalCode | Stage 2: generalize to 3-digit |
+| Patient | Preferred language | Patient.communication.language | Omit (minimization) |
+| Patient | General Practitioner | Patient.generalPractitioner.extension(data-absent-reason) | Stage 2: omit value + DAR masked |
+| Patient | Insurance | Patient.extension(url='urn:example:insurance') | Omit (minimization) |
+| Problems | Problem Type | Condition.category | Included |
+| Problems | Diagnosis | Condition.code | Included; outlier review if needed |
+| Problems | Severity | Condition.severity | Included |
+| Problems | Onset Date | Condition.onsetDateTime | Stage 2: date shift |
+| Problems | Problem Status | Condition.clinicalStatus.extension(data-absent-reason) | Stage 2: omit value + DAR masked |
+| Problems | Specialist Contact | Condition.asserter.extension(data-absent-reason) | Stage 2: omit value + DAR masked |
+| Problems | Verification Status | Condition.verificationStatus | Included |
+| Procedures | Procedure code | Procedure.code.coding | Included |
+| Procedures | Procedure description | Procedure.code._text.extension(data-absent-reason) | Stage 2: omit text + DAR masked |
+| Procedures | Note | Procedure.note.extension(data-absent-reason) | Stage 2: omit value + DAR masked |
+| Procedures | Body site | Procedure.bodySite | Included |
+| Procedures | Procedure date | Procedure.performedDateTime | Stage 2: date shift |
+| Medication Summary | Product code | MedicationStatement.contained(Medication).code | Included |
+| Medication Summary | Common name & strength | Medication.code.text; Medication.ingredient.strength | Include when coded; omit free-text if risky |
+| Medication Summary | Active ingredient code | Medication.ingredient.itemCodeableConcept | Included |
+| Medication Summary | Period of use | MedicationStatement.effectivePeriod | Stage 2: date shift |
+| Medication Summary | Route of administration | MedicationStatement.dosage.route.extension(data-absent-reason) | Stage 2: omit value + DAR masked |
+| Medication Summary | Dose quantity | MedicationStatement.dosage.doseAndRate[0].doseQuantity | Included |
+| Medication Summary | Dose frequency | MedicationStatement.dosage.timing | Included |
+| Allergies | Clinical status | AllergyIntolerance.clinicalStatus | Included |
+| Allergies | Onset date | AllergyIntolerance.onsetDateTime | Stage 2: date shift |
+| Allergies | End date | AllergyIntolerance.lastOccurrence | Stage 2: date shift |
+| Allergies | Criticality | AllergyIntolerance.criticality | Included |
+| Allergies | Certainty | AllergyIntolerance.verificationStatus | Included |
+| Allergies | Type of propensity | AllergyIntolerance.type | Included |
+| Allergies | Diagnosis (extension) | AllergyIntolerance.extension(url='urn:example:allergy-diagnosis') | Omit (minimization; outlier risk) |
+| Allergies | Reaction manifestation | AllergyIntolerance.reaction.manifestation | Included |
+| Allergies | Reaction severity | AllergyIntolerance.reaction.severity | Included |
+| Allergies | Agent code | AllergyIntolerance.code | Included |
+| Allergies | Agent category | AllergyIntolerance.category | Included |
+| Results | Date of observation | Observation.effectiveDateTime | Stage 2: date shift |
+| Results | Observation type | Observation.code | Included |
+| Results | Result value | Observation.valueQuantity | Included |
+| Results | Result description | Observation.note.extension(data-absent-reason) | Stage 2: omit value + DAR masked |
+| Results | Performer | Observation.performer.extension(data-absent-reason) | Stage 2: omit value + DAR masked |
+| Results | Observer (extension) | Observation.extension(url='urn:example:observer') | Omit (minimization) |
+| Immunizations | Vaccine (type of disease) | Immunization.vaccineCode | Included |
+| Immunizations | Date of immunization | Immunization.occurrenceDateTime | Stage 2: date shift |
+| Immunizations | Number in series | Immunization.protocolApplied.doseNumberPositiveInt | Included |
+| Immunizations | Target disease | Immunization.protocolApplied.targetDisease.extension(data-absent-reason) | Stage 2: omit value + DAR masked |
+| Immunizations | Product name | Immunization.vaccineCode.text | Omit (minimization) |
+| Immunizations | Product administration | Immunization.doseQuantity/site/route.extension(data-absent-reason) | Stage 2: omit value(s) + DAR masked |
+| Immunizations | Performer | Immunization.performer | Omit (minimization) |
+| Social History | Occupation | Observation(valueString) where code=11341-5 | Include; review outliers; date-shift the observation date |
+| Social History | Industry | Observation(valueString) where code=21843-6 | Include; review outliers; date-shift the observation date |
+| Pregnancy | Pregnancy status | Observation(valueCodeableConcept) where code=82810-3 | Included |
+| Pregnancy | Estimated delivery date | Observation(valueDateTime) where code=11778-8 | Stage 2: date shift |
+| Medical Devices | Device data required | DeviceUseStatement.device.extension(data-absent-reason) | Stage 2: omit value + DAR masked |
+| Medical Devices | Note | DeviceUseStatement.note | Included (non-identifying) |
+| Mortality | Name | Observation.extension(url='urn:example:decedentName').valueHumanName | Stage 1/2: pseudonymize |
+| Mortality | Identifier | Observation.identifier | Stage 1/2: pseudonymize |
+| Mortality | Date of death | Observation.effectiveDateTime | Stage 2: date shift |
+| Mortality | Cause of death | Observation.valueCodeableConcept | Included; outlier review |
+{:.grid}
 
 #### Original Identified IPS Document Bundle
 
@@ -585,219 +709,629 @@ Released dataset classification: Irreversibly Pseudonymized Data for non-public 
 }
 ```
 
-#### Pseudonymized Data (release-ready)
-
-Transformations applied per the Data Elements table: names/identifiers pseudonymized, telecom removed, postal generalized to 3 digits, dates shifted to preserve age-group and clinical threading, provider references omitted.
+#### Pseudonymized IPS Document Bundle (Stage 1)
 
 ```json
 {
-  "resourceType": "Patient",
-  "id": "psyn-7ac6997e",
-  "identifier": [{"system": "urn:example:psyn", "value": "PID-7ac6997e"}],
-  "name": [{"text": "Psyn-001"}],
-  "gender": "female",
-  "birthDate": "1956-10-15", 
-  "address": [{"postalCode": "321"}]
-}
-```
-
-```json
-{
-  "resourceType": "Condition",
-  "code": {"coding": [{"system": "http://snomed.info/sct", "code": "59621000", "display": "Essential hypertension"}]},
-  "subject": {"reference": "Patient/psyn-7ac6997e"},
-  "onsetDateTime": "2016-06-10"
-}
-```
-
-```json
-{
-  "resourceType": "Immunization",
-  "vaccineCode": {"coding": [{"system": "http://snomed.info/sct", "code": "1119349007", "display": "COVID-19 vaccine"}]},
-  "occurrenceDateTime": "2024-05-18",
-  "protocolApplied": [{"doseNumberPositiveInt": 2}],
-  "route": {"coding": [{"system": "http://snomed.info/sct", "code": "34206005"}]}
-}
-```
-
-```json
-{
-  "resourceType": "MedicationStatement",
-  "medicationCodeableConcept": {"coding": [{"system": "http://www.whocc.no/atc", "code": "J01CA"}]},
-  "effectivePeriod": {"start": "2024-01-16", "end": "2024-02-16"},
-  "dosage": [{
-    "doseAndRate": [{"doseQuantity": {"value": 500, "unit": "mg"}}]
-  }]
-}
-```
-
-```json
-{
-  "resourceType": "Observation",
-  "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}]},
-  "effectiveDateTime": "2023-11-18",
-  "valueQuantity": {"value": 13.2, "unit": "g/dL"},
-  "note": [],
-  "performer": []
-}
-```
-
-```json
-{
-  "resourceType": "Observation",
-  "code": {"coding": [{"system": "http://loinc.org", "code": "11341-5", "display": "History of Occupation"}]},
-  "valueString": "Nurse",
-  "effectiveDateTime": "2020-01-18"
-}
-```
-
-```json
-{
-  "resourceType": "Observation",
-  "code": {"coding": [{"system": "http://loinc.org", "code": "21843-6", "display": "Industry of employment"}]},
-  "valueString": "Healthcare",
-  "effectiveDateTime": "2020-01-18"
-}
-```
-
-```json
-{
-  "resourceType": "Observation",
-  "code": {"coding": [{"system": "http://loinc.org", "code": "11778-8", "display": "Estimated delivery date"}]},
-  "valueDateTime": "2024-12-18"
-}
-```
-
-```json
-{
-  "resourceType": "DeviceUseStatement",
-  "status": "entered-in-error",
-  "note": [{"text": "masked"}]
-}
-```
-
-```json
-{
-  "resourceType": "Observation",
-  "code": {"coding": [{"system": "http://loinc.org", "code": "81956-5", "display": "Cause of death"}]},
-  "effectiveDateTime": "2024-07-17",
-  "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "840539006", "display": "COVID-19"}]}
+  "resourceType": "Bundle",
+  "type": "document",
+  "timestamp": "2024-07-01T00:00:00Z",
+  "meta": {
+    "security": [
+      {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+    ]
+  },
+  "entry": [
+    {
+      "fullUrl": "Composition/ips-comp-1",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "ips-comp-1",
+        "meta": {
+          "profile": ["http://hl7.org/fhir/uv/ips/StructureDefinition/Composition"],
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "status": "final",
+        "type": {"coding": [{"system": "http://loinc.org", "code": "60591-5", "display": "Patient summary Document"}]},
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "date": "2024-07-01T00:00:00Z",
+        "author": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
+        "title": "International Patient Summary",
+        "confidentiality": "N",
+        "section": [
+          {"title": "Problems", "entry": [{"reference": "Condition/cond-1"}]},
+          {"title": "Procedures", "entry": [{"reference": "Procedure/proc-1"}]},
+          {"title": "Medication Summary", "entry": [{"reference": "MedicationStatement/medstmt-1"}]},
+          {"title": "Allergies and Intolerances", "entry": [{"reference": "AllergyIntolerance/allergy-1"}]},
+          {"title": "Results", "entry": [{"reference": "Observation/obs-hb-1"}]},
+          {"title": "Immunizations", "entry": [{"reference": "Immunization/imm-1"}]},
+          {"title": "Social History", "entry": [{"reference": "Observation/obs-occ-1"}, {"reference": "Observation/obs-ind-1"}]},
+          {"title": "Pregnancy History", "entry": [{"reference": "Observation/obs-prg-1"}, {"reference": "Observation/obs-edd-1"}]},
+          {"title": "Medical Devices", "entry": [{"reference": "DeviceUseStatement/dus-1"}]},
+          {"title": "Mortality", "entry": [{"reference": "Observation/obs-cod-1"}]}
+        ]
+      }
+    },
+    {
+      "fullUrl": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "d174bd1a-b368-41e6-83a2-af77f2b3c60f",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"},
+            {"system": "http://ihe.net/CodeSystem/deid-handling", "code": "masked", "display": "Contains masked elements"}
+          ]
+        },
+        "identifier": [{"system": "urn:example:psyn", "value": "PID-7ac6997e"}],
+        "name": [{"family": "Psyn", "given": ["001"]}],
+        "telecom": [{
+          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
+        }],
+        "gender": "female",
+        "birthDate": "1956-09-30",
+        "deceasedBoolean": true,
+        "deceasedDateTime": "2024-06-30",
+        "address": [{"postalCode": "3210"}],
+        "communication": [{"language": {"coding": [{"system": "urn:ietf:bcp:47", "code": "en-NZ"}]}}],
+        "generalPractitioner": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
+        "extension": [{"url": "urn:example:insurance", "valueString": "NZ-ACC-PLAN"}]
+      }
+    },
+    {
+      "fullUrl": "Condition/cond-1",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "59621000", "display": "Essential hypertension"}]},
+        "severity": {"coding": [{"system": "http://snomed.info/sct", "code": "255604002", "display": "Mild"}]},
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "onsetDateTime": "2016-05-25",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "asserter": {"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}
+      }
+    },
+    {
+      "fullUrl": "Procedure/proc-1",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "proc-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "80146002", "display": "Appendectomy"}], "text": "Laparoscopic appendectomy"},
+        "note": [{"text": "Laparoscopic appendectomy performed"}],
+        "bodySite": [{"coding": [{"system": "http://snomed.info/sct", "code": "66754008", "display": "Appendix structure"}]}],
+        "performedDateTime": "2018-03-10"
+      }
+    },
+    {
+      "fullUrl": "MedicationStatement/medstmt-1",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "medstmt-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "contained": [{
+          "resourceType": "Medication",
+          "id": "med1",
+          "code": {"coding": [{"system": "http://www.whocc.no/atc", "code": "J01CA", "display": "Penicillins"}], "text": "Amoxicillin 500 mg"},
+          "ingredient": [{"itemCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "372687004", "display": "Amoxicillin"}]}, "strength": {"numerator": {"value": 500, "unit": "mg"}, "denominator": {"value": 1, "unit": "tablet"}}}]
+        }],
+        "medicationReference": {"reference": "#med1"},
+        "effectivePeriod": {"start": "2024-01-01", "end": "2024-02-01"},
+        "dosage": [{
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]},
+          "doseAndRate": [{"doseQuantity": {"value": 500, "unit": "mg"}}],
+          "timing": {"repeat": {"frequency": 3, "period": 1, "periodUnit": "d"}}
+        }]
+      }
+    },
+    {
+      "fullUrl": "AllergyIntolerance/allergy-1",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "allergy-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification", "code": "confirmed"}]},
+        "type": "allergy",
+        "category": ["medication"],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "764146007", "display": "Penicillin"}]},
+        "extension": [{"url": "urn:example:allergy-diagnosis", "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "294954003", "display": "Allergy to penicillin"}]}}],
+        "onsetDateTime": "2015-04-01",
+        "lastOccurrence": "2015-05-01",
+        "criticality": "high",
+        "reaction": [{
+          "manifestation": [{"coding": [{"system": "http://snomed.info/sct", "code": "271807003", "display": "Rash"}]}],
+          "severity": "moderate"
+        }]
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-hb-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-hb-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}]},
+        "effectiveDateTime": "2023-11-01",
+        "valueQuantity": {"value": 13.2, "unit": "g/dL"},
+        "interpretation": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation", "code": "N", "display": "Normal"}]},
+        "note": [{"text": "Routine CBC"}],
+        "performer": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
+        "extension": [{"url": "urn:example:observer", "valueReference": {"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}}]
+      }
+    },
+    {
+      "fullUrl": "Immunization/imm-1",
+      "resource": {
+        "resourceType": "Immunization",
+        "id": "imm-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "vaccineCode": {"coding": [{"system": "http://snomed.info/sct", "code": "1119349007", "display": "COVID-19 vaccine"}], "text": "Comirnaty"},
+        "occurrenceDateTime": "2024-05-01",
+        "protocolApplied": [{"doseNumberPositiveInt": 2, "targetDisease": [{"coding": [{"system": "http://snomed.info/sct", "code": "840539006", "display": "COVID-19"}]}]}],
+        "doseQuantity": {"value": 0.5, "unit": "mL"},
+        "site": {"text": "Left deltoid region"},
+        "route": {"coding": [{"system": "http://snomed.info/sct", "code": "34206005", "display": "Intramuscular route"}]},
+        "performer": [{"actor": {"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}}]
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-occ-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-occ-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "11341-5", "display": "History of Occupation"}]},
+        "valueString": "Nurse",
+        "effectiveDateTime": "2020-01-15"
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-ind-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-ind-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "21843-6", "display": "Industry of employment"}]},
+        "valueString": "Healthcare",
+        "effectiveDateTime": "2020-01-15"
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-prg-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-prg-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "82810-3", "display": "Pregnancy status"}]},
+        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "77386006", "display": "Pregnant"}]}
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-edd-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-edd-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "11778-8", "display": "Estimated delivery date"}]},
+        "valueDateTime": "2024-12-01"
+      }
+    },
+    {
+      "fullUrl": "DeviceUseStatement/dus-1",
+      "resource": {
+        "resourceType": "DeviceUseStatement",
+        "id": "dus-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "status": "completed",
+        "device": {"reference": "Device/eumfh-70-275-2"},
+        "note": [{"text": "Device data required"}],
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"}
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-cod-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-cod-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
+          ]
+        },
+        "identifier": [{"system": "urn:example:psyn", "value": "VRDR-PSYN-0001"}],
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "81956-5", "display": "Cause of death"}]},
+        "effectiveDateTime": "2024-06-30",
+        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "840539006", "display": "COVID-19"}]},
+        "extension": [{"url": "urn:example:decedentName", "valueHumanName": {"family": "Psyn", "given": ["001"]}}]
+      }
+    }
+  ]
 }
 ```
 
 Notes:
-- Date shifts shown are illustrative (+15–17 days) while preserving month-level buckets where required.
-- Postal code generalized to first three digits.
-- Telecom and provider references omitted to remove latent identifiers.
+- Only direct identifiers are processed in Stage 1 (name, identifier, telecom).
+- Redaction: Patient.telecom value removed and marked with data absent reason = "masked".
+- Pseudonymization: Patient and Mortality identifiers/names replaced with consistent pseudonyms.
+- Security Labels: meta.security added to mark de-identification status.
 
-#### Patient De-identification Mapping (IPS)
+#### Pseudonymized IPS Document Bundle (Stage 2)
 
-| Patient Element | De-identification Method |
-| --- | --- |
-| Name | Pseudonymized (reversible at source if required; irreversible at release) |
-| ID | Pseudonymized, consistent per subject over time |
-| Date of Birth | Date shifting within age-group bands |
-| Gender | Included (utility) |
-| Telecom | Omitted (data minimization) |
-| Deceased indicator | Included (utility) |
-| Deceased date | Date shifting relative to shifted birth date |
-| Address (postal code) | Generalize to first 3 digits |
-| Preferred language | Omitted (data minimization) |
-| General Practitioner | Omitted (data minimization) |
-| Insurance | Omitted (data minimization) |
-{:.grid}
+```json
+{
+  "resourceType": "Bundle",
+  "type": "document",
+  "timestamp": "2024-07-01T00:00:00Z",
+  "meta": {
+    "security": [
+      {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+    ]
+  },
+  "entry": [
+    {
+      "fullUrl": "Composition/ips-comp-1",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "ips-comp-1",
+        "meta": {
+          "profile": ["http://hl7.org/fhir/uv/ips/StructureDefinition/Composition"],
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "status": "final",
+        "type": {"coding": [{"system": "http://loinc.org", "code": "60591-5", "display": "Patient summary Document"}]},
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "date": "2024-07-01T00:00:00Z",
+        "author": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
+        "title": "International Patient Summary",
+        "confidentiality": "N",
+        "section": [
+          {"title": "Problems", "entry": [{"reference": "Condition/cond-1"}]},
+          {"title": "Procedures", "entry": [{"reference": "Procedure/proc-1"}]},
+          {"title": "Medication Summary", "entry": [{"reference": "MedicationStatement/medstmt-1"}]},
+          {"title": "Allergies and Intolerances", "entry": [{"reference": "AllergyIntolerance/allergy-1"}]},
+          {"title": "Results", "entry": [{"reference": "Observation/obs-hb-1"}]},
+          {"title": "Immunizations", "entry": [{"reference": "Immunization/imm-1"}]},
+          {"title": "Social History", "entry": [{"reference": "Observation/obs-occ-1"}, {"reference": "Observation/obs-ind-1"}]},
+          {"title": "Pregnancy History", "entry": [{"reference": "Observation/obs-prg-1"}, {"reference": "Observation/obs-edd-1"}]},
+          {"title": "Medical Devices", "entry": [{"reference": "DeviceUseStatement/dus-1"}]},
+          {"title": "Mortality", "entry": [{"reference": "Observation/obs-cod-1"}]}
+        ]
+      }
+    },
+    {
+      "fullUrl": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "d174bd1a-b368-41e6-83a2-af77f2b3c60f",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"},
+            {"system": "http://ihe.net/CodeSystem/deid-handling", "code": "masked", "display": "Contains masked elements"}
+          ]
+        },
+        "identifier": [{"system": "urn:example:psyn2", "value": "PID-9f8b1ea1"}],
+        "name": [{"family": "Psyn", "given": ["001"]}],
+        "telecom": [{
+          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
+        }],
+        "gender": "female",
+        "birthDate": "1956-10-15",
+        "deceasedBoolean": true,
+        "deceasedDateTime": "2024-07-15",
+        "address": [{"postalCode": "321"}],
+        
+        "generalPractitioner": [{
+          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
+        }]
+      }
+    },
+    {
+      "fullUrl": "Condition/cond-1",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]}],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "59621000", "display": "Essential hypertension"}]},
+        "severity": {"coding": [{"system": "http://snomed.info/sct", "code": "255604002", "display": "Mild"}]},
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "onsetDateTime": "2016-06-10",
+        "clinicalStatus": {
+          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
+        },
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "asserter": {
+          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
+        }
+      }
+    },
+    {
+      "fullUrl": "Procedure/proc-1",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "proc-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {
+          "coding": [{"system": "http://snomed.info/sct", "code": "80146002", "display": "Appendectomy"}],
+          "_text": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}
+        },
+        "note": [{"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}],
+        "bodySite": [{"coding": [{"system": "http://snomed.info/sct", "code": "66754008", "display": "Appendix structure"}]}],
+        "performedDateTime": "2018-03-25"
+      }
+    },
+    {
+      "fullUrl": "MedicationStatement/medstmt-1",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "medstmt-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "contained": [{
+          "resourceType": "Medication",
+          "id": "med1",
+          "code": {"coding": [{"system": "http://www.whocc.no/atc", "code": "J01CA", "display": "Penicillins"}], "text": "Amoxicillin 500 mg"},
+          "ingredient": [{"itemCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "372687004", "display": "Amoxicillin"}]}, "strength": {"numerator": {"value": 500, "unit": "mg"}, "denominator": {"value": 1, "unit": "tablet"}}}]
+        }],
+        "medicationReference": {"reference": "#med1"},
+        "effectivePeriod": {"start": "2024-01-18", "end": "2024-02-18"},
+        "dosage": [{
+          "route": {
+            "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
+          },
+          "doseAndRate": [{"doseQuantity": {"value": 500, "unit": "mg"}}],
+          "timing": {"repeat": {"frequency": 3, "period": 1, "periodUnit": "d"}}
+        }]
+      }
+    },
+    {
+      "fullUrl": "AllergyIntolerance/allergy-1",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "allergy-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification", "code": "confirmed"}]},
+        "type": "allergy",
+        "category": ["medication"],
+        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "764146007", "display": "Penicillin"}]},
+        "onsetDateTime": "2015-04-18",
+        "lastOccurrence": "2015-05-18",
+        "criticality": "high",
+        "reaction": [{
+          "manifestation": [{"coding": [{"system": "http://snomed.info/sct", "code": "271807003", "display": "Rash"}]}],
+          "severity": "moderate"
+        }]
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-hb-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-hb-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}]},
+        "effectiveDateTime": "2023-11-18",
+        "valueQuantity": {"value": 13.2, "unit": "g/dL"},
+        "interpretation": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation", "code": "N", "display": "Normal"}]},
+        "note": [{"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}],
+        "performer": [{"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}]
+      }
+    },
+    {
+      "fullUrl": "Immunization/imm-1",
+      "resource": {
+        "resourceType": "Immunization",
+        "id": "imm-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "vaccineCode": {"coding": [{"system": "http://snomed.info/sct", "code": "1119349007", "display": "COVID-19 vaccine"}]},
+        "occurrenceDateTime": "2024-05-18",
+        "protocolApplied": [{
+          "doseNumberPositiveInt": 2,
+          "targetDisease": [{"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}]
+        }],
+        "doseQuantity": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]},
+        "site": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]},
+        "route": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-occ-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-occ-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "11341-5", "display": "History of Occupation"}]},
+        "valueString": "Nurse",
+        "effectiveDateTime": "2020-01-31"
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-ind-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-ind-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "21843-6", "display": "Industry of employment"}]},
+        "valueString": "Healthcare",
+        "effectiveDateTime": "2020-01-31"
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-prg-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-prg-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "82810-3", "display": "Pregnancy status"}]},
+        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "77386006", "display": "Pregnant"}]}
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-edd-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-edd-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "11778-8", "display": "Estimated delivery date"}]},
+        "valueDateTime": "2024-12-18"
+      }
+    },
+    {
+      "fullUrl": "DeviceUseStatement/dus-1",
+      "resource": {
+        "resourceType": "DeviceUseStatement",
+        "id": "dus-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "status": "completed",
+        "device": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]},
+        "note": [{"text": "Device data required"}],
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"}
+      }
+    },
+    {
+      "fullUrl": "Observation/obs-cod-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-cod-1",
+        "meta": {
+          "security": [
+            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
+          ]
+        },
+        "identifier": [{"system": "urn:example:psyn2", "value": "VRDR-PSYN2-0001"}],
+        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
+        "code": {"coding": [{"system": "http://loinc.org", "code": "81956-5", "display": "Cause of death"}]},
+        "effectiveDateTime": "2024-07-15",
+        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "840539006", "display": "COVID-19"}]},
+        "extension": [{"url": "urn:example:decedentName", "valueHumanName": {"family": "Psyn", "given": ["001"]}}]
+      }
+    }
+  ]
+}
+```
+
+Notes:
+- Stage 2 applies quasi-identifier handling: date shifting (relative to birth/incident), postal code generalization (to 3-digits), and removal of requested attributes.
+- Data Absent Reason: added on masked elements (e.g., MedicationStatement.dosage.route, Immunization.route/dose/site, DeviceUseStatement.device).
+- Security Labels: `meta.security` tags set to `stage2-pseudonymized` for Bundle and resources.
+- Redaction & Generalization: provider references and free-text removed where specified; postal code generalized.
+- Pseudonymization: irreversible patient and mortality identifiers (`urn:example:psyn2`) while preserving referential integrity.
+
 
 ### CDA Example
 
-#### Original Identified Data (IPS-like CDA subset)
-
-```xml
-<ClinicalDocument xmlns="urn:hl7-org:v3">
-  <recordTarget>
-    <patientRole>
-      <id root="https://standards.digital.health.nz/ns/nhi-id" extension="ABC1234"/>
-      <addr><postalCode>3210</postalCode></addr>
-      <patient>
-        <name><given>Patricia</given><family>JORDANA</family></name>
-        <administrativeGenderCode code="F"/>
-        <birthTime value="19560930"/>
-      </patient>
-    </patientRole>
-  </recordTarget>
-  <component>
-    <section>
-      <code code="10154-3" codeSystem="2.16.840.1.113883.6.1" displayName="Problem List"/>
-      <entry>
-        <observation classCode="OBS" moodCode="EVN">
-          <code code="59621000" codeSystem="2.16.840.1.113883.6.96" displayName="Essential hypertension"/>
-          <effectiveTime value="20160525"/>
-        </observation>
-      </entry>
-    </section>
-  </component>
-  <component>
-    <section>
-      <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" displayName="Immunizations"/>
-      <entry>
-        <substanceAdministration classCode="SBADM" moodCode="EVN">
-          <effectiveTime value="20240501"/>
-          <consumable>
-            <manufacturedProduct>
-              <code code="1119349007" codeSystem="2.16.840.1.113883.6.96" displayName="COVID-19 vaccine"/>
-            </manufacturedProduct>
-          </consumable>
-        </substanceAdministration>
-      </entry>
-    </section>
-  </component>
-</ClinicalDocument>
-```
-
-#### Pseudonymized Data (release-ready CDA)
-
-```xml
-<ClinicalDocument xmlns="urn:hl7-org:v3">
-  <recordTarget>
-    <patientRole>
-      <id root="urn:example:psyn" extension="PID-7ac6997e"/>
-      <addr><postalCode>321</postalCode></addr>
-      <patient>
-        <name><given>Psyn</given><family>001</family></name>
-        <administrativeGenderCode code="F"/>
-        <birthTime value="19561015"/>
-      </patient>
-    </patientRole>
-  </recordTarget>
-  <component>
-    <section>
-      <code code="10154-3" codeSystem="2.16.840.1.113883.6.1" displayName="Problem List"/>
-      <entry>
-        <observation classCode="OBS" moodCode="EVN">
-          <code code="59621000" codeSystem="2.16.840.1.113883.6.96" displayName="Essential hypertension"/>
-          <effectiveTime value="20160610"/>
-        </observation>
-      </entry>
-    </section>
-  </component>
-  <component>
-    <section>
-      <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" displayName="Immunizations"/>
-      <entry>
-        <substanceAdministration classCode="SBADM" moodCode="EVN">
-          <effectiveTime value="20240518"/>
-          <consumable>
-            <manufacturedProduct>
-              <code code="1119349007" codeSystem="2.16.840.1.113883.6.96" displayName="COVID-19 vaccine"/>
-            </manufacturedProduct>
-          </consumable>
-        </substanceAdministration>
-      </entry>
-    </section>
-  </component>
-</ClinicalDocument>
-```
-
-Notes:
-- Pseudonyms are illustrative; actual generation follows Stage 2 irreversible pseudonymization with secret, un-stored salt.
-- Dates are shifted consistently to preserve clinical threading while meeting risk thresholds.
-- Free-text and provider identifiers are omitted; codes remain for utility.
