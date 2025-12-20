@@ -1335,3 +1335,202 @@ Notes:
 
 ### CDA Example
 
+This CDA example mirrors the FHIR IPS sample data and uses CDA-specific masking via `nullFlavor` (e.g., `MSK`) for removed elements.
+
+#### IPS Data Element Mappings (CDA)
+The table maps IPS data elements to their CDA paths and summarizes the applied de-identification method across stages (Stage 1 for direct identifiers; Stage 2 for quasi-identifiers and minimization). Where elements are removed, CDA uses nullFlavor = "MSK".
+
+| Section | Data Element | CDA Path | De-id Method |
+| --- | --- | --- | --- |
+| Patient | Patient Name | ClinicalDocument/recordTarget/patientRole/patient/name | Stage 1: mask via nullFlavor='MSK'; Stage 2: remain masked |
+| Patient | ID | ClinicalDocument/recordTarget/patientRole/id | Stage 1: pseudonymize; Stage 2: irreversible pseudonym |
+| Patient | Telecom | ClinicalDocument/recordTarget/patientRole/telecom | Stage 1/2: omit value; set nullFlavor='MSK' |
+| Patient | Date of Birth | ClinicalDocument/recordTarget/patientRole/patient/birthTime | Stage 2: date shift or mask with age band |
+| Patient | Gender | ClinicalDocument/recordTarget/patientRole/patient/administrativeGenderCode | Included (QI) |
+| Patient | Address (postal code) | ClinicalDocument/recordTarget/patientRole/addr/postalCode | Stage 2: generalize to 3-digit |
+| Patient | Preferred language | ClinicalDocument/languageCode | Omit (minimization) |
+| Patient | General Practitioner | ClinicalDocument/documentationOf/serviceEvent/performer | Omit (minimization) |
+| Patient | Insurance | ClinicalDocument/coverage (local extension) | Omit (minimization) |
+| Problems | Diagnosis | ClinicalDocument/component/section[code=10154-3]/entry/observation/code | Included |
+| Problems | Onset Date | ClinicalDocument/component/section[code=10154-3]/entry/observation/effectiveTime@value | Stage 2: date shift |
+| Problems | Problem Status | ClinicalDocument/component/section[code=10154-3]/entry/observation/statusCode | Omit (minimization) |
+| Problems | Specialist Contact | ClinicalDocument/component/section[code=10154-3]/entry/author/assignedAuthor | Omit (minimization) |
+| Procedures | Procedure code | ClinicalDocument/component/section[Procedures]/entry/procedure/code | Included |
+| Procedures | Procedure description | ClinicalDocument/component/section[Procedures]/entry/procedure/text | Stage 2: omit free-text; nullFlavor='MSK' if present |
+| Procedures | Body site | ClinicalDocument/component/section[Procedures]/entry/procedure/targetSiteCode | Included |
+| Procedures | Procedure date | ClinicalDocument/component/section[Procedures]/entry/procedure/effectiveTime@value | Stage 2: date shift |
+| Medication Summary | Product code | ClinicalDocument/component/section[Medications]/entry/substanceAdministration/consumable/manufacturedProduct/code | Included |
+| Medication Summary | Common name & strength | ClinicalDocument/component/section[Medications]/entry/substanceAdministration/consumable/manufacturedProduct/code@displayName | Include when coded; omit free-text if risky |
+| Medication Summary | Period of use | ClinicalDocument/component/section[Medications]/entry/substanceAdministration/effectiveTime | Stage 2: date shift |
+| Medication Summary | Route of administration | ClinicalDocument/component/section[Medications]/entry/substanceAdministration/routeCode | Stage 2: omit value; nullFlavor='MSK' |
+| Medication Summary | Dose quantity | ClinicalDocument/component/section[Medications]/entry/substanceAdministration/doseQuantity | Included |
+| Medication Summary | Dose frequency | ClinicalDocument/component/section[Medications]/entry/substanceAdministration/entryRelationship/sequenceNumber | Included (if present) |
+| Allergies | Clinical status | ClinicalDocument/component/section[code=48765-2]/entry/observation/statusCode | Included |
+| Allergies | Onset date | ClinicalDocument/component/section[code=48765-2]/entry/observation/effectiveTime@value | Stage 2: date shift |
+| Allergies | End date | ClinicalDocument/component/section[code=48765-2]/entry/observation/effectiveTime/high@value | Stage 2: date shift |
+| Allergies | Reaction manifestation | ClinicalDocument/component/section[code=48765-2]/entry/observation/value | Included |
+| Results | Date of observation | ClinicalDocument/component/section[Results]/entry/observation/effectiveTime@value | Stage 2: date shift |
+| Results | Observation type | ClinicalDocument/component/section[Results]/entry/observation/code | Included |
+| Results | Result value | ClinicalDocument/component/section[Results]/entry/observation/value | Included |
+| Results | Result description | ClinicalDocument/component/section[Results]/entry/observation/text | Stage 2: omit; nullFlavor='MSK' |
+| Results | Performer | ClinicalDocument/component/section[Results]/entry/observation/performer | Omit (minimization) |
+| Results | Observer | ClinicalDocument/component/section[Results]/entry/observation/author/assignedAuthor | Omit (minimization) |
+| Immunizations | Vaccine (type of disease) | ClinicalDocument/component/section[code=11369-6]/entry/substanceAdministration/consumable/manufacturedProduct/code | Included |
+| Immunizations | Date of immunization | ClinicalDocument/component/section[code=11369-6]/entry/substanceAdministration/effectiveTime@value | Stage 2: date shift |
+| Immunizations | Product name | ClinicalDocument/component/section[code=11369-6]/entry/substanceAdministration/consumable/manufacturedProduct/code@displayName | Omit (minimization) |
+| Immunizations | Product administration | ClinicalDocument/component/section[code=11369-6]/entry/substanceAdministration/doseQuantity/siteCode/routeCode | Stage 2: omit value(s); nullFlavor='MSK' |
+| Immunizations | Performer | ClinicalDocument/component/section[code=11369-6]/entry/substanceAdministration/performer | Omit (minimization) |
+| Social History | Occupation | ClinicalDocument/component/section[Social History]/entry/observation[code=11341-5]/value@value | Include; review outliers; date-shift observation date |
+| Social History | Industry | ClinicalDocument/component/section[Social History]/entry/observation[code=21843-6]/value@value | Include; review outliers; date-shift observation date |
+| Pregnancy | Pregnancy status | ClinicalDocument/component/section[Pregnancy]/entry/observation[code=82810-3]/value@code | Included |
+| Pregnancy | Estimated delivery date | ClinicalDocument/component/section[Pregnancy]/entry/observation[code=11778-8]/value@value | Stage 2: date shift |
+| Medical Devices | Device data required | ClinicalDocument/component/section[Medical Devices]/entry/supply/participant[@typeCode='DEV'] | Not needed; set nullFlavor='MSK' or omit |
+{:.grid}
+
+#### Original Identified CDA (IPS subset)
+
+```xml
+<ClinicalDocument xmlns="urn:hl7-org:v3">
+  <recordTarget>
+    <patientRole>
+      <id root="https://standards.digital.health.nz/ns/nhi-id" extension="ABC1234"/>
+      <addr><postalCode>3210</postalCode></addr>
+      <telecom value="tel:+64-07-850-9900" use="HP"/>
+      <patient>
+        <name><given>Patricia</given><family>JORDANA</family></name>
+        <administrativeGenderCode code="F"/>
+        <birthTime value="19560930"/>
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <component>
+    <section>
+      <code code="10154-3" codeSystem="2.16.840.1.113883.6.1" displayName="Problem List"/>
+      <entry>
+        <observation classCode="OBS" moodCode="EVN">
+          <code code="59621000" codeSystem="2.16.840.1.113883.6.96" displayName="Essential hypertension"/>
+          <effectiveTime value="20160525"/>
+        </observation>
+      </entry>
+    </section>
+  </component>
+  <component>
+    <section>
+      <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" displayName="Immunizations"/>
+      <entry>
+        <substanceAdministration classCode="SBADM" moodCode="EVN">
+          <effectiveTime value="20240501"/>
+          <consumable>
+            <manufacturedProduct>
+              <code code="1119349007" codeSystem="2.16.840.1.113883.6.96" displayName="COVID-19 vaccine"/>
+            </manufacturedProduct>
+          </consumable>
+        </substanceAdministration>
+      </entry>
+    </section>
+  </component>
+</ClinicalDocument>
+```
+
+#### After Stage 1 (Pseudonymized CDA)
+
+Direct identifiers are removed or pseudonymized; removed elements are marked using `nullFlavor="MSK"`.
+
+```xml
+<ClinicalDocument xmlns="urn:hl7-org:v3">
+  <recordTarget>
+    <patientRole>
+      <id root="urn:example:psyn" extension="PID-7ac6997e"/>
+      <addr><postalCode>3210</postalCode></addr>
+      <telecom nullFlavor="MSK"/>
+      <patient>
+        <name nullFlavor="MSK"/>
+        <administrativeGenderCode code="F"/>
+        <birthTime value="19560930"/>
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <component>
+    <section>
+      <code code="10154-3" codeSystem="2.16.840.1.113883.6.1" displayName="Problem List"/>
+      <entry>
+        <observation classCode="OBS" moodCode="EVN">
+          <code code="59621000" codeSystem="2.16.840.1.113883.6.96" displayName="Essential hypertension"/>
+          <effectiveTime value="20160525"/>
+        </observation>
+      </entry>
+    </section>
+  </component>
+  <component>
+    <section>
+      <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" displayName="Immunizations"/>
+      <entry>
+        <substanceAdministration classCode="SBADM" moodCode="EVN">
+          <effectiveTime value="20240501"/>
+          <consumable>
+            <manufacturedProduct>
+              <code code="1119349007" codeSystem="2.16.840.1.113883.6.96" displayName="COVID-19 vaccine"/>
+            </manufacturedProduct>
+          </consumable>
+        </substanceAdministration>
+      </entry>
+    </section>
+  </component>
+</ClinicalDocument>
+```
+
+#### After Stage 2 (Anonymized CDA)
+
+Quasi-identifiers are transformed; removed elements continue to use `nullFlavor="MSK"`. Dates are shifted to match the FHIR Stage 2 example; postalCode generalized to 3 digits.
+
+```xml
+<ClinicalDocument xmlns="urn:hl7-org:v3">
+  <recordTarget>
+    <patientRole>
+      <id root="urn:example:psyn2" extension="PID-9f8b1ea1"/>
+      <addr><postalCode>321</postalCode></addr>
+      <telecom nullFlavor="MSK"/>
+      <patient>
+        <name nullFlavor="MSK"/>
+        <administrativeGenderCode code="F"/>
+        <birthTime nullFlavor="MSK">
+          <!-- Age band derived per policy -->
+        </birthTime>
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <component>
+    <section>
+      <code code="10154-3" codeSystem="2.16.840.1.113883.6.1" displayName="Problem List"/>
+      <entry>
+        <observation classCode="OBS" moodCode="EVN">
+          <code code="59621000" codeSystem="2.16.840.1.113883.6.96" displayName="Essential hypertension"/>
+          <effectiveTime value="20160610"/>
+        </observation>
+      </entry>
+    </section>
+  </component>
+  <component>
+    <section>
+      <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" displayName="Immunizations"/>
+      <entry>
+        <substanceAdministration classCode="SBADM" moodCode="EVN">
+          <effectiveTime value="20240518"/>
+          <consumable>
+            <manufacturedProduct>
+              <code code="1119349007" codeSystem="2.16.840.1.113883.6.96" displayName="COVID-19 vaccine"/>
+            </manufacturedProduct>
+          </consumable>
+        </substanceAdministration>
+      </entry>
+    </section>
+  </component>
+</ClinicalDocument>
+```
+
+Notes:
+- CDA uses `nullFlavor` (e.g., `MSK`) to indicate masked/removed content, whereas FHIR uses the Data Absent Reason extension.
+- Pseudonymized identifiers mirror the FHIR Stage 1/2 examples (`PID-7ac6997e`, `PID-9f8b1ea1`).
+- Dates and postal generalization match the FHIR Stage 2 transformations.
+
+
