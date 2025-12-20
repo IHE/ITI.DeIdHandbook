@@ -150,137 +150,75 @@ Risk and associated mitigation is determined for each data element associated wi
 
 Data Types: The IPS format requested contains primarily structured data with some attributes containing textual data content. There are no Medical imaging data, Bio-signal data, Genetic data, Textual data, or Multi-modal data. Available to this research study through the IPS structured format.
 
-##### IPS Patient
-
-| Element              | Data Type  | Identifier Type   | Handling/Notes                                                                                 |
-| -------------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------- |
-| Patient Name         | Structured | Direct Identifier | Reversibly pseudonymized (name)                                                                |
-| ID                   | Structured | Direct Identifier | Reversibly pseudonymized (identifier)                                                          |
-| Date of Birth        | Structured | Quasi-identifier  | Synthetic data via date shifting within age-group breakdown                                    |
-| Gender               | Structured | Quasi-identifier  | Included; important study metric                                                               |
-| Telecom              | Structured | Direct Identifier | Omitted for data minimization                                                                  |
-| Deceased indicator   | Structured | Quasi-identifier  | Included                                                                                       |
-| Deceased date        | Structured | Quasi-identifier  | Synthetic data via date shifting relative to shifted date of birth                             |
-| Patient address      | Structured | Quasi-identifier  | Generalize to first 3 digits of postal code                                                    |
-| Preferred language   | Structured | Quasi-identifier  | Not requested; omitted for data minimization                                                   |
-| General Practitioner | Structured | Quasi-identifier  | Omitted for data minimization                                                                  |
-| Insurance            | Structured | Quasi-identifier  | Omitted for data minimization                                                                  |
+| Section              | Element                           | Data Type  | Identifier Type   | Handling/Notes                                                                                 |
+| -------------------- | --------------------------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------- |
+| Patient              | Patient Name                      | Structured | Direct Identifier | Reversibly pseudonymized (name)                                                                |
+| Patient              | ID                                | Structured | Direct Identifier | Reversibly pseudonymized (identifier)                                                          |
+| Patient              | Date of Birth                     | Structured | Quasi-identifier  | Synthetic data via date shifting within age-group breakdown                                    |
+| Patient              | Gender                            | Structured | Quasi-identifier  | Included; important study metric                                                               |
+| Patient              | Telecom                           | Structured | Direct Identifier | Omitted for data minimization                                                                  |
+| Patient              | Deceased indicator                | Structured | Quasi-identifier  | Included                                                                                       |
+| Patient              | Deceased date                     | Structured | Quasi-identifier  | Synthetic data via date shifting relative to shifted date of birth                             |
+| Patient              | Patient address                   | Structured | Quasi-identifier  | Generalize to first 3 digits of postal code                                                    |
+| Patient              | Preferred language                | Structured | Quasi-identifier  | Not requested; omitted for data minimization                                                   |
+| Patient              | General Practitioner              | Structured | Quasi-identifier  | Omitted for data minimization                                                                  |
+| Patient              | Insurance                         | Structured | Quasi-identifier  | Omitted for data minimization                                                                  |
+| Problems             | Problem Type                      | Structured | Non-identifying   | Unchanged                                                                                      |
+| Problems             | Diagnosis                         | Structured | Quasi-identifier  | Reviewed for potential identifiable outliers for suppression                                   |
+| Problems             | Severity                          | Structured | Non-identifying   | Unchanged                                                                                      |
+| Problems             | Onset Date                        | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
+| Problems             | Problem Status                    | Structured | Non-identifying   | Omitted for data minimization                                                                  |
+| Problems             | Specialist Contact                | Structured | Quasi-identifier  | Omitted for data minimization                                                                  |
+| Procedures           | Procedure code                    | Structured | Non-identifying   | Unchanged                                                                                      |
+| Procedures           | Procedure description             | Textual    | Quasi-identifier  | Omitted due to potential free-text privacy issues                                              |
+| Procedures           | Body site                         | Structured | Non-identifying   | Unchanged                                                                                      |
+| Procedures           | Procedure date                    | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
+| Medication Summary   | Product code                      | Structured | Non-identifying   | Unchanged                                                                                      |
+| Medication Summary   | Product common name and strength  | Textual    | Non-identifying   | Unchanged if known; coded product code not required                                            |
+| Medication Summary   | Active ingredient substance code  | Structured | Non-identifying   | Unchanged                                                                                      |
+| Medication Summary   | Active ingredient strength        | Structured | Non-identifying   | Unchanged                                                                                      |
+| Medication Summary   | Period of medication use          | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
+| Medication Summary   | Route of administration           | Structured | Non-identifying   | Not requested; omitted for data minimization                                                   |
+| Medication Summary   | Dose quantity                     | Structured | Non-identifying   | Unchanged                                                                                      |
+| Medication Summary   | Dose frequency                    | Structured | Non-identifying   | Unchanged                                                                                      |
+| Allergies/Intolerances | Clinical status                 | Structured | Non-identifying   | Unchanged                                                                                      |
+| Allergies/Intolerances | Onset date                      | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
+| Allergies/Intolerances | End date                        | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
+| Allergies/Intolerances | Criticality                     | Structured | Non-identifying   | Unchanged                                                                                      |
+| Allergies/Intolerances | Certainty                       | Structured | Non-identifying   | Unchanged                                                                                      |
+| Allergies/Intolerances | Type of propensity              | Structured | Non-identifying   | Unchanged                                                                                      |
+| Allergies/Intolerances | Diagnosis                       | Structured | Quasi-identifier  | Omitted for data minimization (outlier risk)                                                   |
+| Allergies/Intolerances | Reaction manifestation          | Structured | Non-identifying   | Unchanged                                                                                      |
+| Allergies/Intolerances | Reaction severity               | Structured | Non-identifying   | Unchanged                                                                                      |
+| Allergies/Intolerances | Agent code                      | Structured | Non-identifying   | Unchanged                                                                                      |
+| Allergies/Intolerances | Agent category                  | Structured | Non-identifying   | Unchanged                                                                                      |
+| Results              | Date of observation               | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
+| Results              | Observation type                  | Structured | Non-identifying   | Unchanged                                                                                      |
+| Results              | Result description                | Textual    | Non-identifying   | Not requested; omitted for data minimization                                                   |
+| Results              | Result value                      | Structured | Non-identifying   | Unchanged                                                                                      |
+| Results              | Observation result                | Structured | Non-identifying   | Unchanged                                                                                      |
+| Results              | Performer                         | Structured | Non-identifying   | Omitted for data minimization                                                                  |
+| Results              | Observer                          | Structured | Non-identifying   | Omitted for data minimization                                                                  |
+| Immunizations        | Vaccine (type of disease)         | Structured | Non-identifying   | Unchanged                                                                                      |
+| Immunizations        | Date of immunization              | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
+| Immunizations        | Number in series of doses         | Structured | Non-identifying   | Unchanged                                                                                      |
+| Immunizations        | Target disease                    | Structured | Non-identifying   | Omitted for data minimization                                                                  |
+| Immunizations        | Product name                      | Textual    | Non-identifying   | Omitted for data minimization                                                                  |
+| Immunizations        | Product administration            | Structured | Non-identifying   | Omitted for data minimization                                                                  |
+| Immunizations        | Performer                         | Structured | Non-identifying   | Omitted for data minimization                                                                  |
+| Immunizations        | Route of administration           | Structured | Non-identifying   | Omitted for data minimization                                                                  |
+| Social History       | Occupation                        | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date; review for identifiable outliers      |
+| Social History       | Industry                          | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date; review for identifiable outliers      |
+| Pregnancy History    | Pregnancy status                  | Structured | Non-identifying   | Unchanged                                                                                      |
+| Pregnancy History    | Estimated delivery date           | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
+| Medical Devices      | Device data required              | Structured | Non-identifying   | Not needed for the study; data absent reason marked as 'masked'                                |
+| Mortality            | Name                              | Structured | Direct Identifier | Reversibly pseudonymized (name)                                                                |
+| Mortality            | Identifier                        | Structured | Direct Identifier | Reversibly pseudonymized (identifier)                                                          |
+| Mortality            | Date of death                     | Structured | Quasi-identifier  | Synthetic data via date shifting within age-group breakdown                                    |
+| Mortality            | Cause of death                    | Structured | Quasi-identifier  | Reviewed for potential identifiable outliers for suppression                                   |
 {:.grid}
-
-##### Problems
-
-| Element           | Data Type  | Identifier Type  | Handling/Notes                                                                                 |
-| ----------------- | ---------- | ---------------- | ---------------------------------------------------------------------------------------------- |
-| Problem Type      | Structured | Non-identifying  | Unchanged                                                                                      |
-| Diagnosis         | Structured | Quasi-identifier | Reviewed for potential identifiable outliers for suppression                                   |
-| Severity          | Structured | Non-identifying  | Unchanged                                                                                      |
-| Onset Date        | Structured | Quasi-identifier | Subject to date shifting relative to shifted birth date                                        |
-| Problem Status    | Structured | Non-identifying  | Omitted for data minimization                                                                  |
-| Specialist Contact| Structured | Quasi-identifier | Omitted for data minimization                                                                  |
-{:.grid}
-
-##### Procedures
-
-| Element               | Data Type  | Identifier Type   | Handling/Notes                                                                                 |
-| --------------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------- |
-| Procedure code        | Structured | Non-identifying   | Unchanged                                                                                      |
-| Procedure description | Textual    | Quasi-identifier  | Omitted due to potential free-text privacy issues                                              |
-| Body site             | Structured | Non-identifying   | Unchanged                                                                                      |
-| Procedure date        | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
-{:.grid}
-
-##### Medication Summary
-
-| Element                           | Data Type  | Identifier Type  | Handling/Notes                                                                                 |
-| --------------------------------- | ---------- | ---------------- | ---------------------------------------------------------------------------------------------- |
-| Product code                      | Structured | Non-identifying  | Unchanged                                                                                      |
-| Product common name and strength  | Textual    | Non-identifying  | Unchanged if known; coded product code not required                                            |
-| Active ingredient substance code  | Structured | Non-identifying  | Unchanged                                                                                      |
-| Active ingredient strength        | Structured | Non-identifying  | Unchanged                                                                                      |
-| Period of medication use          | Structured | Quasi-identifier | Subject to date shifting relative to shifted birth date                                        |
-| Route of administration           | Structured | Non-identifying  | Not requested; omitted for data minimization                                                   |
-| Dose quantity                     | Structured | Non-identifying  | Unchanged                                                                                      |
-| Dose frequency                    | Structured | Non-identifying  | Unchanged                                                                                      |
-{:.grid}
-
-##### Allergies and Intolerances
-
-| Element             | Data Type  | Identifier Type   | Handling/Notes                                                                                 |
-| ------------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------- |
-| Clinical status     | Structured | Non-identifying   | Unchanged                                                                                      |
-| Onset date          | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
-| End date            | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
-| Criticality         | Structured | Non-identifying   | Unchanged                                                                                      |
-| Certainty           | Structured | Non-identifying   | Unchanged                                                                                      |
-| Type of propensity  | Structured | Non-identifying   | Unchanged                                                                                      |
-| Diagnosis           | Structured | Quasi-identifier  | Omitted for data minimization (outlier risk)                                                   |
-| Reaction manifestation | Structured | Non-identifying | Unchanged                                                                                      |
-| Reaction severity   | Structured | Non-identifying   | Unchanged                                                                                      |
-| Agent code          | Structured | Non-identifying   | Unchanged                                                                                      |
-| Agent category      | Structured | Non-identifying   | Unchanged                                                                                      |
-{:.grid}
-
-##### Results
-
-| Element              | Data Type | Identifier Type   | Handling/Notes                                                                                 |
-| -------------------- | --------- | ----------------- | ---------------------------------------------------------------------------------------------- |
-| Date of observation  | Structured| Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
-| Observation type     | Structured| Non-identifying   | Unchanged                                                                                      |
-| Result description   | Textual   | Non-identifying   | Not requested; omitted for data minimization                                                   |
-| Result value         | Structured| Non-identifying   | Unchanged                                                                                      |
-| Observation result   | Structured| Non-identifying   | Unchanged                                                                                      |
-| Performer            | Structured| Non-identifying   | Omitted for data minimization                                                                  |
-| Observer             | Structured| Non-identifying   | Omitted for data minimization                                                                  |
-{:.grid}
-
-##### Immunizations
-
-| Element                       | Data Type  | Identifier Type   | Handling/Notes                                                                                 |
-| ----------------------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------- |
-| Vaccine (type of disease)     | Structured | Non-identifying   | Unchanged                                                                                      |
-| Date of immunization          | Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
-| Number in series of doses     | Structured | Non-identifying   | Unchanged                                                                                      |
-| Target disease                | Structured | Non-identifying   | Omitted for data minimization                                                                  |
-| Product name                  | Textual    | Non-identifying   | Omitted for data minimization                                                                  |
-| Product administration        | Structured | Non-identifying   | Omitted for data minimization                                                                  |
-| Performer                     | Structured | Non-identifying   | Omitted for data minimization                                                                  |
-| Route of administration       | Structured | Non-identifying   | Omitted for data minimization                                                                  |
-{:.grid}
-
-##### Social History
-
-| Element     | Data Type  | Identifier Type  | Handling/Notes                                                                                 |
-| ----------- | ---------- | ---------------- | ---------------------------------------------------------------------------------------------- |
-| Occupation  | Structured | Quasi-identifier | Subject to date shifting relative to shifted birth date; review for identifiable outliers      |
-| Industry    | Structured | Quasi-identifier | Subject to date shifting relative to shifted birth date; review for identifiable outliers      |
-{:.grid}
-
-##### Pregnancy History
-
-| Element                | Data Type  | Identifier Type   | Handling/Notes                                                                                 |
-| ---------------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------- |
-| Pregnancy status       | Structured | Non-identifying   | Unchanged                                                                                      |
-| Estimated delivery date| Structured | Quasi-identifier  | Subject to date shifting relative to shifted birth date                                        |
-{:.grid}
-
-##### Medical Devices
-
-| Element              | Data Type  | Identifier Type | Handling/Notes                                                  |
-| -------------------- | ---------- | --------------- | --------------------------------------------------------------- |
-| Device data required | Structured | Non-identifying | Not needed for the study; data absent reason marked as 'masked' |
-{:.grid}  
 
 All unspecified IPS data elements are removed for data minimization.
-
-###### Mortality data
-
-| Element        | Data Type  | Identifier Type   | Handling/Notes                                                     |
-| -------------- | ---------- | ----------------- | ------------------------------------------------------------------ |
-| Name           | Structured | Direct Identifier | Reversibly pseudonymized (name)                                    |
-| Identifier     | Structured | Direct Identifier | Reversibly pseudonymized (identifier)                              |
-| Date of death  | Structured | Quasi-identifier  | Synthetic data via date shifting within age-group breakdown        |
-| Cause of death | Structured | Quasi-identifier  | Reviewed for potential identifiable outliers for suppression       |
-{:.grid}
 
 
 Add Case example pre and post de-identification **Commented [LR2]:** Add example detail after use case
