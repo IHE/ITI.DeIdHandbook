@@ -80,14 +80,14 @@ Before the de-identification processing, EHDS 2 regulations specify that the Hea
 The following diagram from the EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts he EHDS user journey for the full process, highlighting the areas within the process that address data minimization, pseudonymization and anonymization:
 
 <figure>
-  <img src="images/ehds-user-journey.jpeg" />
+  <img src="ehds-user-journey.jpeg" />
   <figcaption><strong>Figure: EHDS User Journey</strong></figcaption>
   </figure>
 
 Once a Data Permit is granted, the third phase, Data Preparation, begins. The HDAB prepares the data set according to the permit content and de-identification to be applied. The EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts a High-level architecture for safe disclosure of anonymized data, processing results, and synthetic data:
 
 <figure>
-  <img src="images/hdab-high-level-architecture.jpeg" />
+  <img src="hdab-high-level-architecture.jpeg" />
   <figcaption><strong>Figure: HDAB High-level Architecture for Safe Disclosure</strong></figcaption>
 </figure>
 
