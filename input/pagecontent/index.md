@@ -44,6 +44,7 @@ This guide is organized into the following sections:
    - [DICOM Examples](dicom-example.html)
    - [HL7 2 Examples](hl7-example.html)
    - [Family Planning](family-planning.html)
+   - [IPS EHDS2](ips-ehds-example.html)
 9. Other
    - [Download and Analysis](download.html)
    - [Significant Changes and Issues](issues.html)
