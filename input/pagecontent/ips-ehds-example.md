@@ -174,7 +174,7 @@ Policy for secondary use includes data minimisation for the use of secondary hea
   - Pregnancy status pregnancy information is needed for the study to review potential impact of the incident on pregnancy
   - Estimated Delivery date is needed relative to incident and treatment dates. Data is collected but protected by data-shifting the study records
   - Other attributes associated with Pregnancy History are removed for data minimization
-- Mortality data is available through vital records oUices. The mortality data will include:
+- Mortality data is available through vital records offices. The mortality data will include:
   - Pseudonymized name
   - Pseudonymized identifier
   - Date of death is needed relative to incident and treatment dates. Data is collected but protected by data-shifting the study records
