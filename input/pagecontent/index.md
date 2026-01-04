@@ -16,7 +16,7 @@ This guide is organized into the following sections:
 2. [De-Identification, Pseudonymization, and Relinking](concepts.html)
    - [Navigating the Complexity of Privacy Concepts](concepts.html#navigating-the-complexity-of-privacy-concepts)
    - [Identifiability](concepts.html#identifiability)
-   - [Pseudonymization, De-Identification and Anonymization Explained](concepts.html#pseudonymization-de-identification-and-anonymization-explained)
+   - [Pseudonymization, De-Identification and Anonymization Explained](concepts.html#de-identification-pseudonymization-and-anonymization-explained)
    - [Overall De-Identification Approach](concepts.html#overall-de-identification-approach)
    - [Definitions](concepts.html#definitions)
    - [Re-identification](concepts.html#re-identification)
