@@ -69,12 +69,12 @@ This data flow implements the methodology’s end-to-end analysis described in [
 
 - Before the de-identification processing, EHDS 2 regulations specify that the Health Data User conducts data discovery to identify data that is available for the study, and that an application for a data permit be submitted and approved. The Data Discovery leveraging the HealthDCAT Application Profile (HealthDCAT-AP) determines that the information is available within the HDAB Information Resources, indicating data is available in a standard International Patient Summary (IPS), and mortality data in the Vital Records Death Reporting (IHE VRDR) standard formats as indicated in the conformsTo attribute (see https://healthdataeu.pages.code.europa.eu/healthdcat-ap/releases/release-5/).
 - The user submits a Data Access Permit application (drawn from example at: https://data-access.dsa.ec.europa.eu/public/hta/data-access) requests data access authorization providing [in the Research project-specific information](https://healthdataeu.pages.code.europa.eu/healthdcat-ap/releases/release-5/) section:
-  - Information on the type and format of the data requested, indicates International Patient Summary format for the data, indicating the specific [attributes from that standard content needed for the study and applicable](https://data-access.dsa.ec.europa.eu/public/hta/data-access)  de-identification methods should be used to preserve suUicient information to fulfill the study.
+  - Information on the type and format of the data requested, indicates International Patient Summary format for the data, indicating the specific [attributes from that standard content needed for the study and applicable](https://data-access.dsa.ec.europa.eu/public/hta/data-access)  de-identification methods should be used to preserve sufficient information to fulfill the study.
   - The researcher also provides a date range of access needed for a 3-year period.
 
 - access justifications are provided indicating the value of the proposed research
 - The purpose of use is indicated as Scientific Research
-- Data elements requested that are sensitive include de-identification methods to be used that will retain suUicient information for the research study.
+- Data elements requested that are sensitive include de-identification methods to be used that will retain sufficient information for the research study.
 
 The following diagram from the EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts he EHDS user journey for the full process, highlighting the areas within the process that address data minimization, pseudonymization and anonymization:
 
