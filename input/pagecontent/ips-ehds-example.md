@@ -76,7 +76,7 @@ This data flow implements the methodology’s end-to-end analysis described in [
 - The purpose of use is indicated as Scientific Research
 - Data elements requested that are sensitive include de-identification methods to be used that will retain sufficient information for the research study.
 
-The following diagram from the EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts he EHDS user journey for the full process, highlighting the areas within the process that address data minimization, pseudonymization and anonymization:
+The following diagram from the EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts the EHDS user journey for the full process, highlighting the areas within the process that address data minimization, pseudonymization and anonymization:
 
 <figure>
   <img src="ehds-user-journey.jpeg" />
