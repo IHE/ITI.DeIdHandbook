@@ -3,6 +3,22 @@
 
 This handbook explains a practical, multi-stage process for reducing individually identifiable information in healthcare data. It covers de-identification, pseudonymization, optional re-linking, design considerations, techniques, and risks. It is written for IHE Profile editors and for healthcare IT implementers who need concrete guidance to design, implement, validate, and operate de-identification systems.
 
+### Audience Benefits
+
+**For IHE Profile Editors**
+- Stage-aware profile structure to adopt (sources, treatments, residual risks, operational controls).
+- Standardized terminology and risk thresholds to reduce ambiguity across profiles.
+- Reusable checklist to improve completeness and consistency.
+- Guidance on when single-stage can suffice and how to document compensating controls.
+- Worked exemplar to map into profile text and test cases.
+
+**For Healthcare IT Implementers**
+- End-to-end process workflow with gating criteria for each stage.
+- Techniques by data type (structured, text, imaging) to implement safe transformations.
+- Validation and monitoring practices for production operations.
+- Operational controls for access, audit, encryption, transfer, and disposal.
+- Pseudonymization and re-linking constraints to support contact requirements safely.
+
 ### How to Use This Handbook
 
 - **Concepts**: See [Concepts](concepts.html) for key terms, identifiability levels, residual risk notions, and threat models that frame decision-making.
