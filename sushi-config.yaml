@@ -76,7 +76,7 @@ pages:
   data-types.md:
     title: Data Types 
     generation: markdown
-  algorithms.md:
+  techniques.md:
     title: Techniques 
     generation: markdown
   process.md:
