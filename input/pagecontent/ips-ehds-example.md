@@ -26,7 +26,7 @@ The Health Information Exchange system has defined the following standard permit
   - *Operations*
   - *Health Service Management and Quality Assurance*
 
-- Public Interest in the area of Public, Occupational Health and Policy Making and Regulatory Activities, Statistics, national, multinational, and Union level oUicial statistics
+- Public Interest in the area of Public, Occupational Health and Policy Making and Regulatory Activities, Statistics, national, multinational, and Union level official statistics
   - *Public Health*
     - *Public Health Surveillance, Disease Control*
     - *Population Health Management*
