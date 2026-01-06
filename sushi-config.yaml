@@ -55,7 +55,7 @@ dependencies:
   ihe.iti.balp:
     id: iheitibasicaudit
     uri: https://profiles.ihe.net/ITI/BALP/ImplementationGuide/ihe.iti.balp
-    # Use the current BALP package (avoid inline comments in version to prevent publisher parsing issues)
+    # Use the CI build package name; relies on cached download
     version: current
     
 #resources:
@@ -70,6 +70,9 @@ pages:
     generation: markdown
   intro.md:
     title: Introduction 
+    generation: markdown
+  glossary.md:
+    title: Glossary
     generation: markdown
   concepts.md:
     title: Concepts 
@@ -115,6 +118,7 @@ menu:
   Home: index.html
   De-Identification Handbook:
     Introduction: intro.html
+    Glossary: glossary.html
     Concepts: concepts.html
     Data Types: data-types.html
     Techniques: techniques.html
