@@ -80,7 +80,7 @@ pages:
   data-types.md:
     title: Data Types 
     generation: markdown
-  algorithms.md:
+  techniques.md:
     title: Techniques 
     generation: markdown
   process.md:
@@ -121,7 +121,7 @@ menu:
     Glossary: glossary.html
     Concepts: concepts.html
     Data Types: data-types.html
-    Techniques: algorithms.html
+    Techniques: techniques.html
     Process: process.html
     IHE Use: ihe-use.html
     Security Considerations: security.html
