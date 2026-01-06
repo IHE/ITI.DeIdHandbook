@@ -55,7 +55,8 @@ dependencies:
   ihe.iti.balp:
     id: iheitibasicaudit
     uri: https://profiles.ihe.net/ITI/BALP/ImplementationGuide/ihe.iti.balp
-    version: current # 1.1.x
+    # Use the current BALP package (avoid inline comments in version to prevent publisher parsing issues)
+    version: current
     
 #resources:
 # list every example here with a name, description and that exampleBoolean is true; These are used to populate the artifacts page, and are needed to eliminate build warnings 
@@ -76,7 +77,7 @@ pages:
   data-types.md:
     title: Data Types 
     generation: markdown
-  algorithms.md:
+  techniques.md:
     title: Techniques 
     generation: markdown
   process.md:
@@ -116,7 +117,7 @@ menu:
     Introduction: intro.html
     Concepts: concepts.html
     Data Types: data-types.html
-    Techniques: algorithms.html
+    Techniques: techniques.html
     Process: process.html
     IHE Use: ihe-use.html
     Security Considerations: security.html
