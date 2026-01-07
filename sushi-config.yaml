@@ -55,7 +55,8 @@ dependencies:
   ihe.iti.balp:
     id: iheitibasicaudit
     uri: https://profiles.ihe.net/ITI/BALP/ImplementationGuide/ihe.iti.balp
-    version: current # 1.1.x
+    # Use the CI build package name; relies on cached download
+    version: current
     
 #resources:
 # list every example here with a name, description and that exampleBoolean is true; These are used to populate the artifacts page, and are needed to eliminate build warnings 
@@ -70,14 +71,17 @@ pages:
   intro.md:
     title: Introduction 
     generation: markdown
+  glossary.md:
+    title: Glossary
+    generation: markdown
   concepts.md:
     title: Concepts 
     generation: markdown
   data-types.md:
     title: Data Types 
     generation: markdown
-  algorithms.md:
-    title: Algorithms 
+  techniques.md:
+    title: Techniques 
     generation: markdown
   process.md:
     title: Process 
@@ -114,9 +118,10 @@ menu:
   Home: index.html
   De-Identification Handbook:
     Introduction: intro.html
+    Glossary: glossary.html
     Concepts: concepts.html
     Data Types: data-types.html
-    Algorithms: algorithms.html
+    Techniques: techniques.html
     Process: process.html
     IHE Use: ihe-use.html
     Security Considerations: security.html
