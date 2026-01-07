@@ -34,6 +34,7 @@ export. The EHR system performs de-identification by following the pseudonymizat
 3. Transfer the pseudonymized data to the anonymization environment.
 The pseudonymized FHIR data is transferred via a secure network connection (e.g., HTTPS, SFTP
 ) or through encrypted portable media to the research data center. Access is controlled through authentication and authorization mechanisms.                                              
+
 **Process Steps: Stage 2**
 
 1. Import the pseudonymized FHIR data.
