@@ -1,7 +1,6 @@
 ### HL7 FHIR data for secondary use
 
-HL7 FHIR (Fast Healthcare Interoperability Resources) is a modern standard for exchanging hea
-lthcare information electronically. FHIR uses RESTful APIs and represents healthcare data as modular "resources" such as Patient, Observation, Condition, and MedicationStatement. In secondary use, FHIR data is repurposed beyond direct patient care for research, public health surveillance, quality improvement, and analytics. This involves extracting and de-identifying data while preserving its utility for analysis. Secondary use of FHIR data enables large-scale studies, population health management, and the development of clinical decision support tools, while ensuring compliance with privacy regulations like HIPAA and GDPR.                    
+HL7 FHIR (Fast Healthcare Interoperability Resources) is a modern standard for exchanging healthcare information electronically. FHIR uses RESTful APIs and represents healthcare data as modular "resources" such as Patient, Observation, Condition, and MedicationStatement. In secondary use, FHIR data is repurposed beyond direct patient care for research, public health surveillance, quality improvement, and analytics. This involves extracting and de-identifying data while preserving its utility for analysis. Secondary use of FHIR data enables large-scale studies, population health management, and the development of clinical decision support tools, while ensuring compliance with privacy regulations like HIPAA and GDPR.                    
 FHIR provides several mechanisms to support de-identification:
 
 **Table: FHIR De-identification Mechanisms**
