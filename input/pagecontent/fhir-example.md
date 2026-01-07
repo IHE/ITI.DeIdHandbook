@@ -63,7 +63,7 @@ The anonymization service adds appropriate FHIR security labels and provenance i
 
 6. Export anonymized FHIR data.
 After successful anonymization and risk assessment, the service exports the anonymized FHIR d
-ata to the research environment. The data can be exported as FHIR Bundles, NDJSON files, or loaded into a research FHIR server for query access.                                          
+ata to the research environment. The data can be exported as FHIR Bundles, JSON files and loaded into a research FHIR server for query access.                                          
 ### FHIR Data Absent Reason Extension
 
 When data elements are removed or masked during de-identification, FHIR provides the Data Abs
