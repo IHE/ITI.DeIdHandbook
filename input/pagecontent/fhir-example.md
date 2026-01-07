@@ -27,7 +27,7 @@ rving secondary FHIR data use, which is separated from the environment where the
 
 1. Enable pseudonymization policy on the EHR system.
 As we explained, in this example, we assume the EHR system supports customization of the de-i
-dentification behavior to enable a pseudonymization policy. The pseudonymization policy covers all the attributes which are direct identifiers, like Patient.name, Patient.identifier (MRN, SSN), Patient.telecom, Patient.address, and resource IDs.                                  
+dentification behavior to enable a pseudonymization policy. The pseudonymization policy covers all the attributes that are direct identifiers such as Patient.name, Patient.identifier (MRN, SSN), Patient.telecom, Patient.address, and resource IDs.                                  
 2. Export pseudonymized FHIR data.
 After properly setting the pseudonymization policy, an authorized user initiates a bulk data 
 export. The EHR system performs de-identification by following the pseudonymization policy, and then exports the pseudonymized FHIR resources. We assume the EHR exports the pseudonymized FHIR data using the FHIR Bulk Data Access specification (FHIR $export operation) to a secure storage location or FHIR server.                                                            
