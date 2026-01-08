@@ -155,7 +155,7 @@ A qualitative evaluation provides an initial classification of the dataset's ide
     -   If the dataset contains any direct identifiers (e.g., name, email, SSN), it is classified as **Identified Data**. This data is not de-identified and carries the highest level of risk. The evaluation stops here.
 
 2.  **Assess Pseudonymization Method**:
-    -   If direct identifiers have been replaced with pseudonyms but the data controller maintains a linking key (a known, systematic way to re-link), the dataset is classified as **Readily-Identifiable Data**. The evaluation stops here.
+    -   If direct identifiers have been replaced with pseudonyms but the data controller maintains a linking key (a known, systematic way to re-link), the dataset is classified as **Reversible-Pseudonymized Data**. The evaluation stops here.
 
 3.  **Evaluate for Indirect Identifiers**:
     -   If all direct identifiers have been addressed through irreversible pseudonymization or suppression (for example, in aggregated statistical data), the final qualitative step is to check for the presence of indirect (quasi) identifiers.
@@ -163,7 +163,7 @@ A qualitative evaluation provides an initial classification of the dataset's ide
         -   If the dataset **does contain indirect identifiers**, a qualitative assessment is insufficient. A full **quantitative evaluation is required** to measure the re-identification risk accurately.
 
 #### quantitative evaluation
-When a qualitative evaluation determines that a dataset contains indirect (quasi) identifiers, a quantitative evaluation is required to determine its final classification. This process uses objective, statistical methods to calculate a precise overall re-identification risk score. This score is then compared against the project's acceptable risk threshold to determine if the data can be considered Anonymous or must be treated as Irreversibly Pseudonymized.
+When a qualitative evaluation determines that a dataset contains indirect (quasi) identifiers, a quantitative evaluation is required to determine its final classification. This process uses objective, statistical methods to calculate a precise overall re-identification risk score. This score is then compared against the project's acceptable risk threshold to determine if the data can be considered **Anonymous Data** or must be treated as **Irreversibly Pseudonymized Data**.
 
 Following the standard risk model described in [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559), identifiability can be conceptualized as the product of the probability of identification given a specific threat and the probability of that threat being realized. That is:
 
@@ -276,7 +276,7 @@ A three-stage model provides a comprehensive example of this workflow:
 graph TD
     subgraph "Stage 1: Preliminary De-Identification"
         direction LR
-        A[Identified Data] -->|Reversible Pseudonymization| B(Readily-Identifiable Data);
+        A[Identified Data] -->|Reversible Pseudonymization| B(Reversible-Pseudonymized Data);
     end
 
     subgraph "Stage 2: Advanced De-Identification"
@@ -301,8 +301,8 @@ graph TD
 
 This diagram illustrates a typical workflow:
 
-1.  **Stage 1 (Preliminary De-identification)**: Occurs at the source system (e.g., a hospital). The focus is on basic, often reversible, transformations to remove direct identifiers and make the data safe for internal transfer. The outcome is typically `Readily-Identifiable Data`.
-2.  **Stage 2 (Advanced De-identification)**: Takes place in a controlled, centralized environment managed by a dedicated team with privacy expertise. Here, advanced techniques (e.g., NLP for text, pixel scrubbing for images, quantitative analysis) are applied to transform the data into `Irreversibly Pseudonymized` or fully `Anonymous` states.
+1.  **Stage 1 (Preliminary De-identification)**: Occurs at the source system (e.g., a hospital). The focus is on basic, often reversible, transformations to remove direct identifiers and make the data safe for internal transfer. The outcome is typically `Reversible-Pseudonymized Data`.
+2.  **Stage 2 (Advanced De-identification)**: Takes place in a controlled, centralized environment managed by a dedicated team with privacy expertise. Here, advanced techniques (e.g., NLP for text, pixel scrubbing for images, quantitative analysis) are applied to transform the data into `Irreversibly Pseudonymized Data` or fully `Anonymous Data` states.
 3.  **Stage 3 (Recipient Verification)**: The data is transferred to the data recipient's environment. As a best practice, the recipient should conduct their own risk assessment to verify that the data meets the agreed-upon privacy level before use. This confirms the effectiveness of the de-identification process and manages shared responsibilities.
 
 Beyond this three-stage example, a more granular, multi-stage process might dedicate separate sub-stages within the Advanced phase to handling specific data types, such as a dedicated NLP pipeline for free text or an image processing stage for pixel data, before a final, holistic risk assessment is performed.
@@ -317,7 +317,7 @@ When designing a multi-stage process, the following factors must be considered:
 ##### Pseudonym Requirements
 
 - **Reversibility**: Determine if the pseudonymization needs to be reversible (enabling authorized re-identification) or irreversible. This decision is critical and often defines the boundary between stages.
-    - **Reversible Pseudonymization (Stage 1)**: If re-identification is required (e.g., for clinical trials), a secure mapping table or a decryptable key must be maintained separately and under strict access controls. This produces **Readily-Identifiable Data**.
+    - **Reversible Pseudonymization (Stage 1)**: If re-identification is required (e.g., for clinical trials), a secure mapping table or a decryptable key must be maintained separately and under strict access controls. This produces **Reversible-Pseudonymized Data**.
     - **Irreversible Pseudonymization (Stage 2+)**: If re-identification is not required, use a one-way cryptographic hash (e.g., SHA-512 with a secret, un-stored salt) to generate pseudonyms. This produces **Irreversibly Pseudonymized Data** or, if combined with other techniques, can lead to **Anonymous Data**.
 - **Algorithm Selection**: Choose a strong, industry-standard cryptographic algorithm for generating pseudonyms.
 - **Trait Changes**: The design should accommodate changes to patient traits over time (e.g., name changes) to ensure consistent pseudonymization.
