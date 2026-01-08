@@ -281,8 +281,8 @@ graph TD
 
     subgraph "Stage 2: Advanced De-Identification"
         direction LR
-        B -->|Irreversible Pseudonymization<br/>Anonymization w/ Non-Negligible Risk| C(Irreversibly Pseudonymized Data);
-        C -->|Anonymization w/ Negligible Risk| D(Anonymous Data);
+        B -->|Irreversible Pseudonymization<br/>Anonymization / Non-Negligible Risk| C(Irreversibly Pseudonymized Data);
+        C -->|Anonymization / Negligible Risk| D(Anonymous Data);
     end
     
     subgraph "Stage 3: Recipient Verification"
@@ -342,7 +342,44 @@ The [DICOM standard](references.html#DICOM) provides initial starting point tabl
 There are also project and other examples available, such as the Biosurveillance Use Case Minimum Data Elements Specification, that can serve as a reference.
 
 #### Process Identifiers
-This refers to identifiers generated during the de-identification process itself, such as a batch ID or a log of transformations. These must also be managed securely.
+This section describes generic methods for transforming direct and indirect (quasi-)identifiers present in collected personal data. The focus is on reducing linkability and inference risk while preserving required utility for the intended use.
+
+**Generic method: transforming direct identifiers**
+- Goal: remove or replace values that directly identify a person while preserving needed data coherence.
+- Options:
+    - Masking/removal: delete or replace with placeholders when linkage is not required.
+    - Pseudonymization (recoverable): generate pseudonyms independent of the original values (e.g., random IDs) and maintain a protected linking table for approved re-identification.
+    - Pseudonymization (cryptographic): derive pseudonyms from the original values using strong encryption or keyed hashing (e.g., HMAC). Enforce key management (separation, rotation, access control). Apply canonicalization of inputs (e.g., trim, lowercase, normalize formats) to ensure deterministic, consistent pseudonyms.
+- Controls:
+    - Keep linking tables and cryptographic material in a secure vault; never co-locate with released data.
+    - Define a reversibility policy (authorized re-identification) and audit its execution.
+    - Validate that transformations maintain longitudinal consistency where required.
+
+**Generic method: transforming indirect/quasi-identifiers**
+- Goal: reduce linkability and inference risk arising from attributes that can identify individuals in combination.
+- Categorical attributes:
+    - Generalization: map fine-grained codes to broader categories using defined hierarchies (e.g., diagnosis roll-ups).
+    - Suppression: remove rare values or rare combinations that create outliers.
+    - Permutation: reorder values across records to preserve distributions without record-level truthfulness.
+    - Blanking and imputing: blank sensitive values and replace with statistically plausible substitutes (ranging from simple to model-based multiple imputation).
+- Numeric attributes:
+    - Top/bottom coding: cap extreme values into open-ended categories (e.g., age 90+).
+    - Microaggregation: group records into clusters (k≥3) and replace continuous values with cluster averages to balance utility and privacy.
+    - Generalize small counts: merge sparse categories to increase group sizes and reduce uniqueness.
+    - Noise addition: add calibrated random noise to continuous values while preserving key statistical properties.
+- Temporal data:
+    - Date shifting: apply a consistent per-person shift to preserve intervals.
+    - Coarsening: reduce precision (e.g., year or month only) or convert to age and bin (e.g., 5-year bands).
+    - Time coarsening/bins: round times (e.g., to hour) or bucket into periods (morning/afternoon/night) when exact times increase risk.
+
+**Design and governance checklist**
+- Inventory identifiers (direct and quasi-) and document per-element transformations and constraints.
+- Align choices to the threat model, intended use, and required data utility.
+- Implement key/secret handling and mapping-table protections; segregate duties and monitor access.
+- Validate outcomes: quantify risk reduction (e.g., k-anonymity metrics, small-cell checks) and verify consistency constraints.
+- Document rationale and residual risks; keep processes auditable and repeatable.
+
+See the Techniques chapter for detailed examples and considerations: [De-Identifying Identifiers](techniques.html#de-identifying-identifiers).
 
 #### Security & Privacy Policies
 Technical de-identification must be supported by strong operational and security policies.
