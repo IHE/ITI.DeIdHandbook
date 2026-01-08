@@ -171,13 +171,13 @@ Following the standard risk model described in [(ISO/IEC 27559, 2022)](reference
 
 This model provides a valuable framework for understanding the two key components of re-identification risk:
 
--   **Data Risk**: The risk inherent in the data itself, corresponding to \(P(\text{identification} | \text{threat})\).
--   **Context Risk**: The risk inherent in the data sharing environment, corresponding to \(P(\text{threat})\).
+- **Data Risk**: The risk inherent in the data itself, corresponding to \(P(\text{identification} | \text{threat})\).
+- **Context Risk**: The risk inherent in the data sharing environment, corresponding to \(P(\text{threat})\).
 
 While this formula provides the conceptual basis, its practical application differs significantly between the primary privacy models:
 
--   For **k-anonymity**, this model is applied directly. A quantitative risk score is calculated where the overall risk (R) is the product of the data risk (\(R_d\)) and context risk (\(R_c\)).
--   For **Differential Privacy**, the model is applied conceptually. The goal is not to calculate a final probability. Instead, differential privacy provides a proactive guarantee that bounds the data risk to a chosen level (\(\epsilon\)), and the context risk informs how strict that level needs to be.
+- For **k-anonymity**, this model is applied directly. A quantitative risk score is calculated where the overall risk (R) is the product of the data risk (\(R_d\)) and context risk (\(R_c\)).
+- For **Differential Privacy**, the model is applied conceptually. The goal is not to calculate a final probability. Instead, differential privacy provides a proactive guarantee that bounds the data risk to a chosen level (\(\epsilon\)), and the context risk informs how strict that level needs to be.
 
 The following sections detail how to assess these risks for each model.
 
@@ -342,9 +342,9 @@ The [DICOM standard](references.html#DICOM) provides initial starting point tabl
 There are also project and other examples available, such as the Biosurveillance Use Case Minimum Data Elements Specification, that can serve as a reference.
 
 #### Transforming Identifiers
-This section describes generic methods for transforming direct and indirect (quasi-)identifiers present in collected personal data. The focus is on reducing linkability and inference risk while preserving required utility for the intended use.
+This section describes methods for transforming direct and indirect (quasi-)identifiers present in collected personal data. The focus is on reducing linkability and inference risk while preserving required utility for the intended use.
 
-**Generic method: transforming direct identifiers**
+**Method: transforming direct identifiers**
 - Goal: remove or replace values that directly identify a person while preserving needed data coherence.
 - Canonicalize inputs before transformation: standardize formats (e.g., trim whitespace, lowercase/case-fold, normalize Unicode, unify date/address/email formats) to ensure deterministic and consistent pseudonyms across sources.
 - Options:
@@ -356,7 +356,7 @@ This section describes generic methods for transforming direct and indirect (qua
     - Define a reversibility policy (authorized re-identification) and audit its execution.
     - Validate that transformations maintain longitudinal consistency where required.
 
-**Generic method: transforming indirect/quasi-identifiers**
+**Method: transforming indirect/quasi-identifiers**
 - Goal: reduce linkability and inference risk arising from attributes that can identify individuals in combination.
 - Categorical attributes:
     - Generalization: map fine-grained codes to broader categories using defined hierarchies (e.g., diagnosis roll-ups).
