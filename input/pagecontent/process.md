@@ -414,7 +414,7 @@ Unsecure data disposal can lead to breaches. Follow a formal data disposal polic
 ### Implementation
 IHE has profiles, such as the imaging teaching files profile, for some of the common de-identification situations. DICOM has identified some common intended use requirements and defined de-identification profiles for these situations. Other organizations have published their de-identification profiles. When developing project-specific de-identification profiles, these can be a good starting point.
 
-This document does not cover the implementation of processes, procedures, software, or staffing of the de-identification system. There are already established methodologies for project management, safety risk analysis, etc. These are also applicable to the deployment of de-identification processes, and there is usually no need to invent new, unfamiliar processes for the organization.
+This document covers the general, high-level de-identification process and design guidance. It does not prescribe detailed organizational procedures, specific software deployments, or staffing models. Established methodologies (e.g., project management and safety risk analysis) should be applied to the deployment of de-identification processes; there is usually no need to invent new, unfamiliar processes for the organization.
 
 ### Governance
 A strong governance framework is essential for ensuring that the de-identification process is effective, compliant, and maintained over time.
