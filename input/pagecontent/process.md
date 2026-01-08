@@ -188,9 +188,9 @@ Data risk (\(R_d\)) is the probability of re-identification based on the propert
 
 When using k-anonymity, data risk is calculated by analyzing the size of the "equivalence classes" (groups of records with identical quasi-identifiers). Common metrics include:
 
-- **Re-identification risk of a single record ($\theta_{j}$)**: for a record in an equivalence class of size $f_{j}$, the risk is $\theta_{j} = 1/f_{j}$.
-- **Maximum probability of re-identification (\(R_{d,b}\))**: The highest risk in the dataset, \(R_{d,b}\) = \(\max_{j \in J}\theta_{j}\). This is a conservative metric used for high-risk sharing models (e.g., public release).
-- **Average probability of re-identification (\(R_{d,c}\))**: The average risk across all equivalence classes, \(R_{d,c}\) = \(\frac{1}{|J|}\sum_{j \in J}^{}\theta_{j}\). This may be appropriate for more controlled sharing models.
+- **Maximum probability of re-identification (\(R_{d,b}\))**: The maximum probability of re-­identification in the data set among all records[ToDo: formular needs to be defined].
+- **Average probability of re-identification (\(R_{d,c}\))**: The proportion of records that can be correctly. This may be appropriate for more controlled sharing models. [ToDo: formular needs to be defined]
+- **Proportion of higher risk records**: The proportion of records that have a re-­identification probability higher than a threshold \(tau).
 
 The foundational methods for these calculations are detailed in [(Sweeney, 2002)](references.html#SWEENEY_K_ANON). The selected metric (\(R_{d,b}\) or \(R_{d,c}\)) becomes the value for \(R_d\) used in the overall risk calculation.
 
