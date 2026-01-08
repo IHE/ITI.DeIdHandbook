@@ -17,7 +17,7 @@ The DICOM standard has defined a set of confidentiality options for common de-id
 | X/D            | X unless D is required to maintain IOD conformance (Type 3 versus Type 1)                                                     |
 {:.grid}
 
-[DICOM PS 3.15, Annex E](References.html#DICOM-part-15-annex-e) specifies in a rather large table (Table E.1-1. Application Level Confidentiality Profile Attributes) with every possible attribute that should be de-identified. There is a default de-identification profile and several common options that modify that default. An extract is shown below as an example of how to read that table.
+[DICOM PS 3.15, Annex E](references.html#DICOM-part-15-annex-e) specifies in a rather large table (Table E.1-1. Application Level Confidentiality Profile Attributes) with every possible attribute that should be de-identified. There is a default de-identification profile and several common options that modify that default. An extract is shown below as an example of how to read that table.
 
 **Table: Table E.1-1. Application Level Confidentiality Profile Attributes (Subset for example)**
 
