@@ -173,8 +173,8 @@ Following the standard risk model described in [(ISO/IEC 27559, 2022)](reference
 
 This model provides a valuable framework for understanding the two key components of re-identification risk:
 
-- **Data Risk**: The risk inherent in the data itself, corresponding to P(identification | threat).
-- **Context Risk**: The risk inherent in the data sharing environment, corresponding to P(threat).
+- **Data Risk**: The risk inherent in the data itself, corresponding to <math xmlns="http://www.w3.org/1998/Math/MathML" aria-label="P of identification given threat"><mi>P</mi><mo>(</mo><mi>identification</mi><mo>|</mo><mi>threat</mi><mo>)</mo></math>, denoted as R<sup>d</sup>.
+- **Context Risk**: The risk inherent in the data sharing environment, corresponding to P(threat), denoted as R<sup>c</sup>.
 
 While this formula provides the conceptual basis, its practical application differs significantly between the primary privacy models:
 
@@ -184,33 +184,27 @@ While this formula provides the conceptual basis, its practical application diff
 The following sections detail how to assess these risks for each model.
 
 ##### Calculating data risk
-Data risk (R<sub>d</sub>) is the probability of re-identification based on the properties of the dataset itself. The specific method for calculating it depends directly on the formal privacy model being used.
+Data risk (R<sup>d</sup>) is the probability of re-identification based on the properties of the dataset itself. The specific method for calculating it depends directly on the formal privacy model being used.
 
 ***For k-Anonymity and related models:***
 
 When using k-anonymity, data risk is calculated by analyzing the size of the "equivalence classes" (groups of records with identical quasi-identifiers). Common metrics include:
 
-- **Re-identification risk of a single record (θ<sub>j</sub>)**: The probability of a record i being correctly re-identified.
-- **Maximum probability of re-identification (R<sub>b</sub><sup>d</sup>)**: The maximum probability of re-identification in the data set among all records.
+- **Re-identification risk of a single record (θ<sub>j</sub>)**: The probability of a record i being correctly re-identified. This depends on what the attacker is assumed to know:
 
-<div class="math">
-    R<sub>b</sub><sup>d</sup> = max<sub>j∈J</sub>(θ<sub>j</sub>)
-</div>
+    - **Case A – attacker knows the target is in the sample ("prosecutor" scenario)**: The attacker knows that the individual of interest is in the released dataset. In this case, the re-identification risk for record j is: θ<sub>j</sub> = 1 / f<sub>j</sub>, where f<sub>j</sub> is the size of the equivalence class in the sample data.
 
-- **Average probability of re-identification (R<sub>c</sub><sup>d</sup>)**: The proportion of records that can be correctly. This may be appropriate for more controlled sharing models.
-
-<div class="math">
-    R<sub>c</sub><sup>d</sup> = (1 / n) Σ<sub>j∈J</sub> f<sub>j</sub> θ<sub>j</sub>
-</div>
-
-- **Proportion of higher risk records (R<sub>a</sub><sup>d</sup>)**: The proportion of records that have a re-identification probability higher than a threshold τ.
-
-<div class="math">
-    R<sub>a</sub><sup>d</sup> = (1 / n) Σ<sub>j∈J</sub> f<sub>j</sub> × I(θ<sub>j</sub> &gt; τ)
-</div>
+    - **Case B – attacker does not know if the target is in the sample**: The attacker is unsure whether the target individual appears in the released dataset. The risk is: θ<sub>j</sub> = 1 / F<sub>j</sub>, where F<sub>j</sub> is the population equivalence class size. In practice the data custodian will often not have access to the population dataset. Therefore the value of F<sub>j</sub> must be estimated using the information in the disclosed database and other additional information. [Jiang et al., 2022](references.html#Jiang_2022_SyntheticEstimator) proposed a method of estimator based on the performance analysis of the existing methods.
 
 
-The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metric R<sub>a</sub><sup>d</sup>, R<sub>b</sub><sup>d</sup>, R<sub>c</sub><sup>d</sup> becomes the value for R<sub>d</sub> used in the overall risk calculation.
+- **Maximum probability of re-identification (R<sub>b</sub><sup>d</sup>)**: The maximum probability of re-identification in the data set among all records.  R<sub>b</sub><sup>d</sup> = max<sub>j∈J</sub>(θ<sub>j</sub>)
+
+- **Average probability of re-identification (R<sub>c</sub><sup>d</sup>)**: The proportion of records that can be correctly re-identified on average. This may be appropriate for more controlled sharing models.  R<sub>c</sub><sup>d</sup> = (1 / n) Σ<sub>j∈J</sub> f<sub>j</sub> θ<sub>j</sub>
+
+- **Proportion of higher risk records (R<sub>a</sub><sup>d</sup>)**: The proportion of records that have a re-identification probability higher than a threshold τ. R<sub>a</sub><sup>d</sup> = (1 / n) Σ<sub>j∈J</sub> f<sub>j</sub> × I(θ<sub>j</sub> &gt; τ)
+
+
+The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metric R<sub>a</sub><sup>d</sup>, R<sub>b</sub><sup>d</sup>, R<sub>c</sub><sup>d</sup> becomes the value for R<sub>d</sub> used in the overall risk calculation. The most challenging aspect of calculating re-identification risk is estimating the population equivalence class size F<sub>j</sub>. A practical approach to avoid complex estimation is to use f<sub>j</sub> (the sample equivalence class size) even when the attacker does not know if the target is in the sample. While this approach overestimates the data risk, it may be acceptable for large dataset releases. However, in healthcare settings with relatively small datasets, simply using f<sub>j</sub> as a substitute is typically not acceptable due to the excessive conservatism it introduces. 
 
 ***For Differential Privacy:***
 
@@ -222,14 +216,14 @@ Differential Privacy (DP) takes a different approach. Instead of calculating a p
 While methods exist to relate ε to a probabilistic re-identification risk, they are complex and model-dependent. For the purposes of this handbook, the primary method for managing data risk under DP is the selection and enforcement of the privacy budget (ε).
 
 ##### Calculating context risk
-Context risk (R<sub>c</sub>) assesses the likelihood of a re-identification attempt based on the data sharing environment. Its application differs depending on the chosen privacy model.
+Context risk (R<sup>c</sup>) assesses the likelihood of a re-identification attempt based on the data sharing environment. Its application differs depending on the chosen privacy model.
 
 ***For k-Anonymity and related models:***
 
-The goal is to calculate a specific probability for R<sub>c</sub>, which is then used in the overall risk formula (R = R<sub>d</sub> × R<sub>c</sub>). This probability is estimated as the maximum of three component threats:
+The goal is to calculate a specific probability for R<sup>c</sup>, which is then used in the overall risk formula (R = R<sup>d</sup> × R<sup>c</sup>). This probability is estimated as the maximum of three component threats:
 
 <div class="math">
-    R<sub>c</sub> = max(T1, T2, T3)
+    R<sup>c</sup> = max(T1, T2, T3)
 </div>
 
 Where:
@@ -237,7 +231,7 @@ Where:
 - **T2**: Probability of an inadvertent attempt (e.g., accidental discovery).
 - **T3**: Probability of a data breach.
 
-For public data releases, R<sub>c</sub> is typically assumed to be 1 (100%), reflecting the high likelihood of an attack attempt. For controlled models, these probabilities are estimated based on the security controls, contractual obligations, and the nature of the data recipients. For detailed methodologies on estimating these probabilities, see guidance from sources like [(IPC_ONTARIO, 2016)](references.html#IPC_ONTARIO) and [(El Emam, 2013)](references.html#EL_EMAM_GUIDE).
+For public data releases, R<sup>c</sup> is typically assumed to be 1 (100%), reflecting the high likelihood of an attack attempt. For controlled models, these probabilities are estimated based on the security controls, contractual obligations, and the nature of the data recipients. For detailed methodologies on estimating these probabilities, see guidance from sources like [(IPC_ONTARIO, 2016)](references.html#IPC_ONTARIO) and [(El Emam, 2013)](references.html#EL_EMAM_GUIDE).
 
 ***For Differential Privacy:***
 
@@ -253,20 +247,20 @@ The final step is to determine the overall re-identification risk by combining t
 
 ***For k-Anonymity and related models:***
 
-The overall risk is the product of the data risk (the chosen metric, e.g., R<sub>d,b</sub>) and the context risk (R<sub>c</sub>). This final value is then compared against the project's acceptable risk threshold.
+The overall risk is the product of the data risk (the chosen metric, e.g., R<sub>b</sub><sup>d</sup>) and the context risk (R<sup>c</sup>). This final value is then compared against the project's acceptable risk threshold.
 
 <div class="math">
-    R = R<sub>d</sub> × R<sub>c</sub>
+    R = R<sup>d</sup> × R<sup>c</sup>
 </div>
 
-For example, if the maximum data risk (R<sub>d,b</sub>) is 0.1 and the context risk for a controlled sharing environment (R<sub>c</sub>) is estimated at 0.5, the overall risk would be 0.1 × 0.5 = 0.05. This value would need to be below the project's defined threshold.
+For example, if the maximum data risk (R<sub>b</sub><sup>d</sup>) is 0.1 and the context risk for a controlled sharing environment (R<sup>c</sup>) is estimated at 0.5, the overall risk would be 0.1 × 0.5 = 0.05. This value would need to be below the project's defined threshold.
 
 ***For Differential Privacy:***
 
-With Differential Privacy, the overall risk is not a calculated product. Instead, the context risk (R<sub>c</sub>) directly influences the selection of the privacy budget (ε).
+With Differential Privacy, the overall risk is not a calculated product. Instead, the context risk (R<sup>c</sup>) directly influences the selection of the privacy budget (ε).
 
-- In a high-risk context (e.g., public release, where R<sub>c</sub> is high), a very small ε (a strict budget) must be chosen.
-- In a lower-risk context (e.g., a secure enclave with trusted researchers, where R<sub>c</sub> is low), a larger ε (a more lenient budget) may be justifiable.
+- In a high-risk context (e.g., public release, where R<sup>c</sup> is high), a very small ε (a strict budget) must be chosen.
+- In a lower-risk context (e.g., a secure enclave with trusted researchers, where R<sup>c</sup> is low), a larger ε (a more lenient budget) may be justifiable.
 
 The project must document the rationale for how the data sharing context and potential harms informed the choice of ε. The "pass/fail" criterion is whether the implemented system can enforce this chosen ε for all data queries.
 

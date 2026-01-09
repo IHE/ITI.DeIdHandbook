@@ -44,4 +44,5 @@
 1. <a name="IHE_RAD_TF_Vol1"></a>IHE International. (2025). IHE radiology technical framework, volume 1: Integration profiles (Rev. 23.0). https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_TF_Vol1.pdf
 1. <a name="OKeefe2017"></a> O'Keefe, C., Otorepec, S., Elliot, M., Mackey, E., & O'Hara, K. (2017). *The de-identification decision-making framework*. CSIRO Data61. https://doi.org/10.4225/08/59c169433efd4
 1. <a name="IPC2016"></a> Information and Privacy Commissioner of Ontario. (2016). De-identification guidelines for structured data. https://www.ipc.on.ca/sites/default/files/legacy/2016/08/Deidentification-Guidelines-for-Structured-Data.pdf
+1. <a name="Jiang_2022_SyntheticEstimator"></a>Jiang, Y., Mosquera, L., Jiang, B., Kong, L., & El Emam, K. (2022). Measuring re-identification risk using a synthetic estimator to enable data sharing. *PLOS ONE*, *17*(6), e0269097. https://doi.org/10.1371/journal.pone.0269097
 
