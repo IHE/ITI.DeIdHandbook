@@ -167,109 +167,108 @@ When a qualitative evaluation determines that a dataset contains indirect (quasi
 
 Following the standard risk model described in [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559), identifiability can be conceptualized as the product of the probability of identification given a specific threat and the probability of that threat being realized. That is:
 
-$$
-P(\text{identification}) = P(\text{identification} | \text{threat}) \times P(\text{threat})
-$$
+<div class="math">
+    P(identification) = P(identification | threat) × P(threat)
+</div>
 
 This model provides a valuable framework for understanding the two key components of re-identification risk:
 
-- **Data Risk**: The risk inherent in the data itself, corresponding to:
-
- $$ 
- P(\text{identification } | \text{ threat}) 
- $$
-
-- **Context Risk**: The risk inherent in the data sharing environment, corresponding to $P(\text{threat})$.
+- **Data Risk**: The risk inherent in the data itself, corresponding to P(identification | threat).
+- **Context Risk**: The risk inherent in the data sharing environment, corresponding to P(threat).
 
 While this formula provides the conceptual basis, its practical application differs significantly between the primary privacy models:
 
-- For **k-anonymity**, this model is applied directly. A quantitative risk score is calculated where the overall risk ($R$) is the product of the data risk ($R^d$) and context risk ($R^c$).
-- For **Differential Privacy**, the model is applied conceptually. The goal is not to calculate a final probability. Instead, differential privacy provides a proactive guarantee that bounds the data risk to a chosen level (\(\epsilon\)), and the context risk informs how strict that level needs to be.
+- For **k-anonymity**, this model is applied directly. A quantitative risk score is calculated where the overall risk (R) is the product of the data risk (R<sup>d</sup>) and context risk (R<sup>c</sup>).
+- For **Differential Privacy**, the model is applied conceptually. The goal is not to calculate a final probability. Instead, differential privacy provides a proactive guarantee that bounds the data risk to a chosen level (ε), and the context risk informs how strict that level needs to be.
 
 The following sections detail how to assess these risks for each model.
 
 ##### Calculating data risk
-Data risk (\(R_d\)) is the probability of re-identification based on the properties of the dataset itself. The specific method for calculating it depends directly on the formal privacy model being used.
+Data risk (R<sub>d</sub>) is the probability of re-identification based on the properties of the dataset itself. The specific method for calculating it depends directly on the formal privacy model being used.
 
 ***For k-Anonymity and related models:***
 
 When using k-anonymity, data risk is calculated by analyzing the size of the "equivalence classes" (groups of records with identical quasi-identifiers). Common metrics include:
 
-- **Re-identification risk of a single record ($\theta_{j}$)**: The probability of a record $i$ being correctly re-identified.
-- **Maximum probability of re-identification ($R_b^d$)**: The maximum probability of re-­ identification in the data set among all records. 
+- **Re-identification risk of a single record (θ<sub>j</sub>)**: The probability of a record i being correctly re-identified.
+- **Maximum probability of re-identification (R<sub>b</sub><sup>d</sup>)**: The maximum probability of re-identification in the data set among all records.
 
-$$
-R_b^d = \max_{j \in J} (\theta_j)
-$$
+<div class="math">
+    R<sub>b</sub><sup>d</sup> = max<sub>j∈J</sub>(θ<sub>j</sub>)
+</div>
 
-- **Average probability of re-identification ($R_c^d$)**: The proportion of records that can be correctly. This may be appropriate for more controlled sharing models. 
+- **Average probability of re-identification (R<sub>c</sub><sup>d</sup>)**: The proportion of records that can be correctly. This may be appropriate for more controlled sharing models.
 
-$$
-R_c^d = \frac{1}{n} \sum_{j \in J} f_j \theta_j
-$$
+<div class="math">
+    R<sub>c</sub><sup>d</sup> = (1 / n) Σ<sub>j∈J</sub> f<sub>j</sub> θ<sub>j</sub>
+</div>
 
-- **Proportion of higher risk records ($R_a^d$)**: The proportion of records that have a re-­identification probability higher than a threshold $tau$. 
+- **Proportion of higher risk records (R<sub>a</sub><sup>d</sup>)**: The proportion of records that have a re-identification probability higher than a threshold τ.
 
-$$
-R_a^d = \frac{1}{n} \sum_{j \in J} f_j \times I(\theta_j > \tau)
-$$
+<div class="math">
+    R<sub>a</sub><sup>d</sup> = (1 / n) Σ<sub>j∈J</sub> f<sub>j</sub> × I(θ<sub>j</sub> &gt; τ)
+</div>
 
 
-The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metric $R_a^d, R_b^d, R_c^d$ becomes the value for $R_d$ used in the overall risk calculation.
+The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metric R<sub>a</sub><sup>d</sup>, R<sub>b</sub><sup>d</sup>, R<sub>c</sub><sup>d</sup> becomes the value for R<sub>d</sub> used in the overall risk calculation.
 
 ***For Differential Privacy:***
 
-Differential Privacy (DP) takes a different approach. Instead of calculating a post-hoc re-identification risk, DP provides a proactive mathematical guarantee of privacy, quantified by the privacy loss parameter, epsilon ($\epsilon$)).
+Differential Privacy (DP) takes a different approach. Instead of calculating a post-hoc re-identification risk, DP provides a proactive mathematical guarantee of privacy, quantified by the privacy loss parameter, epsilon (ε).
 
-- **Privacy Guarantee (\(\epsilon\))**: Epsilon measures the maximum privacy "leakage" allowed when a query is performed on the data. A smaller \(\epsilon\) provides stronger privacy.
-- **Risk Management**: Under the DP model, risk is not calculated as a probability but is managed by setting an appropriate \(\epsilon\) value. The choice of \(\epsilon\) (the "privacy budget") is the primary means of controlling privacy risk. For example, a project might set a strict \(\epsilon\) of 0.1 for highly sensitive data, or a more lenient \(\epsilon\) of 1.0 for less sensitive use cases. The definitive guide to the theory and application of \(\epsilon\) can be found in [(Dwork & Roth, 2014)](references.html#DWORK_ROTH_DP_BOOK).
+- **Privacy Guarantee (ε)**: Epsilon measures the maximum privacy "leakage" allowed when a query is performed on the data. A smaller ε provides stronger privacy.
+- **Risk Management**: Under the DP model, risk is not calculated as a probability but is managed by setting an appropriate ε value. The choice of ε (the "privacy budget") is the primary means of controlling privacy risk. For example, a project might set a strict ε of 0.1 for highly sensitive data, or a more lenient ε of 1.0 for less sensitive use cases. The definitive guide to the theory and application of ε can be found in [(Dwork & Roth, 2014)](references.html#DWORK_ROTH_DP_BOOK).
 
-While methods exist to relate \(\epsilon\) to a probabilistic re-identification risk, they are complex and model-dependent. For the purposes of this handbook, the primary method for managing data risk under DP is the selection and enforcement of the privacy budget (\(\epsilon\)).
+While methods exist to relate ε to a probabilistic re-identification risk, they are complex and model-dependent. For the purposes of this handbook, the primary method for managing data risk under DP is the selection and enforcement of the privacy budget (ε).
 
 ##### Calculating context risk
-Context risk (\(R_c\)) assesses the likelihood of a re-identification attempt based on the data sharing environment. Its application differs depending on the chosen privacy model.
+Context risk (R<sub>c</sub>) assesses the likelihood of a re-identification attempt based on the data sharing environment. Its application differs depending on the chosen privacy model.
 
 ***For k-Anonymity and related models:***
 
-The goal is to calculate a specific probability for \(R_c\), which is then used in the overall risk formula (\(R = R_d \times R_c\)). This probability is estimated as the maximum of three component threats:
+The goal is to calculate a specific probability for R<sub>c</sub>, which is then used in the overall risk formula (R = R<sub>d</sub> × R<sub>c</sub>). This probability is estimated as the maximum of three component threats:
 
-\[ R_c = \max(T1, T2, T3) \]
+<div class="math">
+    R<sub>c</sub> = max(T1, T2, T3)
+</div>
 
 Where:
 - **T1**: Probability of a deliberate attack attempt.
 - **T2**: Probability of an inadvertent attempt (e.g., accidental discovery).
 - **T3**: Probability of a data breach.
 
-For public data releases, \(R_c\) is typically assumed to be 1 (100%), reflecting the high likelihood of an attack attempt. For controlled models, these probabilities are estimated based on the security controls, contractual obligations, and the nature of the data recipients. For detailed methodologies on estimating these probabilities, see guidance from sources like [(IPC_ONTARIO, 2016)](references.html#IPC_ONTARIO) and [(El Emam, 2013)](references.html#EL_EMAM_GUIDE).
+For public data releases, R<sub>c</sub> is typically assumed to be 1 (100%), reflecting the high likelihood of an attack attempt. For controlled models, these probabilities are estimated based on the security controls, contractual obligations, and the nature of the data recipients. For detailed methodologies on estimating these probabilities, see guidance from sources like [(IPC_ONTARIO, 2016)](references.html#IPC_ONTARIO) and [(El Emam, 2013)](references.html#EL_EMAM_GUIDE).
 
 ***For Differential Privacy:***
 
-Context risk is not used to calculate a final number for multiplication. Instead, the assessment of the context directly **informs the selection of the privacy budget (\(\epsilon\))**. The same threat components (T1, T2, T3) are evaluated to justify the choice of \(\epsilon\).
+Context risk is not used to calculate a final number for multiplication. Instead, the assessment of the context directly **informs the selection of the privacy budget (ε)**. The same threat components (T1, T2, T3) are evaluated to justify the choice of ε.
 
-- A **high-risk context** (high T1, T2, or T3), such as a public release, mandates the use of a very small, strict \(\epsilon\) to ensure strong privacy guarantees.
-- A **low-risk context**, such as a secure enclave for trusted researchers (low T1, T2, and T3), may justify the use of a larger, more lenient \(\epsilon\) that preserves greater data utility.
+- A **high-risk context** (high T1, T2, or T3), such as a public release, mandates the use of a very small, strict ε to ensure strong privacy guarantees.
+- A **low-risk context**, such as a secure enclave for trusted researchers (low T1, T2, and T3), may justify the use of a larger, more lenient ε that preserves greater data utility.
 
-The output of the context risk assessment in a DP model is a documented rationale for the chosen \(\epsilon\) value, linking it directly to the environmental and sharing risks.
+The output of the context risk assessment in a DP model is a documented rationale for the chosen ε value, linking it directly to the environmental and sharing risks.
 
 ##### Calculating overall risk
 The final step is to determine the overall re-identification risk by combining the data risk and context risk, though the method differs by privacy model.
 
 ***For k-Anonymity and related models:***
 
-The overall risk is the product of the data risk (the chosen metric, e.g., \(R_{d,b}\)) and the context risk (\(R_c\)). This final value is then compared against the project's acceptable risk threshold.
+The overall risk is the product of the data risk (the chosen metric, e.g., R<sub>d,b</sub>) and the context risk (R<sub>c</sub>). This final value is then compared against the project's acceptable risk threshold.
 
-\[ R = R_d \times R_c \]
+<div class="math">
+    R = R<sub>d</sub> × R<sub>c</sub>
+</div>
 
-For example, if the maximum data risk (\(R_{d,b}\)) is 0.1 and the context risk for a controlled sharing environment (\(R_c\)) is estimated at 0.5, the overall risk would be \(0.1 \times 0.5 = 0.05\). This value would need to be below the project's defined threshold.
+For example, if the maximum data risk (R<sub>d,b</sub>) is 0.1 and the context risk for a controlled sharing environment (R<sub>c</sub>) is estimated at 0.5, the overall risk would be 0.1 × 0.5 = 0.05. This value would need to be below the project's defined threshold.
 
 ***For Differential Privacy:***
 
-With Differential Privacy, the overall risk is not a calculated product. Instead, the context risk (\(R_c\)) directly influences the selection of the privacy budget (\(\epsilon\)).
+With Differential Privacy, the overall risk is not a calculated product. Instead, the context risk (R<sub>c</sub>) directly influences the selection of the privacy budget (ε).
 
-- In a high-risk context (e.g., public release, where \(R_c\) is high), a very small \(\epsilon\) (a strict budget) must be chosen.
-- In a lower-risk context (e.g., a secure enclave with trusted researchers, where \(R_c\) is low), a larger \(\epsilon\) (a more lenient budget) may be justifiable.
+- In a high-risk context (e.g., public release, where R<sub>c</sub> is high), a very small ε (a strict budget) must be chosen.
+- In a lower-risk context (e.g., a secure enclave with trusted researchers, where R<sub>c</sub> is low), a larger ε (a more lenient budget) may be justifiable.
 
-The project must document the rationale for how the data sharing context and potential harms informed the choice of \(\epsilon\). The "pass/fail" criterion is whether the implemented system can enforce this chosen \(\epsilon\) for all data queries.
+The project must document the rationale for how the data sharing context and potential harms informed the choice of ε. The "pass/fail" criterion is whether the implemented system can enforce this chosen ε for all data queries.
 
 ### Risk mitigation
 This phase involves designing and applying controls to reduce the identified risks to an acceptable level.
