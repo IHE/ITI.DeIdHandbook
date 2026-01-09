@@ -167,16 +167,23 @@ When a qualitative evaluation determines that a dataset contains indirect (quasi
 
 Following the standard risk model described in [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559), identifiability can be conceptualized as the product of the probability of identification given a specific threat and the probability of that threat being realized. That is:
 
-\[P(\text{identification}) = P(\text{identification} | \text{threat}) \times P(\text{threat})\]
+$$
+P(\text{identification}) = P(\text{identification} | \text{threat}) \times P(\text{threat})
+$$
 
 This model provides a valuable framework for understanding the two key components of re-identification risk:
 
-- **Data Risk**: The risk inherent in the data itself, corresponding to \(P(\text{identification} | \text{threat})\).
-- **Context Risk**: The risk inherent in the data sharing environment, corresponding to \(P(\text{threat})\).
+- **Data Risk**: The risk inherent in the data itself, corresponding to:
+
+ $$ 
+ P(\text{identification } | \text{ threat}) 
+ $$
+
+- **Context Risk**: The risk inherent in the data sharing environment, corresponding to $P(\text{threat})$.
 
 While this formula provides the conceptual basis, its practical application differs significantly between the primary privacy models:
 
-- For **k-anonymity**, this model is applied directly. A quantitative risk score is calculated where the overall risk (R) is the product of the data risk (\(R_d\)) and context risk (\(R_c\)).
+- For **k-anonymity**, this model is applied directly. A quantitative risk score is calculated where the overall risk ($R$) is the product of the data risk ($R^d$) and context risk ($R^c$).
 - For **Differential Privacy**, the model is applied conceptually. The goal is not to calculate a final probability. Instead, differential privacy provides a proactive guarantee that bounds the data risk to a chosen level (\(\epsilon\)), and the context risk informs how strict that level needs to be.
 
 The following sections detail how to assess these risks for each model.
@@ -188,16 +195,31 @@ Data risk (\(R_d\)) is the probability of re-identification based on the propert
 
 When using k-anonymity, data risk is calculated by analyzing the size of the "equivalence classes" (groups of records with identical quasi-identifiers). Common metrics include:
 
-- **Re-identification risk of a single record ($\theta_{j}$)**: for a record in an equivalence class of size $f_{j}$, the risk is $\theta_{j} = 1/f_{j}$.
-- **Maximum probability of re-identification (\(R_{d,b}\))**: The maximum probability of re-­ identification in the data set among all records[ToDo: formular needs to be defined].
-- **Average probability of re-identification (\(R_{d,c}\))**: The proportion of records that can be correctly. This may be appropriate for more controlled sharing models. [ToDo: formular needs to be defined]
-- **Proportion of higher risk records**: The proportion of records that have a re-­identification probability higher than a threshold \(tau).
+- **Re-identification risk of a single record ($\theta_{j}$)**: The probability of a record $i$ being correctly re-identified.
+- **Maximum probability of re-identification ($R_b^d$)**: The maximum probability of re-­ identification in the data set among all records. 
 
-The foundational methods for these calculations are detailed in [(Sweeney, 2002)](references.html#SWEENEY_K_ANON). The selected metric (\(R_{d,b}\) or \(R_{d,c}\)) becomes the value for \(R_d\) used in the overall risk calculation.
+$$
+R_b^d = \max_{j \in J} (\theta_j)
+$$
+
+- **Average probability of re-identification ($R_c^d$)**: The proportion of records that can be correctly. This may be appropriate for more controlled sharing models. 
+
+$$
+R_c^d = \frac{1}{n} \sum_{j \in J} f_j \theta_j
+$$
+
+- **Proportion of higher risk records ($R_a^d$)**: The proportion of records that have a re-­identification probability higher than a threshold $tau$. 
+
+$$
+R_a^d = \frac{1}{n} \sum_{j \in J} f_j \times I(\theta_j > \tau)
+$$
+
+
+The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metric $R_a^d, R_b^d, R_c^d$ becomes the value for $R_d$ used in the overall risk calculation.
 
 ***For Differential Privacy:***
 
-Differential Privacy (DP) takes a different approach. Instead of calculating a post-hoc re-identification risk, DP provides a proactive mathematical guarantee of privacy, quantified by the privacy loss parameter, epsilon (\(\epsilon\)).
+Differential Privacy (DP) takes a different approach. Instead of calculating a post-hoc re-identification risk, DP provides a proactive mathematical guarantee of privacy, quantified by the privacy loss parameter, epsilon ($\epsilon$)).
 
 - **Privacy Guarantee (\(\epsilon\))**: Epsilon measures the maximum privacy "leakage" allowed when a query is performed on the data. A smaller \(\epsilon\) provides stronger privacy.
 - **Risk Management**: Under the DP model, risk is not calculated as a probability but is managed by setting an appropriate \(\epsilon\) value. The choice of \(\epsilon\) (the "privacy budget") is the primary means of controlling privacy risk. For example, a project might set a strict \(\epsilon\) of 0.1 for highly sensitive data, or a more lenient \(\epsilon\) of 1.0 for less sensitive use cases. The definitive guide to the theory and application of \(\epsilon\) can be found in [(Dwork & Roth, 2014)](references.html#DWORK_ROTH_DP_BOOK).
