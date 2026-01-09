@@ -50,12 +50,12 @@ Profiles should explicitly map treatments to stages to reflect real-world constr
 - The [DICOM standard](references.html#DICOM) offers default requirements and options, including [PS 3.15 Annex E](references.html#DICOM-part-15-annex-e) tables (e.g., Table E.1-1) that can be adapted. Private attributes require careful treatment beyond defaults.
 
 ### Practical Use by Implementers
-Starting from a generic profile reduces effort and error: implementers compare their specific intended use and recipients to the profile, then adjust expected elements and thresholds. For DICOM, it is common to find that the default profile plus selected options suffices. The same expectations apply when IHE develops a de-identification profile: clear stage placement, explicit element treatment rules, documented risk thresholds, and operational controls enable consistent, safe implementations.
+Starting from a generic profile reduces effort and error and allows the implementers to compare their specific intended use and recipients to the generic profile and adjust expected elements and thresholds according to their requirements. For DICOM, it is common to find that the default profile plus selected options suffices. The same expectations apply when developing an IHE de-identification profile, including clear stage placement, explicit element treatment rules, documented risk thresholds, and operational controls, to ensure consistent and safe implementations.
 
 ### Profile Editor Checklist
 - Define intended uses, recipients, and data flow; note regulatory constraints and intermediaries.
 - Enumerate data types (structured, free text, imaging, binary) and classify attributes (DI, QI, SA, NI).
-- Decide single-stage vs multi-stage: if single-stage, confirm it combines preliminary and advanced processing with both analyses applied; if multi-stage, map treatments to Stage 1/2/3.
+- Decide single-stage vs multi-stage: if single-stage, confirm it combines preliminary and advanced processing with both analyses applied; if multi-stage, map element treatments to each stage (1, 2, 3).
 - Produce an element-by-element treatment table: redaction, transformation (generalize/perturb/pseudonymize), or pass-through with valid placeholders/codes.
 - Set risk targets and measurement: k-anonymity metrics (`R = R_d × R_c`) or differential privacy budgets (`ε`), aligned to the sharing model.
 - Choose pseudonymization policy: reversible (key management) vs irreversible (one-way salted methods), and address trait changes and deduplication.
