@@ -297,14 +297,14 @@ graph TD
 
     subgraph "Stage 2: Advanced De-Identification"
         direction LR
-        B -->|Irreversible Pseudonymization<br/>Anonymization / Non-Negligible Risk| C(Irreversibly Pseudonymized Data);
+        B -->|Irreversible Pseudonymization| C(Irreversibly Pseudonymized Data);
         C -->|Anonymization / Negligible Risk| D(Anonymous Data);
     end
     
     subgraph "Stage 3: Recipient Verification"
         direction LR
         D --> E(Recipient Risk Verification);
-        C --> E;
+        C -->|Anonymization / Non-Negligible Risk| E;
     end
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
