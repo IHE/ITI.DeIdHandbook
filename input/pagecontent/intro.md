@@ -1,24 +1,66 @@
 
-This handbook explains the PROCESS for removing individually identifiable information from healthcare data. This includes de-identification, pseudonymization, re-linking, design considerations, techniques, and risks. The intended audience is IHE Profile editors and healthcare information technology implementers needing a guide for designing and implementing de-identification systems.
+### Overview and Intended Audience
 
-De-identification is used to reduce privacy risks in a wide variety of situations:
+This handbook explains a practical, multi-stage process for reducing individually identifiable information in healthcare data. It covers de-identification, pseudonymization, optional re-linking, design considerations, techniques, and risks. It is written for IHE Profile editors and for healthcare IT implementers who need concrete guidance to design, implement, validate, and operate de-identification systems.
 
-- Extreme de-identification is used for educational materials that will be made widely public, yet must convey enough detail to be useful for medical education purposes. (There is an IHE profile for automation assistance for performing this kind of de-identification. Much of the process is customized to the individual patient and educational purpose.)
-- Public health uses de-identified databases to track and understand diseases.
-- Clinical trials use de-identification both to protect privacy and to avoid subconscious bias by removing other information such as whether the patient received a placebo or an experimental drug.
-- Slight de-identification is used in many clinical reviews, where the reviewers are kept ignorant of the treating physician, hospital, patient, etc. both to reduce privacy risks and to remove subconscious biases. This kind of de-identification only prevents incidental disclosure to reviewers. An intentional effort will easily discover the patient identity, etc.
+### Audience Benefits
 
-Public health and clinical trials might also have a requirement to be able to contact a person based on their de-identified records. This poses further constraints on the methods used to de-identify the records.
+**For IHE Profile Editors**
+- Stage-aware profile structure to adopt (sources, treatments, residual risks, operational controls).
+- Standardized terminology and risk thresholds to reduce ambiguity across profiles.
+- Reusable checklist to improve completeness and consistency.
+- Guidance on when single-stage can suffice and how to document compensating controls.
+- Worked exemplar to map into profile text and test cases.
 
-***It is important to note that risk can only be reduced. The only way to absolutely assure a person cannot be relinked to their data is to provide no data at all. De-identified data can still be full of identifying information, and may still need extensive privacy protections.***
+**For Healthcare IT Implementers**
+- End-to-end process workflow with gating criteria for each stage.
+- Techniques by data type (structured, text, imaging) to implement safe transformations.
+- Validation and monitoring practices for production operations.
+- Operational controls for access, audit, encryption, transfer, and disposal.
+- Pseudonymization and re-linking constraints to support contact requirements safely.
 
-This handbook describes a general process that should be adapted to specific situations. This handbook does not define a universal de-identification profile. Each situation must be evaluated according to its data needs and the environment. This must be specific to the information being processed, applicable laws and regulations, organizational policies, the operational environment, and more.
+### How to Use This Handbook
 
-The design and operation of any de-identification profile or system must be validated and monitored. Validation should occur early in the design phase, again when the system is going live, and during operational use. The characteristics of many data sets change over time, and monitoring production de-identification systems helps ensure that they remain effective over time. An IHE profile editor may be unaware of these specifics and thus unable to provide detailed guidance. IHE profiles can provide help by eliminating unnecessary information from content modules, and perhaps providing guidance for common expected intended uses.
+- **Concepts**: See [Concepts](concepts.html) for key terms, identifiability levels, residual risk notions, and threat models that frame decision-making.
+- **Process**: See [Process](process.html) for the stage-by-stage workflow (context analysis → data assessment → risk modeling → design → validation → operation) and gating criteria.
+- **Techniques**: See [Techniques](algorithms.html) for techniques organized by data type (structured, text, imaging) and use-case constraints.
+- **IHE Use Guidance**: See [IHE Profile Editor Guidance](ihe-use.html) for what a profile must define (sources, treatments, risks, operational controls) and when single-stage can suffice.
+- **Worked Example**: See [IPS + EHDS2 Exemplar](ips-ehds-example.html) for a concise profile demonstrating purpose, recipients, multi-stage process, risk thresholds, and element-by-element treatment.
 
-It is also important to remember data that is appropriately de-identified for one purpose (such as a clinical trial) may not be correctly de-identified for a new use of the data (such as using the same data set for a public health database).
+### Where De-Identification Is Used
 
-ISO/TS 25237 describes the objectives of de-identification to include:
+- Educational materials intended for broad public use often require extreme de-identification while preserving educational value. Some IHE profiles assist automation, with customization per patient and teaching purpose.
+- Public health programs use de-identified databases to track and understand diseases.
+- Clinical trials use de-identification to protect privacy and reduce bias (e.g., removing treatment assignment details such as placebo/experimental arms).
+- Clinical reviews often apply slight de-identification to reduce incidental disclosure and subconscious bias (reviewers do not see patient, clinician, or facility identifiers). Intentional re-identification may still be possible; controls must reflect this.
+
+Some scenarios (e.g., public health or trials) require the ability to contact individuals later. That introduces constraints on pseudonymization, key management, and re-linking policies; see [IHE Profile Editor Guidance](ihe-use.html) and [Process](process.html).
+
+### Risk, Scope, and Limits
+
+***Risk can only be reduced — never eliminated.*** The only way to absolutely prevent re-linking is to disclose no data. De-identified data may still contain indirect identifiers and often requires strong controls (access, transfer, storage, disposal). Design choices must reflect applicable laws and policies, organizational requirements, and operational realities.
+
+This handbook provides a general process to adapt to specific situations; it does not define a universal profile. Each situation must be evaluated based on data needs, environment, regulatory context, and intended recipients. A profile may target a class of uses rather than one project, with explicit residual risks and accompanying protections.
+
+### Single-Stage vs. Multi-Stage
+
+Multi-stage approaches are often preferable (e.g., preliminary scrubbing followed by advanced risk-based treatments), but a single stage can suffice when:
+
+- The data scope and recipients are narrow and well-understood.
+- Residual risks are quantified and below agreed thresholds.
+- Operational controls (access, audit, encryption, disposal) compensate appropriately.
+
+Even in single-stage designs, perform both preliminary and advanced analyses; see [Process](process.html) and [IHE Profile Editor Guidance](ihe-use.html).
+
+### Validation and Monitoring
+
+Validation must occur early in design, at go-live, and during operations. Data characteristics shift over time; monitoring helps maintain effectiveness. IHE profiles can assist by removing unnecessary content and by offering guidance for common intended uses, but local validation remains essential. See [Process](process.html) and [De-Identification Techniques](algorithms.html).
+
+### Re-Use Caveat
+
+Data appropriately de-identified for one purpose (e.g., a clinical trial) may not be suitable for another (e.g., public health analytics). Re-evaluate the process when changing the purpose, recipients, or environment.
+
+### ISO/TS 25237 Objectives (Examples)
 
 - secondary use of clinical data (e.g., research);
 - clinical trials and post-marketing surveillance;
