@@ -126,7 +126,7 @@ Policy for secondary use includes data minimisation for the use of secondary hea
 ##### Patient
 
 - Pseudonymized name
-- Patient location is important to the study. Address locations generalized to the initial 3-digits of the postal code for dataminimization
+- Patient location is important to the study. Address locations generalized to the initial 3-digits of the postal code for data minimization
 - Administrative gender is an important metric in the study and will be included
 - Date of birth will be used to determine and convey a generalized agegroup. The Date of birth, if included, will be Synthetic Data applied by date shifting within age-group breakdown
 - Preferred language will be omitted for data-minimization
