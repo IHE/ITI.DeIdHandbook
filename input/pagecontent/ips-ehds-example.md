@@ -2,14 +2,14 @@
 
 ### Purpose and Overview
 
-This exemplar demonstrates how the IHE De-Identification Handbook’s process framework is applied to the EHDS2 IPS + VRDR secondary-use scenario. It serves as a concise de-identification profile: defining purpose, recipients, multi-stage process, risk thresholds, and element-by-element treatment to preserve research utility while protecting privacy. See the methodology overview in [Process](process.html).
+This exemplar demonstrates how the IHE De-Identification Handbook’s process framework is applied a fictitious epidemiologic example that conforms to the secondary use requirements defined by the EHDS2. This example leverages the International Patient Summary (IPS) and the Vital Records Death Reporting (VRDR) profiles for conveying study data content for this secondary-use scenario. It serves as a concise de-identification example: defining purpose, recipients, multi-stage process, risk thresholds, and element-by-element treatment to preserve research utility while protecting privacy. See the methodology overview in [Process](process.html).
 
 
 ### Context Analysis
 
 #### Purpose of collecting data
 
-The permitted purpose is Public Interest research in Public/Occupational Health to study co-morbidities, mortality, occupational risks, and treatment effects. The dataset must be minimized and de-identified to preserve utility (longitudinal trends, outcomes, medication impacts) while controlling re-identification risk per permit conditions.
+The permitted purpose for this example is Public Interest research in Public/Occupational Health to study co-morbidities, mortality, occupational risks, and treatment effects. The dataset must be minimized and de-identified to preserve utility (longitudinal trends, outcomes, medication impacts) while controlling re-identification risk per permit conditions.
 
 The region is under threat of outbreak for a novel virus causing influenza-like-symptoms. An approved public health monitoring program wishes to review primary health information from across multiple jurisdictions for impacts of co-morbidities, mortality rates, and occupational health risks. The study also intends to review the population health impact for medication treatments, including vaccination. The purpose of the research request reflects a permitted purpose of use, Public Interest in the area of Public, Occupational Health. Data for this study represents categories from Healthcare, Medicinal products, Areas of Public Health, Areas of Occupational Health, and possibly Serious cross-border threats.
 
@@ -67,8 +67,8 @@ This data flow implements the methodology’s end-to-end analysis described in [
 
 ##### end-to-end data flow
 
-- Before the de-identification processing, EHDS 2 regulations specify that the Health Data User conducts data discovery to identify data that is available for the study, and that an application for a data permit be submitted and approved. The Data Discovery leveraging the HealthDCAT Application Profile (HealthDCAT-AP) determines that the information is available within the HDAB Information Resources, indicating data is available in a standard International Patient Summary (IPS), and mortality data in the Vital Records Death Reporting (IHE VRDR) standard formats as indicated in the conformsTo attribute (see https://healthdataeu.pages.code.europa.eu/healthdcat-ap/releases/release-5/).
-- The user submits a Data Access Permit application (drawn from example at: https://data-access.dsa.ec.europa.eu/public/hta/data-access) requests data access authorization providing [in the Research project-specific information](https://healthdataeu.pages.code.europa.eu/healthdcat-ap/releases/release-5/) section:
+-  Before the de-identification processing, EHDS 2 regulations specify that the Health Data User conducts data discovery to identify data that is available for the study, and that an application for a data permit be submitted and approved. The Data Discovery leveraging the HealthDCAT Application Profile (HealthDCAT-AP), a specification developed by the European Commission DG SANTE to fulfill the requirements of Article 77 of Regulation (EU) 2025/327 [[OJ L, 2025/327, 5.3.2025](https://healthdataeu.pages.code.europa.eu/healthdcat-ap/releases/release-5/#bib-oj%20l,%202025/327,%205.3.2025)] establishing the European Health Data Space (EHDS). This determines that the information is available within the HDAB Information Resources, indicating data is available in a standard International Patient Summary (IPS), and mortality data in the Vital Records Death Reporting (IHE VRDR) standard formats as indicated in the conformsTo attribute (see https://healthdataeu.pages.code.europa.eu/healthdcat-ap/releases/release-5/).
+- The user submits a Data Access Permit application (drawn from example at: https://data-access.dsa.ec.europa.eu/public/hta/data-access), and requests data access authorization providing [in the Research project-specific information](https://healthdataeu.pages.code.europa.eu/healthdcat-ap/releases/release-5/) section:
   - Information on the type and format of the data requested, indicates International Patient Summary format for the data, indicating the specific [attributes from that standard content needed for the study and applicable](https://data-access.dsa.ec.europa.eu/public/hta/data-access)  de-identification methods should be used to preserve sufficient information to fulfill the study.
   - The researcher also provides a date range of access needed for a 3-year period.
 
@@ -105,7 +105,7 @@ Once a Data Permit is granted, the third phase, Data Preparation, begins. The HD
 
 ##### Multi-stage Requirements
 
-- Stage 1 (at sources): Basic minimization and, where applicable, reversible pseudonymization to safely transfer data to HDAB; direct identifiers removed or replaced per local capability.
+- Stage 1 (at sources or by HDAB with source access): Basic minimization and, where applicable, reversible pseudonymization to safely transfer data to HDAB; direct identifiers removed or replaced per source/HDAB capability.
 - Stage 2 (HDAB Intermediation): Advanced de-identification (irreversible pseudonymization, date shifting, generalization, suppression) with quantitative/qualitative risk assessment to meet the defined threshold.
 - Stage 3 (recipients): Verification that received datasets meet permit-specified privacy level; usage confined to approved analyses in controlled environments with no re-identification attempts.
 
@@ -119,7 +119,7 @@ Once a Data Permit is granted, the third phase, Data Preparation, begins. The HD
 
 #### Data content
 
-Dataset is primarily structured clinical data from IPS (FHIR R4) and mortality attributes from VRDR. It is longitudinal (multiple records per subject across time), minimizes free text (procedure descriptions removed), excludes imaging, and contains no binary device logs. Semi-structured risks (filenames, metadata) are minimized by standardized export and HDAB processing.
+The Dataset is primarily structured clinical data from IPS (FHIR R4) and mortality attributes from VRDR (FHIR R4). It is longitudinal (multiple records per subject across time), minimizes free text (procedure descriptions removed), excludes imaging, and contains no binary device logs. Semi-structured risks (filenames, metadata) are minimized by standardized export and HDAB processing.
 
 Policy for secondary use includes data minimisation for the use of secondary health data. This includes limiting the amount, type, and granularity of data during data preparation. The application for data access includes a request for the following data and de-identification methods:
 
@@ -180,6 +180,7 @@ Policy for secondary use includes data minimisation for the use of secondary hea
   - Date of death is needed relative to incident and treatment dates. Data is collected but protected by data-shifting the study records
   - Cause of death
   - All other mortality data is omitted for data-minimization
+  - Residence generalization aligned with the residence identified by the health record
 - The application is reviewed and a Data Access permit is granted
 - The Health Data Access Body (HDAB) uses an Intermediation entity for pseudonymizaton, and data preparation to prepare the data using approved anonymization, pseudonymization, generalization, suppression, and randomization methods according to the permit.
 - A second pass removes potentially identifying outlier data from the dataset for privacy protection. While the identification of outliers is not required by the EHDS regulations, the HDAB performs this analysis to optimize privacy protection before releasing the data set.
@@ -223,7 +224,7 @@ Distinct types include structured records (IPS sections: Patient, Problems, Proc
 
 Data Types: The IPS format requested contains primarily structured data with some attributes containing textual data content. There are no Medical imaging data, Bio-signal data, Genetic data, Textual data, or Multi-modal data. Available to this research study through the IPS structured format.
 
-This implements the element-by-element de-identification design as defined in [Process](process.html). The `Identifier Type` (DI/QI/NI) classification and `Handling/Notes` capture the selected transformations for each data element available in the source IPS and VRDR standardized content..
+This implements the element-by-element de-identification design as defined in [Process](process.html). The `Identifier Type` (DI/QI/NI) classification and `Handling/Notes` capture the selected transformations for each data element available in the source IPS and VRDR standardized content.
 
 | Section              | Element                           | Data Type  | Identifier Type   | Handling/Notes                                                                                 |
 | -------------------- | --------------------------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------- |
