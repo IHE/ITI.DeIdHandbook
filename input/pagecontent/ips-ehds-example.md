@@ -223,7 +223,7 @@ Distinct types include structured records (IPS sections: Patient, Problems, Proc
 
 Data Types: The IPS format requested contains primarily structured data with some attributes containing textual data content. There are no Medical imaging data, Bio-signal data, Genetic data, Textual data, or Multi-modal data. Available to this research study through the IPS structured format.
 
-This implements the element-by-element de-identification design as defined in [Process](process.html). The `Identifier Type` (DI/QI/NI) classification and `Handling/Notes` capture the selected transformations for each data element.
+This implements the element-by-element de-identification design as defined in [Process](process.html). The `Identifier Type` (DI/QI/NI) classification and `Handling/Notes` capture the selected transformations for each data element available in the source IPS and VRDR standardized content..
 
 | Section              | Element                           | Data Type  | Identifier Type   | Handling/Notes                                                                                 |
 | -------------------- | --------------------------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------- |
