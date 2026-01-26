@@ -298,8 +298,8 @@ This implements the element-by-element de-identification design as defined in [P
 
 #### qualitative evaluation
 Direct identifiers (DI) in IPS/VRDR are removed or pseudonymized prior to release:
-- Patient: `Patient.name`, `Patient.telecom`, and local `Patient.identifier` are pseudonymized (reversible at source if operationally required; irreversible within HDAB Intermediation for release). `Patient.address` is generalized to 3-digit postal code.
-- Mortality: `VRDR.name` and `VRDR.identifier` are pseudonymized; `VRDR.dateOfDeath` is date-shifted within age-band policy.
+- Patient: `Patient.name`, `Patient.telecom`, and local `Patient.identifier` are pseudonymized (reversible at source if operationally required; irreversible within HDAB Intermediation for release). `Patient.address` is not de-identified in Stage 1, and is generalized (e.g., to 3-digit postal code) in Stage 2.
+- Mortality: `VRDR.name` and `VRDR.identifier` are pseudonymized; `VRDR.dateOfDeath` is date-shifted within age-band policy. Decedent address (`Patient.address` in the VRDR document) is generalized in Stage 2.
 - Performer/Provider references and free-text fields (e.g., `Procedure.description`, `Observation.note`) are omitted to avoid latent identifiers.
 
 Quasi-identifiers (QI) intentionally retained for utility include: age group (derived from `Patient.birthDate`), 3-digit postal code (from `Patient.address`), `Patient.gender`, occupation and industry (Social History), clinically relevant event dates (onset, procedure, immunization, observation) after controlled date shifting, pregnancy status, and cause-of-death categories. Sensitive attributes (SA) such as diagnoses, result values, medications are preserved but protected by linkage controls and outlier suppression.
@@ -1332,6 +1332,802 @@ Notes:
 - Security Labels: `meta.security` tags set to `stage2-pseudonymized` for Bundle and resources.
 - Redaction & Generalization: provider references and free-text removed where specified; postal code generalized.
 - Pseudonymization: irreversible patient and mortality identifiers (`urn:example:psyn2`) while preserving referential integrity.
+
+
+#### VRDR Data Element Mappings (FHIR)
+
+This example shows a minimized VRDR Death Certificate Document Bundle using the VRDR profiles. Only the following data elements are carried forward: Date of Death, Cause of Death, Decedent name, Decedent address, Decedent occupation, and Decedent industry.
+
+| Section | Data Element | FHIR Path | De-id Method |
+| --- | --- | --- | --- |
+| Document | Death Certificate Document | Bundle.meta.profile | VRDR Bundle profile used |
+| Document | Death Certificate | Composition.meta.profile | VRDR Composition profile used |
+| Decedent | Name | Patient.name | Stage 1: reversible pseudonymization |
+| Decedent | Address | Patient.address | Stage 2: generalize |
+| Death | Date of death | Observation.valueDateTime where code=81956-5 | Stage 2: date shift (optionally truncate time) |
+| Death | Automated underlying cause of death | Observation.valueCodeableConcept where code=80358-5 | Included |
+| Social History | Usual occupation | Observation.valueCodeableConcept where code=21843-8 | Included (review outliers) |
+| Social History | Usual industry | Observation.component.valueCodeableConcept where component.code=21844-6 | Included (review outliers) |
+{:.grid}
+
+#### Original Identified VRDR Death Certificate Document Bundle
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "document",
+  "timestamp": "2024-07-01T00:00:00Z",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
+    ]
+  },
+  "entry": [
+    {
+      "fullUrl": "Composition/vrdr-death-certificate-1",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "vrdr-death-certificate-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate"
+          ]
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "64297-5",
+              "display": "Death certificate"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "date": "2024-07-01T00:00:00Z",
+        "title": "U.S. Standard Certificate of Death",
+        "section": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
+                  "code": "DecedentDemographics"
+                }
+              ]
+            },
+            "entry": [
+              {"reference": "Patient/decedent-1"},
+              {"reference": "Observation/vrdr-usual-work-1"}
+            ]
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
+                  "code": "DeathInvestigation"
+                }
+              ]
+            },
+            "entry": [{"reference": "Observation/vrdr-death-date-1"}]
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
+                  "code": "CodedContent"
+                }
+              ]
+            },
+            "entry": [{"reference": "Observation/vrdr-auto-ucod-1"}]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Patient/decedent-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "decedent-1",
+        "name": [
+          {
+            "family": "MARTIN",
+            "given": ["Avery"]
+          }
+        ],
+        "address": [
+          {
+            "line": ["12 Maple Street"],
+            "city": "Boston",
+            "state": "MA",
+            "postalCode": "02110",
+            "country": "US"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Observation/vrdr-death-date-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vrdr-death-date-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81956-5",
+              "display": "Date+time of death"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "valueDateTime": "2020-04-05T14:30:00Z"
+      }
+    },
+    {
+      "fullUrl": "Observation/vrdr-usual-work-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vrdr-usual-work-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-usual-work"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "21843-8",
+              "display": "History of Usual Occupation"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.3",
+              "code": "4221",
+              "display": "Travel agency and related clerks"
+            }
+          ],
+          "text": "4221 | Travel agency and related clerks"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "21844-6",
+                  "display": "History of Usual industry"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.2",
+                  "code": "5110",
+                  "display": "Passenger air transport"
+                }
+              ],
+              "text": "5110 Passenger air transport"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Observation/vrdr-auto-ucod-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vrdr-auto-ucod-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-automated-underlying-cause-of-death"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "80358-5",
+              "display": "Cause of death.underlying [Automated]"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "U07.1",
+              "display": "COVID-19"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+#### Pseudonymized VRDR Death Certificate Document Bundle (Stage 1)
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "document",
+  "timestamp": "2024-07-01T00:00:00Z",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
+    ],
+    "security": [
+      {
+        "system": "http://ihe.net/CodeSystem/deid-status",
+        "code": "stage1-pseudonymized",
+        "display": "Stage 1 pseudonymized"
+      }
+    ]
+  },
+  "entry": [
+    {
+      "fullUrl": "Composition/vrdr-death-certificate-1",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "vrdr-death-certificate-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate"
+          ],
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage1-pseudonymized",
+              "display": "Stage 1 pseudonymized"
+            }
+          ]
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "64297-5",
+              "display": "Death certificate"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "date": "2024-07-01T00:00:00Z",
+        "title": "U.S. Standard Certificate of Death",
+        "section": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
+                  "code": "DecedentDemographics"
+                }
+              ]
+            },
+            "entry": [
+              {"reference": "Patient/decedent-1"},
+              {"reference": "Observation/vrdr-usual-work-1"}
+            ]
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
+                  "code": "DeathInvestigation"
+                }
+              ]
+            },
+            "entry": [{"reference": "Observation/vrdr-death-date-1"}]
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
+                  "code": "CodedContent"
+                }
+              ]
+            },
+            "entry": [{"reference": "Observation/vrdr-auto-ucod-1"}]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Patient/decedent-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "decedent-1",
+        "meta": {
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage1-pseudonymized",
+              "display": "Stage 1 pseudonymized"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "system": "urn:example:psyn",
+            "value": "VRDR-PID-0001"
+          }
+        ],
+        "name": [
+          {
+            "family": "Psyn",
+            "given": ["001"]
+          }
+        ],
+        "address": [
+          {
+            "line": ["12 Maple Street"],
+            "city": "Boston",
+            "state": "MA",
+            "postalCode": "02110",
+            "country": "US"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Observation/vrdr-death-date-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vrdr-death-date-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date"
+          ],
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage1-pseudonymized",
+              "display": "Stage 1 pseudonymized"
+            }
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81956-5",
+              "display": "Date+time of death"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "valueDateTime": "2020-04-05T14:30:00Z"
+      }
+    },
+    {
+      "fullUrl": "Observation/vrdr-usual-work-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vrdr-usual-work-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-usual-work"
+          ],
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage1-pseudonymized",
+              "display": "Stage 1 pseudonymized"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "21843-8",
+              "display": "History of Usual Occupation"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.3",
+              "code": "4221",
+              "display": "Travel agency and related clerks"
+            }
+          ],
+          "text": "4221 | Travel agency and related clerks"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "21844-6",
+                  "display": "History of Usual industry"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.2",
+                  "code": "5110",
+                  "display": "Passenger air transport"
+                }
+              ],
+              "text": "5110 Passenger air transport"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Observation/vrdr-auto-ucod-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vrdr-auto-ucod-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-automated-underlying-cause-of-death"
+          ],
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage1-pseudonymized",
+              "display": "Stage 1 pseudonymized"
+            }
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "80358-5",
+              "display": "Cause of death.underlying [Automated]"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "U07.1",
+              "display": "COVID-19"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+Notes:
+- Stage 1 applies reversible pseudonymization to direct identifiers needed for linkage (decedent name and identifier).
+- Decedent address is not de-identified in Stage 1; it is generalized in Stage 2.
+- Date of death, cause of death, and usual work elements are carried forward unchanged in Stage 1.
+
+#### Pseudonymized VRDR Death Certificate Document Bundle (Stage 2)
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "document",
+  "timestamp": "2024-07-01T00:00:00Z",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
+    ],
+    "security": [
+      {
+        "system": "http://ihe.net/CodeSystem/deid-status",
+        "code": "stage2-pseudonymized",
+        "display": "Stage 2 pseudonymized"
+      }
+    ]
+  },
+  "entry": [
+    {
+      "fullUrl": "Composition/vrdr-death-certificate-1",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "vrdr-death-certificate-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate"
+          ],
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage2-pseudonymized",
+              "display": "Stage 2 pseudonymized"
+            }
+          ]
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "64297-5",
+              "display": "Death certificate"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "date": "2024-07-01T00:00:00Z",
+        "title": "U.S. Standard Certificate of Death",
+        "section": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
+                  "code": "DecedentDemographics"
+                }
+              ]
+            },
+            "entry": [
+              {"reference": "Patient/decedent-1"},
+              {"reference": "Observation/vrdr-usual-work-1"}
+            ]
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
+                  "code": "DeathInvestigation"
+                }
+              ]
+            },
+            "entry": [{"reference": "Observation/vrdr-death-date-1"}]
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
+                  "code": "CodedContent"
+                }
+              ]
+            },
+            "entry": [{"reference": "Observation/vrdr-auto-ucod-1"}]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Patient/decedent-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "decedent-1",
+        "meta": {
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage2-pseudonymized",
+              "display": "Stage 2 pseudonymized"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "system": "urn:example:psyn2",
+            "value": "VRDR-PID-9f8b1ea1"
+          }
+        ],
+        "name": [
+          {
+            "family": "Psyn",
+            "given": ["001"]
+          }
+        ],
+        "address": [
+          {
+            "state": "MA",
+            "postalCode": "021",
+            "country": "US"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Observation/vrdr-death-date-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vrdr-death-date-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date"
+          ],
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage2-pseudonymized",
+              "display": "Stage 2 pseudonymized"
+            }
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81956-5",
+              "display": "Date+time of death"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "valueDateTime": "2020-04-18"
+      }
+    },
+    {
+      "fullUrl": "Observation/vrdr-usual-work-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vrdr-usual-work-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-usual-work"
+          ],
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage2-pseudonymized",
+              "display": "Stage 2 pseudonymized"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "21843-8",
+              "display": "History of Usual Occupation"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.3",
+              "code": "4221",
+              "display": "Travel agency and related clerks"
+            }
+          ],
+          "text": "4221 | Travel agency and related clerks"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "21844-6",
+                  "display": "History of Usual industry"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.2",
+                  "code": "5110",
+                  "display": "Passenger air transport"
+                }
+              ],
+              "text": "5110 Passenger air transport"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "Observation/vrdr-auto-ucod-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "vrdr-auto-ucod-1",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-automated-underlying-cause-of-death"
+          ],
+          "security": [
+            {
+              "system": "http://ihe.net/CodeSystem/deid-status",
+              "code": "stage2-pseudonymized",
+              "display": "Stage 2 pseudonymized"
+            }
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "80358-5",
+              "display": "Cause of death.underlying [Automated]"
+            }
+          ]
+        },
+        "subject": {"reference": "Patient/decedent-1"},
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "U07.1",
+              "display": "COVID-19"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+Notes:
+- Stage 2 applies quasi-identifier handling: date shifting for date of death (example shown), and generalized address (3-digit postal prefix).
+- Identifiers are irreversibly pseudonymized while preserving referential integrity within the bundle.
 
 
 ### CDA Example
