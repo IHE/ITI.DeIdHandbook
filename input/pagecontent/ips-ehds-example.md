@@ -414,9 +414,11 @@ Batch IDs, transformation logs, and audit trails generated during de-identificat
 
 Released dataset classification: Irreversibly Pseudonymized Data for non-public controlled sharing, meeting average risk ≤ 0.075 with safeguards. Residual risks are managed via suppression/generalization and contractual controls; utility confirmed for population metrics and longitudinal trends.
 
-### FHIR Example
+### FHIR Examples
 
-#### IPS Data Element Mappings (FHIR)
+#### FHIR IPS Example
+
+##### IPS Data Element Mappings (FHIR)
 
 The table maps IPS data elements to their FHIR paths and summarizes the applied de-identification method across stages (Stage 1 for direct identifiers; Stage 2 for quasi-identifiers and minimization). Where elements are removed, Data Absent Reason (`masked`) is used per FHIR guidance.
 
@@ -488,7 +490,7 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 | Mortality | Cause of death | Observation.valueCodeableConcept | Included; outlier review |
 {:.grid}
 
-#### Original Identified IPS Document Bundle
+##### Original Identified IPS Document Bundle
 
 ```json
 {
@@ -710,7 +712,7 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 }
 ```
 
-#### Pseudonymized IPS Document Bundle (Stage 1)
+##### Pseudonymized IPS Document Bundle (Stage 1)
 
 ```json
 {
@@ -1016,7 +1018,7 @@ Notes:
 - Pseudonymization: Patient and Mortality identifiers/names replaced with consistent pseudonyms.
 - Security Labels: meta.security added to mark de-identification status.
 
-#### Pseudonymized IPS Document Bundle (Stage 2)
+##### Pseudonymized IPS Document Bundle (Stage 2)
 
 ```json
 {
@@ -1334,7 +1336,9 @@ Notes:
 - Pseudonymization: irreversible patient and mortality identifiers (`urn:example:psyn2`) while preserving referential integrity.
 
 
-#### VRDR Data Element Mappings (FHIR)
+#### FHIR VRDR Example (Death Certificate Document)
+
+##### VRDR Data Element Mappings (FHIR)
 
 This example shows a minimized VRDR Death Certificate Document Bundle using the VRDR profiles. Only the following data elements are carried forward: Date of Death, Cause of Death, Decedent name, Decedent address, Decedent occupation, and Decedent industry.
 
@@ -1350,7 +1354,7 @@ This example shows a minimized VRDR Death Certificate Document Bundle using the 
 | Social History | Usual industry | Observation.component.valueCodeableConcept where component.code=21844-6 | Included (review outliers) |
 {:.grid}
 
-#### Original Identified VRDR Death Certificate Document Bundle
+##### Original Identified VRDR Death Certificate Document Bundle
 
 ```json
 {
@@ -1574,7 +1578,7 @@ This example shows a minimized VRDR Death Certificate Document Bundle using the 
 }
 ```
 
-#### Pseudonymized VRDR Death Certificate Document Bundle (Stage 1)
+##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 1)
 
 ```json
 {
@@ -1853,7 +1857,7 @@ Notes:
 - Decedent address is not de-identified in Stage 1; it is generalized in Stage 2.
 - Date of death, cause of death, and usual work elements are carried forward unchanged in Stage 1.
 
-#### Pseudonymized VRDR Death Certificate Document Bundle (Stage 2)
+##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 2)
 
 ```json
 {
