@@ -2334,4 +2334,8 @@ Notes:
 - Pseudonymized identifiers mirror the FHIR Stage 1/2 examples (`PID-7ac6997e`, `PID-9f8b1ea1`).
 - Dates and postal generalization match the FHIR Stage 2 transformations.
 
+# Test fragment
+{% fragment Bundle/5d7d0b42-86be-4630-b284-6a9f3aab05bc JSON %} 
+
+
 
