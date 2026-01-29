@@ -490,6 +490,9 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 | Mortality | Cause of death | Observation.valueCodeableConcept | Included; outlier review |
 {:.grid}
 
+##### Original Identified IPS Document Bundle Link example 
+Example view of the Origional IPS document for a patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](Bundle-secondaryUse-pandemnicIPS-example-patient-1.html)
+
 ##### Original Identified IPS Document Bundle
 
 ```json
