@@ -493,6 +493,8 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 ##### Original Identified IPS Document Bundle Link example 
 Example view of the Origional IPS document for a patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](Bundle-secondaryUse-pandemnicIPS-example-patient-1.html)
 
+{% fragment Patient/Ex-patient-for-secondaryUse-pandemnicIPS-example-patient-1 JSON %} 
+
 ##### Original Identified IPS Document Bundle
 
 ```json
