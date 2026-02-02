@@ -457,7 +457,6 @@ InstanceOf: vitalsigns
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
-* category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
 * code = $loinc#8302-2 "Body height"
 * valueQuantity = 71 '[in_i]' "in_i"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
@@ -470,7 +469,6 @@ InstanceOf: vitalsigns
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
-* category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
 * code = $loinc#29463-7 "Body weight"
 * valueQuantity = 230 '[lb_av]' "lbs"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
@@ -483,7 +481,6 @@ InstanceOf: vitalsigns
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
-* category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
 * code = $loinc#39156-5 "Body mass index (BMI) [Ratio]"
 * valueQuantity = 32.1 'kg/m2' "kg/m2"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
@@ -495,20 +492,20 @@ InstanceOf: vitalsigns
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
-* category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
 * code = $loinc#85354-9 "Blood pressure panel with all children optional"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
 * effectiveDateTime = "2024-06-15T09:44:00+06:00"
 * performer = Reference(urn:uuid:fd584c2f-5814-425d-9b00-0a5b1a6effee)
-* component[SystolicBP].valueQuantity = 80 'mm[Hg]' "mm[Hg]"
-* component[DiastolicBP].valueQuantity = 130 'mm[Hg]' "mm[Hg]"
+* component[+].valueQuantity = 80 'mm[Hg]' "mm[Hg]"
+* component[=].code = $loinc#8480-6 "Systolic blood pressure"
+* component[+].valueQuantity = 130 'mm[Hg]' "mm[Hg]"
+* component[=].code = $loinc#8462-4 "Diastolic blood pressure"
 
 Instance: 07d7b510-d13b-4298-9e7c-b0ed736a25b8
 InstanceOf: vitalsigns
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
-* category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
 * code = $loinc#8867-4 "Heart rate"
 * valueQuantity = 80 '/min' "/min"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
