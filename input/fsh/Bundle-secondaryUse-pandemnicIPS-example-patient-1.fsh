@@ -44,8 +44,6 @@ Usage: #example
 * entry[=].resource = 25a63f47-1f87-42f6-ba4c-c6887f4db418
 * entry[+].fullUrl = "urn:uuid:0ce67e34-6c8f-4a69-9bb1-1c721635bb84"
 * entry[=].resource = 0ce67e34-6c8f-4a69-9bb1-1c721635bb84
-* entry[+].fullUrl = "urn:uuid:fd584c2f-5814-425d-9b00-0a5b1a6effee"
-* entry[=].resource = fd584c2f-5814-425d-9b00-0a5b1a6effee
 * entry[+].fullUrl = "urn:uuid:049158b0-6710-41b0-a15c-2cc28038abc3"
 * entry[=].resource = 049158b0-6710-41b0-a15c-2cc28038abc3
 * entry[+].fullUrl = "urn:uuid:9f58e228-e3e5-49cb-ba99-e4b82c25b4f5"
@@ -54,8 +52,6 @@ Usage: #example
 * entry[=].resource = f14feb6c-a4df-4460-8b4b-a6acbc6242c5
 * entry[+].fullUrl = "urn:uuid:82a522bc-c5f9-44a8-aa94-cd6c2336cdd1"
 * entry[=].resource = 82a522bc-c5f9-44a8-aa94-cd6c2336cdd1
-* entry[+].fullUrl = "urn:uuid:dfa052d3-8fac-4e4b-bd71-5cab1232fc57"
-* entry[=].resource = dfa052d3-8fac-4e4b-bd71-5cab1232fc57
 * entry[+].fullUrl = "urn:uuid:07d7b510-d13b-4298-9e7c-b0ed736a25b8"
 * entry[=].resource = 07d7b510-d13b-4298-9e7c-b0ed736a25b8
 * entry[+].fullUrl = "urn:uuid:706ba889-679c-425e-b117-060c0ffc01e6"
@@ -463,7 +459,7 @@ Usage: #inline
 * status = http://hl7.org/fhir/observation-status#final
 * category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
 * code = $loinc#8302-2 "Body height"
-* valueQuantity = 71 '[in_us]' "in"
+* valueQuantity = 71 '[in_i]' "in_i"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
 * effectiveDateTime = "2024-06-15T09:44:00+06:00"
 * performer = Reference(urn:uuid:fd584c2f-5814-425d-9b00-0a5b1a6effee)
@@ -475,7 +471,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
 * category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
-* code = $loinc#3141-9 "Body weight Measured"
+* code = $loinc#29463-7 "Body weight"
 * valueQuantity = 230 '[lb_av]' "lbs"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
 * effectiveDateTime = "2024-06-15T09:44:00+06:00"
@@ -500,23 +496,12 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
 * category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
-* code = $loinc#8462-4 "Diastolic blood pressure"
-* valueQuantity = 130 'mm[Hg]' "mm[Hg]"
+* code = $loinc#85354-9 "Blood pressure panel with all children optional"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
 * effectiveDateTime = "2024-06-15T09:44:00+06:00"
 * performer = Reference(urn:uuid:fd584c2f-5814-425d-9b00-0a5b1a6effee)
-
-Instance: dfa052d3-8fac-4e4b-bd71-5cab1232fc57
-InstanceOf: vitalsigns
-Usage: #inline
-* meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
-* status = http://hl7.org/fhir/observation-status#final
-* category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
-* code = $loinc#8480-6 "Systolic blood pressure"
-* valueQuantity = 80 'mm[Hg]' "mm[Hg]"
-* subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
-* effectiveDateTime = "2024-06-15T09:44:00+06:00"
-* performer = Reference(urn:uuid:fd584c2f-5814-425d-9b00-0a5b1a6effee)
+* component[SystolicBP].valueQuantity = 80 'mm[Hg]' "mm[Hg]"
+* component[DiastolicBP].valueQuantity = 130 'mm[Hg]' "mm[Hg]"
 
 Instance: 07d7b510-d13b-4298-9e7c-b0ed736a25b8
 InstanceOf: vitalsigns
@@ -537,7 +522,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
 * category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
-* code = $loinc#59408-5 "Oxygen saturation in Arterial blood by Pulse oximetry"
+* code = $loinc#2708-6 "Oxygen saturation in Arterial blood"
 * valueQuantity = 85 '%' "%"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
 * effectiveDateTime = "2024-06-15T09:44:00+06:00"
