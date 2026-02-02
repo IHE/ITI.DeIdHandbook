@@ -446,7 +446,6 @@ Usage: #inline
 * hasMember[+] = Reference(urn:uuid:9f58e228-e3e5-49cb-ba99-e4b82c25b4f5)
 * hasMember[+] = Reference(urn:uuid:f14feb6c-a4df-4460-8b4b-a6acbc6242c5)
 * hasMember[+] = Reference(urn:uuid:82a522bc-c5f9-44a8-aa94-cd6c2336cdd1)
-* hasMember[+] = Reference(urn:uuid:dfa052d3-8fac-4e4b-bd71-5cab1232fc57)
 * hasMember[+] = Reference(urn:uuid:07d7b510-d13b-4298-9e7c-b0ed736a25b8)
 * hasMember[+] = Reference(urn:uuid:706ba889-679c-425e-b117-060c0ffc01e6)
 
