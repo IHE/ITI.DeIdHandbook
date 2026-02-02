@@ -457,7 +457,7 @@ Usage: #inline
 
 
 Instance: 049158b0-6710-41b0-a15c-2cc28038abc3
-InstanceOf: vitalsigns
+InstanceOf: vitalsigns 
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
