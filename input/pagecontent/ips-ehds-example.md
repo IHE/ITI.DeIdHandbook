@@ -491,7 +491,7 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 {:.grid}
 
 ##### Original Identified IPS Document Bundle Link example 
-Example view of the Origional IPS document for a patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](Bundle-secondaryUse-pandemnicIPS-example-patient-1.html)
+Example view of the Origional IPS document for a pandemic patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](Bundle-secondaryUse-pandemnicIPS-example-patient-1.html)
 
 {% fragment Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f JSON %} 
 
@@ -718,6 +718,9 @@ Example view of the Origional IPS document for a patient [Secondary Use Pandemni
 ```
 
 ##### Pseudonymized IPS Document Bundle (Stage 1)
+Example view of the Pseudonymized Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Pseudonymized IPS Document](DeathCertificateDocument-Bundle-pandemnicIPS-example-patient-1.html)
+
+{% fragment Patient/39c9964c-96b7-442d-afc1-2702106a9e57 JSON %} 
 
 ```json
 {
@@ -1024,6 +1027,9 @@ Notes:
 - Security Labels: meta.security added to mark de-identification status.
 
 ##### Pseudonymized IPS Document Bundle (Stage 2)
+Example view of the Stage 2 Pseudonymized IPS Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Stage 2 Pseudonymized IPS Document](secondaryUse-pandemnicIPS-example-patient-1-stage-2.html)
+
+{% fragment Patient/6274d469-7a4d-4a66-a261-e5e7b71af267 JSON %} 
 
 ```json
 {

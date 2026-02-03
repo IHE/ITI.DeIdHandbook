@@ -11,7 +11,7 @@ Usage: #example
 * entry[+].fullUrl = "urn:uuid:5bc0c003-a3cd-44f2-b3be-8cb256d0e83a"
 * entry[=].resource = 5bc0c003-a3cd-44f2-b3be-8cb256d0e83a
 * entry[+].fullUrl = "urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f"
-* entry[=].resource = Ex-patient-for-secondaryUse-pandemnicIPS-example-patient-1
+* entry[=].resource = Ex-Patient-1-for-secondaryUse-pandemnicIPS
 * entry[+].fullUrl = "urn:uuid:fd584c2f-5814-425d-9b00-0a5b1a6effee"
 * entry[=].resource = fd584c2f-5814-425d-9b00-0a5b1a6effee
 * entry[+].fullUrl = "urn:uuid:9e57d970-d0ae-4a36-908f-1cad06f94f28"
@@ -178,7 +178,7 @@ Usage: #inline
 * identifier.value = "WHO-CX"
 * name = "World Health Organization"
 
-Instance: Ex-patient-for-secondaryUse-pandemnicIPS-example-patient-1
+Instance: Ex-Patient-1-for-secondaryUse-pandemnicIPS
 InstanceOf: PatientUvIps
 Usage: #example
 * id = "d174bd1a-b368-41e6-83a2-af77f2b3c60f"
@@ -186,8 +186,8 @@ Usage: #example
 * identifier.system = "urn:oid:1.3.6.1.4.1.21367.2011.2.5.5639"
 * identifier.value = "IHEEX-33159"
 * active = true
-* name.text = "Patricia JORDANA"
-* name.family = "JORDANA"
+* name.text = "Patricia Jordana"
+* name.family = "Jordana"
 * name.given = "Patricia"
 * telecom.system = #phone
 * telecom.value = "07 850 9900"
@@ -292,7 +292,7 @@ Usage: #inline
 * note.text = "Artificial ventilation using ventilaton performed"
 
 Instance: b06be658-3d84-4b1b-be48-6fac0e5427c6
-InstanceOf: AllergyIntolerance
+InstanceOf: AllergyIntoleranceUvIps
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/AllergyIntolerance-uv-ips"
 * clinicalStatus = $allergyintolerance-clinical#active
@@ -517,7 +517,6 @@ InstanceOf: vitalsigns
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/StructureDefinition/vitalsigns"
 * status = http://hl7.org/fhir/observation-status#final
-* category = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
 * code = $loinc#2708-6 "Oxygen saturation in Arterial blood"
 * valueQuantity = 85 '%' "%"
 * subject = Reference(urn:uuid:d174bd1a-b368-41e6-83a2-af77f2b3c60f)
