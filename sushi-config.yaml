@@ -63,6 +63,13 @@ dependencies:
   ihe.pcc.odh: 
     id: ihepccodh
     version: 1.0.0 
+  hl7.fhir.us.vr-common-library: 
+    id: VitalRecordsCommonLibrary
+    version: 2.0.0 
+  hl7.fhir.us.vrdr: 
+    id: VRDR
+    version: 3.0.0 
+  
     
 #resources:
 # list every example here with a name, description and that exampleBoolean is true; These are used to populate the artifacts page, and are needed to eliminate build warnings 

@@ -177,7 +177,7 @@ Usage: #example
 * birthDate = "1996-08-16"
 * deceasedDateTime = "2024-10-15"
 * address.postalCode = "3210"
-* generalPractitioner = Reference(Practitioner/816cf057-b736-4e08-baed-cc21e081b784)
+* generalPractitioner = Reference(Practitioner/9e57d970-d0ae-4a36-908f-1cad06f94f28)
 
 //Instance: fd584c2f-5814-425d-9b00-0a5b1a6effee
 //InstanceOf: PractitionerUvIps
