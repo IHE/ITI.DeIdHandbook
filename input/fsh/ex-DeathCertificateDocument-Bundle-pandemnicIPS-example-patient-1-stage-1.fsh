@@ -1,6 +1,12 @@
 Instance: ex-DeathCertificateDocument-Bundle-pandemnicIPS-example-patient-1-stage-1
 InstanceOf: Bundle
 Usage: #example
+Description: """
+The Direct Identifiers in the Patient Resource are assigned a reversible pseudonym and pseudo-identifier. The death data in this example is incorporated based upon the linkage with the VRDR death certificate record, and the birth and dates are shifted according to the approved data access permit. 
+The pseudonymized names and shifted dates are applied throughout the document text sections that reference the patient direct identifiers.
+
+The pseudonymization can be applied before or after the linkage of the IPS with the VRDR death certificate record.
+"""
 * id = "e817cefe-a7c4-487a-8116-be23cf865f3f"
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
 * identifier.extension[+].url = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/CertificateNumber"

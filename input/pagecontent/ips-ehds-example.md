@@ -1,6 +1,6 @@
 
 
-### Purpose and Overview
+### Purpose, Scope, and Overview
 
 This exemplar demonstrates how the IHE De-Identification Handbook’s process framework is applied a fictitious epidemiologic example that conforms to the secondary use requirements defined by the EHDS2. This example leverages the International Patient Summary (IPS) and the Vital Records Death Reporting (VRDR) profiles for conveying study data content for this secondary-use scenario. It serves as a concise de-identification example: defining purpose, recipients, multi-stage process, risk thresholds, and element-by-element treatment to preserve research utility while protecting privacy. See the methodology overview in [Process](process.html).
 
@@ -85,35 +85,41 @@ The following diagram from the EHDS2 M7.2 Draft guideline on data minimisation, 
 
 Once a Data Permit is granted, the third phase, Data Preparation, begins. The HDAB prepares the data set according to the permit content and de-identification to be applied. The EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts a High-level architecture for safe disclosure of anonymized data, processing results, and synthetic data:
 
+### Residual Risks and Controls
+
 <figure>
   <img src="hdab-high-level-architecture.jpeg" />
   <figcaption><strong>Figure: HDAB High-level Architecture for Safe Disclosure</strong></figcaption>
 </figure>
 
-##### Data Source
+#### Data Source
 
 - Clinical sources: IPS-conformant EHR exports (FHIR R4) from provider organizations across jurisdictions; scoped to Patient demographics, Problems, Procedures, Medications, Allergies, Results, Immunizations, and relevant social/pregnancy history needed for the public/occupational health purpose.
 - Vital records: VRDR mortality data from civil registries, limited to attributes necessary for surveillance (e.g., death date, cause categories, age bands, residence generalization).
 - Agreements: Source data use agreements and HDAB permit terms define allowable elements, pre-release minimization, and any source-side pseudonymization.
 
-##### Data Environments
+#### Data Environments
 
 - Landing zone: Secure HDAB intake environment receiving permitted data from sources; access is restricted and audited.
 - Processing zone: HDAB Intermediation environment applying approved minimization, generalization, pseudonymization/anonymization, and outlier suppression according to the permit and risk model.
 - Analysis zone: Authorized recipient environments (controlled access or enclave) where researchers analyze de-identified data under data use agreements; outbound sharing is prohibited.
 - Transfer controls: Encrypted transport, authenticated endpoints, and governance monitoring across zones to manage context risk.
 
-##### Multi-stage Requirements
+#### Multi-stage Placement
 
 - Stage 1 (at sources or by HDAB with source access): Basic minimization and, where applicable, reversible pseudonymization to safely transfer data to HDAB; direct identifiers removed or replaced per source/HDAB capability.
 - Stage 2 (HDAB Intermediation): Advanced de-identification (irreversible pseudonymization, date shifting, generalization, suppression) with quantitative/qualitative risk assessment to meet the defined threshold.
 - Stage 3 (recipients): Verification that received datasets meet permit-specified privacy level; usage confined to approved analyses in controlled environments with no re-identification attempts.
 
-##### Regulatory Constraints
+#### Regulatory Constraints
 
 - The HDAB data access application management process is primarily set out in Articles 67–69 of the EHDS regulation, which define the procedural context that any organisational or technical solution for secondary use data applications must align with. Articles 67 and 69 includes the requirements for the common application forms for data access applications and data requests, respectively, to be used by applicants, and which provides the essential information for the processing of applications. Article 68 governs the issuance of data permits and the associated obligations of HDABs, whereas Article 69 provides similar provisions for data requests.
 - The secondary use of electronic health data is based on pseudonymised or anonymised data, in order to preclude the identification of the data subjects (Recital 53 in the EHDS regulation)
 - Data anonymisation, pseudonymisation, and linkage techniques are addressed in M7.2 Technical specification for Health Data Access Bodies on data minimisation and de-identification, and M7.5 Guideline for Health Data Access Bodies on linkage of health datasets.
+
+#### Outcome & Classification
+
+Released dataset classification: Irreversibly Pseudonymized Data for non-public controlled sharing, meeting average risk ≤ 0.075 with safeguards. Residual risks are managed via suppression/generalization and contractual controls; utility confirmed for population metrics and longitudinal trends.
 
 ### Data assessment
 
@@ -207,7 +213,7 @@ Distinct types include structured records (IPS sections: Patient, Problems, Proc
 - Volume: moderate to large; processed centrally by HDAB with offline terminology.
 - Data quality: standardized IPS/VRDR coding; free text minimized to reduce identifier leakage; longitudinal consistency maintained via pseudonymization.
 
-### Determine de-identification goals
+### Goals and Thresholds
 
 #### General goals
 - Prevent Identification: remove or transform DIs and reduce QI combinability.
@@ -225,6 +231,8 @@ Distinct types include structured records (IPS sections: Patient, Problems, Proc
 Data Types: The IPS format requested contains primarily structured data with some attributes containing textual data content. There are no Medical imaging data, Bio-signal data, Genetic data, Textual data, or Multi-modal data. Available to this research study through the IPS structured format.
 
 This implements the element-by-element de-identification design as defined in [Process](process.html). The `Identifier Type` (DI/QI/NI) classification and `Handling/Notes` capture the selected transformations for each data element available in the source IPS and VRDR standardized content.
+
+<p id ="####.2-1" class="tableTitle"><strong>Table: Data Element Handling/Notes</strong></p>
 
 | Section              | Element                           | Data Type  | Identifier Type   | Handling/Notes                                                                                 |
 | -------------------- | --------------------------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------- |
@@ -294,9 +302,9 @@ This implements the element-by-element de-identification design as defined in [P
 | Mortality            | Cause of death                    | Structured | Quasi-identifier  | Reviewed for potential identifiable outliers for suppression                                   |
 {:.grid}
 
-### Assess re-identification risk
+### Risk Assessment
 
-#### qualitative evaluation
+#### Risk Targets and Qualitative Evaluation
 Direct identifiers (DI) in IPS/VRDR are removed or pseudonymized prior to release:
 - Patient: `Patient.name`, `Patient.telecom`, and local `Patient.identifier` are pseudonymized (reversible at source if operationally required; irreversible within HDAB Intermediation for release). `Patient.address` is not de-identified in Stage 1, and is generalized (e.g., to 3-digit postal code) in Stage 2.
 - Mortality: `VRDR.name` and `VRDR.identifier` are pseudonymized; `VRDR.dateOfDeath` is date-shifted within age-band policy. Decedent address (`Patient.address` in the VRDR document) is generalized in Stage 2.
@@ -306,7 +314,7 @@ Quasi-identifiers (QI) intentionally retained for utility include: age group (de
 
 Given remaining QIs, qualitative classification alone is insufficient. After transformations, the target qualitative state is Irreversibly Pseudonymized Data suitable for non-public controlled sharing, pending quantitative risk confirmation.
 
-#### quantitative evaluation
+#### Risk Targets and Quantitative Evaluation
 Apply k-anonymity to the structured IPS/VRDR release using project-specific QIs:
 - AgeBand (derived from `Patient.birthDate` → age groups)
 - Postal3 (first 3 digits from `Patient.address.postalCode`)
@@ -340,11 +348,14 @@ Anticipate identity, membership, and attribute attacks with background knowledge
 ##### Identify data privacy model
 Primary: k-anonymity for structured IPS releases; Optional: Differential Privacy for published aggregate statistics.
 
-### Multi-stage De-identification Design
+### Implementation and Validation
+
+#### Multi-stage De-identification Design
 
 - Stage 1 (Preliminary, source/early pipeline): remove obvious direct identifiers; apply reversible pseudonyms where operationally required; prepare generalization plans (e.g., 3-digit postal code).
 
-  Stage 1 Element-level de-identification rules
+  **Stage 1 Element-by-element treatments**
+  <p id ="####.2-1" class="tableTitle"><strong>Stage 1: Element-by-element treatments</strong></p>
 
   | Section | Data Element | De-id Method |
   | --- | --- | --- |
@@ -357,7 +368,8 @@ Primary: k-anonymity for structured IPS releases; Optional: Differential Privacy
 
 - Stage 2 (Advanced, HDAB Intermediation): irreversible pseudonymization; date shifting relative to birth/incident; generalization/suppression of quasi-identifiers; outlier review; quantitative risk check (equivalence classes); ensure semantic validity.
 
-  Stage 2 Element-level de-identification rules
+  **Stage 2 Element-by-element treatments**
+  <p id ="####.2-1" class="tableTitle"><strong>Stage 2: Element-by-element treatments</strong></p>
 
   | Section | Data Element | De-id Method |
   | --- | --- | --- |
@@ -396,36 +408,33 @@ Primary: k-anonymity for structured IPS releases; Optional: Differential Privacy
   | Mortality | Date of death | Date shifting relative to birth; suppress outliers |
   | Mortality | Cause of death | Outlier review; suppress highly unique causes |
   {:.grid}
+
 - Stage 3 (Recipient Verification): recipient-side verification of risk level and constraints; use enclave or controlled environments when appropriate.
 
 See [Process → Multi-stage design](process.html).
 
-### Governance & Controls
+#### Governance & Controls
 
 - Access control: least privilege; roles for policy, execution, supervision.
 - Secrets management: salts, random seeds, and mapping tables stored in secure vaults; limited access.
 - Secure transfer + encryption: SFTP/HTTPS; AES-256 at rest; auditable provenance.
 - Documentation: retain element-level specification, scripts/config, validation reports (see [Process → Governance](process.html)).
 
-#### Process Identifiers
+##### Process Identifiers
 Batch IDs, transformation logs, and audit trails generated during de-identification are maintained and protected. Mapping tables and seeds are segregated with strict access controls.
 
-### Outcome & Classification
+### Detailed Multi-Stage Placement Examples for IPS and VRDR
 
-Released dataset classification: Irreversibly Pseudonymized Data for non-public controlled sharing, meeting average risk ≤ 0.075 with safeguards. Residual risks are managed via suppression/generalization and contractual controls; utility confirmed for population metrics and longitudinal trends.
-
-### FHIR Examples
-
-#### FHIR IPS Example
-
-##### IPS Data Element Mappings (FHIR)
+#### FHIR IPS Data Element Mappings
 
 The table maps IPS data elements to their FHIR paths and summarizes the applied de-identification method across stages (Stage 1 for direct identifiers; Stage 2 for quasi-identifiers and minimization). Where elements are removed, Data Absent Reason (`masked`) is used per FHIR guidance.
 
+<p id ="####.2-1" class="tableTitle"><strong>FHIR IPS Data Element Mappings</strong></p>
+
 | Section | Data Element | FHIR Path | De-id Method |
 | --- | --- | --- | --- |
-| Patient | Patient Name | Patient.name | Stage 1: pseudonymize; retain pseudonym |
-| Patient | ID | Patient.identifier | Stage 1: pseudonymize; retain pseudonym |
+| Patient | Patient Name | Patient.name | Stage 1: pseudonymize; reversable pseudonym |
+| Patient | ID | Patient.identifier | Stage 1: pseudonymize; reversable pseudonym |
 | Patient | Telecom | Patient.telecom.extension(data-absent-reason) | Stage 1: omit value + DAR masked |
 | Patient | Date of Birth | Patient.birthDate | Stage 2: date shift (age-group policy) |
 | Patient | Gender | Patient.gender | Included (QI) |
@@ -490,854 +499,49 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 | Mortality | Cause of death | Observation.valueCodeableConcept | Included; outlier review |
 {:.grid}
 
-##### Original Identified IPS Document Bundle Link example 
-Example view of the Origional IPS document for a pandemic patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](ex-Bundle-secondaryUse-pandemnicIPS-example-patient-1-stage-0.html)
+##### Example FHIR IPS 
 
+###### Original Identified IPS Document Bundle
+This IPS Bundle represents the 
+
+
+Original Identified IPS Document Bundle Link example 
+Example view of the Origional IPS document for a pandemic patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](Bundle-80c516fd-9c84-4924-875b-bf0048979ae1.html)
+
+**Origional Patient Resource**
+This is a valid IPS Patient Resource with all known minimum data provided
 {% fragment Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f JSON %} 
 
-##### Original Identified IPS Document Bundle
 
-```json
-{
-  "resourceType": "Bundle",
-  "type": "document",
-  "timestamp": "2024-07-01T00:00:00Z",
-  "entry": [
-    {
-      "fullUrl": "Composition/ips-comp-1",
-      "resource": {
-        "resourceType": "Composition",
-        "id": "ips-comp-1",
-        "meta": {"profile": ["http://hl7.org/fhir/uv/ips/StructureDefinition/Composition"]},
-        "status": "final",
-        "type": {"coding": [{"system": "http://loinc.org", "code": "60591-5", "display": "Patient summary Document"}]},
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "date": "2024-07-01T00:00:00Z",
-        "author": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
-        "title": "International Patient Summary",
-        "confidentiality": "N",
-        "section": [
-          {"title": "Problems", "entry": [{"reference": "Condition/cond-1"}]},
-          {"title": "Procedures", "entry": [{"reference": "Procedure/proc-1"}]},
-          {"title": "Medication Summary", "entry": [{"reference": "MedicationStatement/medstmt-1"}]},
-          {"title": "Allergies and Intolerances", "entry": [{"reference": "AllergyIntolerance/allergy-1"}]},
-          {"title": "Results", "entry": [{"reference": "Observation/obs-hb-1"}]},
-          {"title": "Immunizations", "entry": [{"reference": "Immunization/imm-1"}]},
-          {"title": "Social History", "entry": [{"reference": "Observation/obs-occ-1"}, {"reference": "Observation/obs-ind-1"}]},
-          {"title": "Pregnancy History", "entry": [{"reference": "Observation/obs-prg-1"}, {"reference": "Observation/obs-edd-1"}]},
-          {"title": "Medical Devices", "entry": [{"reference": "DeviceUseStatement/dus-1"}]},
-          {"title": "Mortality", "entry": [{"reference": "Observation/obs-cod-1"}]}
-        ]
-      }
-    },
-    {
-      "fullUrl": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "d174bd1a-b368-41e6-83a2-af77f2b3c60f",
-        "identifier": [{"system": "https://standards.digital.health.nz/ns/nhi-id", "value": "ABC1234"}],
-        "name": [{"family": "JORDANA", "given": ["Patricia"]}],
-        "telecom": [{"system": "phone", "use": "mobile", "value": "07 850 9900"}],
-        "gender": "female",
-        "birthDate": "1956-09-30",
-        "deceasedBoolean": true,
-        "deceasedDateTime": "2024-06-30",
-        "address": [{"postalCode": "3210"}],
-        "communication": [{"language": {"coding": [{"system": "urn:ietf:bcp:47", "code": "en-NZ"}]}}],
-        "generalPractitioner": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
-        "extension": [{"url": "urn:example:insurance", "valueString": "NZ-ACC-PLAN"}]
-      }
-    },
-    {
-      "fullUrl": "Condition/cond-1",
-      "resource": {
-        "resourceType": "Condition",
-        "id": "cond-1",
-        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]}],
-        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "59621000", "display": "Essential hypertension"}]},
-        "severity": {"coding": [{"system": "http://snomed.info/sct", "code": "255604002", "display": "Mild"}]},
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "onsetDateTime": "2016-05-25",
-        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
-        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
-        "asserter": {"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}
-      }
-    },
-    {
-      "fullUrl": "Procedure/proc-1",
-      "resource": {
-        "resourceType": "Procedure",
-        "id": "proc-1",
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "80146002", "display": "Appendectomy"}], "text": "Laparoscopic appendectomy"},
-        "note": [{"text": "Laparoscopic appendectomy performed"}],
-        "bodySite": [{"coding": [{"system": "http://snomed.info/sct", "code": "66754008", "display": "Appendix structure"}]}],
-        "performedDateTime": "2018-03-10"
-      }
-    },
-    {
-      "fullUrl": "MedicationStatement/medstmt-1",
-      "resource": {
-        "resourceType": "MedicationStatement",
-        "id": "medstmt-1",
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "contained": [{
-          "resourceType": "Medication",
-          "id": "med1",
-          "code": {"coding": [{"system": "http://www.whocc.no/atc", "code": "J01CA", "display": "Penicillins"}], "text": "Amoxicillin 500 mg"},
-          "ingredient": [{"itemCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "372687004", "display": "Amoxicillin"}]}, "strength": {"numerator": {"value": 500, "unit": "mg"}, "denominator": {"value": 1, "unit": "tablet"}}}]
-        }],
-        "medicationReference": {"reference": "#med1"},
-        "effectivePeriod": {"start": "2024-01-01", "end": "2024-02-01"},
-        "dosage": [{
-          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]},
-          "doseAndRate": [{"doseQuantity": {"value": 500, "unit": "mg"}}],
-          "timing": {"repeat": {"frequency": 3, "period": 1, "periodUnit": "d"}}
-        }]
-      }
-    },
-    {
-      "fullUrl": "AllergyIntolerance/allergy-1",
-      "resource": {
-        "resourceType": "AllergyIntolerance",
-        "id": "allergy-1",
-        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "code": "active"}]},
-        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification", "code": "confirmed"}]},
-        "type": "allergy",
-        "category": ["medication"],
-        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "764146007", "display": "Penicillin"}]},
-        "extension": [{"url": "urn:example:allergy-diagnosis", "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "294954003", "display": "Allergy to penicillin"}]}}],
-        "onsetDateTime": "2015-04-01",
-        "lastOccurrence": "2015-05-01",
-        "criticality": "high",
-        "reaction": [{
-          "manifestation": [{"coding": [{"system": "http://snomed.info/sct", "code": "271807003", "display": "Rash"}]}],
-          "severity": "moderate"
-        }]
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-hb-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-hb-1",
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}]},
-        "effectiveDateTime": "2023-11-01",
-        "valueQuantity": {"value": 13.2, "unit": "g/dL"},
-        "interpretation": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation", "code": "N", "display": "Normal"}]},
-        "note": [{"text": "Routine CBC"}],
-        "performer": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
-        "extension": [{"url": "urn:example:observer", "valueReference": {"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}}]
-      }
-    },
-    {
-      "fullUrl": "Immunization/imm-1",
-      "resource": {
-        "resourceType": "Immunization",
-        "id": "imm-1",
-        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "vaccineCode": {"coding": [{"system": "http://snomed.info/sct", "code": "1119349007", "display": "COVID-19 vaccine"}], "text": "Comirnaty"},
-        "occurrenceDateTime": "2024-05-01",
-        "protocolApplied": [{"doseNumberPositiveInt": 2, "targetDisease": [{"coding": [{"system": "http://snomed.info/sct", "code": "840539006", "display": "COVID-19"}]}]}],
-        "doseQuantity": {"value": 0.5, "unit": "mL"},
-        "site": {"text": "Left deltoid region"},
-        "route": {"coding": [{"system": "http://snomed.info/sct", "code": "34206005", "display": "Intramuscular route"}]},
-        "performer": [{"actor": {"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}}]
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-occ-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-occ-1",
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "11341-5", "display": "History of Occupation"}]},
-        "valueString": "Nurse",
-        "effectiveDateTime": "2020-01-15"
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-ind-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-ind-1",
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "21843-6", "display": "Industry of employment"}]},
-        "valueString": "Healthcare",
-        "effectiveDateTime": "2020-01-15"
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-prg-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-prg-1",
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "82810-3", "display": "Pregnancy status"}]},
-        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "77386006", "display": "Pregnant"}]}
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-edd-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-edd-1",
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "11778-8", "display": "Estimated delivery date"}]},
-        "valueDateTime": "2024-12-01"
-      }
-    },
-    {
-      "fullUrl": "DeviceUseStatement/dus-1",
-      "resource": {
-        "resourceType": "DeviceUseStatement",
-        "id": "dus-1",
-        "status": "completed",
-        "device": {"reference": "Device/eumfh-70-275-2"},
-        "note": [{"text": "Device data required"}],
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"}
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-cod-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-cod-1",
-        "identifier": [{"system": "urn:vrdr:id", "value": "VRDR-2024-0001"}],
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "81956-5", "display": "Cause of death"}]},
-        "effectiveDateTime": "2024-06-30",
-        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "840539006", "display": "COVID-19"}]},
-        "extension": [{"url": "urn:example:decedentName", "valueHumanName": {"family": "JORDANA", "given": ["Patricia"]}}]
-      }
-    }
-  ]
-}
-```
+##### Stage 1 Pseudonymized IPS Document Bundle
+The Direct Identifiers in the Patient Resource are assigned a reversible pseudonym and pseudo-identifier. The death data in this example is incorporated based upon the linkage with the VRDR death certificate record, and the birth and dates are shifted according to the approved data access permit. The pseudonymized names and shifted dates are applied throughout the document text sections that reference the patient direct identifiers.
 
-##### Pseudonymized IPS Document Bundle (Stage 1)
-Example view of the Pseudonymized Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Pseudonymized IPS Document](ex-DeathCertificateDocument-Bundle-pandemnicIPS-example-patient-1-stage-1.html)
+The pseudonymization can be applied before or after the linkage of the IPS with the VRDR death certificate record.
 
+
+Example view of the Pseudonymized Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Pseudonymized IPS Document](Bundle-e817cefe-a7c4-487a-8116-be23cf865f3f.html)
+
+**Stage 1 Pseudonymized Patient Resource**
+Description of the changes **TODO**
 {% fragment Patient/39c9964c-96b7-442d-afc1-2702106a9e57 JSON %} 
 
-```json
-{
-  "resourceType": "Bundle",
-  "type": "document",
-  "timestamp": "2024-07-01T00:00:00Z",
-  "meta": {
-    "security": [
-      {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-    ]
-  },
-  "entry": [
-    {
-      "fullUrl": "Composition/ips-comp-1",
-      "resource": {
-        "resourceType": "Composition",
-        "id": "ips-comp-1",
-        "meta": {
-          "profile": ["http://hl7.org/fhir/uv/ips/StructureDefinition/Composition"],
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "status": "final",
-        "type": {"coding": [{"system": "http://loinc.org", "code": "60591-5", "display": "Patient summary Document"}]},
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "date": "2024-07-01T00:00:00Z",
-        "author": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
-        "title": "International Patient Summary",
-        "confidentiality": "N",
-        "section": [
-          {"title": "Problems", "entry": [{"reference": "Condition/cond-1"}]},
-          {"title": "Procedures", "entry": [{"reference": "Procedure/proc-1"}]},
-          {"title": "Medication Summary", "entry": [{"reference": "MedicationStatement/medstmt-1"}]},
-          {"title": "Allergies and Intolerances", "entry": [{"reference": "AllergyIntolerance/allergy-1"}]},
-          {"title": "Results", "entry": [{"reference": "Observation/obs-hb-1"}]},
-          {"title": "Immunizations", "entry": [{"reference": "Immunization/imm-1"}]},
-          {"title": "Social History", "entry": [{"reference": "Observation/obs-occ-1"}, {"reference": "Observation/obs-ind-1"}]},
-          {"title": "Pregnancy History", "entry": [{"reference": "Observation/obs-prg-1"}, {"reference": "Observation/obs-edd-1"}]},
-          {"title": "Medical Devices", "entry": [{"reference": "DeviceUseStatement/dus-1"}]},
-          {"title": "Mortality", "entry": [{"reference": "Observation/obs-cod-1"}]}
-        ]
-      }
-    },
-    {
-      "fullUrl": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "d174bd1a-b368-41e6-83a2-af77f2b3c60f",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"},
-            {"system": "http://ihe.net/CodeSystem/deid-handling", "code": "masked", "display": "Contains masked elements"}
-          ]
-        },
-        "identifier": [{"system": "urn:example:psyn", "value": "PID-7ac6997e"}],
-        "name": [{"family": "Psyn", "given": ["001"]}],
-        "telecom": [{
-          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
-        }],
-        "gender": "female",
-        "birthDate": "1956-09-30",
-        "deceasedBoolean": true,
-        "deceasedDateTime": "2024-06-30",
-        "address": [{"postalCode": "3210"}],
-        "communication": [{"language": {"coding": [{"system": "urn:ietf:bcp:47", "code": "en-NZ"}]}}],
-        "generalPractitioner": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
-        "extension": [{"url": "urn:example:insurance", "valueString": "NZ-ACC-PLAN"}]
-      }
-    },
-    {
-      "fullUrl": "Condition/cond-1",
-      "resource": {
-        "resourceType": "Condition",
-        "id": "cond-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]}],
-        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "59621000", "display": "Essential hypertension"}]},
-        "severity": {"coding": [{"system": "http://snomed.info/sct", "code": "255604002", "display": "Mild"}]},
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "onsetDateTime": "2016-05-25",
-        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
-        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
-        "asserter": {"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}
-      }
-    },
-    {
-      "fullUrl": "Procedure/proc-1",
-      "resource": {
-        "resourceType": "Procedure",
-        "id": "proc-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "80146002", "display": "Appendectomy"}], "text": "Laparoscopic appendectomy"},
-        "note": [{"text": "Laparoscopic appendectomy performed"}],
-        "bodySite": [{"coding": [{"system": "http://snomed.info/sct", "code": "66754008", "display": "Appendix structure"}]}],
-        "performedDateTime": "2018-03-10"
-      }
-    },
-    {
-      "fullUrl": "MedicationStatement/medstmt-1",
-      "resource": {
-        "resourceType": "MedicationStatement",
-        "id": "medstmt-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "contained": [{
-          "resourceType": "Medication",
-          "id": "med1",
-          "code": {"coding": [{"system": "http://www.whocc.no/atc", "code": "J01CA", "display": "Penicillins"}], "text": "Amoxicillin 500 mg"},
-          "ingredient": [{"itemCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "372687004", "display": "Amoxicillin"}]}, "strength": {"numerator": {"value": 500, "unit": "mg"}, "denominator": {"value": 1, "unit": "tablet"}}}]
-        }],
-        "medicationReference": {"reference": "#med1"},
-        "effectivePeriod": {"start": "2024-01-01", "end": "2024-02-01"},
-        "dosage": [{
-          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]},
-          "doseAndRate": [{"doseQuantity": {"value": 500, "unit": "mg"}}],
-          "timing": {"repeat": {"frequency": 3, "period": 1, "periodUnit": "d"}}
-        }]
-      }
-    },
-    {
-      "fullUrl": "AllergyIntolerance/allergy-1",
-      "resource": {
-        "resourceType": "AllergyIntolerance",
-        "id": "allergy-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "code": "active"}]},
-        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification", "code": "confirmed"}]},
-        "type": "allergy",
-        "category": ["medication"],
-        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "764146007", "display": "Penicillin"}]},
-        "extension": [{"url": "urn:example:allergy-diagnosis", "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "294954003", "display": "Allergy to penicillin"}]}}],
-        "onsetDateTime": "2015-04-01",
-        "lastOccurrence": "2015-05-01",
-        "criticality": "high",
-        "reaction": [{
-          "manifestation": [{"coding": [{"system": "http://snomed.info/sct", "code": "271807003", "display": "Rash"}]}],
-          "severity": "moderate"
-        }]
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-hb-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-hb-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}]},
-        "effectiveDateTime": "2023-11-01",
-        "valueQuantity": {"value": 13.2, "unit": "g/dL"},
-        "interpretation": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation", "code": "N", "display": "Normal"}]},
-        "note": [{"text": "Routine CBC"}],
-        "performer": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
-        "extension": [{"url": "urn:example:observer", "valueReference": {"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}}]
-      }
-    },
-    {
-      "fullUrl": "Immunization/imm-1",
-      "resource": {
-        "resourceType": "Immunization",
-        "id": "imm-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "vaccineCode": {"coding": [{"system": "http://snomed.info/sct", "code": "1119349007", "display": "COVID-19 vaccine"}], "text": "Comirnaty"},
-        "occurrenceDateTime": "2024-05-01",
-        "protocolApplied": [{"doseNumberPositiveInt": 2, "targetDisease": [{"coding": [{"system": "http://snomed.info/sct", "code": "840539006", "display": "COVID-19"}]}]}],
-        "doseQuantity": {"value": 0.5, "unit": "mL"},
-        "site": {"text": "Left deltoid region"},
-        "route": {"coding": [{"system": "http://snomed.info/sct", "code": "34206005", "display": "Intramuscular route"}]},
-        "performer": [{"actor": {"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}}]
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-occ-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-occ-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "11341-5", "display": "History of Occupation"}]},
-        "valueString": "Nurse",
-        "effectiveDateTime": "2020-01-15"
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-ind-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-ind-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "21843-6", "display": "Industry of employment"}]},
-        "valueString": "Healthcare",
-        "effectiveDateTime": "2020-01-15"
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-prg-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-prg-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "82810-3", "display": "Pregnancy status"}]},
-        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "77386006", "display": "Pregnant"}]}
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-edd-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-edd-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "11778-8", "display": "Estimated delivery date"}]},
-        "valueDateTime": "2024-12-01"
-      }
-    },
-    {
-      "fullUrl": "DeviceUseStatement/dus-1",
-      "resource": {
-        "resourceType": "DeviceUseStatement",
-        "id": "dus-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "status": "completed",
-        "device": {"reference": "Device/eumfh-70-275-2"},
-        "note": [{"text": "Device data required"}],
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"}
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-cod-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-cod-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage1-pseudonymized", "display": "Stage 1 pseudonymized"}
-          ]
-        },
-        "identifier": [{"system": "urn:example:psyn", "value": "VRDR-PSYN-0001"}],
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "81956-5", "display": "Cause of death"}]},
-        "effectiveDateTime": "2024-06-30",
-        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "840539006", "display": "COVID-19"}]},
-        "extension": [{"url": "urn:example:decedentName", "valueHumanName": {"family": "Psyn", "given": ["001"]}}]
-      }
-    }
-  ]
-}
-```
 
-Notes:
+**Notes:**
 - Only direct identifiers are processed in Stage 1 (name, identifier, telecom).
 - Redaction: Patient.telecom value removed and marked with data absent reason = "masked".
 - Pseudonymization: Patient and Mortality identifiers/names replaced with consistent pseudonyms.
 - Security Labels: meta.security added to mark de-identification status.
 
-##### Pseudonymized IPS Document Bundle (Stage 2)
+##### Stage 2 Pseudonymized IPS Document Bundle
+The Indirect Identifiers in the Clinical Resources are date-shifted, and content removed according to the data minimization rules approved by the data access permit. Where information is removed, this is indicated by a dataAbsentReason of 'masked' at the data element level (e.g. telecom), and at the section level, emptyReason is set to 'withheld' (e.g. functional status).
+
+
 Example view of the Stage 2 Pseudonymized IPS Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Stage 2 Pseudonymized IPS Document](ex-Bundle-secondaryUse-pandemnicIPS-example-patient-1-stage-2.html)
 
+**Stage 2 Pseudonymized Patient Resource**
+Description of the changes **TODO**
 {% fragment Patient/6274d469-7a4d-4a66-a261-e5e7b71af267 JSON %} 
 
-```json
-{
-  "resourceType": "Bundle",
-  "type": "document",
-  "timestamp": "2024-07-01T00:00:00Z",
-  "meta": {
-    "security": [
-      {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-    ]
-  },
-  "entry": [
-    {
-      "fullUrl": "Composition/ips-comp-1",
-      "resource": {
-        "resourceType": "Composition",
-        "id": "ips-comp-1",
-        "meta": {
-          "profile": ["http://hl7.org/fhir/uv/ips/StructureDefinition/Composition"],
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "status": "final",
-        "type": {"coding": [{"system": "http://loinc.org", "code": "60591-5", "display": "Patient summary Document"}]},
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "date": "2024-07-01T00:00:00Z",
-        "author": [{"reference": "Practitioner/816cf057-b736-4e08-baed-cc21e081b784"}],
-        "title": "International Patient Summary",
-        "confidentiality": "N",
-        "section": [
-          {"title": "Problems", "entry": [{"reference": "Condition/cond-1"}]},
-          {"title": "Procedures", "entry": [{"reference": "Procedure/proc-1"}]},
-          {"title": "Medication Summary", "entry": [{"reference": "MedicationStatement/medstmt-1"}]},
-          {"title": "Allergies and Intolerances", "entry": [{"reference": "AllergyIntolerance/allergy-1"}]},
-          {"title": "Results", "entry": [{"reference": "Observation/obs-hb-1"}]},
-          {"title": "Immunizations", "entry": [{"reference": "Immunization/imm-1"}]},
-          {"title": "Social History", "entry": [{"reference": "Observation/obs-occ-1"}, {"reference": "Observation/obs-ind-1"}]},
-          {"title": "Pregnancy History", "entry": [{"reference": "Observation/obs-prg-1"}, {"reference": "Observation/obs-edd-1"}]},
-          {"title": "Medical Devices", "entry": [{"reference": "DeviceUseStatement/dus-1"}]},
-          {"title": "Mortality", "entry": [{"reference": "Observation/obs-cod-1"}]}
-        ]
-      }
-    },
-    {
-      "fullUrl": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "d174bd1a-b368-41e6-83a2-af77f2b3c60f",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"},
-            {"system": "http://ihe.net/CodeSystem/deid-handling", "code": "masked", "display": "Contains masked elements"}
-          ]
-        },
-        "identifier": [{"system": "urn:example:psyn2", "value": "PID-9f8b1ea1"}],
-        "name": [{"family": "Psyn", "given": ["001"]}],
-        "telecom": [{
-          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
-        }],
-        "gender": "female",
-        "birthDate": "1956-10-15",
-        "deceasedBoolean": true,
-        "deceasedDateTime": "2024-07-15",
-        "address": [{"postalCode": "321"}],
-        
-        "generalPractitioner": [{
-          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
-        }]
-      }
-    },
-    {
-      "fullUrl": "Condition/cond-1",
-      "resource": {
-        "resourceType": "Condition",
-        "id": "cond-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]}],
-        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "59621000", "display": "Essential hypertension"}]},
-        "severity": {"coding": [{"system": "http://snomed.info/sct", "code": "255604002", "display": "Mild"}]},
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "onsetDateTime": "2016-06-10",
-        "clinicalStatus": {
-          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
-        },
-        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
-        "asserter": {
-          "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
-        }
-      }
-    },
-    {
-      "fullUrl": "Procedure/proc-1",
-      "resource": {
-        "resourceType": "Procedure",
-        "id": "proc-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {
-          "coding": [{"system": "http://snomed.info/sct", "code": "80146002", "display": "Appendectomy"}],
-          "_text": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}
-        },
-        "note": [{"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}],
-        "bodySite": [{"coding": [{"system": "http://snomed.info/sct", "code": "66754008", "display": "Appendix structure"}]}],
-        "performedDateTime": "2018-03-25"
-      }
-    },
-    {
-      "fullUrl": "MedicationStatement/medstmt-1",
-      "resource": {
-        "resourceType": "MedicationStatement",
-        "id": "medstmt-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "contained": [{
-          "resourceType": "Medication",
-          "id": "med1",
-          "code": {"coding": [{"system": "http://www.whocc.no/atc", "code": "J01CA", "display": "Penicillins"}], "text": "Amoxicillin 500 mg"},
-          "ingredient": [{"itemCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "372687004", "display": "Amoxicillin"}]}, "strength": {"numerator": {"value": 500, "unit": "mg"}, "denominator": {"value": 1, "unit": "tablet"}}}]
-        }],
-        "medicationReference": {"reference": "#med1"},
-        "effectivePeriod": {"start": "2024-01-18", "end": "2024-02-18"},
-        "dosage": [{
-          "route": {
-            "extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]
-          },
-          "doseAndRate": [{"doseQuantity": {"value": 500, "unit": "mg"}}],
-          "timing": {"repeat": {"frequency": 3, "period": 1, "periodUnit": "d"}}
-        }]
-      }
-    },
-    {
-      "fullUrl": "AllergyIntolerance/allergy-1",
-      "resource": {
-        "resourceType": "AllergyIntolerance",
-        "id": "allergy-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "code": "active"}]},
-        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification", "code": "confirmed"}]},
-        "type": "allergy",
-        "category": ["medication"],
-        "code": {"coding": [{"system": "http://snomed.info/sct", "code": "764146007", "display": "Penicillin"}]},
-        "onsetDateTime": "2015-04-18",
-        "lastOccurrence": "2015-05-18",
-        "criticality": "high",
-        "reaction": [{
-          "manifestation": [{"coding": [{"system": "http://snomed.info/sct", "code": "271807003", "display": "Rash"}]}],
-          "severity": "moderate"
-        }]
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-hb-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-hb-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}]},
-        "effectiveDateTime": "2023-11-18",
-        "valueQuantity": {"value": 13.2, "unit": "g/dL"},
-        "interpretation": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation", "code": "N", "display": "Normal"}]},
-        "note": [{"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}],
-        "performer": [{"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}]
-      }
-    },
-    {
-      "fullUrl": "Immunization/imm-1",
-      "resource": {
-        "resourceType": "Immunization",
-        "id": "imm-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "patient": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "vaccineCode": {"coding": [{"system": "http://snomed.info/sct", "code": "1119349007", "display": "COVID-19 vaccine"}]},
-        "occurrenceDateTime": "2024-05-18",
-        "protocolApplied": [{
-          "doseNumberPositiveInt": 2,
-          "targetDisease": [{"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}]
-        }],
-        "doseQuantity": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]},
-        "site": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]},
-        "route": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]}
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-occ-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-occ-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "11341-5", "display": "History of Occupation"}]},
-        "valueString": "Nurse",
-        "effectiveDateTime": "2020-01-31"
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-ind-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-ind-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "21843-6", "display": "Industry of employment"}]},
-        "valueString": "Healthcare",
-        "effectiveDateTime": "2020-01-31"
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-prg-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-prg-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "82810-3", "display": "Pregnancy status"}]},
-        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "77386006", "display": "Pregnant"}]}
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-edd-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-edd-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "11778-8", "display": "Estimated delivery date"}]},
-        "valueDateTime": "2024-12-18"
-      }
-    },
-    {
-      "fullUrl": "DeviceUseStatement/dus-1",
-      "resource": {
-        "resourceType": "DeviceUseStatement",
-        "id": "dus-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "status": "completed",
-        "device": {"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason", "valueCode": "masked"}]},
-        "note": [{"text": "Device data required"}],
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"}
-      }
-    },
-    {
-      "fullUrl": "Observation/obs-cod-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "obs-cod-1",
-        "meta": {
-          "security": [
-            {"system": "http://ihe.net/CodeSystem/deid-status", "code": "stage2-pseudonymized", "display": "Stage 2 pseudonymized"}
-          ]
-        },
-        "identifier": [{"system": "urn:example:psyn2", "value": "VRDR-PSYN2-0001"}],
-        "subject": {"reference": "Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f"},
-        "code": {"coding": [{"system": "http://loinc.org", "code": "81956-5", "display": "Cause of death"}]},
-        "effectiveDateTime": "2024-07-15",
-        "valueCodeableConcept": {"coding": [{"system": "http://snomed.info/sct", "code": "840539006", "display": "COVID-19"}]},
-        "extension": [{"url": "urn:example:decedentName", "valueHumanName": {"family": "Psyn", "given": ["001"]}}]
-      }
-    }
-  ]
-}
-```
 
 Notes:
 - Stage 2 applies quasi-identifier handling: date shifting (relative to birth/incident), postal code generalization (to 3-digits), and removal of requested attributes.
@@ -2154,8 +1358,8 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 
 | Section | Data Element | CDA Path | De-id Method |
 | --- | --- | --- | --- |
-| Patient | Patient Name | ClinicalDocument/recordTarget/patientRole/patient/name | Stage 1: mask via nullFlavor='MSK'; Stage 2: remain masked |
-| Patient | ID | ClinicalDocument/recordTarget/patientRole/id | Stage 1: pseudonymize; Stage 2: irreversible pseudonym |
+| Patient | Patient Name | ClinicalDocument/recordTarget/patientRole/patient/name | Stage 1: pseudonymize; Stage 2: Reversable pseudonym|
+| Patient | ID | ClinicalDocument/recordTarget/patientRole/id | Stage 1: pseudonymize; Stage 2: Reversable pseudonym|
 | Patient | Telecom | ClinicalDocument/recordTarget/patientRole/telecom | Stage 1/2: omit value; set nullFlavor='MSK' |
 | Patient | Date of Birth | ClinicalDocument/recordTarget/patientRole/patient/birthTime | Stage 2: date shift or mask with age band |
 | Patient | Gender | ClinicalDocument/recordTarget/patientRole/patient/administrativeGenderCode | Included (QI) |

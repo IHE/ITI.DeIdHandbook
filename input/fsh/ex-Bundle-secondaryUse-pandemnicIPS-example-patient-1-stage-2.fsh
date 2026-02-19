@@ -1,6 +1,9 @@
 Instance: ex-Bundle-secondaryUse-pandemnicIPS-example-patient-1-stage-2
 InstanceOf: BundleUvIps
 Usage: #example
+Description: """
+The Indirect Identifiers in the Clinical Resources are date-shifted, and content removed according to the data minimization rules approved by the data access permit. Where information is removed, this is indicated by a dataAbsentReason of 'masked' at the data element level (e.g. telecom), and at the section level, emptyReason is set to 'withheld' (e.g. functional status).
+"""
 * id = "6603561c-2888-4355-9df4-23675f6eb458"
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Bundle-uv-ips"
 * identifier.system = "urn:oid:1.3.6.1.4.1.21367.2011.2.5.5639"
