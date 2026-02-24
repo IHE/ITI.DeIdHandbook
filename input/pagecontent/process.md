@@ -9,6 +9,8 @@ Projects that need de-identification should follow these steps to define the de-
 6. **Implementation and Validation**: Implement the designed process, which may involve configuring tools or developing new software. The implementation must be rigorously validated with test data to ensure it functions as expected before operational use.
 7. **Governance, Monitoring, and Review**: Establish a governance framework with clear roles and responsibilities. Continuously monitor the process in operation, audit for compliance, and periodically review the strategy to adapt to evolving threats and technologies.
 
+> Note on non-public releases: When data is shared with identified recipients (e.g., research partners) it is common and often required to include **contractual controls** (e.g., a Data Use Agreement / Data Sharing Agreement). In this handbook, those controls are treated as part of the overall risk mitigation design and as required **release artifacts** that accompany the dataset.
+
 ### Analyze the context
 The dataset's context refers to the environment in which the data is stored and transferred. To understand the complete situation, it's essential to analyze the purpose of data collection, the data recipients, and the data flow.
 
@@ -22,6 +24,12 @@ Data recipients are the individuals, groups, or organizations who will use the d
 - **Recipient Profiles**: The roles and responsibilities of individuals who will access the data.
 - **Relationship to Custodian**: The relationship between the data custodian and the recipients (e.g., internal department, external research partner), as this affects the required contractual and security controls.
 - **Background Knowledge**: An assessment of the recipients' background knowledge, which could be used in re-identification attempts.
+
+In addition, for any **non-public** or **controlled** sharing model, define the **recipient onboarding controls**, including whether a **Data Use Agreement (DUA)** (or equivalent data sharing contract) is required and who is responsible for obtaining and storing the executed agreement.
+
+In most organizations, the DUA is how you make “controlled sharing” enforceable. Typical clauses include: permitted purpose; prohibition on re-identification and onward sharing; authorized users; minimum security controls; incident notification; retention and disposal requirements; and audit/attestation expectations. The DUA should be reviewed by appropriate legal/privacy stakeholders for the jurisdiction.
+
+For example, under HIPAA a *Limited Data Set* disclosure requires a data use agreement (see 45 CFR 164.514(e)(4)).
 
 #### Data flow
 Describe the end-to-end data flow, from original source to final recipients. A clear data flow diagram helps identify risks at each stage. Key components to analyze include:
@@ -421,6 +429,18 @@ Data must be protected in transit. Use secure, approved methods for transferring
 - Encrypted transfer over a secure network (e.g., SFTP, HTTPS).
 - Use of hardware-encrypted storage devices for physical transfers, with passwords shared separately.
 
+##### Release package (what ships with the dataset)
+For controlled sharing, the dataset should be released as a **package** that includes both technical artifacts and governance artifacts. As a minimum, include:
+
+- The de-identified dataset (and a clear dataset version identifier).
+- A data dictionary / schema description (including known limitations and de-identification impacts).
+- A **De-identification & Risk Summary** (or equivalent release decision record) documenting the sharing model, thresholds, key transformations applied, residual risk statements, and approvals.
+- The **executed Data Use Agreement (DUA)** (or a link/reference to the authoritative executed copy) covering the recipient(s) and the specific dataset version.
+
+The release decision should be treated as incomplete until the recipient has agreed to the DUA terms and the organization has recorded the executed agreement.
+
+**Caution on releasing detailed risk reports:** A full Re-identification Risk Assessment Report may contain information (e.g., rare-category findings, high-risk equivalence classes, or linkage assumptions) that could increase a recipient’s ability to target records. As a default, treat the full report as a **controlled internal record** and provide recipients only the **minimum necessary** transparency (e.g., a summary/attestation and a transformation description) consistent with the sharing model and recipient trust level. If a detailed report must be shared (e.g., for regulator review or a formal independent verification), share a **redacted/sanitized** version.
+
 ##### Data encryption
 Data must be protected at rest. Use strong, industry-standard encryption algorithms like AES-256 to encrypt datasets before storage or transfer.
 
@@ -473,9 +493,11 @@ Therefore, the process must be continuously monitored and periodically audited. 
 #### Documentation and Record Keeping
 Maintain thorough documentation of the entire process for accountability, auditing, and compliance. Essential records include:
 - The initial service request and data use case description.
-- The full Re-identification Risk Assessment Report.
+- The full Re-identification Risk Assessment Report (controlled internal record).
+- Any external-facing De-identification & Risk Summary / attestation provided to recipients (including what was redacted and why, if applicable).
 - The element-by-element de-identification design specification.
 - Scripts and configuration parameters used for the transformation.
+- Executed Data Use Agreements (DUAs) / data sharing agreements for each recipient (or a controlled reference to where they are stored).
 - Records of all data transfers, access, and disposal.
 - Validation and approval reports.
 
