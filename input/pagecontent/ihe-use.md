@@ -23,7 +23,7 @@ Profiles should reference and operationalize the steps summarized in the multi-s
 Profiles should explicitly map treatments to stages to reflect real-world constraints:
 - **Stage 1 (Source / Preliminary)**: Remove obvious Direct Identifiers and apply basic, often reversible pseudonymization to make data safe for internal transfer. Expect `Readily-Identifiable Data` outputs with strict key management.
 - **Stage 2 (Central / Advanced)**: Apply specialized processing (NLP for text identifiers, pixel scrubbing for imaging, k-anonymity class analysis, DP mechanisms) to achieve `Irreversibly Pseudonymized` or `Anonymous` outputs.
-- **Stage 3 (Recipient / Verification)**: Require recipient-side risk verification before use, consistent with the agreed sharing model and thresholds.
+- **Stage 3 (Recipient / Verification)**: Require recipients to verify that residual re-identification risk meets agreed acceptance criteria under the shared/agreed de-identification solution, and to confirm data quality before use; this is verification, not a full re-assessment unless explicitly required by agreement or changed context.
 
 ### When Single-Stage Is Sufficient
 - Single-stage de-identification can be appropriate when the intended use, sharing model, and context controls yield an acceptable overall risk without additional specialized processing (e.g., controlled internal sharing with strong access controls and no free text or imaging identifiers).
