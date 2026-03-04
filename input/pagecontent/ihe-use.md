@@ -17,7 +17,7 @@ Profiles should reference and operationalize the steps summarized in the multi-s
 - **Context analysis**: Define intended uses, recipients, and end-to-end data flows; capture regulatory constraints (HIPAA/GDPR/PIPL) and intermediary organizations.
 - **Data assessment**: Call out challenging types (longitudinal, free text, imaging, binary) and classify attributes as Direct Identifiers, Quasi-Identifiers, Sensitive Attributes, or Non-Identifiers.
 - **Goals and thresholds**: Translate general goals (prevent identification, control risk, preserve utility) into measurable targets with documented thresholds (e.g., benchmark thresholds adapted from ISO/IEC 27559 for public vs non-public releases).
-- **Risk assessment**: Specify how qualitative checks lead to quantitative evaluation when QIs remain, and which metrics/budgets are used (e.g., `R = R_d × R_c` for k-anonymity or an `ε` privacy budget for differential privacy).
+- **Risk assessment**: Specify how qualitative checks lead to quantitative evaluation when QIs remain, and which metrics/budgets are used (e.g., `R = R<sup>d</sup> × R<sup>c</sup>` for k-anonymity or an `ε` privacy budget for differential privacy).
 - **Risk mitigation design**: Place transformations across stages; justify reversible vs. irreversible pseudonymization; define secrets handling, access controls, and secure transfer/storage.
 - **Implementation and validation**: Require test data validation, auditability, and change control; recipients confirm agreed privacy levels before use.
 
@@ -59,7 +59,7 @@ Starting from a generic profile reduces effort and error and allows the implemen
 - Enumerate data types (structured, free text, imaging, binary) and classify attributes (DI, QI, SA, NI).
 - Decide single-stage vs multi-stage: if single-stage, confirm it combines preliminary and advanced processing with both analyses applied; if multi-stage, map element treatments to each stage (1, 2, 3).
 - Produce an element-by-element treatment table: redaction, transformation (generalize/perturb/pseudonymize), or pass-through with valid placeholders/codes.
-- Set risk targets and measurement: k-anonymity metrics (`R = R_d × R_c`) or differential privacy budgets (`ε`), aligned to the sharing model.
+- Set risk targets and measurement: k-anonymity metrics (`R = R<sup>d</sup> × R<sup>c</sup>`) or differential privacy budgets (`ε`), aligned to the sharing model.
 - Choose pseudonymization policy: reversible (key management) vs irreversible (one-way salted methods), and address trait changes and deduplication.
 - Specify operational controls: access control, secrets management, secure transfer, encryption at rest, and data disposal.
 - Validate with test data; require recipient-side verification before use.
