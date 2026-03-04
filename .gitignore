@@ -11,3 +11,5 @@
 /_genonce.sh
 /local-template/config/.index.json
 /local-template/package/.index.json
+/.staged/
+run-docker.sh
