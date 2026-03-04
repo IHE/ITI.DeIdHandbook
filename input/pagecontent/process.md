@@ -458,6 +458,9 @@ A strong governance framework is essential for ensuring that the de-identificati
 #### General principles
 The de-identification program should be founded on principles of accountability, fairness, and transparency, in alignment with the organization's overall data governance and privacy policies.
 
+#### Secure processing environment
+De-identification and pre-release validation should be performed in a secure processing environment with defined controls for access, data handling, system hardening, monitoring, and auditability. As a governance baseline in healthcare settings, organizations should align these controls with [(ISO 27799, 2025)](references.html#ISO27799) and applicable legal/regulatory requirements.
+
 #### Role responsibilities and people management
 Clearly define roles and responsibilities to ensure accountability. Key roles often include:
 - **Policy Manager**: A team (often including privacy, legal, and IT experts) responsible for setting the de-identification policies and standards.
