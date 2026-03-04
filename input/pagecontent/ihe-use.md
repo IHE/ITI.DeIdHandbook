@@ -2,6 +2,7 @@
 This guidance helps IHE profile editors design robust, practical de-identification profiles that align with the multi-stage process and risk management principles defined in the handbook. Profiles should be actionable, standards-aligned, and adaptable to varied implementation contexts.
 
 ### What an IHE De-Identification Profile Must Define
+This section defines the minimum content an IHE de-identification profile must include so implementations are consistent, actionable, and auditable.
 - **Source data scope**: The kinds of input data (structured, imaging, free text, semi-structured) expected by the profile and any known auxiliary sources (filenames, metadata, linked forms).
 - **Element-by-element treatments**: For every relevant attribute, specify whether it is removed (redacted), transformed (generalized/perturbed/pseudonymized), or passed through unchanged—with rules that yield valid, interoperable output values.
 - **Multi-stage placement**: Which steps belong at the source (preliminary, often reversible) and which require centralized, specialized processing (irreversible pseudonymization/nlp/pixel scrubbing), plus any recipient-side verification expectations.
@@ -11,6 +12,7 @@ This guidance helps IHE profile editors design robust, practical de-identificati
 Profiles will often be detailed documents (tens of pages) and should be structured so implementers can trace requirements to specific transformations and controls.
 
 ### Aligning Profiles to the Handbook Process
+This section explains how profile editors should derive and justify profile requirements using the handbook’s step-by-step process.
 Profiles should reference and operationalize the steps summarized in the multi-stage process (see process overview):
 - **Context analysis**: Define intended uses, recipients, and end-to-end data flows; capture regulatory constraints (HIPAA/GDPR/PIPL) and intermediary organizations.
 - **Data assessment**: Call out challenging types (longitudinal, free text, imaging, binary) and classify attributes as Direct Identifiers, Quasi-Identifiers, Sensitive Attributes, or Non-Identifiers.
