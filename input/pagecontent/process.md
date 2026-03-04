@@ -35,6 +35,7 @@ For example, under HIPAA a *Limited Data Set* disclosure requires a data use agr
 Describe the end-to-end data flow, from original source to final recipients. A clear data flow diagram helps identify risks at each stage. Key components to analyze include:
 
 - **Data Source**: Where the data originates. Document the source's profile and any existing agreements regarding de-identification.
+- **Multi-source integration flow**: If data is collected from multiple sources, document how sources are onboarded, where data is merged, and which controls apply before and after integration.
 - **Data Environments**: The physical or virtual locations where data is stored, processed, and transferred. Each environment (e.g., landing zone, processing zone, analysis zone) has its own risk profile based on its infrastructure, access controls, and governance.
 - **Multi-stage Requirements**: Identify if the data flow requires de-identification to occur at multiple points, for instance, initial redaction at the source and further pseudonymization by a central team.
 - **Regulatory Constraints**: Analyze any domain-specific policies or legal requirements that apply to the data flow, especially concerning cross-border data transfers.
@@ -67,6 +68,14 @@ Identify all distinct types of data being collected (e.g., structured records, i
 - File names and directory paths.
 - Metadata embedded in files.
 - Linked documents, such as case report forms associated with images.
+
+##### Multi-source integration assessment
+When data from multiple sources is combined, assess both each source independently and the integrated dataset as a whole. The same de-identification process applies, but additional integration checks are needed.
+
+- **Source-specific identifier patterns**: Different sources may expose different direct and quasi-identifiers, including source-specific metadata.
+- **Harmonization decisions**: Document schema mappings, code/value harmonization, unit normalization, and time normalization choices.
+- **Linkage and de-duplication policy**: Define how records are linked across sources and when de-duplication occurs relative to pseudonymization.
+- **Post-integration risk reassessment**: Re-evaluate re-identification risk after integration, since cross-source linkage can create new quasi-identifier combinations.
 
 ##### Data attribute type
 For each data attribute, perform a classification to understand its potential for re-identification. This is a critical step that informs the entire risk assessment and mitigation design. Attributes are typically classified as:
@@ -460,6 +469,7 @@ The de-identification program should be founded on principles of accountability,
 
 #### Secure processing environment
 De-identification and pre-release validation should be performed in a secure processing environment with defined controls for access, data handling, system hardening, monitoring, and auditability. As a governance baseline in healthcare settings, organizations should align these controls with [(ISO 27799, 2025)](references.html#ISO27799) and applicable legal/regulatory requirements.
+For multi-source data collection, governance should also require documented source onboarding criteria, provenance tracking, and auditable integration/harmonization decisions.
 
 #### Role responsibilities and people management
 Clearly define roles and responsibilities to ensure accountability. Key roles often include:
