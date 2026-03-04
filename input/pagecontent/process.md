@@ -1,5 +1,11 @@
 ### Overview of process
-Projects that need de-identification should follow these steps to define the de-identification process that is appropriate for the project’s intended uses of the de-identified data. This process should be adapted to specific regulatory and legal contexts, such as HIPAA, GDPR, or PIPL.
+This handbook is written primarily for **IHE Profile Editors** developing de-identification profiles. These steps can be used to define de-identification requirements that are consistent, testable, and auditable.
+
+De-identification profiles may be authored as **standalone profiles** or defined as a **de-identification component** within another IHE Profile (e.g., Teaching File or Clinical Trial Export (TCE)). In either case, the same end-to-end analysis is needed and should be adapted to the applicable regulatory and legal context (e.g., HIPAA, GDPR, or PIPL).
+
+This handbook chapter provides a common, reusable process framework and reference models (e.g., data sharing models, risk concepts, and benchmark thresholds). It does not, by itself, resolve project-specific requirements or make jurisdiction-specific determinations (for example, legal interpretation, governance policy, or the exact risk targets and measurement approach). Each implementation project should translate the framework into a project-specific requirements set and a documented set of decisions that can be audited.
+
+For profile development, treat the output of these steps as the basis for **common cross-project profile requirements** (assumptions, conformance criteria, and required controls), while making explicit what remains an **implementation responsibility** (project- and jurisdiction-specific decisions).
 
 1. **Analyze the Context**: Clearly define the purpose for collecting the data, who the data recipients will be, and map the end-to-end data flow. This initial analysis frames the entire de-identification strategy.
 2. **Data Assessment**: Thoroughly evaluate the data content, including its type, sensitivity, and properties. This step includes attack modeling to understand potential threats and vulnerabilities.
@@ -129,6 +135,8 @@ Goals should balance privacy protection with data utility.
 #### Determine specific goals
 Translate the general goals into concrete, measurable targets for the specific project. To achieve this, a requirements document should be created, addressing the following questions:
 
+Where standards, profiles, or organizational policies define common requirements for a domain or release model, they can be used as starting points. Projects should still explicitly identify and document the project-specific deltas (e.g., intended uses, recipients, jurisdictions, data types, and risk criteria).
+
 - **Project Scope and Data Needs**:
     -   What data must be retained to satisfy the primary needs of the project?
     -   What are the legal sensitivities that apply? Is the data subject to special rules, such as for behavioral health?
@@ -149,7 +157,7 @@ Translate the general goals into concrete, measurable targets for the specific p
 
     - **Factor 2: Potential Impact of Re-identification**: The potential harm that could result from re-identification is the second key factor. A dataset containing highly sensitive information requires a more conservative threshold than one with low sensitivity. To assess the potential impact, consider factors such as the sensitivity of the information, the scope and level of detail, the potential for tangible harm (e.g., financial loss, discrimination, reputational damage), and whether individuals consented to this specific secondary use of their data.
 
-    - **Benchmark Risk Thresholds**: Based on these factors, the following table, adapted from international standards like [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559), provides benchmark thresholds. It is crucial to document the rationale for selecting a specific threshold.
+    - **Benchmark Risk Thresholds**: Based on these factors, the following table, adapted from international standards like [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559), provides benchmark thresholds. Treat these values as reference guidance and finalize the applicable threshold and measurement approach for the project’s jurisdiction, regulator expectations, and contractual controls. It is crucial to document the rationale for selecting a specific threshold.
 
 | Scenario | Possibility of Attack & Potential Impact | Risk Threshold |
 | :--- | :--- | :--- |
@@ -221,7 +229,7 @@ When using k-anonymity, data risk is calculated by analyzing the size of the "eq
 - **Proportion of higher risk records (R<sub>a</sub><sup>d</sup>)**: The proportion of records that have a re-identification probability higher than a threshold τ. R<sub>a</sub><sup>d</sup> = (1 / n) Σ<sub>j∈J</sub> f<sub>j</sub> × I(θ<sub>j</sub> &gt; τ)
 
 
-The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metric R<sub>a</sub><sup>d</sup>, R<sub>b</sub><sup>d</sup>, R<sub>c</sub><sup>d</sup> becomes the value for R<sub>d</sub> used in the overall risk calculation. The most challenging aspect of calculating re-identification risk is estimating the population equivalence class size F<sub>j</sub>. A practical approach to avoid complex estimation is to use f<sub>j</sub> (the sample equivalence class size) even when the attacker does not know if the target is in the sample. While this approach overestimates the data risk, it may be acceptable for large dataset releases. However, in healthcare settings with relatively small datasets, simply using f<sub>j</sub> as a substitute is typically not acceptable due to the excessive conservatism it introduces. 
+The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metrics R<sub>a</sub><sup>d</sup>, R<sub>b</sub><sup>d</sup>, R<sub>c</sub><sup>d</sup> become the value for R<sup>d</sup> used in the overall risk calculation. The most challenging aspect of calculating re-identification risk is estimating the population equivalence class size F<sub>j</sub>. A practical approach to avoid complex estimation is to use f<sub>j</sub> (the sample equivalence class size) even when the attacker does not know if the target is in the sample. While this approach overestimates the data risk, it may be acceptable for large dataset releases. However, in healthcare settings with relatively small datasets, simply using f<sub>j</sub> as a substitute is typically not acceptable due to the excessive conservatism it introduces. 
 
 ***For Differential Privacy:***
 
@@ -457,7 +465,9 @@ Data must be protected at rest. Use strong, industry-standard encryption algorit
 Unsecure data disposal can lead to breaches. Follow a formal data disposal policy, using tools that perform a secure, multi-pass wipe (e.g., DoD-level wipe) to permanently erase data from media before it is decommissioned.
 
 ### Implementation
-IHE has profiles, such as the imaging teaching files profile, for some of the common de-identification situations. DICOM has identified some common intended use requirements and defined de-identification profiles for these situations. In addition, standards bodies, regulators, and national statistical agencies often publish **de-identification guidance** (profiles, checklists, or disclosure-control rules) for particular domains and release models. When developing project-specific de-identification profiles, these materials can be a useful starting point, but they should be validated against the project’s purpose, recipients, and legal/regulatory context.
+IHE has profiles, such as the imaging teaching files profile, for some common de-identification situations. DICOM has identified some common intended use requirements and defined de-identification profiles for these situations. In addition, standards bodies, regulators, and national statistical agencies often publish **de-identification guidance** (profiles, checklists, or disclosure-control rules) for particular domains and release models. These materials are useful for defining common cross-project requirements, but they do not remove the need for project-specific decisions. When developing a project-specific de-identification profile or plan, validate any borrowed requirements against the project’s purpose, recipients, and legal/regulatory context.
+
+For IHE Profile Editors, this means a de-identification profile (whether standalone or embedded within another IHE Profile) should normatively define the common requirements it intends to cover, the assumptions it makes about context and recipients, and the conformance criteria it expects implementations to meet.
 
 This document covers the general, high-level de-identification process and design guidance. It does not prescribe detailed organizational procedures, specific software deployments, or staffing models. Established methodologies (e.g., project management and safety risk analysis) should be applied to the deployment of de-identification processes; there is usually no need to invent new, unfamiliar processes for the organization.
 
