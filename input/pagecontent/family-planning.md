@@ -11,7 +11,7 @@ This de-identification profile demonstrates:
 2.  **Data Assessment**: Comprehensive evaluation of data content, including attribute classification using the updated [Data Types](data-types.html) framework (Direct Identifiers, Quasi-Identifiers, Sensitive Attributes)
 3.  **Goal Determination**: Establishing specific de-identification objectives that balance clinical and privacy perspectives
 4.  **Risk Assessment**: Both qualitative and quantitative evaluation of re-identification risks
-5.  **Risk Mitigation Design**: Multi-stage de-identification architecture with element-by-element technique selection using techniques from the [Algorithms](algorithms.html) chapter
+5.  **Risk Mitigation Design**: Multi-stage de-identification architecture with element-by-element technique selection using techniques from the [Techniques](techniques.html) chapter
 6.  **Implementation and Validation**: Process validation and governance framework
 7.  **Identifiability Transitions**: Demonstrating the transformation from Identified Data through Reversible-Pseudonymized Data to achieve the target identifiability level as defined in [Concepts](concepts.html#Identifiability)
 
@@ -27,7 +27,7 @@ The detailed design questions that guide technique selection are organized by at
 
 This implementation guide serves three primary audiences:
 
-1.  **Software Developers and Implementers**: Those who will implement the de-identification techniques into their software systems. This de-identification profile serves as the specification for what transformations to apply to each data element. Developers should use the IHE QRPH Family Planning version 2 (FPv2) supplement for source document structure, this profile for de-identification specifications, and the [Algorithms](algorithms.html) chapter for implementation techniques.
+1.  **Software Developers and Implementers**: Those who will implement the de-identification techniques into their software systems. This de-identification profile serves as the specification for what transformations to apply to each data element. Developers should use the IHE QRPH Family Planning version 2 (FPv2) supplement for source document structure, this profile for de-identification specifications, and the [Techniques](techniques.html) chapter for implementation techniques.
 
 2.  **Privacy and Security Professionals**: Those responsible for designing, validating, and governing de-identification processes. This document demonstrates the application of the systematic [Process](process.html) framework, including context analysis, risk assessment, and mitigation design. It serves as a template for other de-identification projects.
 
@@ -331,7 +331,7 @@ This section constitutes the **core of the de-identification profile** for Famil
 
 Each element analysis follows a structured approach integrating concepts from the updated handbook:
 
-3.  **Technique Selection**: Choosing appropriate techniques from the [Algorithms](algorithms.html) catalog:
+3.  **Technique Selection**: Choosing appropriate techniques from the [Techniques](techniques.html) catalog:
     -   Suppression techniques (masking, local suppression)
     -   Pseudonymization techniques (irreversible hashing)
 
