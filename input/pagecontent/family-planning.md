@@ -18,7 +18,7 @@ This de-identification profile demonstrates:
 As a de-identification profile, this document fulfills the requirements outlined in [IHE Profile Development Guidance](ihe-use.html) by:
 - Identifying data requirements for the Title X FPAR reporting class of use cases
 - Identifying risks that can be removed through de-identification techniques
-- Specifying residual risks requiring additional protections (controlled access, data use agreements)
+- Specifying residual risks requiring additional protections (controlled access and, where applicable, use constraints defined via award terms, contracts, and/or data use agreements)
 - Defining element-by-element treatment for all data elements in Family Planning CDA documents
 
 The detailed design questions that guide technique selection are organized by attribute type in the **Project and Data Details** subsection under **De-identification Goals**.
@@ -1282,85 +1282,87 @@ This section applies Process Steps 4–5 to the FP pipeline without restating ge
 
 ### Governance
 
+External references used for this Governance section:
+
+- [How are FPAR data kept safe? (PDF, OPA)](https://opa.hhs.gov/sites/default/files/2024-07/How-are-FPAR-data-kept-safe.pdf)
+- [FPAR 2.0 Implementation Guide (Sept 2025) (PDF, OPA)](https://opa.hhs.gov/sites/default/files/2025-12/FPAR-2.0-Implementation-Guide-Sept-2025.pdf)
+
+This governance section is grounded in published Office of Population Affairs (OPA) FPAR 2.0 materials:
+
+- The FPAR 2.0 Implementation Guide (Revised September 2025), which describes annual encounter-level reporting expectations, the purpose of FPAR 2.0, and that FPAR data are presented in summary form to protect confidentiality.
+- The OPA brief “How are FPAR data kept safe?” (Released July 2024), which describes the security and privacy controls governing FPAR 2.0 development and operations, including federal privacy/cybersecurity review, ongoing vulnerability scanning, and contractor incident reporting obligations.
+
+#### Governance Objectives
+
+For the Title X FPAR use case, governance must ensure that:
+
+- Submissions meet the published reporting requirements (who submits, what is submitted, and when).
+- Client confidentiality is protected through the design and operation of the FPAR 2.0 system.
+- The data elements collected for encounter-level reporting do not include direct personal identifiers, and identifying data elements are altered in a way that prevents recovery of original identifying values.
+- The system and its operators comply with HHS and federally mandated IT security and privacy requirements.
+
 #### Governance Framework
 
-**Role Responsibilities**:
+**Roles and responsibilities**:
 
--   **Policy Manager Team**: OPA privacy officials, legal counsel, IT security - establish de-identification policies and standards
--   **Executor Team**: Dedicated de-identification intermediary staff - perform the transformation process
--   **Supervisor/Auditor**: Privacy Officer or designated authority - audit compliance, review incident reports
+- **Grant recipients (data submitters)**: Collect and submit required FPAR 2.0 materials (including encounter-level data) to OPA annually, following the Implementation Guide and the FPAR system’s submission guidance.
+- **OPA (program owner)**: Defines reporting requirements, operates the program, and leads governance for confidentiality, oversight, and program monitoring.
+- **OPA contractors (system developers/operators/maintainers)**: Develop, operate, and maintain the FPAR 2.0 system under the guidance and supervision of OPA, HHS, and the federal government, and protect confidentiality, integrity, and availability in accordance with HHS and federal IT policies.
+- **HHS privacy and IT governance functions (oversight)**: Provide review and approval through established HHS IT processes (e.g., privacy/compliance management, risk management, records management, vulnerability response management) and independent security assessment leading to Authority to Operate (ATO) decisions.
 
-**Access Control and Security Policies**:
+**Evidence expectations** (what governance should be able to demonstrate):
 
--   **Principle of Least Privilege**: Personnel access only data necessary for their roles
--   **Secrets Management**: Cryptographic salts, hash keys stored in secure vault with strict access controls
--   **Secure Data Transfer**: All data transfers encrypted in transit (SFTP/HTTPS)
--   **Data Encryption at Rest**: AES-256 encryption for all datasets at rest
--   **Secure Data Disposal**: DOD-level secure wipe for media containing identifiable data before decommissioning
+- Reporting process evidence: the annual submission workflow is followed and supports the monitoring/reporting purposes described by OPA.
+- Confidentiality-by-design evidence: the submission payload aligns with the cleared element set and does not contain direct personal identifiers.
+- Alteration/de-identification evidence: fields that can increase identifiability (e.g., patient identifier, date of birth, date of service) are transformed/altered consistent with published examples (e.g., birthdate generalized to age in years; visit date generalized to week of year).
 
-**Data Use Agreements**:
--   All Title X recipients must sign data use agreements prohibiting re-identification attempts
--   Agreements specify permitted uses aligned with FPAR reporting purposes
--   Contractual penalties for misuse
--   Regular training for recipients on data handling obligations
+#### Security and Privacy Controls
 
-**Documentation and Record Keeping**:
--   Service request and use case documentation
--   Complete re-identification risk assessment reports
--   Element-by-element technique specification (this document)
--   Configuration parameters and transformation scripts
--   Records of all data transfers and access
--   Validation and approval reports
--   Audit logs with minimum 3-year retention
+**System security governance**:
 
-**Incident Management**:
--   Follow organizational security incident response policy
--   Immediate reporting of suspected or actual privacy breaches
--   Containment procedures for unauthorized data access
--   Post-incident review and corrective action processes
+- **Federal review and approval**: Before collecting FPAR 2.0 data elements, the data collection approach is reviewed, analyzed, and approved by federal offices governing privacy, information collection, cybersecurity, and related IT/data security areas.
+- **Ongoing vulnerability management**: The FPAR system is scanned weekly for compliance and vulnerabilities, managed by a trained and certified federal cybersecurity professional.
+- **HHS authorization processes**: The system undergoes HHS IT processes and third-party security assessment; if checks are passed, the HHS Chief Information Security Officer issues a time-bounded Authority to Operate.
+- **Federal policy alignment**: HHS/OPA systems adhere to federally mandated IT regulations, standards, and guidance (including NIST-aligned guidance and use of a FedRAMP-approved cloud-service provider).
 
-**Compliance and Audit**:
--   Maintain record of processing, DUAs/DPAs, and DPIAs/PIAs as required.
--   Retain immutable logs per policy; schedule independent audits where applicable.
--   Maintain an evidence registry (tests, approvals, risk reports, releases).
+**Access governance** (practical minimums for implementation):
 
-**Metrics and Reviews**:
--   Track incidents, residual-risk trends, small-cell counts, and utility KPIs.
--   Establish a quarterly review cadence; rotate golden datasets used for regression.
+- Limit system and data access to named users with role-appropriate permissions aligned to the submission and operational workflow.
+- Maintain operational logs sufficient to support troubleshooting, incident response, and oversight processes described above.
+
+#### Incident Management
+
+The OPA brief describes contractor incident reporting expectations for the FPAR 2.0 system. Governance for this use case should include:
+
+- **Incident reporting SLAs for system operators/contractors**: Report incidents (and suspected incidents) involving cybersecurity/privacy threats, malicious activity, or loss/unauthorized disclosure/destruction of data to the HHS Computer Security Incident Response Center and OPA within 24 hours.
+- **Containment and corrective actions**: Coordinate containment and remediation with OPA/HHS governance functions and comply with applicable HHS and federal processes.
+
+#### Data Lifecycle and Records Management
+
+- **Data minimization**: Submit only the data elements required for FPAR 2.0 reporting.
+- **Annual destruction**: The OPA brief states that OPA securely destroys grantee-submitted data annually.
+- **Records management alignment**: Retain governance and operational records per applicable HHS processes (including records management) and per any additional organizational policy obligations.
+
+#### Agreements and Use Constraints
+
+- FPAR reporting is required as a condition of accepting Title X grant funding and is included in the Notice of Award.
+- The OPA brief indicates that data-sharing agreements for these types of data are not required for Title X grantees for FPAR reporting.
+- For contractor operations, the OPA brief describes that unauthorized disclosure is subject to HHS sanctions and potential criminal charges, and that contractors must adhere to HHS and federal policies (including rules of behavior and technology procurement security/privacy requirements for IT components).
 
 #### Continuous Improvement
 
-**Periodic Review Triggers**:
--   Annual scheduled review of de-identification approach
--   New re-identification attack methodologies published in literature
--   Changes to public data availability (e.g., new census releases)
--   Technology advances affecting computational re-identification costs
--   Regulatory or policy changes affecting privacy requirements
--   Changes to FPAR reporting requirements necessitating data element modifications
+The FPAR 2.0 materials describe ongoing operation and evolution of both the system and the reporting specifications. Governance should therefore include:
 
-**Threat Evolution Examples**:
--   Sweeney's ZIP+DOB+Sex analysis (historical but foundational)
--   Advances in genetic re-identification techniques
--   Commercial availability of consumer databases for linkage
--   Machine learning advances in pattern recognition
--   Mobile phone location tracking enabling healthcare facility visit correlation
+- **Change monitoring**: Track updates to the Implementation Guide (e.g., revised definitions, added/removed data elements, new system functions such as data validation capabilities) and assess impacts to de-identification transformations and risk controls.
+- **Operational monitoring**: Incorporate the stated weekly scanning and vulnerability management into periodic governance reviews.
+- **Re-authorization cycles**: Plan for recurring HHS authorization/assessment activities (e.g., periodic ATO renewal).
 
-The de-identification landscape is dynamic. What is considered sufficient protection today may become inadequate as technology and available data evolve. The governance framework must include mechanisms for regular reassessment and adaptation.
+#### Integration with the IHE De-Identification Handbook
 
-#### Integration with IHE QRPH Supplement
+This Family Planning analysis remains an application of the handbook’s process framework (context, risk assessment, mitigation design, implementation/validation, governance). Implementers should:
 
-This analysis document provides the rationale and framework for the technical specifications in the IHE QRPH De-Identification for Family Planning Trial Implementation Supplement. Implementers should:
-
-1.  Use the IHE QRPH supplement for precise technical specifications (CDA templates, value sets, transformation rules)
-2.  Refer to this document for understanding the "why" behind each technique selection
-3.  Apply the [Process](process.html) framework when adapting this approach for different contexts or jurisdictions
-4.  Consult the [Techniques](algorithms.html), [Data Types](data-types.html), and [Concepts](concepts.html) chapters for foundational de-identification knowledge
-
-#### Conclusion
-
-The Family Planning de-identification analysis demonstrates a comprehensive, systematic approach to privacy-preserving data sharing for public health reporting. By following the structured process framework - from context analysis through risk assessment to element-by-element mitigation design - the FPAR use case achieves the target identifiability level (Irreversibly Pseudonymized Data) while maintaining analytical utility for program evaluation and policy decisions.
-
-This implementation guide serves as both a specification for the Title X FPAR use case and a template demonstrating how to apply the IHE De-Identification Handbook methodology to other health data secondary use scenarios.
+1. Use the OPA FPAR 2.0 Implementation Guide and OPA security brief as authoritative sources for program reporting expectations and system governance constraints.
+2. Use this handbook’s element-by-element analysis and process steps to design and validate de-identification transformations that satisfy those expectations while maintaining reporting utility.
 
 ### Appendix A: Sample FP CDA documents and their De-Identified documents
 
@@ -1646,14 +1648,7 @@ This section demonstrates the multi-stage de-identification process for a Family
             <patient>
                 <name>
                     <given>Jane</given>
-                    ### Governance
-
-                    Applying Process Step 6 to FP operations:
-
-                    - Roles (application): OPA leads policy; a centralized intermediary operates the de‑identification pipeline; a designated privacy/security officer audits and approves releases.
-                    - Policies (application): DUAs prohibit re‑identification; least‑privilege access; encryption in transit/at rest; secrets (salts/keys) stored in a vault with segregated duties.
-                    - Evidence (application): maintain record of processing, transformation configuration, risk reports (avg risk, k distribution), validation sign‑offs, and immutable audit logs.
-                    - Reviews (application): quarterly review of residual risk and utility KPIs; rotate golden datasets; adjust small‑cell rules and generalization levels when demographics shift or threats evolve.
+                    <!-- Additional patient and clinical content omitted for brevity -->
                         </observation>
                         <observation>
                             <code code="3141-9" displayName="Weight"/>
