@@ -1,5 +1,11 @@
 ### Overview of process
-Projects that need de-identification should follow these steps to define the de-identification process that is appropriate for the project’s intended uses of the de-identified data. This process should be adapted to specific regulatory and legal contexts, such as HIPAA, GDPR, or PIPL.
+This handbook is written primarily for **IHE Profile Editors** developing de-identification profiles. These steps can be used to define de-identification requirements that are consistent, testable, and auditable.
+
+De-identification profiles may be authored as **standalone profiles** or defined as a **de-identification component** within another IHE Profile (e.g., Teaching File or Clinical Trial Export (TCE)). In either case, the same end-to-end analysis is needed and should be adapted to the applicable regulatory and legal context (e.g., HIPAA, GDPR, or PIPL).
+
+This handbook chapter provides a common, reusable process framework and reference models (e.g., data sharing models, risk concepts, and benchmark thresholds). It does not, by itself, resolve project-specific requirements or make jurisdiction-specific determinations (for example, legal interpretation, governance policy, or the exact risk targets and measurement approach). Jurisdiction-specific requirements should be resolved either through the applicable IHE Technical Framework Volume 4 jurisdictional extension, or as explicit project-level requirements when no applicable Volume 4 extension exists. Each implementation project should translate the framework into a project-specific requirements set and a documented set of decisions that can be audited.
+
+For profile development, treat the output of these steps as the basis for **common cross-project profile requirements** (assumptions, conformance criteria, and required controls), while making explicit what remains an **implementation responsibility** (project- and jurisdiction-specific decisions).
 
 1. **Analyze the Context**: Clearly define the purpose for collecting the data, who the data recipients will be, and map the end-to-end data flow. This initial analysis frames the entire de-identification strategy.
 2. **Data Assessment**: Thoroughly evaluate the data content, including its type, sensitivity, and properties. This step includes attack modeling to understand potential threats and vulnerabilities.
@@ -8,6 +14,8 @@ Projects that need de-identification should follow these steps to define the de-
 5. **Design Risk Mitigation and Controls**: Develop a comprehensive mitigation strategy. This includes the technical design of the de-identification process (e.g., algorithms, multi-stage architecture) and the implementation of security policies like access control and data encryption.
 6. **Implementation and Validation**: Implement the designed process, which may involve configuring tools or developing new software. The implementation must be rigorously validated with test data to ensure it functions as expected before operational use.
 7. **Governance, Monitoring, and Review**: Establish a governance framework with clear roles and responsibilities. Continuously monitor the process in operation, audit for compliance, and periodically review the strategy to adapt to evolving threats and technologies.
+
+> Note on non-public releases: When data is shared with identified recipients (e.g., research partners) it is common and often required to include **contractual controls** (e.g., a Data Use Agreement / Data Sharing Agreement / Data Permit). In this handbook, those controls are treated as part of the overall risk mitigation design and as required **release artifacts** that accompany the dataset.
 
 ### Analyze the context
 The dataset's context refers to the environment in which the data is stored and transferred. To understand the complete situation, it's essential to analyze the purpose of data collection, the data recipients, and the data flow.
@@ -23,13 +31,20 @@ Data recipients are the individuals, groups, or organizations who will use the d
 - **Relationship to Custodian**: The relationship between the data custodian and the recipients (e.g., internal department, external research partner), as this affects the required contractual and security controls.
 - **Background Knowledge**: An assessment of the recipients' background knowledge, which could be used in re-identification attempts.
 
+In addition, for any **non-public** or **controlled** sharing model, define the **recipient onboarding controls**, including whether a **Data Use Agreement (DUA)** (or equivalent data sharing contract) is required and who is responsible for obtaining and storing the executed agreement.
+
+In most organizations, the DUA is how you make “controlled sharing” enforceable. Typical clauses include: permitted purpose; prohibition on re-identification and onward sharing; authorized users; minimum security controls; incident notification; retention and disposal requirements; and audit/attestation expectations. The DUA should be reviewed by appropriate legal/privacy stakeholders for the jurisdiction.
+
+For example, under HIPAA a *Limited Data Set* disclosure requires a data use agreement (see 45 CFR 164.514(e)(4)).
+
 #### Data flow
 Describe the end-to-end data flow, from original source to final recipients. A clear data flow diagram helps identify risks at each stage. Key components to analyze include:
 
 - **Data Source**: Where the data originates. Document the source's profile and any existing agreements regarding de-identification.
+- **Multi-source integration flow**: If data is collected from multiple sources, document how sources are onboarded, where data is merged, and which controls apply before and after integration.
 - **Data Environments**: The physical or virtual locations where data is stored, processed, and transferred. Each environment (e.g., landing zone, processing zone, analysis zone) has its own risk profile based on its infrastructure, access controls, and governance.
 - **Multi-stage Requirements**: Identify if the data flow requires de-identification to occur at multiple points, for instance, initial redaction at the source and further pseudonymization by a central team.
-- **Regulatory Constraints**: Analyze any domain-specific policies or legal requirements that apply to the data flow, especially concerning cross-border data transfers.
+- **Regulatory Constraints**: Analyze any domain-specific policies or legal requirements that apply to the data flow, especially concerning cross-border data transfers, and document whether jurisdiction-specific constraints are addressed by applicable Volume 4 extension text or by project-level requirements.
 
 ### Data assessment
 A thorough assessment of the data itself is a prerequisite for designing an effective de-identification strategy.
@@ -59,6 +74,14 @@ Identify all distinct types of data being collected (e.g., structured records, i
 - File names and directory paths.
 - Metadata embedded in files.
 - Linked documents, such as case report forms associated with images.
+
+##### Multi-source integration assessment
+When data from multiple sources is combined, assess each source independently and the integrated dataset as a whole. The same de-identification process applies, but additional integration checks are needed.
+
+- **Source-specific identifier patterns**: Different sources may expose different direct and quasi-identifiers, including source-specific metadata.
+- **Harmonization decisions**: Document schema mappings, code/value harmonization, unit normalization, and time normalization choices.
+- **Linkage and de-duplication policy**: Define how records are linked across sources and when de-duplication occurs relative to pseudonymization.
+- **Post-integration risk reassessment**: Re-evaluate re-identification risk after integration, since cross-source linkage can create new quasi-identifier combinations.
 
 ##### Data attribute type
 For each data attribute, perform a classification to understand its potential for re-identification. This is a critical step that informs the entire risk assessment and mitigation design. Attributes are typically classified as:
@@ -112,6 +135,8 @@ Goals should balance privacy protection with data utility.
 #### Determine specific goals
 Translate the general goals into concrete, measurable targets for the specific project. To achieve this, a requirements document should be created, addressing the following questions:
 
+Where standards, profiles, or organizational policies define common requirements for a domain or release model, they can be used as starting points. Projects should still explicitly identify and document the project-specific deltas (e.g., intended uses, recipients, jurisdictions, data types, and risk criteria).
+
 - **Project Scope and Data Needs**:
     -   What data must be retained to satisfy the primary needs of the project?
     -   What are the legal sensitivities that apply? Is the data subject to special rules, such as for behavioral health?
@@ -132,7 +157,7 @@ Translate the general goals into concrete, measurable targets for the specific p
 
     - **Factor 2: Potential Impact of Re-identification**: The potential harm that could result from re-identification is the second key factor. A dataset containing highly sensitive information requires a more conservative threshold than one with low sensitivity. To assess the potential impact, consider factors such as the sensitivity of the information, the scope and level of detail, the potential for tangible harm (e.g., financial loss, discrimination, reputational damage), and whether individuals consented to this specific secondary use of their data.
 
-    - **Benchmark Risk Thresholds**: Based on these factors, the following table, adapted from international standards like [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559), provides benchmark thresholds. It is crucial to document the rationale for selecting a specific threshold.
+    - **Benchmark Risk Thresholds**: Based on these factors, the following table, adapted from international standards like [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559), provides benchmark thresholds. Treat these values as reference guidance and finalize the applicable threshold and measurement approach for the project’s jurisdiction, regulator expectations, and contractual controls. It is crucial to document the rationale for selecting a specific threshold.
 
 | Scenario | Possibility of Attack & Potential Impact | Risk Threshold |
 | :--- | :--- | :--- |
@@ -204,7 +229,7 @@ When using k-anonymity, data risk is calculated by analyzing the size of the "eq
 - **Proportion of higher risk records (R<sub>a</sub><sup>d</sup>)**: The proportion of records that have a re-identification probability higher than a threshold τ. R<sub>a</sub><sup>d</sup> = (1 / n) Σ<sub>j∈J</sub> f<sub>j</sub> × I(θ<sub>j</sub> &gt; τ)
 
 
-The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metric R<sub>a</sub><sup>d</sup>, R<sub>b</sub><sup>d</sup>, R<sub>c</sub><sup>d</sup> becomes the value for R<sub>d</sub> used in the overall risk calculation. The most challenging aspect of calculating re-identification risk is estimating the population equivalence class size F<sub>j</sub>. A practical approach to avoid complex estimation is to use f<sub>j</sub> (the sample equivalence class size) even when the attacker does not know if the target is in the sample. While this approach overestimates the data risk, it may be acceptable for large dataset releases. However, in healthcare settings with relatively small datasets, simply using f<sub>j</sub> as a substitute is typically not acceptable due to the excessive conservatism it introduces. 
+The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metrics R<sub>a</sub><sup>d</sup>, R<sub>b</sub><sup>d</sup>, R<sub>c</sub><sup>d</sup> become the value for R<sup>d</sup> used in the overall risk calculation. The most challenging aspect of calculating re-identification risk is estimating the population equivalence class size F<sub>j</sub>. A practical approach to avoid complex estimation is to use f<sub>j</sub> (the sample equivalence class size) even when the attacker does not know if the target is in the sample. While this approach overestimates the data risk, it may be acceptable for large dataset releases. However, in healthcare settings with relatively small datasets, simply using f<sub>j</sub> as a substitute is typically not acceptable due to the excessive conservatism it introduces. 
 
 ***For Differential Privacy:***
 
@@ -421,6 +446,18 @@ Data must be protected in transit. Use secure, approved methods for transferring
 - Encrypted transfer over a secure network (e.g., SFTP, HTTPS).
 - Use of hardware-encrypted storage devices for physical transfers, with passwords shared separately.
 
+##### Release package (what ships with the dataset)
+For controlled sharing, the dataset should be released as a **package** that includes both technical artifacts and governance artifacts, such as data permit of EHDS. As a minimum, include:
+
+- The de-identified dataset (and a clear dataset version identifier).
+- A data dictionary / schema description (including known limitations and de-identification impacts).
+- A **De-identification & Risk Summary** (or equivalent release decision record) documenting the sharing model, thresholds, key transformations applied, residual risk statements, and approvals.
+- The **executed Data Use Agreement (DUA)** (or a link/reference to the authoritative executed copy) covering the recipient(s) and the specific dataset version.
+
+The release decision should be treated as incomplete until the recipient has agreed to the DUA terms and the organization has recorded the executed agreement.
+
+**Caution on releasing detailed risk reports:** A full Re-identification Risk Assessment Report may contain information (e.g., rare-category findings, high-risk equivalence classes, or linkage assumptions) that could increase a recipient’s ability to target records. As a default, treat the full report as a **controlled internal record** and provide recipients only the **minimum necessary** transparency (e.g., a summary/attestation and a transformation description) consistent with the sharing model and recipient trust level. If a detailed report must be shared (e.g., for regulator review or a formal independent verification), share a **redacted/sanitized** version.
+
 ##### Data encryption
 Data must be protected at rest. Use strong, industry-standard encryption algorithms like AES-256 to encrypt datasets before storage or transfer.
 
@@ -428,7 +465,9 @@ Data must be protected at rest. Use strong, industry-standard encryption algorit
 Unsecure data disposal can lead to breaches. Follow a formal data disposal policy, using tools that perform a secure, multi-pass wipe (e.g., DoD-level wipe) to permanently erase data from media before it is decommissioned.
 
 ### Implementation
-IHE has profiles, such as the imaging teaching files profile, for some of the common de-identification situations. DICOM has identified some common intended use requirements and defined de-identification profiles for these situations. Other organizations have published their de-identification profiles. When developing project-specific de-identification profiles, these can be a good starting point.
+IHE has profiles, such as the imaging teaching files profile, for some common de-identification situations. DICOM has identified some common intended use requirements and defined de-identification profiles for these situations. In addition, standards bodies, regulators, and national statistical agencies often publish **de-identification guidance** (profiles, checklists, or disclosure-control rules) for particular domains and release models. These materials are useful for defining common cross-project requirements, but they do not remove the need for project-specific decisions. When developing a project-specific de-identification profile or plan, validate any borrowed requirements against the project’s purpose, recipients, and legal/regulatory context.
+
+For IHE Profile Editors, this means a de-identification profile (whether standalone or embedded within another IHE Profile) should normatively define the common requirements it intends to cover, the assumptions it makes about context and recipients, and the conformance criteria it expects implementations to meet.
 
 This document covers the general, high-level de-identification process and design guidance. It does not prescribe detailed organizational procedures, specific software deployments, or staffing models. Established methodologies (e.g., project management and safety risk analysis) should be applied to the deployment of de-identification processes; there is usually no need to invent new, unfamiliar processes for the organization.
 
@@ -437,6 +476,10 @@ A strong governance framework is essential for ensuring that the de-identificati
 
 #### General principles
 The de-identification program should be founded on principles of accountability, fairness, and transparency, in alignment with the organization's overall data governance and privacy policies.
+
+#### Secure processing environment
+De-identification and pre-release validation should be performed in a secure processing environment with defined controls for access, data handling, system hardening, monitoring, and auditability. As a governance baseline in healthcare settings, organizations should align these controls with [(ISO 27799, 2025)](references.html#ISO27799) and applicable legal/regulatory requirements.
+For multi-source data collection, governance should also require documented source onboarding criteria, provenance tracking, and auditable integration/harmonization decisions.
 
 #### Role responsibilities and people management
 Clearly define roles and responsibilities to ensure accountability. Key roles often include:
@@ -473,9 +516,11 @@ Therefore, the process must be continuously monitored and periodically audited. 
 #### Documentation and Record Keeping
 Maintain thorough documentation of the entire process for accountability, auditing, and compliance. Essential records include:
 - The initial service request and data use case description.
-- The full Re-identification Risk Assessment Report.
+- The full Re-identification Risk Assessment Report (controlled internal record).
+- Any external-facing De-identification & Risk Summary / attestation provided to recipients (including what was redacted and why, if applicable).
 - The element-by-element de-identification design specification.
 - Scripts and configuration parameters used for the transformation.
+- Executed Data Use Agreements (DUAs) / data sharing agreements for each recipient (or a controlled reference to where they are stored).
 - Records of all data transfers, access, and disposal.
 - Validation and approval reports.
 
