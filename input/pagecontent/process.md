@@ -76,7 +76,7 @@ Identify all distinct types of data being collected (e.g., structured records, i
 - Linked documents, such as case report forms associated with images.
 
 ##### Multi-source integration assessment
-When data from multiple sources is combined, assess both each source independently and the integrated dataset as a whole. The same de-identification process applies, but additional integration checks are needed.
+When data from multiple sources is combined, assess each source independently and the integrated dataset as a whole. The same de-identification process applies, but additional integration checks are needed.
 
 - **Source-specific identifier patterns**: Different sources may expose different direct and quasi-identifiers, including source-specific metadata.
 - **Harmonization decisions**: Document schema mappings, code/value harmonization, unit normalization, and time normalization choices.
