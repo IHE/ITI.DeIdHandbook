@@ -15,7 +15,7 @@ For profile development, treat the output of these steps as the basis for **comm
 6. **Implementation and Validation**: Implement the designed process, which may involve configuring tools or developing new software. The implementation must be rigorously validated with test data to ensure it functions as expected before operational use.
 7. **Governance, Monitoring, and Review**: Establish a governance framework with clear roles and responsibilities. Continuously monitor the process in operation, audit for compliance, and periodically review the strategy to adapt to evolving threats and technologies.
 
-> Note on non-public releases: When data is shared with identified recipients (e.g., research partners) it is common and often required to include **contractual controls** (e.g., a Data Use Agreement / Data Sharing Agreement). In this handbook, those controls are treated as part of the overall risk mitigation design and as required **release artifacts** that accompany the dataset.
+> Note on non-public releases: When data is shared with identified recipients (e.g., research partners) it is common and often required to include **contractual controls** (e.g., a Data Use Agreement / Data Sharing Agreement / Data Permit). In this handbook, those controls are treated as part of the overall risk mitigation design and as required **release artifacts** that accompany the dataset.
 
 ### Analyze the context
 The dataset's context refers to the environment in which the data is stored and transferred. To understand the complete situation, it's essential to analyze the purpose of data collection, the data recipients, and the data flow.
@@ -447,7 +447,7 @@ Data must be protected in transit. Use secure, approved methods for transferring
 - Use of hardware-encrypted storage devices for physical transfers, with passwords shared separately.
 
 ##### Release package (what ships with the dataset)
-For controlled sharing, the dataset should be released as a **package** that includes both technical artifacts and governance artifacts. As a minimum, include:
+For controlled sharing, the dataset should be released as a **package** that includes both technical artifacts and governance artifacts, such as data permit of EHDS. As a minimum, include:
 
 - The de-identified dataset (and a clear dataset version identifier).
 - A data dictionary / schema description (including known limitations and de-identification impacts).
