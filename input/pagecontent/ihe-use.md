@@ -10,15 +10,15 @@ This section defines the minimum content an IHE de-identification profile must i
 - **Risk targets**: Recommended reference thresholds and measurement approaches for expected sharing models (public, controlled, enclave), including how conformance can be judged (e.g., `k`-anonymity metrics or differential privacy budgets).
 - **Residual risks and controls**: Risks that cannot be removed in data alone and therefore require policy, contractual, or environmental controls (access control, encryption, secrets management, data disposal).
 
-IHE profiles define reusable technical requirements in anticipation of common use cases, but they do not resolve project-specific de-identification decisions, establish governance policy, or interpret applicable law for each jurisdiction. Implementers remain responsible for determining project-specific requirements and mapping profile requirements to local legal, regulatory, contractual, and organizational obligations.
-Accordingly, risk targets and measurement choices in a profile should be treated as reference guidance and adjusted during implementation to fit the applicable jurisdiction.
+IHE profiles define reusable technical requirements in anticipation of common use cases, but they do not resolve project-specific de-identification decisions, establish governance policy, or interpret applicable law for each jurisdiction. Jurisdiction-specific requirements should be resolved either through the applicable IHE Technical Framework Volume 4 jurisdictional extension, or as explicit project-level requirements when no applicable Volume 4 extension exists. Implementers remain responsible for mapping profile requirements to local legal, regulatory, contractual, and organizational obligations.
+Accordingly, risk targets and measurement choices in a profile should be treated as reference guidance and finalized through the applicable Volume 4 jurisdictional extension and/or project-level implementation requirements.
 
 Profiles will often be detailed documents (tens of pages) and should be structured so implementers can trace requirements to specific transformations and controls.
 
 ### Aligning Profiles to the Handbook Process
 This section explains how profile editors should derive and justify profile requirements using the handbook’s step-by-step process.
 Profiles should reference and operationalize the steps summarized in the multi-stage process (see process overview):
-- **Context analysis**: Define intended uses, recipients, and end-to-end data flows; identify common profile requirements and project-specific deltas; capture regulatory constraints (HIPAA/GDPR/PIPL) and intermediary organizations.
+- **Context analysis**: Define intended uses, recipients, and end-to-end data flows; identify common profile requirements and project-specific deltas; capture applicable regulatory constraints and intermediary organizations; and document whether jurisdiction-specific constraints are addressed by Volume 4 extension text or by project-level requirements.
 - **Data assessment**: Call out challenging types (longitudinal, free text, imaging, binary) and classify attributes as Direct Identifiers, Quasi-Identifiers, Sensitive Attributes, or Non-Identifiers.
 - **Goals and thresholds**: Translate general goals (prevent identification, control risk, preserve utility) into measurable targets with documented reference thresholds (e.g., benchmark thresholds adapted from ISO/IEC 27559 for public vs non-public releases), and require jurisdiction-specific adjustment at implementation time.
 - **Risk assessment**: Specify how qualitative checks lead to quantitative evaluation when QIs remain, and which metrics/budgets are used (e.g., `R = R<sup>d</sup> × R<sup>c</sup>` for k-anonymity or an `ε` privacy budget for differential privacy).
@@ -60,7 +60,7 @@ Starting from a generic profile reduces effort and error and allows the implemen
 
 ### Profile Editor Checklist
 - Define the common cross-project requirements the profile is intended to cover, and explicitly identify project-specific requirements that must be handled by implementers.
-- Document jurisdictional and governance boundaries: use IHE profile requirements as technical guidance, and separately apply local legal/regulatory interpretation and organizational policy.
+- Document jurisdictional and governance boundaries: use IHE profile requirements as technical guidance, and resolve jurisdiction-specific requirements either in the applicable Volume 4 extension or in project-level requirements; separately apply local legal/regulatory interpretation and organizational policy.
 - Define intended uses, recipients, and data flow; note regulatory constraints and intermediaries.
 - Enumerate data types (structured, free text, imaging, binary) and classify attributes (DI, QI, SA, NI).
 - Decide single-stage vs multi-stage: if single-stage, confirm it combines preliminary and advanced processing with both analyses applied; if multi-stage, map element treatments to each stage (1, 2, 3).

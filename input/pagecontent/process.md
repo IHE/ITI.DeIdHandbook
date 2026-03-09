@@ -3,7 +3,7 @@ This handbook is written primarily for **IHE Profile Editors** developing de-ide
 
 De-identification profiles may be authored as **standalone profiles** or defined as a **de-identification component** within another IHE Profile (e.g., Teaching File or Clinical Trial Export (TCE)). In either case, the same end-to-end analysis is needed and should be adapted to the applicable regulatory and legal context (e.g., HIPAA, GDPR, or PIPL).
 
-This handbook chapter provides a common, reusable process framework and reference models (e.g., data sharing models, risk concepts, and benchmark thresholds). It does not, by itself, resolve project-specific requirements or make jurisdiction-specific determinations (for example, legal interpretation, governance policy, or the exact risk targets and measurement approach). Each implementation project should translate the framework into a project-specific requirements set and a documented set of decisions that can be audited.
+This handbook chapter provides a common, reusable process framework and reference models (e.g., data sharing models, risk concepts, and benchmark thresholds). It does not, by itself, resolve project-specific requirements or make jurisdiction-specific determinations (for example, legal interpretation, governance policy, or the exact risk targets and measurement approach). Jurisdiction-specific requirements should be resolved either through the applicable IHE Technical Framework Volume 4 jurisdictional extension, or as explicit project-level requirements when no applicable Volume 4 extension exists. Each implementation project should translate the framework into a project-specific requirements set and a documented set of decisions that can be audited.
 
 For profile development, treat the output of these steps as the basis for **common cross-project profile requirements** (assumptions, conformance criteria, and required controls), while making explicit what remains an **implementation responsibility** (project- and jurisdiction-specific decisions).
 
@@ -44,7 +44,7 @@ Describe the end-to-end data flow, from original source to final recipients. A c
 - **Multi-source integration flow**: If data is collected from multiple sources, document how sources are onboarded, where data is merged, and which controls apply before and after integration.
 - **Data Environments**: The physical or virtual locations where data is stored, processed, and transferred. Each environment (e.g., landing zone, processing zone, analysis zone) has its own risk profile based on its infrastructure, access controls, and governance.
 - **Multi-stage Requirements**: Identify if the data flow requires de-identification to occur at multiple points, for instance, initial redaction at the source and further pseudonymization by a central team.
-- **Regulatory Constraints**: Analyze any domain-specific policies or legal requirements that apply to the data flow, especially concerning cross-border data transfers.
+- **Regulatory Constraints**: Analyze any domain-specific policies or legal requirements that apply to the data flow, especially concerning cross-border data transfers, and document whether jurisdiction-specific constraints are addressed by applicable Volume 4 extension text or by project-level requirements.
 
 ### Data assessment
 A thorough assessment of the data itself is a prerequisite for designing an effective de-identification strategy.
