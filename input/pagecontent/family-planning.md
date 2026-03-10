@@ -1282,87 +1282,12 @@ This section applies Process Steps 4–5 to the FP pipeline without restating ge
 
 ### Governance
 
-External references used for this Governance section:
+This section is a hypothetical governance placeholder for this handbook example and is not an official description of Office of Population Affairs (OPA), HHS, or other U.S. government operations. Governance details for FPAR should be taken from official OPA publications and applicable federal policy.
+
+References:
 
 - [How are FPAR data kept safe? (PDF, OPA)](https://opa.hhs.gov/sites/default/files/2024-07/How-are-FPAR-data-kept-safe.pdf)
 - [FPAR 2.0 Implementation Guide (Sept 2025) (PDF, OPA)](https://opa.hhs.gov/sites/default/files/2025-12/FPAR-2.0-Implementation-Guide-Sept-2025.pdf)
-
-This governance section is grounded in published Office of Population Affairs (OPA) FPAR 2.0 materials:
-
-- The FPAR 2.0 Implementation Guide (Revised September 2025), which describes annual encounter-level reporting expectations, the purpose of FPAR 2.0, and that FPAR data are presented in summary form to protect confidentiality.
-- The OPA brief “How are FPAR data kept safe?” (Released July 2024), which describes the security and privacy controls governing FPAR 2.0 development and operations, including federal privacy/cybersecurity review, ongoing vulnerability scanning, and contractor incident reporting obligations.
-
-#### Governance Objectives
-
-For the Title X FPAR use case, governance must ensure that:
-
-- Submissions meet the published reporting requirements (who submits, what is submitted, and when).
-- Client confidentiality is protected through the design and operation of the FPAR 2.0 system.
-- The data elements collected for encounter-level reporting do not include direct personal identifiers, and identifying data elements are altered in a way that prevents recovery of original identifying values.
-- The system and its operators comply with HHS and federally mandated IT security and privacy requirements.
-
-#### Governance Framework
-
-**Roles and responsibilities**:
-
-- **Grant recipients (data submitters)**: Collect and submit required FPAR 2.0 materials (including encounter-level data) to OPA annually, following the Implementation Guide and the FPAR system’s submission guidance.
-- **OPA (program owner)**: Defines reporting requirements, operates the program, and leads governance for confidentiality, oversight, and program monitoring.
-- **OPA contractors (system developers/operators/maintainers)**: Develop, operate, and maintain the FPAR 2.0 system under the guidance and supervision of OPA, HHS, and the federal government, and protect confidentiality, integrity, and availability in accordance with HHS and federal IT policies.
-- **HHS privacy and IT governance functions (oversight)**: Provide review and approval through established HHS IT processes (e.g., privacy/compliance management, risk management, records management, vulnerability response management) and independent security assessment leading to Authority to Operate (ATO) decisions.
-
-**Evidence expectations** (what governance should be able to demonstrate):
-
-- Reporting process evidence: the annual submission workflow is followed and supports the monitoring/reporting purposes described by OPA.
-- Confidentiality-by-design evidence: the submission payload aligns with the cleared element set and does not contain direct personal identifiers.
-- Alteration/de-identification evidence: fields that can increase identifiability (e.g., patient identifier, date of birth, date of service) are transformed/altered consistent with published examples (e.g., birthdate generalized to age in years; visit date generalized to week of year).
-
-#### Security and Privacy Controls
-
-**System security governance**:
-
-- **Federal review and approval**: Before collecting FPAR 2.0 data elements, the data collection approach is reviewed, analyzed, and approved by federal offices governing privacy, information collection, cybersecurity, and related IT/data security areas.
-- **Ongoing vulnerability management**: The FPAR system is scanned weekly for compliance and vulnerabilities, managed by a trained and certified federal cybersecurity professional.
-- **HHS authorization processes**: The system undergoes HHS IT processes and third-party security assessment; if checks are passed, the HHS Chief Information Security Officer issues a time-bounded Authority to Operate.
-- **Federal policy alignment**: HHS/OPA systems adhere to federally mandated IT regulations, standards, and guidance (including NIST-aligned guidance and use of a FedRAMP-approved cloud-service provider).
-
-**Access governance** (practical minimums for implementation):
-
-- Limit system and data access to named users with role-appropriate permissions aligned to the submission and operational workflow.
-- Maintain operational logs sufficient to support troubleshooting, incident response, and oversight processes described above.
-
-#### Incident Management
-
-The OPA brief describes contractor incident reporting expectations for the FPAR 2.0 system. Governance for this use case should include:
-
-- **Incident reporting SLAs for system operators/contractors**: Report incidents (and suspected incidents) involving cybersecurity/privacy threats, malicious activity, or loss/unauthorized disclosure/destruction of data to the HHS Computer Security Incident Response Center and OPA within 24 hours.
-- **Containment and corrective actions**: Coordinate containment and remediation with OPA/HHS governance functions and comply with applicable HHS and federal processes.
-
-#### Data Lifecycle and Records Management
-
-- **Data minimization**: Submit only the data elements required for FPAR 2.0 reporting.
-- **Annual destruction**: The OPA brief states that OPA securely destroys grantee-submitted data annually.
-- **Records management alignment**: Retain governance and operational records per applicable HHS processes (including records management) and per any additional organizational policy obligations.
-
-#### Agreements and Use Constraints
-
-- FPAR reporting is required as a condition of accepting Title X grant funding and is included in the Notice of Award.
-- The OPA brief indicates that data-sharing agreements for these types of data are not required for Title X grantees for FPAR reporting.
-- For contractor operations, the OPA brief describes that unauthorized disclosure is subject to HHS sanctions and potential criminal charges, and that contractors must adhere to HHS and federal policies (including rules of behavior and technology procurement security/privacy requirements for IT components).
-
-#### Continuous Improvement
-
-The FPAR 2.0 materials describe ongoing operation and evolution of both the system and the reporting specifications. Governance should therefore include:
-
-- **Change monitoring**: Track updates to the Implementation Guide (e.g., revised definitions, added/removed data elements, new system functions such as data validation capabilities) and assess impacts to de-identification transformations and risk controls.
-- **Operational monitoring**: Incorporate the stated weekly scanning and vulnerability management into periodic governance reviews.
-- **Re-authorization cycles**: Plan for recurring HHS authorization/assessment activities (e.g., periodic ATO renewal).
-
-#### Integration with the IHE De-Identification Handbook
-
-This Family Planning analysis remains an application of the handbook’s process framework (context, risk assessment, mitigation design, implementation/validation, governance). Implementers should:
-
-1. Use the OPA FPAR 2.0 Implementation Guide and OPA security brief as authoritative sources for program reporting expectations and system governance constraints.
-2. Use this handbook’s element-by-element analysis and process steps to design and validate de-identification transformations that satisfy those expectations while maintaining reporting utility.
 
 ### Appendix A: Sample FP CDA documents and their De-Identified documents
 
