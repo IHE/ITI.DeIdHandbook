@@ -196,6 +196,7 @@ Usage: #inline
 * identifier.system = "urn:oid:1.3.6.1.4.1.21367.2011.2.5.5639"
 * identifier.value = "IHEEX-33159"
 * active = true
+* name.use = #anonymous
 * name.text = "PseudoFamily"
 * name.family = "PseudoFamily"
 * name.given = "PseudoGiven"

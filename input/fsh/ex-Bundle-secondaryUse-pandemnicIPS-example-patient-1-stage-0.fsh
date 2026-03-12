@@ -194,6 +194,7 @@ Usage: #example
 * identifier.system = "urn:oid:1.3.6.1.4.1.21367.2011.2.5.5639"
 * identifier.value = "IHEEX-33159"
 * active = true
+* name.use = #official
 * name.text = "Patricia Jordana"
 * name.family = "Jordana"
 * name.given = "Patricia"
@@ -202,8 +203,17 @@ Usage: #example
 * telecom.use = #mobile
 * gender = #female
 * birthDate = "1996-05-01"
+* address.use = #home 
+* address.line = "Grenzstraße"
+* address.city = "Oberhausen"
+* address.postalCode = "46045"
+* address.country = "DEU"
 * deceasedDateTime = "2024-06-30"
 * generalPractitioner = Reference(urn:uuid:9e57d970-d0ae-4a36-908f-1cad06f94f28) "Yaser, Joseph"
+* maritalStatus = $v3-MaritalStatus#S "Never Married"
+* contact.relationship = $v2-0131#U
+* contact.relationship.text = "Friend of family"
+* contact.name.text = "Joe Smith"
 
 Instance: fd584c2f-5814-425d-9b00-0a5b1a6effee
 InstanceOf: PractitionerUvIps
