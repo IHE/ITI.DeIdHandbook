@@ -23,7 +23,7 @@ This handbook explains a practical, multi-stage process for reducing individuall
 
 - **Concepts**: See [Concepts](concepts.html) for key terms, identifiability levels, residual risk notions, and threat models that frame decision-making.
 - **Process**: See [Process](process.html) for the stage-by-stage workflow (context analysis → data assessment → risk modeling → design → validation → operation) and gating criteria.
-- **Techniques**: See [Techniques](algorithms.html) for techniques organized by data type (structured, text, imaging) and use-case constraints.
+- **Techniques**: See [Techniques](techniques.html) for techniques organized by data type (structured, text, imaging) and use-case constraints.
 - **IHE Use Guidance**: See [IHE Profile Editor Guidance](ihe-use.html) for what a profile must define (sources, treatments, risks, operational controls) and when single-stage can suffice.
 - **Worked Example**: See [IPS + EHDS2 Exemplar](ips-ehds-example.html) for a concise profile demonstrating purpose, recipients, multi-stage process, risk thresholds, and element-by-element treatment.
 
@@ -54,7 +54,7 @@ Even in single-stage designs, perform both preliminary and advanced analyses; se
 
 ### Validation and Monitoring
 
-Validation must occur early in design, at go-live, and during operations. Data characteristics shift over time; monitoring helps maintain effectiveness. IHE profiles can assist by removing unnecessary content and by offering guidance for common intended uses, but local validation remains essential. See [Process](process.html) and [De-Identification Techniques](algorithms.html).
+Validation must occur early in design, at go-live, and during operations. Data characteristics shift over time; monitoring helps maintain effectiveness. IHE profiles can assist by removing unnecessary content and by offering guidance for common intended uses, but local validation remains essential. See [Process](process.html) and [De-Identification Techniques](techniques.html).
 
 ### Re-Use Caveat
 
