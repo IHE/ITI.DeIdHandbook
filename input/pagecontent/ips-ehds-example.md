@@ -121,9 +121,9 @@ Once a Data Permit is granted, the third phase, Data Preparation, begins. The HD
 
 Released dataset classification: Irreversibly Pseudonymized Data for non-public controlled sharing, meeting average risk ≤ 0.075 with safeguards. Residual risks are managed via suppression/generalization and contractual controls; utility confirmed for population metrics and longitudinal trends.
 
-### Data assessment
+### Data Assessment
 
-#### Data content
+#### Data Content
 
 The Dataset is primarily structured clinical data from IPS (FHIR R4) and mortality attributes from VRDR (FHIR R4). It is longitudinal (multiple records per subject across time), minimizes free text (procedure descriptions removed), excludes imaging, and contains no binary device logs. Semi-structured risks (filenames, metadata) are minimized by standardized export and HDAB processing.
 
@@ -140,15 +140,21 @@ Policy for secondary use includes data minimisation for the use of secondary hea
 - Insurance information will be omitted for data-minimization
 - Given the potential for identifying health risks to come subjects of care, the data is to be reversibly pseudonymized to support tracking of patient care related to the event across health care facilities and settings.
 
-##### Problems
+##### Clinical Content
 
+**Problems**
 - Problems will be key to determining primary conditions, symptoms, co-morbidities, and clinical outcomes.
 - Conditions will be reviewed for potential identifiable outliers for suppression.
-- Procedures
-- Medications
-  - Medications are needed to identify treatment and contraindication impact
 
+**Procedures**
+- Procedures will be reviewed for interventions and comorbidities
+- Procedures will be reviewed for potential identifiable outliers for suppression.
+
+**Medications**
+- Medications are needed to identify treatment and contraindication impact
 - Dates associated with medications are relative to incident and treatment dates. Data is collected but protected by data-shifting the study records
+
+**Allergies**
 - Other attributes associated with Allergies and intolerances are removed for data-minimization
 - Allergies and intolerances will support clinical outcome measures
   - Allergy Agent
@@ -156,30 +162,34 @@ Policy for secondary use includes data minimisation for the use of secondary hea
   - Reaction
   - Other attributes associated with Allergies and intolerances are removed for data-minimization
 
-###### Results
-
+**Results**
 - Observation resulted is needed to inform the detection of infectious agents and clinical metrics
 - Observation value is needed for metrics
 - Observation date is needed relative to incident and treatment dates. Data is collected but protected by data-shifting the study records
 - Other attributes associated with Results are removed for data minimization
 
-###### Immunizations
-
+**Immunizations**
 - Vaccine for type of disease is needed to assess treatments and measure mitigation results
 - Date of immunization is needed relative to incident and treatment dates. Data is collected but protected by data-shifting the study records
 - Other attributes associated with Immunizations are removed for data minimization
+
+**Medical Devices**
 - Medical Devices are not needed for the study
   - This section may be empty with a data absent reason of 'masked'
+
+**Social History**
 - Social History lifestyle factor information is needed to measure potential environmental impact including
   - Occupation either usual occupation or current occupation is needed to identify incidents and to help identify risk factors associated with identified occupations
   - Industry either usual industry or current industry is needed to identify incidents and to help identify risk factors associated with identified occupations
-
 - Occupation and Industry will be reviewed for outliers and suppressed
 - All other attributes associated with Social History are removed for data minimization
-- Pregnancy History
+
+**Pregnancy History**
   - Pregnancy status pregnancy information is needed for the study to review potential impact of the incident on pregnancy
   - Estimated Delivery date is needed relative to incident and treatment dates. Data is collected but protected by data-shifting the study records
   - Other attributes associated with Pregnancy History are removed for data minimization
+
+##### Death Record Content
 - Mortality data is available through vital records offices. The mortality data will include:
   - Pseudonymized name
   - Pseudonymized identifier
@@ -215,12 +225,12 @@ Distinct types include structured records (IPS sections: Patient, Problems, Proc
 
 ### Goals and Thresholds
 
-#### General goals
+#### General Goals
 - Prevent Identification: remove or transform DIs and reduce QI combinability.
 - Control Risk: meet non-public average thresholds with outlier protections.
 - Preserve Utility: maintain longitudinal and outcomes analyses for permitted research.
 
-#### Determine specific goals
+#### Determine Specific Goals
 - Entities: patients (primary), providers/facilities (as needed to avoid indirect identification).
 - All unspecified IPS data elements are removed for data minimization.
 - Identifiability target: Irreversibly Pseudonymized Data (see [Concepts](concepts.html#Identifiability)).
@@ -328,24 +338,24 @@ Compare overall risk to threshold: enforce average risk ≤ 0.075 while controll
 
 For aggregate publication, apply Differential Privacy to counts/rates using a strict ε consistent with context risk; document privacy budgets and composition across queries.
 
-##### Calculating data risk
+##### Calculating Data Risk
 Use per-record risk θᵢ = 1/fᵢ with class size fᵢ; compute maximum risk R\_{d,b} and average risk R\_{d,c} across classes; select R\_{d,c} for non-public sharing and control high-risk outliers.
 
-##### Calculating context risk
+##### Calculating Context Risk
 Estimate R\_c = max(T1 deliberate, T2 inadvertent, T3 breach) per [Process](process.html). For permit-based controlled sharing, R\_c < 1 due to contractual and technical controls; document the rationale and safeguards.
 
-##### Calculating overall risk
+##### Calculating Overall Risk
 Compute R = R\_d × R\_c for k-anonymity-based releases and confirm R meets the threshold; for DP aggregates, select ε aligned to context risk and enforce privacy budgets consistently.
 
-### Attack modeling
+### Attack Modeling
 
-##### Select data sharing model
+##### Select Data Sharing Model
 Controlled Public Sharing (Data Use Agreement) governed by HDAB permits; enclave access may be used for higher sensitivity analyses.
 
-##### Determine attack type
+##### Determine Attack Type
 Anticipate identity, membership, and attribute attacks with background knowledge; mitigate via generalization, date shifting, and outlier suppression.
 
-##### Identify data privacy model
+##### Identify Data Privacy Model
 Primary: k-anonymity for structured IPS releases; Optional: Differential Privacy for published aggregate statistics.
 
 ### Implementation and Validation
@@ -501,12 +511,11 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 
 ##### Example FHIR IPS 
 
-###### Original Identified IPS Document Bundle
+###### Stage 0 Original Identified IPS Document Bundle
 This IPS Bundle represents the 
 
-
 Original Identified IPS Document Bundle Link example 
-Example view of the Origional IPS document for a pandemic patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](Bundle-80c516fd-9c84-4924-875b-bf0048979ae1.html)
+The following bundle provides an example view of a record that could be in the research cohort for the pandemic patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](Bundle-80c516fd-9c84-4924-875b-bf0048979ae1.html). At this stage (0), there have been no alterations to this original record.
 
 **Origional Patient Resource**
 This is a valid IPS Patient Resource with all known minimum data provided
@@ -519,10 +528,14 @@ The Direct Identifiers in the Patient Resource are assigned a reversible pseudon
 The pseudonymization can be applied before or after the linkage of the IPS with the VRDR death certificate record.
 
 
-Example view of the Pseudonymized Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Pseudonymized IPS Document](Bundle-e817cefe-a7c4-487a-8116-be23cf865f3f.html)
+Example view of the Pseudonymized Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Pseudonymized IPS Document](Bundle-430e32bc-be3e-4c42-a17b-461ea4f402d4.html)
 
 **Stage 1 Pseudonymized Patient Resource**
-Description of the changes **TODO**
+The following bundle provides an example view of the sample patient record after applying pseudonymization. 
+This shows:
+- A pseudo-identifier has been applied to the patient resource and replaces the original patient identifier throughout the document.
+- A pseudo-name has been applied to the patient resource and replaces the original patient name throughout the document. Note that a pseudo-name is required as content is not permitted to be omitted or replaced with a null flavor in FHIR patient resources.
+- Birthdate has been date-shifted forward by 107 days.
 {% fragment Patient/39c9964c-96b7-442d-afc1-2702106a9e57 JSON %} 
 
 
@@ -535,12 +548,17 @@ Description of the changes **TODO**
 ##### Stage 2 Pseudonymized IPS Document Bundle
 The Indirect Identifiers in the Clinical Resources are date-shifted, and content removed according to the data minimization rules approved by the data access permit. Where information is removed, this is indicated by a dataAbsentReason of 'masked' at the data element level (e.g. telecom), and at the section level, emptyReason is set to 'withheld' (e.g. functional status).
 
+The following bundle provides an example view of the sample patient record after applying the approved de-identification methods to the pseudonymized bundle as described in section IPS Data Element Mappings (FHIR). 
+This shows:
+- Date shifting throughout the bundle (e.g. dates associated with problems, procedures, medications, immunizations, allergies, etc.)
+- Data omissions, noting the data is omitted in emptyReason as ‘withheld’ at the section level, and as ‘masked’ in dataAbsentReason at the data element level. 
 
-Example view of the Stage 2 Pseudonymized IPS Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Stage 2 Pseudonymized IPS Document](ex-Bundle-secondaryUse-pandemnicIPS-example-patient-1-stage-2.html)
+Example view of the Stage 2 Pseudonymized IPS Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Stage 2 Pseudonymized IPS Document](Bundle-6603561c-2888-4355-9df4-23675f6eb458.html)
 
 **Stage 2 Pseudonymized Patient Resource**
-Description of the changes **TODO**
+The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked. 
 {% fragment Patient/6274d469-7a4d-4a66-a261-e5e7b71af267 JSON %} 
+
 
 
 Notes:
@@ -569,7 +587,9 @@ This example shows a minimized VRDR Death Certificate Document Bundle using the 
 | Social History | Usual industry | Observation.component.valueCodeableConcept where component.code=21844-6 | Included (review outliers) |
 {:.grid}
 
-##### Original Identified VRDR Death Certificate Document Bundle
+##### Stage 0 Original Identified VRDR Death Certificate Document Bundle
+
+
 
 ```json
 {
@@ -795,282 +815,14 @@ This example shows a minimized VRDR Death Certificate Document Bundle using the 
 
 ##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 1)
 
-```json
-{
-  "resourceType": "Bundle",
-  "type": "document",
-  "timestamp": "2024-07-01T00:00:00Z",
-  "meta": {
-    "profile": [
-      "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
-    ],
-    "security": [
-      {
-        "system": "http://ihe.net/CodeSystem/deid-status",
-        "code": "stage1-pseudonymized",
-        "display": "Stage 1 pseudonymized"
-      }
-    ]
-  },
-  "entry": [
-    {
-      "fullUrl": "Composition/vrdr-death-certificate-1",
-      "resource": {
-        "resourceType": "Composition",
-        "id": "vrdr-death-certificate-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate"
-          ],
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage1-pseudonymized",
-              "display": "Stage 1 pseudonymized"
-            }
-          ]
-        },
-        "status": "final",
-        "type": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "64297-5",
-              "display": "Death certificate"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "date": "2024-07-01T00:00:00Z",
-        "title": "U.S. Standard Certificate of Death",
-        "section": [
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
-                  "code": "DecedentDemographics"
-                }
-              ]
-            },
-            "entry": [
-              {"reference": "Patient/decedent-1"},
-              {"reference": "Observation/vrdr-usual-work-1"}
-            ]
-          },
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
-                  "code": "DeathInvestigation"
-                }
-              ]
-            },
-            "entry": [{"reference": "Observation/vrdr-death-date-1"}]
-          },
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
-                  "code": "CodedContent"
-                }
-              ]
-            },
-            "entry": [{"reference": "Observation/vrdr-auto-ucod-1"}]
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "Patient/decedent-1",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "decedent-1",
-        "meta": {
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage1-pseudonymized",
-              "display": "Stage 1 pseudonymized"
-            }
-          ]
-        },
-        "identifier": [
-          {
-            "system": "urn:example:psyn",
-            "value": "VRDR-PID-0001"
-          }
-        ],
-        "name": [
-          {
-            "family": "Psyn",
-            "given": ["001"]
-          }
-        ],
-        "address": [
-          {
-            "line": ["12 Maple Street"],
-            "city": "Boston",
-            "state": "MA",
-            "postalCode": "02110",
-            "country": "US"
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "Observation/vrdr-death-date-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "vrdr-death-date-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date"
-          ],
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage1-pseudonymized",
-              "display": "Stage 1 pseudonymized"
-            }
-          ]
-        },
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "81956-5",
-              "display": "Date+time of death"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "valueDateTime": "2020-04-05T14:30:00Z"
-      }
-    },
-    {
-      "fullUrl": "Observation/vrdr-usual-work-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "vrdr-usual-work-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-usual-work"
-          ],
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage1-pseudonymized",
-              "display": "Stage 1 pseudonymized"
-            }
-          ]
-        },
-        "status": "final",
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                "code": "social-history"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "21843-8",
-              "display": "History of Usual Occupation"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "valueCodeableConcept": {
-          "coding": [
-            {
-              "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.3",
-              "code": "4221",
-              "display": "Travel agency and related clerks"
-            }
-          ],
-          "text": "4221 | Travel agency and related clerks"
-        },
-        "component": [
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://loinc.org",
-                  "code": "21844-6",
-                  "display": "History of Usual industry"
-                }
-              ]
-            },
-            "valueCodeableConcept": {
-              "coding": [
-                {
-                  "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.2",
-                  "code": "5110",
-                  "display": "Passenger air transport"
-                }
-              ],
-              "text": "5110 Passenger air transport"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "Observation/vrdr-auto-ucod-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "vrdr-auto-ucod-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-automated-underlying-cause-of-death"
-          ],
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage1-pseudonymized",
-              "display": "Stage 1 pseudonymized"
-            }
-          ]
-        },
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "80358-5",
-              "display": "Cause of death.underlying [Automated]"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "valueCodeableConcept": {
-          "coding": [
-            {
-              "system": "http://hl7.org/fhir/sid/icd-10",
-              "code": "U07.1",
-              "display": "COVID-19"
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
-```
+[Secondary Use Pandemnic IPS Patient Stage 1 VRDR Death Certificate Document Bundle](Bundle-e817cefe-a7c4-487a-8116-be23cf865f3f.html)
 
 Notes:
 - Stage 1 applies reversible pseudonymization to direct identifiers needed for linkage (decedent name and identifier).
 - Decedent address is not de-identified in Stage 1; it is generalized in Stage 2.
 - Date of death, cause of death, and usual work elements are carried forward unchanged in Stage 1.
+
+{% fragment Patient/39c9964c-96b7-442d-afc1-2702106a9e57 JSON %} 
 
 ##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 2)
 
