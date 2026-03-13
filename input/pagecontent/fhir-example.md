@@ -74,7 +74,9 @@ ent Reason extension to indicate why the data is not present. This is analogous 
 
 **Example Usage:**
 
-When Patient.name is removed during de-identification:
+In the following example, multiple de-identification actions are applied to the Patient resource: `Patient.id` and `Patient.name` are pseudonymized, `Patient.telecom` is removed and marked as masked using the Data Absent Reason extension, and `Patient.birthDate` is generalized to year-only precision to reduce re-identification risk while preserving analytical value.
+
+Example Patient resource after these de-identification actions:
 
 ```json
 {
@@ -89,7 +91,13 @@ When Patient.name is removed during de-identification:
       }
     ]
   },
-  "_name": [
+  "name": [
+    {
+      "family": "StudySubject-12345",
+      "given": ["Pseudo"]
+    }
+  ],
+  "_telecom": [
     {
       "extension": [
         {
@@ -101,6 +109,47 @@ When Patient.name is removed during de-identification:
   ],
   "gender": "female",
   "birthDate": "1985"
+}
+```
+
+### Section-level withholding for data minimization (List Empty Reason)
+
+For section-level suppression (for example, withholding an entire document section during de-identification), use `Composition.section.emptyReason` with the List Empty Reason value set, rather than element-level Data Absent Reason.
+
+This is a different mechanism and terminology binding than Data Absent Reason:
+
+| Context | Element | Terminology | Recommended code for de-identification minimization |
+| ------- | ------- | ----------- | ---------------------------------------------------- |
+| Element-level missing data | Extension `data-absent-reason` | `http://hl7.org/fhir/ValueSet/data-absent-reason` | `masked` |
+| Section-level withheld content | `Composition.section.emptyReason` | `http://hl7.org/fhir/ValueSet/list-empty-reason` | `withheld` |
+{:.grid}
+
+When a section is intentionally omitted to satisfy minimum necessary disclosure, set `emptyReason` to `withheld`.
+
+**Example: Composition section withheld for data minimization**
+
+```json
+{
+  "section": [
+    {
+      "title": "Social History",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Section content withheld for data minimization.</div>"
+      },
+      "entry": [],
+      "emptyReason": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/list-empty-reason",
+            "code": "withheld",
+            "display": "Withheld"
+          }
+        ],
+        "text": "Withheld for de-identification and data minimization"
+      }
+    }
+  ]
 }
 ```
 
@@ -209,14 +258,10 @@ FHIR resources should be labeled with appropriate security tags to indicate thei
       "value": "STUDY-PSEUDO-12345"
     }
   ],
-  "_name": [
+  "name": [
     {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-          "valueCode": "masked"
-        }
-      ]
+      "family": "StudySubject-a1b2c3d4",
+      "given": ["Pseudo"]
     }
   ],
   "_telecom": [
@@ -270,14 +315,10 @@ FHIR resources should be labeled with appropriate security tags to indicate thei
       "value": "STUDY-PSEUDO-12345"
     }
   ],
-  "_name": [
+  "name": [
     {
-      "extension": [
-        {
-          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-          "valueCode": "masked"
-        }
-      ]
+      "family": "StudySubject-a1b2c3d4",
+      "given": ["Pseudo"]
     }
   ],
   "_telecom": [
