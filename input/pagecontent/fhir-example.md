@@ -74,7 +74,9 @@ ent Reason extension to indicate why the data is not present. This is analogous 
 
 **Example Usage:**
 
-When Patient.telecom is removed during de-identification:
+In the following example, multiple de-identification actions are applied to the Patient resource: `Patient.id` and `Patient.name` are pseudonymized, `Patient.telecom` is removed and marked as masked using the Data Absent Reason extension, and `Patient.birthDate` is generalized to year-only precision to reduce re-identification risk while preserving analytical value.
+
+Example Patient resource after these de-identification actions:
 
 ```json
 {
@@ -128,27 +130,6 @@ When a section is intentionally omitted to satisfy minimum necessary disclosure,
 
 ```json
 {
-  "resourceType": "Composition",
-  "status": "final",
-  "type": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "34133-9",
-        "display": "Summary of episode note"
-      }
-    ]
-  },
-  "subject": {
-    "reference": "Patient/pseudo-a1b2c3d4"
-  },
-  "date": "2026-03-12T10:00:00Z",
-  "author": [
-    {
-      "reference": "Organization/example"
-    }
-  ],
-  "title": "De-identified clinical summary",
   "section": [
     {
       "title": "Social History",
