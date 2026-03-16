@@ -260,7 +260,7 @@ Above section of [Identifiability](#Identifiability) illustrates samples of four
 * **De-Identification Process Applied:** `Reversible Pseudonymization`.
 
 * **How the Process is Applied:**
-    1.  The direct identifier `Patient Name` is suppressed from the primary dataset.
+    1.  The direct identifier `Patient Name` is suppressed from the primary dataset or replaced with a new Pseudonym.
     2.  The original `Patient ID` (e.g., P001) is replaced with a new, reversible `Mapped Pseudonym` (e.g., AP-84351).
     3.  A **mapping table (key)** that links the original ID, the mapped pseudonym, and the patient's name is created and securely held by the data controller. The existence of this key makes the process reversible.
 
