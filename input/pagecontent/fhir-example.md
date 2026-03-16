@@ -97,7 +97,7 @@ Example Patient resource after these de-identification actions:
       "given": ["Pseudo"]
     }
   ],
-  "_telecom": [
+  "telecom": [
     {
       "extension": [
         {
@@ -264,7 +264,7 @@ FHIR resources should be labeled with appropriate security tags to indicate thei
       "given": ["Pseudo"]
     }
   ],
-  "_telecom": [
+  "telecom": [
     {
       "extension": [
         {
@@ -321,7 +321,7 @@ FHIR resources should be labeled with appropriate security tags to indicate thei
       "given": ["Pseudo"]
     }
   ],
-  "_telecom": [
+  "telecom": [
     {
       "extension": [
         {
