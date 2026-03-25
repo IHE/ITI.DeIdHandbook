@@ -1,3 +1,5 @@
+
+```xml
 <ClinicalDocument xmlns:tns="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:ns2="urn:hl7-org:sdtc" xmlns:ns3="http://hl7.org/fhir" xmlns:ns4="urn:hl7-org:ips" xmlns:ns5="http://hl7.org/fhir" xmlns:ns6="http://www.w3.org/1999/xhtml" xmlns:ns7="urn:ihe:pharm:medication" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <realmCode code="US" />
   <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
@@ -17,18 +19,18 @@
   <!--      RECORD TARGET       -->
   <recordTarget>
     <patientRole>
-      <id root="2.16.840.1.113883.3.9143.1.1" extension="PID-7ac6997e"></id>
+      <id root="2.16.840.1.113883.3.9143.1.1" extension="ABC1234" />
       <addr>
         <postalCode>3210</postalCode>
       </addr>
-      <telecom nullFlavor="NI" />
+      <telecom value="tel:+64-07-850-9900" use="HP" />
       <patient>
         <name>
-          <given>PSeudoGiven</given>
-          <family>PseudoFamily</family>
+          <given>Patricia</given>
+          <family>JORDANA</family>
         </name>
         <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" displayName="Female" />
-        <birthTime value="19960816" />
+        <birthTime value="19960501" />
       </patient>
     </patientRole>
   </recordTarget>
@@ -897,7 +899,7 @@
                     <low value="20240615094400-0600" />
                     <high value="20240615094400-0600" />
                   </effectiveTime>
-                  <value unit="%" value="85" xsi:type="PQ" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></value>
+                  <value unit="/min" value="80" xsi:type="PQ" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></value>
                   <interpretationCode nullFlavor="NA" />
                   <methodCode nullFlavor="NA" />
                   <author typeCode="AUT" contextControlCode="OP">
@@ -968,7 +970,7 @@
                   <td>Provide Assisted Breathing on Ventilator</td>
                   <td>NA</td>
                   <td>2024/06/16</td>
-                  <td></td>
+                  <td>2024/06/16</td>
                   <td />
                   <td>ACTIVE</td>
                 </tr>
@@ -1035,7 +1037,7 @@
           <title>Immunizations</title>
           <text>
             <table>
-              <tbody>
+              <thead>
                 <tr>
                   <th>
                     <content>Vaccination</content>
@@ -1044,6 +1046,8 @@
                   </th>
                   <th>Vaccination date</th>
                 </tr>
+              </thead>
+              <tbody>
                 <tr ID="VAC.1.1">
                   <td>
                     <content ID="VAC.1.2">VAC.1.2</content>
@@ -1495,7 +1499,7 @@
                   <statusCode code="completed" />
                   <effectiveTime value="20160501">
                     <low value="20160501" />
-                    <high value="20180501" />
+                    <high value="20180501"></high>
                   </effectiveTime>
                   <value code="5321" codeSystem="1.3.6.1.4.1.19376.1.5.3.1.3.43.48.3" codeSystemName="ISCO-08" displayName="Health Care Assistants" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
                   <subject>
@@ -1659,7 +1663,7 @@ FUNCTIONAL STATUS
                 <low value="20240206"></low>
                 <high nullFlavor="UNK"></high>
               </effectiveTime>
-              <value code="365112008" codeSystem="2.16.840.1.113883.6.96" displayName="Finding of walking aid use (finding)" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+              <value code="365112008" codeSystem="2.16.840.1.113883.6.96" displayName="Finding of walking aid use (finding)" xsi:type="CD" />
             </observation>
           </entry>
         </section>
@@ -1814,11 +1818,6 @@ Procedures
           </entry>
         </section>
       </component>
-      <!--
-********************************************************
-RESULTS
-********************************************************
--->
       <component>
         <section>
           <templateId root="2.16.840.1.113883.10.20.22.2.3" extension="2014-06-09"></templateId>
@@ -1882,15 +1881,97 @@ Labs recorded @ 20250205171600+0000
                   </text>
                   <statusCode code="completed"></statusCode>
                   <effectiveTime value="20240615"></effectiveTime>
-                  <value xsi:type="CD" code="10828004" codeSystem="2.16.840.1.113883.6.96" displayName="Positive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                  <value xsi:type="CD" code="10828004" codeSystem="2.16.840.1.113883.6.96" displayName="Positive" />
                   <!-- Original unit: % -->
                   <referenceRange>
                     <observationRange>
                       <text>A negative value is a normal result</text>
-                      <value xsi:type="CD" code="260385009" codeSystemName="SNOMED-CT" displayName="Negative" codeSystem="2.16.840.1.113883.6.96" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                      <value xsi:type="CD" code="260385009" codeSystemName="SNOMED-CT" displayName="Negative" codeSystem="2.16.840.1.113883.6.96" />
                     </observationRange>
                   </referenceRange>
                   <interpretationCode code="POS" codeSystem="2.16.840.1.113883.5.83" displayName="Positive" />
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+      <!--
+********************************************************
+RESULTS
+********************************************************
+-->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.3" extension="2014-06-09"></templateId>
+          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2014-06-09"></templateId>
+          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2015-08-01"></templateId>
+          <templateId root="2.16.840.1.113883.10.22.3.14" extension="2015-08-01"></templateId>
+          <id nullFlavor="NA"></id>
+          <code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Relevant diagnostic tests &amp;or laboratory data"></code>
+          <title>RESULTS</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Result Name</th>
+                  <th>Value</th>
+                  <th>Range</th>
+                  <th>Observed Date/Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="4">
+Labs recorded @ 20250205171600+0000
+<content ID="requestNote2025-02-05171600"></content></td>
+                </tr>
+                <tr>
+                  <td>HgbA1C</td>
+                  <td>
+                    <content ID="result4902">5.5 %</content>
+                  </td>
+                  <td></td>
+                  <td>02-05-2025 17:16</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <organizer classCode="BATTERY" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.1"></templateId>
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01"></templateId>
+              <templateId root="2.16.840.1.113883.10.22.4.9"></templateId>
+              <!-- IPS -->
+              <id extension="2025" root="1.2.840.114398.1.11999116114111111116.999.19"></id>
+              <code nullFlavor="NA"></code>
+              <statusCode code="completed"></statusCode>
+              <effectiveTime xsi:type="IVL_TS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <low value="20250205"></low>
+                <high value="20250205"></high>
+              </effectiveTime>
+              <!-- Request-id/datetime: 0/2025-02-05 17:16:00 -->
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2"></templateId>
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"></templateId>
+                  <templateId root="2.16.840.1.113883.10.22.4.10"></templateId>
+                  <!-- IPS -->
+                  <id extension="4902" root="1.2.840.114398.1.11999116114111111116.999.3"></id>
+                  <code xsi:type="CE" code="4548-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HgbA1C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></code>
+                  <text>
+                    <reference value="#result4902"></reference>
+                  </text>
+                  <statusCode code="completed"></statusCode>
+                  <effectiveTime value="20250205171600+0000"></effectiveTime>
+                  <value xsi:type="PQ" value="5.5" unit="%" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></value>
+                  <!-- Original unit: % -->
+                  <referenceRange>
+                    <observationRange>
+                      <text>4.8-5.9</text>
+                      <value xsi:type="ST" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">4.8-5.9</value>
+                    </observationRange>
+                  </referenceRange>
                 </observation>
               </component>
             </organizer>
@@ -1948,3 +2029,4 @@ ALERTS
     </structuredBody>
   </component>
 </ClinicalDocument>
+```

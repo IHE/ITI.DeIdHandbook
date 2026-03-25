@@ -1,5 +1,8 @@
+
+
+```xml
 <ClinicalDocument xmlns:tns="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:ns2="urn:hl7-org:sdtc" xmlns:ns3="http://hl7.org/fhir" xmlns:ns4="urn:hl7-org:ips" xmlns:ns5="http://hl7.org/fhir" xmlns:ns6="http://www.w3.org/1999/xhtml" xmlns:ns7="urn:ihe:pharm:medication" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <realmCode code="US" />
+  <realmCode code="Universal" />
   <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
   <templateId root="2.16.840.1.113883.10.22.3.2" />
   <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.1" />
@@ -8,38 +11,41 @@
   <templateId root="2.16.840.1.113883.10.20.3" />
   <templateId root="2.16.840.1.113883.3.88.11.32.1" />
   <templateId root="2.16.840.1.113883.10.22.1.1" />
-  <id extension="PSid.US202310300000177.cda" root="2.16.840.1.113883.3.9143.3.1.3" />
+  <id extension="PSid.US202310300000177Deid2.cda" root="2.16.840.1.113883.3.9143.3.1.3" />
   <code code="60591-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.59" displayName="Patient Summary" />
   <title>Patient Summary (IPS/US)</title>
-  <effectiveTime value="20210820111725+0000" />
+  <effectiveTime value="20250820111725+0000" />
   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality" codeSystemVersion="913-20091020" displayName="normal" />
   <languageCode code="en-GB" />
   <!--      RECORD TARGET       -->
   <recordTarget>
     <patientRole>
-      <id root="2.16.840.1.113883.3.9143.1.1" extension="ABC1234" />
+      <id root="2.16.840.1.113883.3.9143.1.1" extension="PID-7ac6997e"></id>
       <addr>
-        <postalCode>3210</postalCode>
+        <postalCode>321</postalCode>
       </addr>
-      <telecom value="tel:+64-07-850-9900" use="HP" />
+      <telecom nullFlavor="MSK" />
       <patient>
         <name>
-          <given>Patricia</given>
-          <family>JORDANA</family>
+          <given>PSeudoGiven</given>
+          <family>PseudoFamily</family>
         </name>
         <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" displayName="Female" />
-        <birthTime value="19960501" />
+        <birthTime value="1996">
+          <!-- Date-shifted within age-group, birth-date truncated to year-->
+        </birthTime>
       </patient>
     </patientRole>
   </recordTarget>
   <author>
-    <time value="20240602000000" />
+    <time value="20240917000000" />
     <assignedAuthor>
       <id extension="10" root="2.16.840.1.113883.3.9143.1.1" />
       <addr>
         <streetAddressLine>15 Chestnut Street, Wallingford, CT 06492</streetAddressLine>
       </addr>
       <telecom use="WP" value="tel:2035551212" />
+      <!--        Document CUSTODIAN      -->
       <assignedPerson>
         <name>
           <given>NoAssignedDoctorName</given>
@@ -49,7 +55,7 @@
       <representedOrganization classCode="ORG" determinerCode="INSTANCE">
         <id extension="gov.US" root="2.16.840.1.113883.3.9143.1.1" />
         <name>IPS -IHE - 3AHEALTH</name>
-        <telecom use="WP" value="tel:2035551212" />
+        <telecom nullFlavor="MSK" />
         <telecom use="WP" value="mailto:pccplan@googlegroups.com" />
         <addr use="WP">
           <streetAddressLine>15 Chestnut Street, Wallingford, CT 06492</streetAddressLine>
@@ -58,7 +64,6 @@
       </representedOrganization>
     </assignedAuthor>
   </author>
-  <!--        Document CUSTODIAN      -->
   <custodian typeCode="CST">
     <assignedCustodian classCode="ASSIGNED">
       <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
@@ -74,7 +79,7 @@
   </custodian>
   <!--        LEGAL AUTHENTICATOR      -->
   <legalAuthenticator>
-    <time value="20210820000000+0000" />
+    <time value="20250820000000+0000" />
     <signatureCode code="S" />
     <assignedEntity>
       <id extension="gov.US" root="2.16.840.1.113883.3.9143.1.1" />
@@ -127,8 +132,8 @@
   <documentationOf typeCode="DOC">
     <serviceEvent classCode="PCPR" moodCode="EVN">
       <effectiveTime>
-        <low value="20240603130233+0000" />
-        <high value="20240603130233+0000" />
+        <low value="20250603130233+0000" />
+        <high value="20250603130233+0000" />
       </effectiveTime>
     </serviceEvent>
   </documentationOf>
@@ -293,7 +298,7 @@
               <tbody>
                 <tr ID="medicalProblem.1">
                   <td>Influenza caused by pandemic influenza virus (disorder)</td>
-                  <td>2024-06-15</td>
+                  <td>2024-09-30</td>
                   <td />
                   <td>Severe</td>
                   <td></td>
@@ -315,7 +320,7 @@
               <code code="CONC" codeSystem="2.16.840.1.113883.5.6" />
               <statusCode code="active" />
               <effectiveTime>
-                <low value="20130305" />
+                <low value="20240930" />
               </effectiveTime>
               <entryRelationship typeCode="SUBJ">
                 <observation classCode="OBS" moodCode="EVN">
@@ -324,7 +329,7 @@
                   <code code="75326-9" codeSystem="2.16.840.1.113883.6.1" displayName="Problem" />
                   <statusCode code="completed" />
                   <effectiveTime>
-                    <low value="20240615" />
+                    <low value="20240930" />
                   </effectiveTime>
                   <value code="719865001" codeSystem="2.16.840.1.113883.6.96" displayName="Influenza caused by pandemic influenza virus (disorder)" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
                   <entryRelationship inversionInd="false" typeCode="REFR">
@@ -346,7 +351,7 @@
               <code code="CONC" codeSystem="2.16.840.1.113883.5.6" />
               <statusCode code="active" />
               <effectiveTime>
-                <low value="20060103" />
+                <low value="20060420" />
               </effectiveTime>
               <entryRelationship typeCode="SUBJ">
                 <observation classCode="OBS" moodCode="EVN">
@@ -355,7 +360,7 @@
                   <code code="75326-9" codeSystem="2.16.840.1.113883.6.1" displayName="Problem" />
                   <statusCode code="completed" />
                   <effectiveTime>
-                    <low value="20060103" />
+                    <low value="20060420" />
                   </effectiveTime>
                   <value code="370221004" codeSystem="2.16.840.1.113883.6.96" displayName="Severe asthma (disorder)" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
                   <entryRelationship inversionInd="false" typeCode="REFR">
@@ -418,8 +423,8 @@
                   <td>Day</td>
                   <td>Influenza</td>
                   <td />
-                  <td>2024-06-16T11:00:00Z</td>
-                  <td>2024-06-16T11:00:00Z</td>
+                  <td>2024-1001T11:00:00Z</td>
+                  <td>2024-1001T11:00:00Z</td>
                   <td>d</td>
                   <td>B01AF01</td>
                   <td>Oseltamivir</td>
@@ -437,8 +442,8 @@
               <code code="DRUG" codeSystem="2.16.840.1.113883.5.4" />
               <statusCode code="completed" />
               <effectiveTime xsi:type="IVL_TS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                <low value="20240616" />
-                <high value="20240621" />
+                <low value="20241001" />
+                <high value="20241001" />
               </effectiveTime>
               <consumable typeCode="CSM">
                 <manufacturedProduct classCode="MANU">
@@ -483,7 +488,7 @@
               <templateId root="2.16.840.1.113883.10.22.4.26" />
               <statusCode code="completed" />
               <effectiveTime xsi:type="IVL_TS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                <low value="20240615" />
+                <low value="20241001" />
               </effectiveTime>
               <participant typeCode="DEV">
                 <participantRole classCode="MANU">
@@ -507,17 +512,7 @@
           <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.35" />
           <id extension="6" root="1.2.840.114398.1.4156" />
           <code code="42348-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ADVANCED DIRECTIVES" />
-          <title>Advance Directives</title>
-          <text>
-            <table width="100%">
-              <tbody>
-                <tr>
-                  <td>No Advanced Directives</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-        </section>
+          <title>Advance Directives</title>Advance Directives Withheld for Security/Privacy data Minimization</section>
       </component>
       <!--Vital Signs -->
       <component>
@@ -525,415 +520,8 @@
           <templateId root="2.16.840.1.113883.10.22.3.16" />
           <code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital Signs" />
           <title>VITAL SIGNS</title>
-          <text>
-            <table border="1" width="100%">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Name</th>
-                  <th>Value</th>
-                  <th>Unit</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2024/06/16</td>
-                  <td ID="VitalSign1">Height</td>
-                  <td>71</td>
-                  <td>in</td>
-                </tr>
-                <tr>
-                  <td>2024/06/16</td>
-                  <td ID="VitalSign2">Weight</td>
-                  <td>230</td>
-                  <td>lb</td>
-                </tr>
-                <tr>
-                  <td>2024/06/16</td>
-                  <td ID="VitalSign3">BMI</td>
-                  <td>32.1 kg/m^2</td>
-                  <td>kg/m^2</td>
-                </tr>
-                <tr>
-                  <td>2024/06/16</td>
-                  <td ID="VitalSign4">BP Diastolic</td>
-                  <td>130</td>
-                  <td>mm[Hg]</td>
-                </tr>
-                <tr>
-                  <td>2024/06/16</td>
-                  <td ID="VitalSign5">BP Systolic</td>
-                  <td>80</td>
-                  <td>mm[Hg]</td>
-                </tr>
-                <tr>
-                  <td>2024/06/16</td>
-                  <td ID="VitalSign6">Heart Rate</td>
-                  <td>80</td>
-                  <td>/min</td>
-                  <td>pulse rate E&amp;M</td>
-                </tr>
-                <tr>
-                  <td>2024/06/16</td>
-                  <td ID="VitalSign7">Heart Rate</td>
-                  <td>85</td>
-                  <td>%</td>
-                  <td>Oxygen saturation in Arterial blood by Pulse oximetry</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-          <entry typeCode="DRIV">
-            <organizer classCode="CLUSTER" moodCode="EVN">
-              <templateId root="2.16.840.1.113883.10.22.4.44" />
-              <id root="C74BEA7B-F028-45A3-BD5D-A59DA6A17C71" />
-              <code code="85353-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital signs, weight, height, head circumference, oxygen saturation and BMI panel" />
-              <statusCode code="completed" />
-              <effectiveTime>
-                <low value="20240615094400-0600" />
-                <high value="20240615094400-0600" />
-              </effectiveTime>
-              <component>
-                <observation classCode="OBS" moodCode="EVN" negationInd="true">
-                  <templateId root="2.16.840.1.113883.10.22.4.45" />
-                  <id extension="53-1418436101000" root="1.2.840.113619.21.1.8899560752578716278.3.7" />
-                  <code code="8302-2" codeSystem="2.16.840.1.113883.3.88.12.80.62" codeSystemName="LOINC" displayName="Body height" />
-                  <text>
-                    <reference value="#VitalSign1" />
-                  </text>
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240615094400-0600" />
-                    <high value="20240615094400-0600" />
-                  </effectiveTime>
-                  <value unit="[in_us]" value="71" xsi:type="PQ" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></value>
-                  <author typeCode="AUT" contextControlCode="OP">
-                    <time value="20240529190743+0200" />
-                    <assignedAuthor classCode="ASSIGNED">
-                      <id root="2.16.724.4.9.400.1" />
-                      <addr nullFlavor="NA" />
-                      <telecom nullFlavor="NI" />
-                      <assignedAuthoringDevice classCode="DEV" determinerCode="INSTANCE">
-                        <softwareName>My Software</softwareName>
-                      </assignedAuthoringDevice>
-                      <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                        <id root="2.16.724.4.9.400.1.12345" />
-                        <name>Good Health Clinic</name>
-                        <telecom use="WP" value="tel:2035551212" />
-                        <addr>
-                          <streetAddressLine>123 Main Street</streetAddressLine>
-                          <city>Oak Brook</city>
-                          <state>IL</state>
-                          <postalCode>60523</postalCode>
-                          <country>US</country>
-                        </addr>
-                      </representedOrganization>
-                    </assignedAuthor>
-                  </author>
-                  <entryRelationship typeCode="RSON">
-                    <observation classCode="CNOD" moodCode="EVN">
-                      <templateId root="2.16.840.1.113762.1.4.1041.1" />
-                      <code code="77765009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Excluded" />
-                      <statusCode code="completed" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </component>
-              <component>
-                <observation classCode="OBS" moodCode="EVN" negationInd="true">
-                  <templateId root="2.16.840.1.113883.10.20.22.4.27" />
-                  <id extension="54-1418436101000" root="1.2.840.113619.21.1.8899560752578716278.3.7" />
-                  <code code="3141-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Body weight Measured" />
-                  <text>
-                    <reference value="#VitalSign2" />
-                  </text>
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240615094400-0600" />
-                    <high value="20240615094400-0600" />
-                  </effectiveTime>
-                  <value unit="[lb_av]" value="230" xsi:type="PQ" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></value>
-                  <interpretationCode nullFlavor="NA" />
-                  <methodCode nullFlavor="NA" />
-                  <author typeCode="AUT" contextControlCode="OP">
-                    <time value="20240529190743+0200" />
-                    <assignedAuthor classCode="ASSIGNED">
-                      <id root="2.16.724.4.9.400.1" />
-                      <addr nullFlavor="NA" />
-                      <telecom nullFlavor="NI" />
-                      <assignedAuthoringDevice classCode="DEV" determinerCode="INSTANCE">
-                        <softwareName>My Software</softwareName>
-                      </assignedAuthoringDevice>
-                      <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                        <id root="2.16.724.4.9.400.1.12345" />
-                        <name>Good Health Clinic</name>
-                        <telecom use="WP" value="tel:2035551212" />
-                        <addr>
-                          <streetAddressLine>123 Main Street</streetAddressLine>
-                          <city>Oak Brook</city>
-                          <state>IL</state>
-                          <postalCode>60523</postalCode>
-                          <country>US</country>
-                        </addr>
-                      </representedOrganization>
-                    </assignedAuthor>
-                  </author>
-                  <entryRelationship typeCode="RSON">
-                    <observation classCode="CNOD" moodCode="EVN">
-                      <templateId root="2.16.840.1.113762.1.4.1041.1" />
-                      <code code="77765009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Excluded" />
-                      <statusCode code="completed" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </component>
-              <component>
-                <observation classCode="OBS" moodCode="EVN" negationInd="true">
-                  <templateId root="2.16.840.1.113883.10.20.22.4.27" />
-                  <id extension="56-1418436101000" root="1.2.840.113619.21.1.8899560752578716278.3.7" />
-                  <code code="39156-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="BMI (Body Mass Index)" />
-                  <text>
-                    <reference value="#VitalSign3" />
-                  </text>
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240615094400-0600" />
-                    <high value="20240615094400-0600" />
-                  </effectiveTime>
-                  <value unit="kg/m2" value="32.1" xsi:type="PQ" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-                  <methodCode nullFlavor="NA" />
-                  <author typeCode="AUT" contextControlCode="OP">
-                    <time value="20240529190743+0200" />
-                    <assignedAuthor classCode="ASSIGNED">
-                      <id root="2.16.724.4.9.400.1" />
-                      <addr nullFlavor="NA" />
-                      <telecom nullFlavor="NI" />
-                      <assignedAuthoringDevice classCode="DEV" determinerCode="INSTANCE">
-                        <softwareName>My Software</softwareName>
-                      </assignedAuthoringDevice>
-                      <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                        <id root="2.16.724.4.9.400.1.12345" />
-                        <name>Good Health Clinic</name>
-                        <telecom use="WP" value="tel:2035551212" />
-                        <addr>
-                          <streetAddressLine>123 Main Street</streetAddressLine>
-                          <city>Oak Brook</city>
-                          <state>IL</state>
-                          <postalCode>60523</postalCode>
-                          <country>US</country>
-                        </addr>
-                      </representedOrganization>
-                    </assignedAuthor>
-                  </author>
-                  <entryRelationship typeCode="RSON">
-                    <observation classCode="CNOD" moodCode="EVN">
-                      <templateId root="2.16.840.1.113762.1.4.1041.1" />
-                      <code code="77765009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Excluded" />
-                      <statusCode code="completed" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </component>
-              <component>
-                <observation classCode="OBS" moodCode="EVN" negationInd="true">
-                  <templateId root="2.16.840.1.113883.10.22.4.45" />
-                  <id extension="53-1418436101000" root="1.2.840.113619.21.1.8899560752578716278.3.7" />
-                  <code code="8462-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="BP Diastolic">
-                    <translation code="53" codeSystem="1.2.840.113619.21.3.2527" codeSystemName="GE_HDID_SYSTEM" displayName="blood pressure, diastolic" />
-                  </code>
-                  <text>
-                    <reference value="#VitalSign4" />
-                  </text>
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240615094400-0600" />
-                    <high value="20240615094400-0600" />
-                  </effectiveTime>
-                  <value unit="mm[Hg]" value="130" xsi:type="PQ" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-                  <interpretationCode nullFlavor="NA" />
-                  <methodCode nullFlavor="NA" />
-                  <author typeCode="AUT" contextControlCode="OP">
-                    <time value="20240529190743+0200" />
-                    <assignedAuthor classCode="ASSIGNED">
-                      <id root="2.16.724.4.9.400.1" />
-                      <addr nullFlavor="NA" />
-                      <telecom nullFlavor="NI" />
-                      <assignedAuthoringDevice classCode="DEV" determinerCode="INSTANCE">
-                        <softwareName>My Software</softwareName>
-                      </assignedAuthoringDevice>
-                      <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                        <id root="2.16.724.4.9.400.1.12345" />
-                        <name>Good Health Clinic</name>
-                        <telecom use="WP" value="tel:2035551212" />
-                        <addr>
-                          <streetAddressLine>123 Main Street</streetAddressLine>
-                          <city>Oak Brook</city>
-                          <state>IL</state>
-                          <postalCode>60523</postalCode>
-                          <country>US</country>
-                        </addr>
-                      </representedOrganization>
-                    </assignedAuthor>
-                  </author>
-                  <entryRelationship typeCode="RSON">
-                    <observation classCode="CNOD" moodCode="EVN">
-                      <templateId root="2.16.840.1.113762.1.4.1041.1" />
-                      <code code="77765009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Excluded" />
-                      <statusCode code="completed" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </component>
-              <component>
-                <observation classCode="OBS" moodCode="EVN" negationInd="true">
-                  <templateId root="2.16.840.1.113883.10.20.22.4.27" />
-                  <id extension="54-1418436101000" root="1.2.840.113619.21.1.8899560752578716278.3.7" />
-                  <code code="8480-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="BP Systolic">
-                    <translation code="54" codeSystem="1.2.840.113619.21.3.2527" codeSystemName="GE_HDID_SYSTEM" displayName="blood pressure, systolic" />
-                  </code>
-                  <text>
-                    <reference value="#VitalSign5" />
-                  </text>
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240615094400-0600" />
-                    <high value="20240615094400-0600" />
-                  </effectiveTime>
-                  <value unit="mm[Hg]" value="80" xsi:type="PQ" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-                  <interpretationCode nullFlavor="NA" />
-                  <methodCode nullFlavor="NA" />
-                  <author typeCode="AUT" contextControlCode="OP">
-                    <time value="20240529190743+0200" />
-                    <assignedAuthor classCode="ASSIGNED">
-                      <id root="2.16.724.4.9.400.1" />
-                      <addr nullFlavor="NA" />
-                      <telecom nullFlavor="NI" />
-                      <assignedAuthoringDevice classCode="DEV" determinerCode="INSTANCE">
-                        <softwareName>My Software</softwareName>
-                      </assignedAuthoringDevice>
-                      <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                        <id root="2.16.724.4.9.400.1.12345" />
-                        <name>Good Health Clinic</name>
-                        <telecom use="WP" value="tel:2035551212" />
-                        <addr>
-                          <streetAddressLine>123 Main Street</streetAddressLine>
-                          <city>Oak Brook</city>
-                          <state>IL</state>
-                          <postalCode>60523</postalCode>
-                          <country>US</country>
-                        </addr>
-                      </representedOrganization>
-                    </assignedAuthor>
-                  </author>
-                  <entryRelationship typeCode="RSON">
-                    <observation classCode="CNOD" moodCode="EVN">
-                      <templateId root="2.16.840.1.113762.1.4.1041.1" />
-                      <code code="77765009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Excluded" />
-                      <statusCode code="completed" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </component>
-              <component>
-                <observation classCode="OBS" moodCode="EVN" negationInd="true">
-                  <templateId root="2.16.840.1.113883.10.20.22.4.27" />
-                  <id extension="56-1418436101000" root="1.2.840.113619.21.1.8899560752578716278.3.7" />
-                  <code code="8867-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Heart Rate">
-                    <translation code="56" codeSystem="1.2.840.113619.21.3.2527" codeSystemName="GE_HDID_SYSTEM" displayName="pulse rate E&amp;M" />
-                  </code>
-                  <text>
-                    <reference value="#VitalSign6" />
-                  </text>
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240615094400-0600" />
-                    <high value="20240615094400-0600" />
-                  </effectiveTime>
-                  <value unit="/min" value="80" xsi:type="PQ" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></value>
-                  <interpretationCode nullFlavor="NA" />
-                  <methodCode nullFlavor="NA" />
-                  <author typeCode="AUT" contextControlCode="OP">
-                    <time value="20240529190743+0200" />
-                    <assignedAuthor classCode="ASSIGNED">
-                      <id root="2.16.724.4.9.400.1" />
-                      <addr nullFlavor="NA" />
-                      <telecom nullFlavor="NI" />
-                      <assignedAuthoringDevice classCode="DEV" determinerCode="INSTANCE">
-                        <softwareName>My Software</softwareName>
-                      </assignedAuthoringDevice>
-                      <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                        <id root="2.16.724.4.9.400.1.12345" />
-                        <name>Good Health Clinic</name>
-                        <telecom use="WP" value="tel:2035551212" />
-                        <addr>
-                          <streetAddressLine>123 Main Street</streetAddressLine>
-                          <city>Oak Brook</city>
-                          <state>IL</state>
-                          <postalCode>60523</postalCode>
-                          <country>US</country>
-                        </addr>
-                      </representedOrganization>
-                    </assignedAuthor>
-                  </author>
-                  <entryRelationship typeCode="RSON">
-                    <observation classCode="CNOD" moodCode="EVN">
-                      <templateId root="2.16.840.1.113762.1.4.1041.1" />
-                      <code code="77765009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Excluded" />
-                      <statusCode code="completed" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </component>
-              <component>
-                <observation classCode="OBS" moodCode="EVN" negationInd="true">
-                  <templateId root="2.16.840.1.113883.10.20.22.4.27" />
-                  <id extension="56-1418436101000" root="1.2.840.113619.21.1.8899560752578716278.3.7" />
-                  <code code="59408-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Oxygen saturation in Arterial blood by Pulse oximetry"></code>
-                  <text>
-                    <reference value="#VitalSign7" />
-                  </text>
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240615094400-0600" />
-                    <high value="20240615094400-0600" />
-                  </effectiveTime>
-                  <value unit="/min" value="80" xsi:type="PQ" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></value>
-                  <interpretationCode nullFlavor="NA" />
-                  <methodCode nullFlavor="NA" />
-                  <author typeCode="AUT" contextControlCode="OP">
-                    <time value="20240529190743+0200" />
-                    <assignedAuthor classCode="ASSIGNED">
-                      <id root="2.16.724.4.9.400.1" />
-                      <addr nullFlavor="NA" />
-                      <telecom nullFlavor="NI" />
-                      <assignedAuthoringDevice classCode="DEV" determinerCode="INSTANCE">
-                        <softwareName>My Software</softwareName>
-                      </assignedAuthoringDevice>
-                      <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                        <id root="2.16.724.4.9.400.1.12345" />
-                        <name>Good Health Clinic</name>
-                        <telecom use="WP" value="tel:2035551212" />
-                        <addr>
-                          <streetAddressLine>123 Main Street</streetAddressLine>
-                          <city>Oak Brook</city>
-                          <state>IL</state>
-                          <postalCode>60523</postalCode>
-                          <country>US</country>
-                        </addr>
-                      </representedOrganization>
-                    </assignedAuthor>
-                  </author>
-                  <entryRelationship typeCode="RSON">
-                    <observation classCode="CNOD" moodCode="EVN">
-                      <templateId root="2.16.840.1.113762.1.4.1041.1" />
-                      <code code="77765009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Excluded" />
-                      <statusCode code="completed" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </component>
-            </organizer>
-          </entry>
+          <text>Vital Signs Withheld for Security/Privacy data Minimization</text>
+          <entry typeCode="DRIV" nullFlavor="MSK" />
         </section>
       </component>
       <!--Plan of Care-->
@@ -942,40 +530,7 @@
           <templateId root="2.16.840.1.113883.10.22.3.9" />
           <id extension="1" root="1.2.840.114398.1.4156" />
           <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Treatment Plan" />
-          <title>PLAN OF CARE</title>
-          <text>
-            <table width="100%">
-              <thead>
-                <tr>
-                  <th>INSTRUCTION/INTERVENTION</th>
-                  <th>FREQUENCY</th>
-                  <th>ASSIGNED DATE</th>
-                  <th>STARTED DATE</th>
-                  <th>ACHIEVED/DISCONTINUED DATE</th>
-                  <th>STATUS</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Treat with antiviral medication</td>
-                  <td>5</td>
-                  <td>2024/06/16</td>
-                  <td></td>
-                  <td />
-                  <td>ACTIVE</td>
-                </tr>
-                <tr>
-                  <td>Provide Assisted Breathing on Ventilator</td>
-                  <td>NA</td>
-                  <td>2024/06/16</td>
-                  <td>2024/06/16</td>
-                  <td />
-                  <td>ACTIVE</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-        </section>
+          <title>PLAN OF CARE</title>Plan of Care Withheld for Security/Privacy data Minimization</section>
       </component>
       <!--Pregnancy Status-->
       <component>
@@ -996,10 +551,10 @@
               </thead>
               <tbody>
                 <tr ID="PregnancyStatus.1">
-                  <td>2024-06-16</td>
-                  <td>Not pregnant</td>
+                  <td>2024-10-01</td>
+                  <td>Pregnant</td>
                   <td>Delivery date Estimated from ovulation date</td>
-                  <td>2024-12-01</td>
+                  <td>2025-03-18</td>
                 </tr>
               </tbody>
             </table>
@@ -1011,7 +566,7 @@
               <code code="82810-3" codeSystem="2.16.840.1.113883.6.1" />
               <statusCode code="completed" />
               <effectiveTime>
-                <low value="20240616" />
+                <low value="20240602" />
               </effectiveTime>
               <value xsi:type="CE" code="82810-3" codeSystem="2.16.840.1.113883.6.1" displayName="Pregnant" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
               <entryRelationship typeCode="COMP">
@@ -1019,7 +574,7 @@
                   <templateId root="2.16.840.1.113883.10.22.4.29" />
                   <code code="11780-4" codeSystem="2.16.840.1.113883.6.1" displayName="Delivery date Estimated from ovulation date" />
                   <statusCode code="completed" />
-                  <value xsi:type="TS" value="20241201" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                  <value xsi:type="TS" value="202503" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
                 </observation>
               </entryRelationship>
             </observation>
@@ -1052,7 +607,7 @@
                     <br></br>
                     <content>Vaccine product containing only Influenza virus antigen (medicinal product)</content>
                   </td>
-                  <td>2024-05-15</td>
+                  <td>2024-08-30</td>
                 </tr>
               </tbody>
             </table>
@@ -1067,7 +622,7 @@
                 </originalText>
               </code>
               <statusCode code="completed" />
-              <effectiveTime value="20240515" />
+              <effectiveTime value="20240830" />
               <doseQuantity nullFlavor="UNK" />
               <consumable typeCode="CSM">
                 <templateId root="2.16.840.1.113883.10.22.4.16" />
@@ -1187,9 +742,9 @@
                   </thead>
                   <tbody>
                     <tr ID="CD1">
-                      <td>02/01/2024</td>
-                      <td ID="ODH-CDD1">05/01/2016</td>
-                      <td ID="ODH-CDD2">05/01/2018</td>
+                      <td>05/18/2024</td>
+                      <td ID="ODH-CDD1">08/16/2016</td>
+                      <td ID="ODH-CDD2">08/16/2018</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1205,7 +760,7 @@
                   </thead>
                   <tbody>
                     <tr ID="RS1">
-                      <td>02/01/2024</td>
+                      <td>05/16/2024</td>
                       <td ID="ODH-RSD1">NA</td>
                       <td ID="ODH-RSD2">NA</td>
                       <td ID="ODH-RSA1">NA</td>
@@ -1224,9 +779,9 @@
                   </thead>
                   <tbody>
                     <tr ID="ES1">
-                      <td ID="ODH-ESRD1">02/01/2024</td>
+                      <td ID="ODH-ESRD1">05/18/2024</td>
                       <td>Employed</td>
-                      <td ID="ODH-ESD1">05/01/2016</td>
+                      <td ID="ODH-ESD1">08/16/2016</td>
                       <td ID="ODH-ESD2">NA</td>
                     </tr>
                   </tbody>
@@ -1240,13 +795,13 @@
                   <id root="76C71B5B-0E6D-47FC-AD56-9AA1B58EFD11" />
                   <code code="74165-2" codeSystem="2.16.840.1.113883.6.1" />
                   <statusCode code="completed" />
-                  <effectiveTime value="20160501">
-                    <low />
+                  <effectiveTime value="20160816">
+                    <low></low>
                     <high />
                   </effectiveTime>
                   <value code="224363007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Employed Paid work, not self-employed" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
                   <author>
-                    <time value="20180201154714" />
+                    <time value="20240518154714" />
                     <assignedAuthor>
                       <id root="DA29AE71-E8CA-4BD2-91F3-E7D446107ADD" />
                       <id extension="8" root="1.2.840.114398.1.4156" />
@@ -1283,7 +838,7 @@
                     </relatedSubject>
                   </subject>
                   <author>
-                    <time value="20240201154714" />
+                    <time value="20240518154714" />
                     <assignedAuthor>
                       <id root="DA29AE71-E8CA-4BD2-91F3-E7D446107ADD" />
                       <id extension="8" root="1.2.840.114398.1.4156" />
@@ -1353,9 +908,9 @@
                   <id root="30A7B818-DD49-4388-A181-AE180F6606EF" />
                   <code code="87511-2" codeSystem="2.16.840.1.113883.6.1" />
                   <statusCode code="completed" />
-                  <effectiveTime value="20160501">
-                    <low value="20160501"></low>
-                    <high value="20180501" />
+                  <effectiveTime value="20160816">
+                    <low value="20160816"></low>
+                    <high value="20180816" />
                   </effectiveTime>
                 </observation>
               </entry>
@@ -1366,8 +921,8 @@
                   <id root="238F8C32-D59C-4413-8CF9-38A5380DC4E5" />
                   <code code="11341-5" codeSystem="2.16.840.1.113883.6.1" />
                   <statusCode code="completed" />
-                  <effectiveTime value="20180501">
-                    <low value="20180501" />
+                  <effectiveTime value="20180816">
+                    <low value="20180816" />
                     <high />
                   </effectiveTime>
                   <value code="3850" codeSystem="2.16.840.1.114222.4.11.6036" codeSystemName="Occupation CDC Census 2010" displayName="Police and sheriff's patrol officers" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
@@ -1377,7 +932,7 @@
                     </relatedSubject>
                   </subject>
                   <author>
-                    <time value="20240201" />
+                    <time value="20240518154714" />
                     <assignedAuthor>
                       <id root="DA29AE71-E8CA-4BD2-91F3-E7D446107ADD" />
                       <id extension="8" root="1.2.840.114398.1.4156" />
@@ -1495,9 +1050,9 @@
                   <code code="11341-5" codeSystem="2.16.840.1.113883.6.1" />
                   <text>Health Care Assistants</text>
                   <statusCode code="completed" />
-                  <effectiveTime value="20160501">
-                    <low value="20160501" />
-                    <high value="20180501"></high>
+                  <effectiveTime value="20160816">
+                    <low value="20160816" />
+                    <high value="20180816" />
                   </effectiveTime>
                   <value code="5321" codeSystem="1.3.6.1.4.1.19376.1.5.3.1.3.43.48.3" codeSystemName="ISCO-08" displayName="Health Care Assistants" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
                   <subject>
@@ -1506,7 +1061,7 @@
                     </relatedSubject>
                   </subject>
                   <author>
-                    <time value="20240201" />
+                    <time value="20240518154714" />
                     <assignedAuthor>
                       <id root="DA29AE71-E8CA-4BD2-91F3-E7D446107ADD" />
                       <id extension="8" root="1.2.840.114398.1.4156" />
@@ -1633,37 +1188,8 @@ FUNCTIONAL STATUS
           <id nullFlavor="NA"></id>
           <code code="47420-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Functional status assessment note"></code>
           <title>FUNCTIONAL STATUS</title>
-          <text>
-            <table>
-              <thead>
-                <tr>
-                  <th>Type</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Relies on Walking Stick</td>
-                  <td>06-15-2024</td>
-                  <td>Active</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-          <entry typeCode="DRIV">
-            <observation classCode="OBS" moodCode="EVN">
-              <id extension="4912" root="1.2.840.114398.1.11999116114111111116.999.3"></id>
-              <code xsi:type="CE" code="409586006" codeSystem="2.16.840.1.113883.6.96" displayName="Complaint" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></code>
-              <text>Relies on Walking Stick</text>
-              <statusCode code="completed"></statusCode>
-              <effectiveTime xsi:type="IVL_TS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                <low value="20240206"></low>
-                <high nullFlavor="UNK"></high>
-              </effectiveTime>
-              <value code="365112008" codeSystem="2.16.840.1.113883.6.96" displayName="Finding of walking aid use (finding)" xsi:type="CD" />
-            </observation>
-          </entry>
+          <text>Functional Status Withheld for Security/Privacy data Minimization</text>
+          <entry typeCode="DRIV" nullFlavor="MSK" />
         </section>
       </component>
       <!--
@@ -1678,87 +1204,7 @@ CONDITIONS
           <templateId root="2.16.840.1.113883.10.22.3.7"></templateId>
           <!-- IPS -->
           <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="11348-0" displayName="HISTORY OF PAST ILLNESS"></code>
-          <title>HISTORY OF PAST ILLNESS</title>
-          <text>
-            <table border="1" width="100%">
-              <thead>
-                <tr>
-                  <th>Condition</th>
-                  <th>Status</th>
-                  <th>Onset</th>
-                  <th>Concluded</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <content ID="condition246">Fracture of femur</content>
-                  </td>
-                  <td>Resolved</td>
-                  <td>11/16/2023</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>
-                    <content ID="condition248">Pregnancy</content>
-                  </td>
-                  <td>
-Concluded
-</td>
-                  <td>
-01-18-1977
-</td>
-                  <td>
-02-07-2025
-</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-          <entry typeCode="COMP">
-            <act classCode="ACT" moodCode="EVN">
-              <!-- Problem act template -->
-              <templateId root="2.16.840.1.113883.10.22.4.7"></templateId>
-              <id extension="246" root="1.2.840.114398.1.11999116114111111116.999.1.1"></id>
-              <code nullFlavor="NA"></code>
-              <statusCode code="completed"></statusCode>
-              <effectiveTime xsi:type="IVL_TS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                <low nullFlavor="20231116"></low>
-                <high nullFlavor="UNK"></high>
-              </effectiveTime>
-              <entryRelationship typeCode="SUBJ" inversionInd="false">
-                <observation classCode="OBS" moodCode="EVN">
-                  <!-- Problem observation template -->
-                  <id extension="246" root="1.2.840.114398.1.11999116114111111116.999.1.2"></id>
-                  <code code="409586006" codeSystem="2.16.840.1.113883.6.96" displayName="Complaint"></code>
-                  <text>
-                    <reference value="#condition246"></reference>
-                  </text>
-                  <statusCode code="completed"></statusCode>
-                  <effectiveTime xsi:type="IVL_TS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                    <low nullFlavor="20231116"></low>
-                    <high nullFlavor="UNK"></high>
-                  </effectiveTime>
-                  <value xsi:type="CD" code="71620000" codeSystem="2.16.840.1.113883.6.96" displayName="Fracture of femur (disorder)" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                    <translation code="I50.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD10"></translation>
-                  </value>
-                  <entryRelationship typeCode="REFR">
-                    <observation classCode="OBS" moodCode="EVN">
-                      <!-- Status observation template -->
-                      <code xsi:type="CE" code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></code>
-                      <text>
-                        <reference value="#condition246"></reference>
-                      </text>
-                      <statusCode code="completed"></statusCode>
-                      <value xsi:type="CD" code="55561003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Active" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></value>
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </entryRelationship>
-              <!-- Normal Security-->
-            </act>
-          </entry>
-        </section>
+          <title>HISTORY OF PAST ILLNESS</title>History of Past Illness Withheld for Security/Privacy data Minimization<entry typeCode="DRIV" nullFlavor="MSK" /></section>
       </component>
       <!--
 ********************************************************
@@ -1788,7 +1234,7 @@ Procedures
                   <td>
                     <content ID="Procedure110">Artificial ventilation using ventilator (regime/therapy)</content>
                   </td>
-                  <td>2024-06-25</td>
+                  <td>2024-10-10</td>
                   <td></td>
                   <td>
                     <content></content>
@@ -1810,87 +1256,9 @@ Procedures
                 </originalText>
               </code>
               <statusCode code="completed"></statusCode>
-              <effectiveTime value="20240625"></effectiveTime>
+              <effectiveTime value="20241010"></effectiveTime>
               <methodCode nullFlavor="UNK"></methodCode>
             </procedure>
-          </entry>
-        </section>
-      </component>
-      <component>
-        <section>
-          <templateId root="2.16.840.1.113883.10.20.22.2.3" extension="2014-06-09"></templateId>
-          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2014-06-09"></templateId>
-          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2015-08-01"></templateId>
-          <templateId root="2.16.840.1.113883.10.22.3.14" extension="2015-08-01"></templateId>
-          <id nullFlavor="NA"></id>
-          <code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Relevant diagnostic tests &amp;or laboratory data"></code>
-          <title>RESULTS</title>
-          <text>
-            <table border="1" width="100%">
-              <thead>
-                <tr>
-                  <th>Result Name</th>
-                  <th>Value</th>
-                  <th>Range</th>
-                  <th>Observed Date/Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td colspan="4">
-Labs recorded @ 20250205171600+0000
-<content ID="requestNote2025-02-05171600"></content></td>
-                </tr>
-                <tr>
-                  <td>HgbA1C</td>
-                  <td>
-                    <content ID="result4902">5.5 %</content>
-                  </td>
-                  <td></td>
-                  <td>02-05-2025 17:16</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-          <entry typeCode="DRIV">
-            <organizer classCode="BATTERY" moodCode="EVN">
-              <templateId root="2.16.840.1.113883.10.20.22.4.1"></templateId>
-              <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01"></templateId>
-              <templateId root="2.16.840.1.113883.10.22.4.9"></templateId>
-              <!-- IPS -->
-              <id extension="2025" root="1.2.840.114398.1.11999116114111111116.999.19"></id>
-              <code nullFlavor="NA"></code>
-              <statusCode code="completed"></statusCode>
-              <effectiveTime xsi:type="IVL_TS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                <low value="20250205"></low>
-                <high value="20250205"></high>
-              </effectiveTime>
-              <!-- Request-id/datetime: 0/2025-02-05 17:16:00 -->
-              <component>
-                <observation classCode="OBS" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.10.20.22.4.2"></templateId>
-                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"></templateId>
-                  <templateId root="2.16.840.1.113883.10.22.4.10"></templateId>
-                  <!-- IPS -->
-                  <id extension="4902" root="1.2.840.114398.1.11999116114111111116.999.3"></id>
-                  <code xsi:type="CE" code="109691-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Influenza virus A Ag [Measurement] in Nasopharynx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></code>
-                  <text>
-                    <reference value="#result4902"></reference>
-                  </text>
-                  <statusCode code="completed"></statusCode>
-                  <effectiveTime value="20240615"></effectiveTime>
-                  <value xsi:type="CD" code="10828004" codeSystem="2.16.840.1.113883.6.96" displayName="Positive" />
-                  <!-- Original unit: % -->
-                  <referenceRange>
-                    <observationRange>
-                      <text>A negative value is a normal result</text>
-                      <value xsi:type="CD" code="260385009" codeSystemName="SNOMED-CT" displayName="Negative" codeSystem="2.16.840.1.113883.6.96" />
-                    </observationRange>
-                  </referenceRange>
-                  <interpretationCode code="POS" codeSystem="2.16.840.1.113883.5.83" displayName="Positive" />
-                </observation>
-              </component>
-            </organizer>
           </entry>
         </section>
       </component>
@@ -1956,20 +1324,21 @@ Labs recorded @ 20250205171600+0000
                   <templateId root="2.16.840.1.113883.10.22.4.10"></templateId>
                   <!-- IPS -->
                   <id extension="4902" root="1.2.840.114398.1.11999116114111111116.999.3"></id>
-                  <code xsi:type="CE" code="4548-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HgbA1C" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></code>
+                  <code xsi:type="CE" code="109691-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Influenza virus A Ag [Measurement] in Nasopharynx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></code>
                   <text>
                     <reference value="#result4902"></reference>
                   </text>
                   <statusCode code="completed"></statusCode>
-                  <effectiveTime value="20250205171600+0000"></effectiveTime>
-                  <value xsi:type="PQ" value="5.5" unit="%" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></value>
+                  <effectiveTime value="20240615"></effectiveTime>
+                  <value xsi:type="CD" code="10828004" codeSystem="2.16.840.1.113883.6.96" displayName="Positive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
                   <!-- Original unit: % -->
                   <referenceRange>
                     <observationRange>
-                      <text>4.8-5.9</text>
-                      <value xsi:type="ST" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">4.8-5.9</value>
+                      <text>A negative value is a normal result</text>
+                      <value xsi:type="CD" code="260385009" codeSystemName="SNOMED-CT" displayName="Negative" codeSystem="2.16.840.1.113883.6.96" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
                     </observationRange>
                   </referenceRange>
+                  <interpretationCode code="POS" codeSystem="2.16.840.1.113883.5.83" displayName="Positive" />
                 </observation>
               </component>
             </organizer>
@@ -1988,42 +1357,9 @@ ALERTS
           <!-- IPS Alert Section Code -->
           <code code="10156-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Alerts" />
           <title>Alerts</title>
-          <text>
-            <table>
-              <thead>
-                <tr>
-                  <th>Alert Type</th>
-                  <th>Description</th>
-                  <th>Severity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Safety Hazard</td>
-                  <td>Patient uses oxygen therapy at home</td>
-                  <td>High</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-          <!-- Entry: Alert / Flag -->
-          <entry>
-            <act classCode="ACT" moodCode="EVN">
-              <templateId root="2.16.840.1.113883.10.22.4.1" extension="2024-05-01" />
-              <code code="ALERT" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" displayName="Alert" />
-              <statusCode code="active" />
-              <!-- Severity: High -->
-              <priorityCode code="H" codeSystem="2.16.840.1.113883.5.7" displayName="High" />
-              <entryRelationship typeCode="SUBJ">
-                <observation classCode="OBS" moodCode="EVN">
-                  <code code="10156-4" codeSystem="2.16.840.1.113883.6.1" displayName="Alerts" />
-                  <value xsi:type="ST" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3"> Patient uses CPAP therapy at home</value>
-                </observation>
-              </entryRelationship>
-            </act>
-          </entry>
-        </section>
+          <!-- Entry: Alert / Flag -->Alerts Withheld for Security/Privacy data Minimization<entry typeCode="DRIV" nullFlavor="MSK" /></section>
       </component>
     </structuredBody>
   </component>
 </ClinicalDocument>
+```

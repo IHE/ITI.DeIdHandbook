@@ -1156,49 +1156,12 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 {:.grid}
 
 #### Original Identified CDA (IPS subset)
+[CDA EHDS Example Stage 0](cda-example-EHDS2-Stage-0.html)
 
-```xml
-<ClinicalDocument xmlns="urn:hl7-org:v3">
-  <recordTarget>
-    <patientRole>
-      <id root="https://standards.digital.health.nz/ns/nhi-id" extension="ABC1234"/>
-      <addr><postalCode>3210</postalCode></addr>
-      <telecom value="tel:+64-07-850-9900" use="HP"/>
-      <patient>
-        <name><given>Patricia</given><family>JORDANA</family></name>
-        <administrativeGenderCode code="F"/>
-        <birthTime value="19560930"/>
-      </patient>
-    </patientRole>
-  </recordTarget>
-  <component>
-    <section>
-      <code code="10154-3" codeSystem="2.16.840.1.113883.6.1" displayName="Problem List"/>
-      <entry>
-        <observation classCode="OBS" moodCode="EVN">
-          <code code="59621000" codeSystem="2.16.840.1.113883.6.96" displayName="Essential hypertension"/>
-          <effectiveTime value="20160525"/>
-        </observation>
-      </entry>
-    </section>
-  </component>
-  <component>
-    <section>
-      <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" displayName="Immunizations"/>
-      <entry>
-        <substanceAdministration classCode="SBADM" moodCode="EVN">
-          <effectiveTime value="20240501"/>
-          <consumable>
-            <manufacturedProduct>
-              <code code="1119349007" codeSystem="2.16.840.1.113883.6.96" displayName="COVID-19 vaccine"/>
-            </manufacturedProduct>
-          </consumable>
-        </substanceAdministration>
-      </entry>
-    </section>
-  </component>
-</ClinicalDocument>
-```
+[CDA EHDS Example Stage 1](cda-example-EHDS2-Stage-1.html)
+
+[CDA EHDS Example Stage 2](cda-example-EHDS2-Stage-2.html)
+
 
 #### After Stage 1 (Pseudonymized CDA)
 
