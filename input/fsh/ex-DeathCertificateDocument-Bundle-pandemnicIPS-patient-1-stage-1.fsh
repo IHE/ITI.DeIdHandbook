@@ -1,4 +1,4 @@
-Instance: ex-DeathCertificateDocument-Bundle-pandemnicIPS-patient-1-stage-1
+Instance: ex-DeathCertificateDocument-Bundle-pandemnicIPS-stage-1
 InstanceOf: DeathCertificateDocument
 Usage: #example
 Description: """
@@ -22,7 +22,7 @@ The indirect identifiers in this record will be addressed during stage 2 de-iden
 * type = #document
 * timestamp = "2024-07-01T14:48:35.401641-04:00"
 * entry[+].fullUrl = "urn:uuid:c1bb78d9-55e8-4a2e-9d42-9f8728d2aa23"
-* entry[=].resource = ex-DeathCertificate-pandemnicIPS-patient-1-stage-1
+* entry[=].resource = ex-DeathCertificate-pandemnicIPS-stage-1
 * entry[+].fullUrl = "urn:uuid:21225659-4bec-4512-b2f1-6936abf767d9"
 * entry[=].resource = Decedent-pandemnicIPS-patient-1-stage-1
 * entry[+].fullUrl = "urn:uuid:b5615edf-3de5-4023-9ca2-98e80536a2b7"
@@ -80,7 +80,7 @@ The indirect identifiers in this record will be addressed during stage 2 de-iden
 * entry[+].fullUrl = "urn:uuid:dad1df95-fe46-410e-82e1-c95c758ae8dd"
 * entry[=].resource = PractitionerUvIps-vrdr-pandemicIPS-patient-1-stage-1
 
-Instance: ex-DeathCertificate-pandemnicIPS-patient-1-stage-1
+Instance: ex-DeathCertificate-pandemnicIPS-stage-1
 InstanceOf: DeathCertificate
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate"
@@ -289,16 +289,13 @@ Usage: #inline
 * performer = Reference(urn:uuid:5c0a4ab6-ebf3-4ed0-9fcb-6c03cb64af1d)
 * valueDateTime.extension.url = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Extension-partial-date-time-vr"
 * valueDateTime.extension.extension[+].url = "day"
-* valueDateTime.extension.extension[=].valueUnsignedInt.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* valueDateTime.extension.extension[=].valueUnsignedInt.extension.valueCode = #unknown
+* valueDateTime.extension.extension[=].valueUnsignedInt = 30
 * valueDateTime.extension.extension[+].url = "year"
 * valueDateTime.extension.extension[=].valueUnsignedInt = 2024
 * valueDateTime.extension.extension[+].url = "month"
 * valueDateTime.extension.extension[=].valueUnsignedInt = 6
 * valueDateTime.extension.extension[+].url = "time"
 * valueDateTime.extension.extension[=].valueTime = "12:13:14"
-* valueDateTime.extension.extension[=].valueTime.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* valueDateTime.extension.extension[=].valueTime.extension.valueCode = #unknown
 * component[datetimePronouncedDead].code = $loinc#80616-6
 * component[datetimePronouncedDead].valueDateTime = "2024-06-30T16:39:40-05:00"
 * component[placeOfDeath].code = $loinc#58332-8

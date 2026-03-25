@@ -1,7 +1,15 @@
 Instance: ex-DeathCertificateDocument-Bundle-pandemnicIPS-patient-1-stage-0
 InstanceOf: DeathCertificateDocument
 Description: """
-TODO
+The following bundle reflects a complete death certificate record, including:
+* the decedent demographics, including death date/time,
+* their next-of-kin demographics,
+* coded cause of death information,
+* coded usual occupation and associated usual industry,
+* death pronouncer,
+* death certifier,
+* funeral home information, and
+* burial information.
 """
 Usage: #example
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
@@ -282,16 +290,13 @@ Usage: #inline
 * performer = Reference(urn:uuid:387cbded-d40e-41bd-95f3-db25dee6dff6)
 * valueDateTime.extension.url = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Extension-partial-date-time-vr"
 * valueDateTime.extension.extension[+].url = "day"
-* valueDateTime.extension.extension[=].valueUnsignedInt.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* valueDateTime.extension.extension[=].valueUnsignedInt.extension.valueCode = #unknown
+* valueDateTime.extension.extension[=].valueUnsignedInt = 30
 * valueDateTime.extension.extension[+].url = "year"
 * valueDateTime.extension.extension[=].valueUnsignedInt = 2024
 * valueDateTime.extension.extension[+].url = "month"
 * valueDateTime.extension.extension[=].valueUnsignedInt = 6
 * valueDateTime.extension.extension[+].url = "time"
 * valueDateTime.extension.extension[=].valueTime = "12:13:14"
-* valueDateTime.extension.extension[=].valueTime.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* valueDateTime.extension.extension[=].valueTime.extension.valueCode = #unknown
 * component[datetimePronouncedDead].code = $loinc#80616-6
 * component[datetimePronouncedDead].valueDateTime = "2024-06-30T16:39:40-05:00"
 * component[placeOfDeath].code = $loinc#58332-8
