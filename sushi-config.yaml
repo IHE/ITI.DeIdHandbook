@@ -138,15 +138,6 @@ pages:
   ips-ehds-example.md:
     title: IPS EHDS2
     generation: markdown
-  cda-example-EHDS2-Stage-0.md:
-    title: IPS CDA Example EHDS2 Stage 0
-    generation: markdown
-  cda-example-EHDS2-Stage-1.md:
-    title: IPS CDA Example EHDS2 Stage 1
-    generation: markdown
-  cda-example-EHDS2-Stage-2.md:
-    title: IPS CDA Example EHDS2 Stage 2
-    generation: markdown
   download.md:
     title: Download and Analysis
     generation: markdown
@@ -177,7 +168,4 @@ menu:
   Other:
     Download and Analysis: download.html
     Significant Changes and Issues: issues.html
-    IPS CDA Example EHDS2 Stage 0: cda-example-EHDS2-Stage-0.html
-    IPS CDA Example EHDS2 Stage 1: cda-example-EHDS2-Stage-1.html
-    IPS CDA Example EHDS2 Stage 2: cda-example-EHDS2-Stage-2.html
   References: references.html

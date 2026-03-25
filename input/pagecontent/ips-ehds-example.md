@@ -1156,116 +1156,228 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 {:.grid}
 
 #### Original Identified CDA (IPS subset)
-[CDA EHDS Example Stage 0](cda-example-EHDS2-Stage-0.html)
+[CDA EHDS Example Stage 0](https://drive.google.com/file/d/1FrhpiY3EmOH3j30PlGphTaB4l2m7bpmT/view?usp=drive_link)
 
-[CDA EHDS Example Stage 1](cda-example-EHDS2-Stage-1.html)
-
-[CDA EHDS Example Stage 2](cda-example-EHDS2-Stage-2.html)
-
+```xml
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.22.3.3" />
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Problem List</title>
+          <text>
+            <table width="100%">
+              <thead>
+                <tr>
+                  <th>Problem Name</th>
+                  <th>Onset Date</th>
+                  <th>End Date</th>
+                  <th>Severity</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="medicalProblem.1">
+                  <td>Influenza caused by pandemic influenza virus (disorder)</td>
+                  <td>2024-06-15</td>
+                  <td />
+                  <td>Severe</td>
+                  <td></td>
+                </tr>
+                <tr ID="medicalProblem.2">
+                  <td>Severe asthma</td>
+                  <td>01/03/2006</td>
+                  <td />
+                  <td>Severe</td>
+                  <td>Severe asthma (disorder)</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.22.4.7" />
+              <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
+              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20130305" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.22.4.8" />
+                  <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
+                  <code code="75326-9" codeSystem="2.16.840.1.113883.6.1" displayName="Problem" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20240615" />
+                  </effectiveTime>
+                  <value code="719865001" codeSystem="2.16.840.1.113883.6.96" displayName="Influenza caused by pandemic influenza virus (disorder)" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                  <entryRelationship inversionInd="false" typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.22.4.20" />
+                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" />
+                      <statusCode code="completed" />
+                      <value code="active" codeSystem="2.16.840.1.113883.4.642.3.155" displayName="Active" xsi:type="CE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+```
 
 #### After Stage 1 (Pseudonymized CDA)
 
 Direct identifiers are removed or pseudonymized; removed elements are marked using `nullFlavor="MSK"`.
 
+[CDA EHDS Example Stage 1](https://drive.google.com/file/d/15aSVfW6Z3qrosXPKNutVJnrsSLXNgdis/view?usp=drive_link)
+
 ```xml
-<ClinicalDocument xmlns="urn:hl7-org:v3">
-  <recordTarget>
-    <patientRole>
-      <id root="urn:example:psyn" extension="PID-7ac6997e"/>
-      <addr><postalCode>3210</postalCode></addr>
-      <telecom nullFlavor="MSK"/>
-      <patient>
-        <name nullFlavor="MSK"/>
-        <administrativeGenderCode code="F"/>
-        <birthTime value="19560930"/>
-      </patient>
-    </patientRole>
-  </recordTarget>
-  <component>
-    <section>
-      <code code="10154-3" codeSystem="2.16.840.1.113883.6.1" displayName="Problem List"/>
-      <entry>
-        <observation classCode="OBS" moodCode="EVN">
-          <code code="59621000" codeSystem="2.16.840.1.113883.6.96" displayName="Essential hypertension"/>
-          <effectiveTime value="20160525"/>
-        </observation>
-      </entry>
-    </section>
-  </component>
-  <component>
-    <section>
-      <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" displayName="Immunizations"/>
-      <entry>
-        <substanceAdministration classCode="SBADM" moodCode="EVN">
-          <effectiveTime value="20240501"/>
-          <consumable>
-            <manufacturedProduct>
-              <code code="1119349007" codeSystem="2.16.840.1.113883.6.96" displayName="COVID-19 vaccine"/>
-            </manufacturedProduct>
-          </consumable>
-        </substanceAdministration>
-      </entry>
-    </section>
-  </component>
-</ClinicalDocument>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.22.3.3" />
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Problem List</title>
+          <text>
+            <table width="100%">
+              <thead>
+                <tr>
+                  <th>Problem Name</th>
+                  <th>Onset Date</th>
+                  <th>End Date</th>
+                  <th>Severity</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="medicalProblem.1">
+                  <td>Influenza caused by pandemic influenza virus (disorder)</td>
+                  <td>2024-06-15</td>
+                  <td />
+                  <td>Severe</td>
+                  <td></td>
+                </tr>
+                <tr ID="medicalProblem.2">
+                  <td>Severe asthma</td>
+                  <td>01/03/2006</td>
+                  <td />
+                  <td>Severe</td>
+                  <td>Severe asthma (disorder)</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.22.4.7" />
+              <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
+              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20130305" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.22.4.8" />
+                  <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
+                  <code code="75326-9" codeSystem="2.16.840.1.113883.6.1" displayName="Problem" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20240615" />
+                  </effectiveTime>
+                  <value code="719865001" codeSystem="2.16.840.1.113883.6.96" displayName="Influenza caused by pandemic influenza virus (disorder)" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                  <entryRelationship inversionInd="false" typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.22.4.20" />
+                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" />
+                      <statusCode code="completed" />
+                      <value code="active" codeSystem="2.16.840.1.113883.4.642.3.155" displayName="Active" xsi:type="CE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
 ```
 
 #### After Stage 2 (Anonymized CDA)
 
 Quasi-identifiers are transformed; removed elements continue to use `nullFlavor="MSK"`. Dates are shifted to match the FHIR Stage 2 example; postalCode generalized to 3 digits.
 
+[CDA EHDS Example Stage 2](https://drive.google.com/file/d/1ZIY-u2jvSmlfqSVrhbCpJx0704_2qY2R/view?usp=drive_link)
+
 ```xml
-<ClinicalDocument xmlns="urn:hl7-org:v3">
-  <recordTarget>
-    <patientRole>
-      <id root="urn:example:psyn2" extension="PID-9f8b1ea1"/>
-      <addr><postalCode>321</postalCode></addr>
-      <telecom nullFlavor="MSK"/>
-      <patient>
-        <name nullFlavor="MSK"/>
-        <administrativeGenderCode code="F"/>
-        <birthTime nullFlavor="MSK">
-          <!-- Age band derived per policy -->
-        </birthTime>
-      </patient>
-    </patientRole>
-  </recordTarget>
-  <component>
-    <section>
-      <code code="10154-3" codeSystem="2.16.840.1.113883.6.1" displayName="Problem List"/>
-      <entry>
-        <observation classCode="OBS" moodCode="EVN">
-          <code code="59621000" codeSystem="2.16.840.1.113883.6.96" displayName="Essential hypertension"/>
-          <effectiveTime value="20160610"/>
-        </observation>
-      </entry>
-    </section>
-  </component>
-  <component>
-    <section>
-      <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" displayName="Immunizations"/>
-      <entry>
-        <substanceAdministration classCode="SBADM" moodCode="EVN">
-          <effectiveTime value="20240518"/>
-          <consumable>
-            <manufacturedProduct>
-              <code code="1119349007" codeSystem="2.16.840.1.113883.6.96" displayName="COVID-19 vaccine"/>
-            </manufacturedProduct>
-          </consumable>
-        </substanceAdministration>
-      </entry>
-    </section>
-  </component>
-</ClinicalDocument>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.22.3.3" />
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Problem List</title>
+          <text>
+            <table width="100%">
+              <thead>
+                <tr>
+                  <th>Problem Name</th>
+                  <th>Onset Date</th>
+                  <th>End Date</th>
+                  <th>Severity</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="medicalProblem.1">
+                  <td>Influenza caused by pandemic influenza virus (disorder)</td>
+                  <td>2024-09-30</td>
+                  <td />
+                  <td>Severe</td>
+                  <td></td>
+                </tr>
+                <tr ID="medicalProblem.2">
+                  <td>Severe asthma</td>
+                  <td>01/03/2006</td>
+                  <td />
+                  <td>Severe</td>
+                  <td>Severe asthma (disorder)</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.22.4.7" />
+              <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
+              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20240930" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.22.4.8" />
+                  <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
+                  <code code="75326-9" codeSystem="2.16.840.1.113883.6.1" displayName="Problem" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20240930" />
+                  </effectiveTime>
+                  <value code="719865001" codeSystem="2.16.840.1.113883.6.96" displayName="Influenza caused by pandemic influenza virus (disorder)" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                  <entryRelationship inversionInd="false" typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.22.4.20" />
+                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" />
+                      <statusCode code="completed" />
+                      <value code="active" codeSystem="2.16.840.1.113883.4.642.3.155" displayName="Active" xsi:type="CE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
 ```
 
 Notes:
 - CDA uses `nullFlavor` (e.g., `MSK`) to indicate masked/removed content, whereas FHIR uses the Data Absent Reason extension.
 - Pseudonymized identifiers mirror the FHIR Stage 1/2 examples (`PID-7ac6997e`, `PID-9f8b1ea1`).
 - Dates and postal generalization match the FHIR Stage 2 transformations.
-
-# Test fragment
-{% fragment Bundle/5d7d0b42-86be-4630-b284-6a9f3aab05bc JSON %} 
 
 
 

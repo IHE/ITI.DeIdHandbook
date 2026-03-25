@@ -1,5 +1,5 @@
 Instance: ex-DeathCertificateDocument-Bundle-pandemnicIPS-patient-1-stage-2
-InstanceOf: DeathCertificateDocument
+InstanceOf: Bundle
 Description: """
 The following bundle reflects the sample mortality data after applying the approved de-identification methods to the pseudonymized bundle as described in section IPS Data Element Mappings (FHIR). This shows:
 * Date shifting throughout the bundle (applies to the date of death), and

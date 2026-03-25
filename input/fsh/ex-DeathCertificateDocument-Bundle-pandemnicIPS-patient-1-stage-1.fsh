@@ -1,5 +1,5 @@
 Instance: ex-DeathCertificateDocument-Bundle-pandemnicIPS-stage-1
-InstanceOf: DeathCertificateDocument
+InstanceOf: Bundle
 Usage: #example
 Description: """
 In addition to pseudonymizing the Decedent Identifiers and Patient name, we are also applying pseudoidentifiers and names for the:
