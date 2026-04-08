@@ -1,5 +1,5 @@
 Instance: ex-DeathCertificateDocument-Bundle-pandemnicIPS-patient-1-stage-2
-InstanceOf: Bundle
+InstanceOf: DeathCertificateDocument
 Description: """
 The following bundle reflects the sample mortality data after applying the approved de-identification methods to the pseudonymized bundle as described in section IPS Data Element Mappings (FHIR). This shows:
 * Date shifting throughout the bundle (applies to the date of death), and
@@ -124,7 +124,8 @@ Usage: #inline
 
 * section[DeathCertification].title = "Death Certification"
 * section[DeathCertification].code = $vrdr-document-section-cs#DeathCertification
-* section[DeathCertification].emptyReason = http://terminology.hl7.org/CodeSystem/list-empty-reason#withheld "Information Withheld"
+//* section[DeathCertification].emptyReason = http://terminology.hl7.org/CodeSystem/list-empty-reason#withheld "Information Withheld"
+* section[DeathCertification].entry[+] = Reference(urn:uuid:886e498d-d962-497c-a871-cfcaa1be9766)
 // remove references to the following oids
 //* section[DeathCertification].entry[+] = Reference(urn:uuid:0405435d-0e9d-4183-b4de-de135b8271ee)
 //* section[DeathCertification].entry[+] = Reference(urn:uuid:62c1329f-829a-4f6e-8d34-0bb4cf853cf7)
@@ -135,7 +136,8 @@ Usage: #inline
 
 * section[DecedentDisposition].title = "Decedent Disposition"
 * section[DecedentDisposition].code = $vrdr-document-section-cs#DecedentDisposition
-* section[DeathCertification].emptyReason = http://terminology.hl7.org/CodeSystem/list-empty-reason#withheld "Information Withheld"
+//* section[DecedentDisposition].emptyReason = http://terminology.hl7.org/CodeSystem/list-empty-reason#withheld "Information Withheld"
+* section[DecedentDisposition].entry[+] = Reference(urn:uuid:e2b3e3ca-0560-40a6-8960-0516495ace4f)
 // remove references to the following oids
 //* section[DecedentDisposition].entry[+] = Reference(urn:uuid:9c46b8f5-2752-4aa6-94a1-830d5ed718a9)
 //* section[DecedentDisposition].entry[+] = Reference(urn:uuid:de3ff34a-b1e5-44a0-97dc-196942ea3b3e)
@@ -161,10 +163,9 @@ Usage: #inline
 * extension[+].url = "http://hl7.org/fhir/us/vrdr/StructureDefinition/SpouseAlive"
 * extension[=].valueCodeableConcept = $v2-0136#Y
 * extension[+].url = "http://hl7.org/fhir/us/vrdr/StructureDefinition/NVSS-SexAtDeath"
-* extension[=].valueCodeableConcept = $administrative-gender#F "Female"
+* extension[=].valueCodeableConcept = $administrative-gender#female "Female"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/patient-birthPlace"
-* extension[=].extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* extension[=].extension.valueCode = #masked
+* extension[=].valueAddress.country = "US"
 * identifier.type = $v2-0203#SB "Social Beneficiary Identifier"
 * identifier.system = "http://hl7.org/fhir/sid/us-ssn"
 * identifier.value = "123456789"
@@ -179,14 +180,13 @@ Usage: #inline
 * telecom.use = #temp
 * telecom.value.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * telecom.value.extension.valueCode = #masked
-* address.use.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* address.use.extension.valueCode = #masked
+* address.use = #home
 * address.line.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * address.line.extension.valueCode = #masked
 * address.city.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * address.city.extension.valueCode = #masked
 * address.postalCode = "460"
-* address.country = "DEU"
+* address.country = "US"
 //* address.extension[+].url = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Extension-within-city-limits-indicator-vr"
 //* address.extension[=].valueCoding = $v2-0136#Y "Yes"
 //* address.extension[+].url = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/StreetName"
@@ -200,10 +200,7 @@ Usage: #inline
 //* address.district.extension.valuePositiveInt = 321
 //* address.state = "VA"
 //* address.country = "US"
-* maritalStatus.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* maritalStatus.extension.valueCode = #masked
-* contact.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* contact.extension.valueCode = #masked
+* maritalStatus = $v3-MaritalStatus#S "Never Married"
 * generalPractitioner.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * generalPractitioner.extension.valueCode = #masked
 * generalPractitioner.display = "The information is not available due to security, privacy or related reasons." 
@@ -280,8 +277,7 @@ Usage: #inline
 * status = #final
 * code = $loinc#69442-2
 * subject = Reference(urn:uuid:24b634d5-3d22-4395-8449-db06fadf2de7)
-* valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* valueCodeableConcept.extension.valueCode = #masked
+* valueCodeableConcept = $CodeSystem-death-pregnancy-status#2 "Pregnant at time of death"
 
 Instance: DeathDate-pandemnicIPS-patient-1-stage-2
 InstanceOf: DeathDate
@@ -306,8 +302,8 @@ Usage: #inline
 * valueDateTime.extension.extension[=].valueTime = "12:13:14"
 * component[datetimePronouncedDead].valueDateTime.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * component[datetimePronouncedDead].valueDateTime.extension.valueCode = #masked
-* component[placeOfDeath].valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[placeOfDeath].valueCodeableConcept.extension.valueCode = #masked
+//* component[placeOfDeath].code = $loinc#58332-8
+//* component[placeOfDeath].valueCodeableConcept = $sct#440081000124100 "Death in home"
 
 
 Instance: RecordAxisCauseOfDeath-pandemnicIPS-patient-1-stage-2
@@ -318,7 +314,7 @@ Usage: #inline
 * status = #final
 * code = $loinc#80357-7
 * subject = Reference(urn:uuid:24b634d5-3d22-4395-8449-db06fadf2de7)
-* valueCodeableConcept = $ICD10#U07.1 "COVID-19"
+* valueCodeableConcept = $ICD10#U07.1 "COVID-19, virus identified"
 * component[position].valueInteger = 1
 
 Instance: EntityAxisCauseOfDeath-pandemnicIPS-patient-1-stage-2
@@ -329,7 +325,7 @@ Usage: #inline
 * status = #final
 * code = $loinc#80356-9
 * subject = Reference(urn:uuid:24b634d5-3d22-4395-8449-db06fadf2de7)
-* valueCodeableConcept = $ICD10#U07.1 "COVID-19"
+* valueCodeableConcept = $ICD10#U07.1 "COVID-19, virus identified"
 * component[lineNumber].valueInteger = 1
 * component[position].valueInteger = 1
 
@@ -339,8 +335,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-activity-at-time-of-death"
 * id = "af3f6234-6aab-4834-b565-d83e4b94a7be"
 * status = #final
-* valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* valueCodeableConcept.extension.valueCode = #masked
+* valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-activity-at-time-of-death-cs#1 "While engaged in leisure activities."
 * subject = Reference(urn:uuid:24b634d5-3d22-4395-8449-db06fadf2de7)
 * effectiveDateTime = "2024-10-15T16:39:40-05:00"
 
@@ -352,29 +347,12 @@ Usage: #inline
 * id = "6288da45-c862-4140-bc4f-467ea1e031fc"
 * status = #final
 * subject = Reference(urn:uuid:24b634d5-3d22-4395-8449-db06fadf2de7)
-* code = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-local-observation-codes-vr#CodedRaceAndEthnicity "Coded Race and Ethnicity Data produced by NCHS from submitted death record"
-* component.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component.extension.valueCode = #masked
-* component[FirstEditedCode].code.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[FirstEditedCode].code.extension.valueCode = #masked 
-* component[FirstEditedCode].valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[FirstEditedCode].valueCodeableConcept.extension.valueCode = #masked
-* component[SecondEditedCode].code.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[SecondEditedCode].code.extension.valueCode = #masked
-* component[SecondEditedCode].valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[SecondEditedCode].valueCodeableConcept.extension.valueCode = #masked
-* component[FirstAmericanIndianCode].code.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[FirstAmericanIndianCode].code.extension.valueCode = #masked
-* component[FirstAmericanIndianCode].valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[FirstAmericanIndianCode].valueCodeableConcept.extension.valueCode = #masked
-* component[RaceRecode40].code.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[RaceRecode40].code.extension.valueCode = #masked
-* component[RaceRecode40].valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[RaceRecode40].valueCodeableConcept.extension.valueCode = #masked
-* component[HispanicCode].code.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[HispanicCode].code.extension.valueCode = #masked
-* component[HispanicCode].valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* component[HispanicCode].valueCodeableConcept.extension.valueCode = #masked
+* code = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-local-observation-codes-vr#codedraceandethnicity "Coded Race and Ethnicity"
+* component[FirstEditedCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#101 "White"
+* component[SecondEditedCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#122 "Israeli"
+* component[FirstAmericanIndianCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#A31 "Arikara"
+//* component[RaceRecode40].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#20 "AIAN and Asian"
+//* component[HispanicCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#233 "Chilean"
 
 Instance: ManualUnderlyingCauseOfDeath-pandemnicIPS-patient-1-stage-2
 InstanceOf: ManualUnderlyingCauseOfDeath
@@ -401,25 +379,16 @@ Usage: #inline
 * id = "e2b3e3ca-0560-40a6-8960-0516495ace4f"
 * status = #final
 * subject = Reference(urn:uuid:24b634d5-3d22-4395-8449-db06fadf2de7)
-* valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* valueCodeableConcept.extension.valueCode = #masked
-* valueCodeableConcept.coding.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* valueCodeableConcept.coding.extension.valueCode = #masked
+* valueCodeableConcept = $loinc#LA14084-0 "Home"
 
 Instance: CodingStatusValues-pandemnicIPS-patient-1-stage-2
 InstanceOf: CodingStatusValues
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-coding-status-values"
 * id = "90081d02-7e3b-411b-a7df-7ac2f91a59df"
-* parameter.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* parameter.extension.valueCode = #masked
-* parameter[shipmentNumber].valueString.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* parameter[shipmentNumber].valueString.extension.valueCode = #masked
-* parameter[receiptDate].valueDate.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* parameter[receiptDate].valueDate.extension.valueCode = #masked
-* parameter[intentionalReject].valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* parameter[intentionalReject].valueCodeableConcept.extension.valueCode = #masked
-* parameter[acmeSystemReject].valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* parameter[acmeSystemReject].valueCodeableConcept.extension.valueCode = #masked
-* parameter[transaxConversion].valueCodeableConcept.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* parameter[transaxConversion].valueCodeableConcept.extension.valueCode = #masked
+* parameter[shipmentNumber].valueString = "A2B2"
+* parameter[receiptDate].valueDate = "2021-12-12"
+* parameter[coderStatus].valueInteger = 5
+* parameter[intentionalReject].valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-intentional-reject-cs#1 "Reject1"
+* parameter[acmeSystemReject].valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-system-reject-cs#0 "Not Rejected"
+* parameter[transaxConversion].valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-transax-conversion-cs#3 "Conversion using non-ambivalent table entries"

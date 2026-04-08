@@ -1,5 +1,5 @@
 Instance: ex-DeathCertificateDocument-Bundle-pandemnicIPS-stage-1
-InstanceOf: Bundle
+InstanceOf: DeathCertificateDocument
 Usage: #example
 Description: """
 In addition to pseudonymizing the Decedent Identifiers and Patient name, we are also applying pseudoidentifiers and names for the:
@@ -77,8 +77,8 @@ The indirect identifiers in this record will be addressed during stage 2 de-iden
 * entry[=].resource = PlaceOfInjury-pandemnicIPS-patient-1-stage-1
 * entry[+].fullUrl = "urn:uuid:1247807f-6130-40c8-bf54-bcb9fb982e9a"
 * entry[=].resource = CodingStatusValues-pandemnicIPS-patient-1-stage-1
-* entry[+].fullUrl = "urn:uuid:dad1df95-fe46-410e-82e1-c95c758ae8dd"
-* entry[=].resource = PractitionerUvIps-vrdr-pandemicIPS-patient-1-stage-1
+//* entry[+].fullUrl = "urn:uuid:dad1df95-fe46-410e-82e1-c95c758ae8dd"
+//* entry[=].resource = PractitionerUvIps-vrdr-pandemicIPS-patient-1-stage-1
 
 Instance: ex-DeathCertificate-pandemnicIPS-stage-1
 InstanceOf: DeathCertificate
@@ -153,7 +153,7 @@ Usage: #inline
 * extension[+].url = "http://hl7.org/fhir/us/vrdr/StructureDefinition/SpouseAlive"
 * extension[=].valueCodeableConcept = $v2-0136#Y
 * extension[+].url = "http://hl7.org/fhir/us/vrdr/StructureDefinition/NVSS-SexAtDeath"
-* extension[=].valueCodeableConcept = $administrative-gender#F "Female"
+* extension[=].valueCodeableConcept = $administrative-gender#female "Female"
 * extension[+].url = "http://hl7.org/fhir/StructureDefinition/patient-birthPlace"
 * extension[=].valueAddress.city = "Roanoke"
 * extension[=].valueAddress.state = "VA"
@@ -174,7 +174,7 @@ Usage: #inline
 * address.line = "Grenzstraße"
 * address.city = "Oberhausen"
 * address.postalCode = "46045"
-* address.country = "DEU"
+* address.country = "US"
 //* address.extension[+].url = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Extension-within-city-limits-indicator-vr"
 //* address.extension[=].valueCoding = $v2-0136#Y "Yes"
 //* address.extension[+].url = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/StreetName"
@@ -298,8 +298,8 @@ Usage: #inline
 * valueDateTime.extension.extension[=].valueTime = "12:13:14"
 * component[datetimePronouncedDead].code = $loinc#80616-6
 * component[datetimePronouncedDead].valueDateTime = "2024-06-30T16:39:40-05:00"
-* component[placeOfDeath].code = $loinc#58332-8
-* component[placeOfDeath].valueCodeableConcept = $sct#440081000124100 "Death in home"
+//* component[placeOfDeath].code = $loinc#58332-8
+//* component[placeOfDeath].valueCodeableConcept = $sct#440081000124100 "Death in home"
 
 Instance: Pronouncer-pandemnicIPS-patient-1-stage-1
 InstanceOf: Practitioner
@@ -419,7 +419,7 @@ Usage: #inline
 * status = #final
 * code = $loinc#80357-7
 * subject = Reference(urn:uuid:21225659-4bec-4512-b2f1-6936abf767d9)
-* valueCodeableConcept = $ICD10#U07.1 "COVID-19"
+* valueCodeableConcept = $ICD10#U07.1 "COVID-19, virus identified"
 * component[position].valueInteger = 1
 
 Instance: EntityAxisCauseOfDeath-pandemnicIPS-patient-1-stage-1
@@ -430,7 +430,7 @@ Usage: #inline
 * status = #final
 * code = $loinc#80356-9
 * subject = Reference(urn:uuid:21225659-4bec-4512-b2f1-6936abf767d9)
-* valueCodeableConcept = $ICD10#U07.1 "COVID-19"
+* valueCodeableConcept = $ICD10#U07.1 "COVID-19, virus identified"
 * component[lineNumber].valueInteger = 1
 * component[position].valueInteger = 1
 
@@ -465,12 +465,12 @@ Usage: #inline
 * id = "9c26ac31-71b3-4b11-b031-1aa17fc36bbb"
 * status = #final
 * subject = Reference(urn:uuid:21225659-4bec-4512-b2f1-6936abf767d9)
-* code = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-local-observation-codes-vr#CodedRaceAndEthnicity "Coded Race and Ethnicity Data produced by NCHS from submitted death record"
+* code = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-local-observation-codes-vr#codedraceandethnicity "Coded Race and Ethnicity"
 * component[FirstEditedCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#101 "White"
 * component[SecondEditedCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#122 "Israeli"
 * component[FirstAmericanIndianCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#A31 "Arikara"
-* component[RaceRecode40].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#20 "AIAN and Asian"
-* component[HispanicCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#233 "Chilean"
+//* component[RaceRecode40].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#20 "AIAN and Asian"
+//* component[HispanicCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#233 "Chilean"
 
 Instance: ManualUnderlyingCauseOfDeath-pandemnicIPS-patient-1-stage-1
 InstanceOf: ManualUnderlyingCauseOfDeath
@@ -511,7 +511,7 @@ Usage: #inline
 * status = #final
 * subject = Reference(urn:uuid:21225659-4bec-4512-b2f1-6936abf767d9)
 * performer = Reference(urn:uuid:1db975f6-1b06-43af-b7a9-2074abbdb1a5)
-* valueCodeableConcept = $sct#449971000124106 "Patient status determination, deceased and buried"
+* valueCodeableConcept = http://terminology.hl7.org/CodeSystem/v3-NullFlavor#UNK "Unknown"
 
 Instance: PlaceOfInjury-pandemnicIPS-patient-1-stage-1
 InstanceOf: PlaceOfInjury
@@ -531,5 +531,5 @@ Usage: #inline
 * parameter[receiptDate].valueDate = "2021-12-12"
 * parameter[coderStatus].valueInteger = 5
 * parameter[intentionalReject].valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-intentional-reject-cs#1 "Reject1"
-* parameter[acmeSystemReject].valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-intentional-reject-cs#0 "Not Rejected"
+* parameter[acmeSystemReject].valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-system-reject-cs#0 "Not Rejected"
 * parameter[transaxConversion].valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-transax-conversion-cs#3 "Conversion using non-ambivalent table entries"
