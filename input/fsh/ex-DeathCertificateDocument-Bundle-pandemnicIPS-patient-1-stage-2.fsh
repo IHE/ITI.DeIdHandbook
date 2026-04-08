@@ -174,8 +174,9 @@ Usage: #inline
 * name.given = "PseudoGiven"
 * gender = #female
 * birthDate = "1996-08-16"
-* telecom.system.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* telecom.system.extension.valueCode = #masked
+* telecom.system = #phone
+* telecom.value = "masked"
+* telecom.use = #temp
 * telecom.value.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * telecom.value.extension.valueCode = #masked
 * address.use.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
