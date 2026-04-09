@@ -512,9 +512,6 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 ##### Example FHIR IPS 
 
 ###### Stage 0 Original Identified IPS Document Bundle
-This IPS Bundle represents the 
-
-Original Identified IPS Document Bundle Link example 
 The following bundle provides an example view of a record that could be in the research cohort for the pandemic patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](Bundle-80c516fd-9c84-4924-875b-bf0048979ae1.html). At this stage (0), there have been no alterations to this original record.
 
 **Origional Patient Resource**
@@ -588,234 +585,21 @@ This example shows a minimized VRDR Death Certificate Document Bundle using the 
 {:.grid}
 
 ##### Stage 0 Original Identified VRDR Death Certificate Document Bundle
+This example VRDR Death Certificate represents the origional record.
+[Secondary Use Pandemnic IPS Patient Stage 0 VRDR Death Certificate Document Bundle](Bundle-78f68a27-c439-4cd5-9ca2-ebc882468ade.html)
 
+**Origional Patient Resource**
+This is a valid VRDR Decedent Resource with all known minimum data provided
+{% fragment Patient/35091917-585a-4f65-b15b-8bdd561fbbda JSON %} 
 
-
-```json
-{
-  "resourceType": "Bundle",
-  "type": "document",
-  "timestamp": "2024-07-01T00:00:00Z",
-  "meta": {
-    "profile": [
-      "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
-    ]
-  },
-  "entry": [
-    {
-      "fullUrl": "Composition/vrdr-death-certificate-1",
-      "resource": {
-        "resourceType": "Composition",
-        "id": "vrdr-death-certificate-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate"
-          ]
-        },
-        "status": "final",
-        "type": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "64297-5",
-              "display": "Death certificate"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "date": "2024-07-01T00:00:00Z",
-        "title": "U.S. Standard Certificate of Death",
-        "section": [
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
-                  "code": "DecedentDemographics"
-                }
-              ]
-            },
-            "entry": [
-              {"reference": "Patient/decedent-1"},
-              {"reference": "Observation/vrdr-usual-work-1"}
-            ]
-          },
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
-                  "code": "DeathInvestigation"
-                }
-              ]
-            },
-            "entry": [{"reference": "Observation/vrdr-death-date-1"}]
-          },
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
-                  "code": "CodedContent"
-                }
-              ]
-            },
-            "entry": [{"reference": "Observation/vrdr-auto-ucod-1"}]
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "Patient/decedent-1",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "decedent-1",
-        "name": [
-          {
-            "family": "MARTIN",
-            "given": ["Avery"]
-          }
-        ],
-        "address": [
-          {
-            "line": ["12 Maple Street"],
-            "city": "Boston",
-            "state": "MA",
-            "postalCode": "02110",
-            "country": "US"
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "Observation/vrdr-death-date-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "vrdr-death-date-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date"
-          ]
-        },
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "81956-5",
-              "display": "Date+time of death"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "valueDateTime": "2020-04-05T14:30:00Z"
-      }
-    },
-    {
-      "fullUrl": "Observation/vrdr-usual-work-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "vrdr-usual-work-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-usual-work"
-          ]
-        },
-        "status": "final",
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                "code": "social-history"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "21843-8",
-              "display": "History of Usual Occupation"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "valueCodeableConcept": {
-          "coding": [
-            {
-              "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.3",
-              "code": "4221",
-              "display": "Travel agency and related clerks"
-            }
-          ],
-          "text": "4221 | Travel agency and related clerks"
-        },
-        "component": [
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://loinc.org",
-                  "code": "21844-6",
-                  "display": "History of Usual industry"
-                }
-              ]
-            },
-            "valueCodeableConcept": {
-              "coding": [
-                {
-                  "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.2",
-                  "code": "5110",
-                  "display": "Passenger air transport"
-                }
-              ],
-              "text": "5110 Passenger air transport"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "Observation/vrdr-auto-ucod-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "vrdr-auto-ucod-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-automated-underlying-cause-of-death"
-          ]
-        },
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "80358-5",
-              "display": "Cause of death.underlying [Automated]"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "valueCodeableConcept": {
-          "coding": [
-            {
-              "system": "http://hl7.org/fhir/sid/icd-10",
-              "code": "U07.1",
-              "display": "COVID-19"
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
-```
 
 ##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 1)
 
-[Secondary Use Pandemnic IPS Patient Stage 1 VRDR Death Certificate Document Bundle](Bundle-e817cefe-a7c4-487a-8116-be23cf865f3f.html)
+The Direct Identifiers in the Patient Resource are assigned a reversible pseudonym and pseudo-identifier. The death data in this example is incorporated based upon the linkage with the VRDR death certificate record, and the birth and dates are shifted according to the approved data access permit. The pseudonymized names and shifted dates are applied throughout the document text sections that reference the patient direct identifiers.
+
+The pseudonymization can be applied before or after the linkage of the IPS with the VRDR death certificate record.
+
+Example view of the Pseudonymized Bundle document for the pandemic patient example VRDR Death Certificate[Secondary Use Pandemnic IPS Patient Stage 1 VRDR Death Certificate Document Bundle](Bundle-e817cefe-a7c4-487a-8116-be23cf865f3f.html)
 
 Notes:
 - Stage 1 applies reversible pseudonymization to direct identifiers needed for linkage (decedent name and identifier).
@@ -825,281 +609,23 @@ Notes:
 {% fragment Patient/39c9964c-96b7-442d-afc1-2702106a9e57 JSON %} 
 
 ##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 2)
+The Indirect Identifiers in the Clinical Resources are date-shifted, and content removed according to the data minimization rules approved by the data access permit. Where information is removed, this is indicated by a dataAbsentReason of 'masked' at the data element level (e.g. telecom), and at the section level, emptyReason is set to 'withheld' (e.g. functional status).
 
-```json
-{
-  "resourceType": "Bundle",
-  "type": "document",
-  "timestamp": "2024-07-01T00:00:00Z",
-  "meta": {
-    "profile": [
-      "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
-    ],
-    "security": [
-      {
-        "system": "http://ihe.net/CodeSystem/deid-status",
-        "code": "stage2-pseudonymized",
-        "display": "Stage 2 pseudonymized"
-      }
-    ]
-  },
-  "entry": [
-    {
-      "fullUrl": "Composition/vrdr-death-certificate-1",
-      "resource": {
-        "resourceType": "Composition",
-        "id": "vrdr-death-certificate-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate"
-          ],
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage2-pseudonymized",
-              "display": "Stage 2 pseudonymized"
-            }
-          ]
-        },
-        "status": "final",
-        "type": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "64297-5",
-              "display": "Death certificate"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "date": "2024-07-01T00:00:00Z",
-        "title": "U.S. Standard Certificate of Death",
-        "section": [
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
-                  "code": "DecedentDemographics"
-                }
-              ]
-            },
-            "entry": [
-              {"reference": "Patient/decedent-1"},
-              {"reference": "Observation/vrdr-usual-work-1"}
-            ]
-          },
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
-                  "code": "DeathInvestigation"
-                }
-              ]
-            },
-            "entry": [{"reference": "Observation/vrdr-death-date-1"}]
-          },
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-document-section-cs",
-                  "code": "CodedContent"
-                }
-              ]
-            },
-            "entry": [{"reference": "Observation/vrdr-auto-ucod-1"}]
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "Patient/decedent-1",
-      "resource": {
-        "resourceType": "Patient",
-        "id": "decedent-1",
-        "meta": {
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage2-pseudonymized",
-              "display": "Stage 2 pseudonymized"
-            }
-          ]
-        },
-        "identifier": [
-          {
-            "system": "urn:example:psyn2",
-            "value": "VRDR-PID-9f8b1ea1"
-          }
-        ],
-        "name": [
-          {
-            "family": "Psyn",
-            "given": ["001"]
-          }
-        ],
-        "address": [
-          {
-            "state": "MA",
-            "postalCode": "021",
-            "country": "US"
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "Observation/vrdr-death-date-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "vrdr-death-date-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date"
-          ],
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage2-pseudonymized",
-              "display": "Stage 2 pseudonymized"
-            }
-          ]
-        },
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "81956-5",
-              "display": "Date+time of death"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "valueDateTime": "2020-04-18"
-      }
-    },
-    {
-      "fullUrl": "Observation/vrdr-usual-work-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "vrdr-usual-work-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-usual-work"
-          ],
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage2-pseudonymized",
-              "display": "Stage 2 pseudonymized"
-            }
-          ]
-        },
-        "status": "final",
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                "code": "social-history"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "21843-8",
-              "display": "History of Usual Occupation"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "valueCodeableConcept": {
-          "coding": [
-            {
-              "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.3",
-              "code": "4221",
-              "display": "Travel agency and related clerks"
-            }
-          ],
-          "text": "4221 | Travel agency and related clerks"
-        },
-        "component": [
-          {
-            "code": {
-              "coding": [
-                {
-                  "system": "http://loinc.org",
-                  "code": "21844-6",
-                  "display": "History of Usual industry"
-                }
-              ]
-            },
-            "valueCodeableConcept": {
-              "coding": [
-                {
-                  "system": "urn:oid:1.3.6.1.4.1.19376.1.5.3.1.3.43.48.2",
-                  "code": "5110",
-                  "display": "Passenger air transport"
-                }
-              ],
-              "text": "5110 Passenger air transport"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "Observation/vrdr-auto-ucod-1",
-      "resource": {
-        "resourceType": "Observation",
-        "id": "vrdr-auto-ucod-1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-automated-underlying-cause-of-death"
-          ],
-          "security": [
-            {
-              "system": "http://ihe.net/CodeSystem/deid-status",
-              "code": "stage2-pseudonymized",
-              "display": "Stage 2 pseudonymized"
-            }
-          ]
-        },
-        "status": "final",
-        "code": {
-          "coding": [
-            {
-              "system": "http://loinc.org",
-              "code": "80358-5",
-              "display": "Cause of death.underlying [Automated]"
-            }
-          ]
-        },
-        "subject": {"reference": "Patient/decedent-1"},
-        "valueCodeableConcept": {
-          "coding": [
-            {
-              "system": "http://hl7.org/fhir/sid/icd-10",
-              "code": "U07.1",
-              "display": "COVID-19"
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
-```
+The following bundle provides an example view of the sample patient record after applying the approved de-identification methods to the pseudonymized bundle as described in section IPS Data Element Mappings (FHIR). 
+This shows:
+- Date shifting throughout the bundle (e.g. dates associated with problems, procedures, medications, immunizations, allergies, etc.)
+- Data omissions, noting the data is omitted in emptyReason as ‘withheld’ at the section level, and as ‘masked’ in dataAbsentReason at the data element level. 
+
+Example view of the Stage 2 Pseudonymized VRDR Bundle document for the pandemic patient example 
+[Secondary Use Pandemnic IPS Patient Stage 2 VRDR Death Certificate Document Bundle](Bundle-fc7b32fe-13b1-42e9-bca1-ff805587d072.html)
 
 Notes:
 - Stage 2 applies quasi-identifier handling: date shifting for date of death (example shown), and generalized address (3-digit postal prefix).
 - Identifiers are irreversibly pseudonymized while preserving referential integrity within the bundle.
 
+**Stage 2 Pseudonymized Patient Resource**
+The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked. 
+{% fragment Patient/9fa8380c-ead1-4d68-b69f-56cae2ffb1d3 JSON %} 
 
 ### CDA Example
 
@@ -1156,7 +682,7 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 {:.grid}
 
 #### Original Identified CDA (IPS subset)
-[CDA EHDS Example Stage 0](https://drive.google.com/file/d/1FrhpiY3EmOH3j30PlGphTaB4l2m7bpmT/view?usp=drive_link)
+The following CDA IPS Document provides an example view of a record that could be in the research cohort for the pandemic patient [CDA EHDS Example Stage 0](https://drive.google.com/file/d/1FrhpiY3EmOH3j30PlGphTaB4l2m7bpmT/view?usp=drive_link). At this stage (0), there have been no alterations to this original record.
 
 ```xml
       <component>
@@ -1228,9 +754,10 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 
 #### After Stage 1 (Pseudonymized CDA)
 
+
 Direct identifiers are removed or pseudonymized; removed elements are marked using `nullFlavor="MSK"`.
 
-[CDA EHDS Example Stage 1](https://drive.google.com/file/d/15aSVfW6Z3qrosXPKNutVJnrsSLXNgdis/view?usp=drive_link)
+The Example view if the [CDA EHDS Example Stage 1](https://drive.google.com/file/d/15aSVfW6Z3qrosXPKNutVJnrsSLXNgdis/view?usp=drive_link) IPS Document. 
 
 ```xml
       <component>
@@ -1304,7 +831,7 @@ Direct identifiers are removed or pseudonymized; removed elements are marked usi
 
 Quasi-identifiers are transformed; removed elements continue to use `nullFlavor="MSK"`. Dates are shifted to match the FHIR Stage 2 example; postalCode generalized to 3 digits.
 
-[CDA EHDS Example Stage 2](https://drive.google.com/file/d/1ZIY-u2jvSmlfqSVrhbCpJx0704_2qY2R/view?usp=drive_link)
+The Example view of the [CDA EHDS Example Stage 2](https://drive.google.com/file/d/1ZIY-u2jvSmlfqSVrhbCpJx0704_2qY2R/view?usp=drive_link) IPS Document. 
 
 ```xml
       <component>
