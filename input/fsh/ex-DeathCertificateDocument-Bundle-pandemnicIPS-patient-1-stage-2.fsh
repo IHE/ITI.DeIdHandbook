@@ -26,43 +26,43 @@ Usage: #example
 * entry[+].fullUrl = "Composition/ex-Composition-DeathCert-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-Composition-DeathCert-pandemicIPS-VRDR-stage-2
 * entry[=].id = "ex-Composition-DeathCert-pandemicIPS-VRDR-stage-2"
-* entry[+].fullUrl = "http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Patient/ex-Decedent-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-Decedent-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/RelatedPerson/ex-DecedentFather-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "RelatedPerson/ex-DecedentFather-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-DecedentFather-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/RelatedPerson/ex-DecedentMother-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "RelatedPerson/ex-DecedentMother-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-DecedentMother-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/RelatedPerson/ex-DecedentSpouse-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "RelatedPerson/ex-DecedentSpouse-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-DecedentSpouse-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-DecedentAge-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-DecedentAge-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-DecedentAge-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-DecedentUsualWork-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-DecedentUsualWork-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-DecedentUsualWork-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-DecedentPregStat-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-DecedentPregStat-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-DecedentPregStat-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-DeathDate-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-DeathDate-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-DeathDate-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-ActivityAtTimeOfDeath-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-ActivityAtTimeOfDeath-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-ActivityAtTimeOfDeath-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Observation/ex-PlaceOfInjury-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Observation/ex-PlaceOfInjury-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-PlaceOfInjury-pandemicIPS-VRDR-stage-2
-* entry[+].fullUrl = "http://example.org/Parameter/ex-CodingStatusValues-pandemicIPS-VRDR-stage-2"
+* entry[+].fullUrl = "Parameters/ex-CodingStatusValues-pandemicIPS-VRDR-stage-2"
 * entry[=].resource = ex-CodingStatusValues-pandemicIPS-VRDR-stage-2
 
 Instance: ex-Composition-DeathCert-pandemicIPS-VRDR-stage-2
 InstanceOf: DeathCertificate
 Usage: #inline
-* meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document|3.0.0"
+* meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate|3.0.0"
 * id = "ex-Composition-DeathCert-pandemicIPS-VRDR-stage-2"
 * extension[+].url = "http://hl7.org/fhir/us/vrdr/StructureDefinition/FilingFormat"
 * extension[=].valueCodeableConcept = $vrdr-filing-format-cs#electronic
@@ -116,7 +116,7 @@ Usage: #inline
 * section[CodedContent].entry[+] = Reference(Observation/ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-2)
 * section[CodedContent].entry[+] = Reference(Observation/ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-2)
 * section[CodedContent].entry[+] = Reference(Observation/ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-2)
-* section[CodedContent].entry[+] = Reference(Parameter/ex-CodingStatusValues-pandemicIPS-VRDR-stage-2)
+* section[CodedContent].entry[+] = Reference(Parameters/ex-CodingStatusValues-pandemicIPS-VRDR-stage-2)
 
 
 Instance: ex-Decedent-pandemicIPS-VRDR-stage-2
@@ -233,7 +233,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-usual-work"
 * id = "ex-DecedentUsualWork-pandemicIPS-VRDR-stage-2"
 * status = #final
-* code = $loinc#21843-8 "Usual occupation"
+* code = $loinc#21843-8 "History of Usual occupation"
 * subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-2)
 * valueCodeableConcept = $ISCO08#5321 "Health Care Assistants"
 * component[odh-UsualIndustry].valueCodeableConcept = $ISICRev4#871 "Residential nursing care facilities"
@@ -318,7 +318,7 @@ Usage: #inline
 * id = "ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-2"
 * status = #final
 * subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-2)
-* code = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-local-observation-codes-vr#CodedRaceAndEthnicity "Coded Race and Ethnicity Data produced by NCHS from submitted death record"
+* code = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-local-observation-codes-vr#codedraceandethnicity "Coded Race and Ethnicity"
 * component.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * component.extension.valueCode = #masked
 * component[FirstEditedCode].code.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"

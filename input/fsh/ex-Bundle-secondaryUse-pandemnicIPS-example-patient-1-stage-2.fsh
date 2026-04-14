@@ -286,6 +286,7 @@ Usage: #inline
 * effectiveDateTime = "2024-10-30"
 * performer.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * performer.extension.valueCode = #masked
+* performer.display = "The information is not available due to security, privacy or related reasons."
 * valueQuantity.value = 13.2
 * valueQuantity.unit = "g/dL"
 * interpretation = $v3-ObservationInterpretation#H "High"
