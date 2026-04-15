@@ -516,7 +516,7 @@ The following bundle provides an example view of a record that could be in the r
 
 **Origional Patient Resource**
 This is a valid IPS Patient Resource with all known minimum data provided
-{% fragment Patient/d174bd1a-b368-41e6-83a2-af77f2b3c60f JSON %} 
+{% fragment Patient/ex-Patient-secondaryUse-pandemicIPS-stage-0 JSON %} 
 
 
 ##### Stage 1 Pseudonymized IPS Document Bundle
@@ -533,7 +533,7 @@ This shows:
 - A pseudo-identifier has been applied to the patient resource and replaces the original patient identifier throughout the document.
 - A pseudo-name has been applied to the patient resource and replaces the original patient name throughout the document. Note that a pseudo-name is required as content is not permitted to be omitted or replaced with a null flavor in FHIR patient resources.
 - Birthdate has been date-shifted forward by 107 days.
-{% fragment Patient/39c9964c-96b7-442d-afc1-2702106a9e57 JSON %} 
+{% fragment Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1 JSON %} 
 
 
 **Notes:**
@@ -554,7 +554,7 @@ Example view of the Stage 2 Pseudonymized IPS Bundle document for the pandemic p
 
 **Stage 2 Pseudonymized Patient Resource**
 The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked. 
-{% fragment Patient/6274d469-7a4d-4a66-a261-e5e7b71af267 JSON %} 
+{% fragment Patient/ex-Patient-secondaryUse-pandemicIPS-stage-2 JSON %} 
 
 
 
@@ -590,7 +590,7 @@ This example VRDR Death Certificate represents the origional record.
 
 **Origional Patient Resource**
 This is a valid VRDR Decedent Resource with all known minimum data provided
-{% fragment Patient/35091917-585a-4f65-b15b-8bdd561fbbda JSON %} 
+{% fragment Patient/ex-Decedent-pandemicIPS-VRDR-stage-0 JSON %} 
 
 
 ##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 1)
@@ -606,7 +606,7 @@ Notes:
 - Decedent address is not de-identified in Stage 1; it is generalized in Stage 2.
 - Date of death, cause of death, and usual work elements are carried forward unchanged in Stage 1.
 
-{% fragment Patient/39c9964c-96b7-442d-afc1-2702106a9e57 JSON %} 
+{% fragment Patient/ex-Decedent-pandemicIPS-VRDR-stage-1 JSON %} 
 
 ##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 2)
 The Indirect Identifiers in the Clinical Resources are date-shifted, and content removed according to the data minimization rules approved by the data access permit. Where information is removed, this is indicated by a dataAbsentReason of 'masked' at the data element level (e.g. telecom), and at the section level, emptyReason is set to 'withheld' (e.g. functional status).
@@ -625,7 +625,7 @@ Notes:
 
 **Stage 2 Pseudonymized Patient Resource**
 The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked. 
-{% fragment Patient/9fa8380c-ead1-4d68-b69f-56cae2ffb1d3 JSON %} 
+{% fragment Patient/ex-Decedent-pandemicIPS-VRDR-stage-2 JSON %} 
 
 ### CDA Example
 
@@ -684,6 +684,7 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 #### Original Identified CDA (IPS subset)
 The following CDA IPS Document provides an example view of a record that could be in the research cohort for the pandemic patient [CDA EHDS Example Stage 0](https://drive.google.com/file/d/1FrhpiY3EmOH3j30PlGphTaB4l2m7bpmT/view?usp=drive_link). At this stage (0), there have been no alterations to this original record.
 
+{% raw %}
 ```xml
       <component>
         <section>
@@ -751,6 +752,7 @@ The following CDA IPS Document provides an example view of a record that could b
             </act>
           </entry>
 ```
+{% endraw %}
 
 #### After Stage 1 (Pseudonymized CDA)
 
@@ -759,6 +761,7 @@ Direct identifiers are removed or pseudonymized; removed elements are marked usi
 
 The Example view if the [CDA EHDS Example Stage 1](https://drive.google.com/file/d/15aSVfW6Z3qrosXPKNutVJnrsSLXNgdis/view?usp=drive_link) IPS Document. 
 
+{% raw %}
 ```xml
       <component>
         <section>
@@ -826,6 +829,7 @@ The Example view if the [CDA EHDS Example Stage 1](https://drive.google.com/file
             </act>
           </entry>
 ```
+{% endraw %}
 
 #### After Stage 2 (Anonymized CDA)
 
@@ -833,6 +837,7 @@ Quasi-identifiers are transformed; removed elements continue to use `nullFlavor=
 
 The Example view of the [CDA EHDS Example Stage 2](https://drive.google.com/file/d/1ZIY-u2jvSmlfqSVrhbCpJx0704_2qY2R/view?usp=drive_link) IPS Document. 
 
+{% raw %}
 ```xml
       <component>
         <section>
@@ -900,6 +905,7 @@ The Example view of the [CDA EHDS Example Stage 2](https://drive.google.com/file
             </act>
           </entry>
 ```
+{% endraw %}
 
 Notes:
 - CDA uses `nullFlavor` (e.g., `MSK`) to indicate masked/removed content, whereas FHIR uses the Data Absent Reason extension.
