@@ -467,7 +467,8 @@ Usage: #inline
 Instance: ex-Alert-secondaryUse-pandemicIPS-stage-0
 InstanceOf: FlagAlertUvIps
 Usage: #inline
-* meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Flag-alert-uv-ips"
+* meta.profile[+] = "http://hl7.org/fhir/uv/ips/StructureDefinition/Flag-alert-uv-ips"
+* meta.profile[+] = "http://hl7.org/fhir/StructureDefinition/Flag|4.0.1"
 * id = "ex-Alert-secondaryUse-pandemicIPS-stage-0"
 * extension[flag-priority].url = "http://hl7.org/fhir/StructureDefinition/flag-priority"
 * extension[flag-priority].valueCodeableConcept = http://hl7.org/fhir/flag-priority-code#PM "Medium priority"

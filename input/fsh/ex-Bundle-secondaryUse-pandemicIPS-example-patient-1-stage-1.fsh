@@ -549,8 +549,11 @@ Usage: #inline
 Instance: ex-Alert-secondaryUse-pandemicIPS-stage-1
 InstanceOf: FlagAlertUvIps
 Usage: #inline
-* meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Flag-alert-uv-ips"
+* meta.profile[+] = "http://hl7.org/fhir/uv/ips/StructureDefinition/Flag-alert-uv-ips"
+* meta.profile[+] = "http://hl7.org/fhir/StructureDefinition/Flag|4.0.1"
 * id = "ex-Alert-secondaryUse-pandemicIPS-stage-1"
+* extension[flag-priority].url = "http://hl7.org/fhir/StructureDefinition/flag-priority"
+* extension[flag-priority].valueCodeableConcept = http://hl7.org/fhir/flag-priority-code#PM "Medium priority"
 * status = #active
 * category = http://terminology.hl7.org/CodeSystem/flag-category#clinical
 * code = $sct#370221004 "Severe asthma (disorder)"

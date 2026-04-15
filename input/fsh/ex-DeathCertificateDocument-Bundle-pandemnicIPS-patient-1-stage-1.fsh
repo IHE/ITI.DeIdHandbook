@@ -21,64 +21,64 @@ The indirect identifiers in this record will be addressed during stage 2 de-iden
 * identifier.value = "2024001621"
 * type = #document
 * timestamp = "2024-07-01T14:48:35.401641-04:00"
-* entry[+].fullUrl = "Composition/ex-Composition-DeathCert-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Composition/ex-Composition-DeathCert-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-Composition-DeathCert-pandemicIPS-VRDR-stage-1
 * entry[=].id = "ex-Composition-DeathCert-pandemicIPS-VRDR-stage-1"
-* entry[+].fullUrl = "Patient/ex-Decedent-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-Decedent-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Practitioner/ex-Practitioner-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Practitioner/ex-Practitioner-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-Practitioner-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "RelatedPerson/ex-DecedentFather-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/RelatedPerson/ex-DecedentFather-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DecedentFather-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "RelatedPerson/ex-DecedentMother-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/RelatedPerson/ex-DecedentMother-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DecedentMother-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "RelatedPerson/ex-DecedentSpouse-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/RelatedPerson/ex-DecedentSpouse-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DecedentSpouse-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-DecedentAge-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-DecedentAge-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DecedentAge-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-DecedentUsualWork-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-DecedentUsualWork-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DecedentUsualWork-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-DecedentPregStat-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-DecedentPregStat-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DecedentPregStat-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-DeathDate-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-DeathDate-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DeathDate-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-Practitioner2-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-MannerOfDeath-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-MannerOfDeath-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-MannerOfDeath-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-Certifier-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Procedure/ex-DeathCertification-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Procedure/ex-DeathCertification-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DeathCertification-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-CauseOfDeathPart1-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-CauseOfDeathPart1-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-CauseOfDeathPart1-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-CauseOfDeathPart1-ex2-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-CauseOfDeathPart1-ex2-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-CauseOfDeathPart1-ex2-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-CauseOfDeathPart2-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-CauseOfDeathPart2-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-CauseOfDeathPart2-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Location/ex-DispLocation-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Location/ex-DispLocation-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DispLocation-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Practitioner/ex-Mortician-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Practitioner/ex-Mortician-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-Mortician-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-ActivityAtTimeOfDeath-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-ActivityAtTimeOfDeath-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-ActivityAtTimeOfDeath-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Organization/ex-FuneralHome-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Organization/ex-FuneralHome-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-FuneralHome-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-DecedentDispositionMethod-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-DecedentDispositionMethod-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-DecedentDispositionMethod-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Observation/ex-PlaceOfInjury-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Observation/ex-PlaceOfInjury-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-PlaceOfInjury-pandemicIPS-VRDR-stage-1
-* entry[+].fullUrl = "Parameters/ex-CodingStatusValues-pandemicIPS-VRDR-stage-1"
+* entry[+].fullUrl = "http://example.org/Parameters/ex-CodingStatusValues-pandemicIPS-VRDR-stage-1"
 * entry[=].resource = ex-CodingStatusValues-pandemicIPS-VRDR-stage-1
 
 Instance: ex-Composition-DeathCert-pandemicIPS-VRDR-stage-1
@@ -94,62 +94,64 @@ Usage: #inline
 * extension[=].valueString = "State Specific Content"
 * status = #final
 * type = $loinc#64297-5 "Death certificate"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * date = "2024-07-01T00:00:00Z"
-* author = Reference(Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
+* author = Reference(http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
 * title = "Death Certificate"
-* attester.party = Reference(Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
+* attester.party = Reference(http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
 * attester.mode = #legal
 * attester.time = "2024-07-21T16:39:40-05:00"
-* attester.party = Reference(Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
+* attester.party = Reference(http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
 * event.code = $sct#307930005 "Death certificate (record artifact)"
-* event.detail = Reference(Procedure/ex-DeathCertification-pandemicIPS-VRDR-stage-1)
+* event.detail = Reference(http://example.org/Procedure/ex-DeathCertification-pandemicIPS-VRDR-stage-1)
 
 * section[DecedentDemographics].title = "Decedent Demographics"
 * section[DecedentDemographics].code = $vrdr-document-section-cs#DecedentDemographics
-* section[DecedentDemographics].entry[+] = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
-* section[DecedentDemographics].entry[+] = Reference(RelatedPerson/ex-DecedentFather-pandemicIPS-VRDR-stage-1)
-* section[DecedentDemographics].entry[+] = Reference(RelatedPerson/ex-DecedentMother-pandemicIPS-VRDR-stage-1)
-* section[DecedentDemographics].entry[+] = Reference(RelatedPerson/ex-DecedentSpouse-pandemicIPS-VRDR-stage-1)
-* section[DecedentDemographics].entry[+] = Reference(Observation/ex-DecedentAge-pandemicIPS-VRDR-stage-1)
-* section[DecedentDemographics].entry[+] = Reference(Observation/ex-DecedentUsualWork-pandemicIPS-VRDR-stage-1)
+* section[DecedentDemographics].entry[+] = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* section[DecedentDemographics].entry[+] = Reference(http://example.org/RelatedPerson/ex-DecedentFather-pandemicIPS-VRDR-stage-1)
+* section[DecedentDemographics].entry[+] = Reference(http://example.org/RelatedPerson/ex-DecedentMother-pandemicIPS-VRDR-stage-1)
+* section[DecedentDemographics].entry[+] = Reference(http://example.org/RelatedPerson/ex-DecedentSpouse-pandemicIPS-VRDR-stage-1)
+* section[DecedentDemographics].entry[+] = Reference(http://example.org/Observation/ex-DecedentAge-pandemicIPS-VRDR-stage-1)
+* section[DecedentDemographics].entry[+] = Reference(http://example.org/Observation/ex-DecedentUsualWork-pandemicIPS-VRDR-stage-1)
 
 * section[DeathInvestigation].title = "Death Investigation"
 * section[DeathInvestigation].code = $vrdr-document-section-cs#DeathInvestigation
-* section[DeathInvestigation].entry[+] = Reference(Observation/ex-DecedentPregStat-pandemicIPS-VRDR-stage-1)
-* section[DeathInvestigation].entry[+] = Reference(Observation/ex-DeathDate-pandemicIPS-VRDR-stage-1)
+* section[DeathInvestigation].entry[+] = Reference(http://example.org/Observation/ex-DecedentPregStat-pandemicIPS-VRDR-stage-1)
+* section[DeathInvestigation].entry[+] = Reference(http://example.org/Observation/ex-DeathDate-pandemicIPS-VRDR-stage-1)
 
 * section[DeathCertification].title = "Death Certification"
 * section[DeathCertification].code = $vrdr-document-section-cs#DeathCertification
-* section[DeathCertification].entry[+] = Reference(Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
-* section[DeathCertification].entry[+] = Reference(Procedure/ex-DeathCertification-pandemicIPS-VRDR-stage-1)
-* section[DeathCertification].entry[+] = Reference(Observation/ex-MannerOfDeath-pandemicIPS-VRDR-stage-1)
-* section[DeathCertification].entry[+] = Reference(Observation/ex-CauseOfDeathPart1-pandemicIPS-VRDR-stage-1)
-* section[DeathCertification].entry[+] = Reference(Observation/ex-CauseOfDeathPart1-ex2-pandemicIPS-VRDR-stage-1)
-* section[DeathCertification].entry[+] = Reference(Observation/ex-CauseOfDeathPart2-pandemicIPS-VRDR-stage-1)
+* section[DeathCertification].entry[+] = Reference(http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
+* section[DeathCertification].entry[+] = Reference(http://example.org/Procedure/ex-DeathCertification-pandemicIPS-VRDR-stage-1)
+* section[DeathCertification].entry[+] = Reference(http://example.org/Observation/ex-MannerOfDeath-pandemicIPS-VRDR-stage-1)
+* section[DeathCertification].entry[+] = Reference(http://example.org/Observation/ex-CauseOfDeathPart1-pandemicIPS-VRDR-stage-1)
+* section[DeathCertification].entry[+] = Reference(http://example.org/Observation/ex-CauseOfDeathPart1-ex2-pandemicIPS-VRDR-stage-1)
+* section[DeathCertification].entry[+] = Reference(http://example.org/Observation/ex-CauseOfDeathPart2-pandemicIPS-VRDR-stage-1)
 
 * section[DecedentDisposition].title = "Decedent Disposition"
 * section[DecedentDisposition].code = $vrdr-document-section-cs#DecedentDisposition
-* section[DecedentDisposition].entry[+] = Reference(Location/ex-DispLocation-pandemicIPS-VRDR-stage-1)
-* section[DecedentDisposition].entry[+] = Reference(Organization/ex-FuneralHome-pandemicIPS-VRDR-stage-1)
-* section[DecedentDisposition].entry[+] = Reference(Observation/ex-DecedentDispositionMethod-pandemicIPS-VRDR-stage-1)
-* section[DecedentDisposition].entry[+] = Reference(Practitioner/ex-Mortician-pandemicIPS-VRDR-stage-1)
+* section[DecedentDisposition].entry[+] = Reference(http://example.org/Location/ex-DispLocation-pandemicIPS-VRDR-stage-1)
+* section[DecedentDisposition].entry[+] = Reference(http://example.org/Organization/ex-FuneralHome-pandemicIPS-VRDR-stage-1)
+* section[DecedentDisposition].entry[+] = Reference(http://example.org/Observation/ex-DecedentDispositionMethod-pandemicIPS-VRDR-stage-1)
+* section[DecedentDisposition].entry[+] = Reference(http://example.org/Practitioner/ex-Mortician-pandemicIPS-VRDR-stage-1)
 
 * section[CodedContent].title = "Coded Content"
 * section[CodedContent].code = $vrdr-document-section-cs#CodedContent
-* section[CodedContent].entry[+] = Reference(Observation/ex-ActivityAtTimeOfDeath-pandemicIPS-VRDR-stage-1)
-* section[CodedContent].entry[+] = Reference(Observation/ex-PlaceOfInjury-pandemicIPS-VRDR-stage-1)
-* section[CodedContent].entry[+] = Reference(Observation/ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-1)
-* section[CodedContent].entry[+] = Reference(Observation/ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1)
-* section[CodedContent].entry[+] = Reference(Observation/ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1)
-* section[CodedContent].entry[+] = Reference(Observation/ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-1)
-* section[CodedContent].entry[+] = Reference(Observation/ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-1)
-* section[CodedContent].entry[+] = Reference(Parameters/ex-CodingStatusValues-pandemicIPS-VRDR-stage-1)
+* section[CodedContent].entry[+] = Reference(http://example.org/Observation/ex-ActivityAtTimeOfDeath-pandemicIPS-VRDR-stage-1)
+* section[CodedContent].entry[+] = Reference(http://example.org/Observation/ex-PlaceOfInjury-pandemicIPS-VRDR-stage-1)
+* section[CodedContent].entry[+] = Reference(http://example.org/Observation/ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-1)
+* section[CodedContent].entry[+] = Reference(http://example.org/Observation/ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1)
+* section[CodedContent].entry[+] = Reference(http://example.org/Observation/ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1)
+* section[CodedContent].entry[+] = Reference(http://example.org/Observation/ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-1)
+* section[CodedContent].entry[+] = Reference(http://example.org/Observation/ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-1)
+* section[CodedContent].entry[+] = Reference(http://example.org/Parameters/ex-CodingStatusValues-pandemicIPS-VRDR-stage-1)
 
 Instance: ex-Decedent-pandemicIPS-VRDR-stage-1
 InstanceOf: Decedent
 Usage: #inline
-* meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent"
+* meta.profile[+] = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent"
+* meta.profile[+] = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Patient-vr"
+* meta.profile[+] = "http://hl7.org/fhir/StructureDefinition/Patient"
 * id = "ex-Decedent-pandemicIPS-VRDR-stage-1"
 * extension[+].url = "http://hl7.org/fhir/us/vrdr/StructureDefinition/SpouseAlive"
 * extension[=].valueCodeableConcept = $v2-0136#Y
@@ -193,7 +195,7 @@ Usage: #inline
 * contact.relationship = $v2-0131#U
 * contact.relationship.text = "Friend of family"
 * contact.name.text = "Joe Smith"
-* generalPractitioner = Reference(Practitioner/ex-Practitioner-pandemicIPS-VRDR-stage-1) "Yaser, Joseph"
+* generalPractitioner = Reference(http://example.org/Practitioner/ex-Practitioner-pandemicIPS-VRDR-stage-1) "Yaser, Joseph"
 
 Instance: ex-Practitioner-pandemicIPS-VRDR-stage-1
 InstanceOf: PractitionerUvIps
@@ -210,7 +212,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-father"
 * id = "ex-DecedentFather-pandemicIPS-VRDR-stage-1"
 * active = true
-* patient = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* patient = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * relationship = $v3-RoleCode#FTH
 * name.use = #anonymous
 * name.text = "Pseudo Dad"
@@ -225,7 +227,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-mother"
 * id = "ex-DecedentMother-pandemicIPS-VRDR-stage-1"
 * active = true
-* patient = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* patient = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * relationship = $v3-RoleCode#MTH
 * name.use = #anonymous
 * name.text = "Pseudo Mom"
@@ -238,7 +240,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-spouse"
 * id = "ex-DecedentSpouse-pandemicIPS-VRDR-stage-1"    
 * active = true
-* patient = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* patient = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * relationship = $v3-RoleCode#SPS
 * name.use = #anonymous
 * name.text = "Pseudo Spouse"
@@ -254,9 +256,10 @@ Usage: #inline
 * id = "ex-DecedentAge-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#39016-1 "Age at death"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
-* performer = Reference(Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
 * valueQuantity = 29 'a' "years"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
 
 Instance: ex-DecedentUsualWork-pandemicIPS-VRDR-stage-1
 InstanceOf: DecedentUsualWork
@@ -265,10 +268,11 @@ Usage: #inline
 * id = "ex-DecedentUsualWork-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#21843-8 "History of Usual occupation"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
-* performer = Reference(Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept = $ISCO08#5321 "Health Care Assistants"
 * component[odh-UsualIndustry].valueCodeableConcept = $ISICRev4#871 "Residential nursing care facilities"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
 
 Instance: ex-DecedentPregStat-pandemicIPS-VRDR-stage-1
 InstanceOf: DecedentPregnancyStatus
@@ -277,9 +281,10 @@ Usage: #inline
 * id = "ex-DecedentPregStat-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#69442-2 "Timing of recent pregnancy in relation to death"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
-* performer = Reference(Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept = $CodeSystem-death-pregnancy-status#2 "Pregnant at time of death"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
 
 Instance: ex-DeathDate-pandemicIPS-VRDR-stage-1
 InstanceOf: DeathDate
@@ -288,9 +293,9 @@ Usage: #inline
 * id = "ex-DeathDate-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#81956-5 "Date and time of death [TimeStamp]"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * effectiveDateTime = "2024-06-30T16:39:40-05:00"
-* performer = Reference(Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
 * valueDateTime.extension.url = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Extension-partial-date-time-vr"
 * valueDateTime.extension.extension[+].url = "day"
 * valueDateTime.extension.extension[=].valueUnsignedInt = 30
@@ -303,7 +308,7 @@ Usage: #inline
 * component[datetimePronouncedDead].code = $loinc#80616-6 "Date and time pronounced dead [US Standard Certificate of Death]"
 * component[datetimePronouncedDead].valueDateTime = "2024-06-30T16:39:40-05:00"
 * component[placeOfDeath].code = $loinc#58332-8 "Location of death"
-* component[placeOfDeath].valueCodeableConcept = $sct#876879006 "Died at home"
+* component[placeOfDeath].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/v3-NullFlavor#OTH "Other"
 
 Instance: ex-Practitioner2-pandemicIPS-VRDR-stage-1
 InstanceOf: Practitioner
@@ -328,9 +333,10 @@ Usage: #inline
 * id = "ex-MannerOfDeath-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#69449-7 "Manner of death"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
-* performer = Reference(Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* performer = Reference(http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept = $sct#38605008 "Natural death"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
 
 Instance: ex-Certifier-pandemicIPS-VRDR-stage-1
 InstanceOf: Certifier
@@ -356,11 +362,11 @@ Usage: #inline
 * identifier.value = "180"
 * status = #completed
 * code = $sct#308646001 "Death certification"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * performedDateTime = "2024-01-21T16:39:40-05:00"
 * performer.function = $v3-NullFlavor#OTH "Other"
 * performer.function.text = "Nurse Practitioner"
-* performer.actor = Reference(Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
+* performer.actor = Reference(http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
 
 Instance: ex-CauseOfDeathPart1-pandemicIPS-VRDR-stage-1
 InstanceOf: CauseOfDeathPart1
@@ -369,12 +375,13 @@ Usage: #inline
 * id = "ex-CauseOfDeathPart1-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#69453-9 "Cause of death [US Standard Certificate of Death]"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
-* performer = Reference(Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* performer = Reference(http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept.text = "Covid-19"
 * component[lineNumber].valueInteger = 1
 * component[interval].code = $loinc#69440-6 "Disease onset to death interval"
 * component[interval].valueString = "4 hours"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
 
 Instance: ex-CauseOfDeathPart1-ex2-pandemicIPS-VRDR-stage-1
 InstanceOf: CauseOfDeathPart1
@@ -383,12 +390,13 @@ Usage: #inline
 * id = "ex-CauseOfDeathPart1-ex2-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#69453-9 "Cause of death [US Standard Certificate of Death]"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
-* performer = Reference(Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* performer = Reference(http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept.text = "Eclampsia"
 * component[lineNumber].valueInteger = 2
 * component[interval].code = $loinc#69440-6 "Disease onset to death interval"
 * component[interval].valueString = "3 months"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
 
 Instance: ex-CauseOfDeathPart2-pandemicIPS-VRDR-stage-1
 InstanceOf: CauseOfDeathPart2
@@ -397,9 +405,10 @@ Usage: #inline
 * id = "ex-CauseOfDeathPart2-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#69441-4 "Other significant causes or conditions of death"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
-* performer = Reference(Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* performer = Reference(http://example.org/Practitioner/ex-Certifier-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept.text = "hypertensive heart disease"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
 
 Instance: ex-DispLocation-pandemicIPS-VRDR-stage-1
 InstanceOf: DispositionLocation
@@ -422,9 +431,11 @@ Usage: #inline
 * id = "ex-RecordAxisCauseOfDeath-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#80357-7 "Cause of death record axis code [Automated]"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept = $ICD10#U07.1 "COVID-19, virus identified"
 * component[position].valueInteger = 1
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
 
 Instance: ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-1
 InstanceOf: EntityAxisCauseOfDeath
@@ -433,10 +444,12 @@ Usage: #inline
 * id = "ex-EntityAxisCauseOfDeath-pandemicIPS-VRDR-stage-1"
 * status = #final
 * code = $loinc#80356-9 "Cause of death entity axis code [Automated]"
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept = $ICD10#U07.1 "COVID-19, virus identified"
 * component[lineNumber].valueInteger = 1
 * component[position].valueInteger = 1
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
 
 Instance: ex-Mortician-pandemicIPS-VRDR-stage-1
 InstanceOf: Mortician
@@ -458,8 +471,9 @@ Usage: #inline
 * id = "ex-ActivityAtTimeOfDeath-pandemicIPS-VRDR-stage-1"
 * status = #final
 * valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-activity-at-time-of-death-cs#1 "While engaged in leisure activities."
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * effectiveDateTime = "2024-06-30T16:39:40-05:00"
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
 
 
 Instance: ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-1
@@ -468,13 +482,15 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/coded-race-and-ethnicity-vr"
 * id = "ex-CodedRaceAndEthnicity-pandemicIPS-VRDR-stage-1"
 * status = #final
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * code = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-local-observation-codes-vr#codedraceandethnicity "Coded Race and Ethnicity"
 * component[FirstEditedCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#101 "White"
 * component[SecondEditedCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#122 "Israeli"
 * component[FirstAmericanIndianCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-code-vr#A31 "Arikara"
 * component[RaceRecode40].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-race-recode-40-vr#20 "AIAN and Asian"
 * component[HispanicCode].valueCodeableConcept = http://hl7.org/fhir/us/vr-common-library/CodeSystem/CodeSystem-hispanic-origin-vr#233 "Chilean"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
 
 Instance: ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1
 InstanceOf: ManualUnderlyingCauseOfDeath
@@ -482,8 +498,10 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-manual-underlying-cause-of-death"
 * id = "ex-ManualUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1"
 * status = #final
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept = $ICD10#J96.0 "Acute respiratory failure"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
 
 Instance: ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1
 InstanceOf: AutomatedUnderlyingCauseOfDeath
@@ -491,8 +509,11 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-automated-underlying-cause-of-death"
 * id = "ex-AutomatedUnderlyingCauseOfDeath-pandemicIPS-VRDR-stage-1"
 * status = #final
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept = $ICD10#J96.0 "Acute respiratory failure"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
+
 
 Instance: ex-FuneralHome-pandemicIPS-VRDR-stage-1
 InstanceOf: FuneralHome
@@ -513,9 +534,10 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent-disposition-method"
 * id = "ex-DecedentDispositionMethod-pandemicIPS-VRDR-stage-1"
 * status = #final
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
-* performer = Reference(Practitioner/ex-Mortician-pandemicIPS-VRDR-stage-1)
-* valueCodeableConcept = $sct#449971000124106 "Patient status determination, deceased and buried"
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* performer = Reference(http://example.org/Practitioner/ex-Mortician-pandemicIPS-VRDR-stage-1)
+* valueCodeableConcept = http://terminology.hl7.org/CodeSystem/v3-NullFlavor#OTH "Other"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
 
 Instance: ex-PlaceOfInjury-pandemicIPS-VRDR-stage-1
 InstanceOf: PlaceOfInjury
@@ -523,8 +545,11 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-place-of-injury"
 * id = "ex-PlaceOfInjury-pandemicIPS-VRDR-stage-1"
 * status = #final
-* subject = Reference(Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
+* subject = Reference(http://example.org/Patient/ex-Decedent-pandemicIPS-VRDR-stage-1)
 * valueCodeableConcept = $loinc#LA14084-0 "Home"
+* effectiveDateTime = "2024-06-30T16:39:40-05:00"
+* performer = Reference(http://example.org/Practitioner/ex-Practitioner2-pandemicIPS-VRDR-stage-1)
+
 
 Instance: ex-CodingStatusValues-pandemicIPS-VRDR-stage-1
 InstanceOf: CodingStatusValues
