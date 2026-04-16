@@ -548,7 +548,7 @@ The Indirect Identifiers in the Clinical Resources are date-shifted, and content
 The following bundle provides an example view of the sample patient record after applying the approved de-identification methods to the pseudonymized bundle as described in section IPS Data Element Mappings (FHIR). 
 This shows:
 - Date shifting throughout the bundle (e.g. dates associated with problems, procedures, medications, immunizations, allergies, etc.)
-- Data omissions, noting the data is omitted in emptyReason as ‘withheld’ at the section level, and as ‘masked’ in dataAbsentReason at the data element level. 
+- Data omissions, noting the data is omitted in emptyReason as ‘withheld’ at the section level, and as ‘masked’ in dataAbsentReason at the data element level.  
 
 Example view of the Stage 2 Pseudonymized IPS Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Stage 2 Pseudonymized IPS Document](Bundle-6603561c-2888-4355-9df4-23675f6eb458.html)
 
@@ -682,7 +682,7 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 {:.grid}
 
 #### Original Identified CDA (IPS subset)
-The following CDA IPS Document provides an example view of a record that could be in the research cohort for the pandemic patient [CDA EHDS Example Stage 0](https://drive.google.com/file/d/1FrhpiY3EmOH3j30PlGphTaB4l2m7bpmT/view?usp=drive_link). At this stage (0), there have been no alterations to this original record.
+The following CDA IPS Document provides an example view of a record that could be in the research cohort for the pandemic patient [CDA EHDS Example Stage 0](https://drive.google.com/file/d/1FrhpiY3EmOH3j30PlGphTaB4l2m7bpmT/view?usp=drive_link). At this stage (0), there have been no alterations to this original record.  
 
 {% raw %}
 ```xml

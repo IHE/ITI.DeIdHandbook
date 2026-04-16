@@ -432,7 +432,7 @@ InstanceOf: CodingStatusValues
 Usage: #inline
 * meta.profile = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-coding-status-values"
 * id = "ex-CodingStatusValues-pandemicIPS-VRDR-stage-2"
-* parameter[shipmentNumber].valueString = "masked"
+* parameter[shipmentNumber].valueString = "56789"
 * parameter[receiptDate].valueDate = "2022-03-29"
 * parameter[coderStatus].valueInteger = 5
 * parameter[intentionalReject].valueCodeableConcept = http://hl7.org/fhir/us/vrdr/CodeSystem/vrdr-intentional-reject-cs#1 "Reject1"
