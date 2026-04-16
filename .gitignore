@@ -11,3 +11,9 @@
 /_genonce.sh
 /local-template/config/.index.json
 /local-template/package/.index.json
+/.staged/
+run-docker.sh
+
+# Locally generated PDF-to-Markdown conversions (do not commit)
+/references/FPAR/marker-md/
+/references/FPAR/_marker_input/

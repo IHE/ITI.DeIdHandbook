@@ -105,13 +105,16 @@ pages:
   intro.md:
     title: Introduction 
     generation: markdown
+  glossary.md:
+    title: Glossary
+    generation: markdown
   concepts.md:
     title: Concepts 
     generation: markdown
   data-types.md:
     title: Data Types 
     generation: markdown
-  algorithms.md:
+  techniques.md:
     title: Techniques 
     generation: markdown
   process.md:
@@ -152,9 +155,10 @@ menu:
   Home: index.html
   De-Identification Handbook:
     Introduction: intro.html
+    Glossary: glossary.html
     Concepts: concepts.html
     Data Types: data-types.html
-    Techniques: algorithms.html
+    Techniques: techniques.html
     Process: process.html
     IHE Use: ihe-use.html
     Security Considerations: security.html
