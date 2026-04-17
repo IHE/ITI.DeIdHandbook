@@ -66,7 +66,7 @@
 
 *Note 1:* This includes irreversible and reversible pseudonymization which is similar to the concept of pseudonymization under the GDPR.
 
-*Note 2:* The pseudonymised data can no longer be attributed to a specific data subject without the use of additional information, but could be attributed to a natural person by the use of additional information (Source: [GDPR Recital 26](https://www.privacy-regulation.eu/en/recital-26-GDPR.htm)).
+*Note 2:* The pseudonymized data can no longer be attributed to a specific data subject without the use of additional information, but could be attributed to a natural person by the use of additional information (Source: [GDPR Recital 26](https://www.privacy-regulation.eu/en/recital-26-GDPR.htm)).
 
 *Note 3:* The term defined in the handbook is different from the definition specified in the [(ISO/IEC 20889, 2018)](references.html#ISO20889) where "pseudonymization" refers to a type of de-identification technique.
 
