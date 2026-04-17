@@ -35,8 +35,7 @@ The pseudonymized FHIR data is transferred via a secure network connection (e.g.
 **Process Steps: Stage 2**
 
 1. Import the pseudonymized FHIR data.
-The research data center imports the pseudonymized FHIR data into the dedicated de-identifica
-tion system. The system validates the FHIR resources and prepares them for advanced anonymization processing.                                                                             
+The research data center imports the pseudonymized FHIR data into the dedicated de-identification system. The system validates the FHIR resources and prepares them for advanced anonymization processing.
 2. Select anonymization policy.
 An anonymization policy needs to be selected and applied to the pseudonymized FHIR data. For some cases, a default anonymization policy could be deployed together with the anonymization service. The anonymization policy describes the behavior of processing quasi-identifiers, such as Patient.birthDate, Patient.address.postalCode, and Patient.gender. The processing behavior cannot be unified to fit the requirements of all data collection cases. For example, patient age usually needs to be transformed into a ranged value from the original birthDate, but the range scope may be different for different cases. Some cases will require 5-year ranges (e.g., 20-24, 25-29), others may require 10-year ranges or age categories (e.g., adult, pediatric). Geographic data may need to be generalized to 3-digit ZIP codes for some studies or to state level for others. Therefore, ideally, the anonymization policy is customized and approved in a case-by-case manner based on the research protocol and IRB requirements.                         
 3. Process pseudonymized FHIR data with anonymization policy.
@@ -57,13 +56,11 @@ The anonymization service adds appropriate FHIR security labels and provenance i
    - Add Provenance resource documenting the de-identification process
 
 6. Export anonymized FHIR data.
-After successful anonymization and risk assessment, the service exports the anonymized FHIR d
-ata to the research environment. The data can be exported as FHIR Bundles, JSON files and loaded into a research FHIR server for query access.  
+After successful anonymization and risk assessment, the service exports the anonymized FHIR data to the research environment. The data can be exported as FHIR Bundles, JSON files and loaded into a research FHIR server for query access.
                                         
 ### FHIR Data Absent Reason Extension
 
-When data elements are removed or masked during de-identification, FHIR provides the Data Abs
-ent Reason extension to indicate why the data is not present. This is analogous to DICOM's requirement to set the Patient Identity Removed attribute.                                     
+When data elements are removed or masked during de-identification, FHIR provides the Data Absent Reason extension to indicate why the data is not present. This is analogous to DICOM's requirement to set the Patient Identity Removed attribute.
 **Data Absent Reason Codes for De-identification:**
 
 | Code    | Display | Definition                                                                   |

@@ -1,5 +1,5 @@
 <!-- Note leveraging markdown auto-numbering. Thus we can rearrange these without worrying about the numbered list. -->
-<!-- Note using html <a> to create anchors. Thus having compact and consistant anchors -->
+<!-- Note using html <a> to create anchors. Thus having compact and consistent anchors -->
 
 1. <a name="ISO25237"></a>ISO 25237. (2017). *Health informatics — Pseudonymization* (ISO 25237:2017; Number ISO 25237:2017). International Organization for Standardization. [https://www.iso.org/standard/63553.html](https://www.iso.org/standard/63553.html)
 1. <a name="ISO20889"></a>ISO/IEC 20889. (2018). *Privacy enhancing data de-identification terminology and classification of techniques* (Standard ISO/IEC 20889:2018(E); Number ISO/IEC 20889:2018(E)). International Organization for Standardization. [https://www.iso.org/standard/69373.html](https://www.iso.org/standard/69373.html)

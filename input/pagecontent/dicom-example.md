@@ -30,7 +30,7 @@ The DICOM standard has defined a set of confidentiality options for common de-id
 
 The snippet above shows that the default profile requires the removal of (Action code: X) Patient's Age (0010,1010) and Patient's Sex (0010,0040). However, in some cases such as AI Model training, or regulatory requirements it may be necessary to keep the patient demographic information. Such attributes can be retained by enabling patient retention option (Rtn. Pat. Chars. Opt.), but the utility of the data may be affected when other attributes are removed by default. Therefore, for the example in this chapter, we apply a two-stage of de-identification to make sure privacy risk and data utility are well managed.
 
-### Teaching File and Clinical Trail Export
+### Teaching File and Clinical Trial Export
 
 The Teaching File and Clinical Trial Export (TCE) Profile facilitates the selection and export of DICOM instances, series, or studies—such as images, key image notes, reports, evidence documents, and presentation states for use in teaching files or clinical trials. It specifies an Export Selection actor, typically integrated with an Image Display or Acquisition Modality, and an Export Processing actor, which must support configurable de-identification of exported instances. The profile also offers options for de-identifying pixel data, remapping identifiers to pseudonymous values, including additional teaching file information, and delaying export for various reasons[(IHE RAD TF Vol1)](references.html#IHE_RAD_TF_Vol1). The TCE introduces three actors, Export Selector, Export Manager, and Receiver. The Export Selector selects and makes DICOM instances available to the Export Manager for exporting. The Export Manager performs the task of de-identifying DICOM data before sending it to the Receiver.
 
@@ -51,7 +51,7 @@ In this example, it is assumed the modality supports customization of the de-ide
 2. Export pseudonymized DICOM to a portable media.
 After properly setting the pseudonymization policy, a user selects and exports the DICOM data to a portable media. The modality performs de-identification by following the pseudonymization policy, and then exports the pseudonymized DICOM file to a portable media. It is assumed that the modality exports the pseudonymized DICOM data to the portable media by following the Portable Data for Imaging Integration Profile (PDI) specified in [(IHE RAD TF Vol1)](references.html#IHE_RAD_TF_Vol1).
 
-3. Transfer the portable media to enviroment of anonymization. 
+3. Transfer the portable media to environment of anonymization. 
 In this example the transfer activity is performed by a human using the portable media, however, an alternative solution is to transfer the pseudonymized DICOM via a secure network.
 
 **Process Steps: Stage 2**
@@ -59,7 +59,7 @@ In this example the transfer activity is performed by a human using the portable
 After receiving the portable media, the user can import the pseudonymized DICOM data stored on it. It is assumed that the dedicated de-identification system adopted the Portable Media Creator defined in the Portable Data for Imaging Integration Profile (PDI) specified in [(IHE RAD TF Vol1)](references.html#IHE_RAD_TF_Vol1).
 
 2. Select anonymization policy.
-An anonymization policy needs to be selected and sent to the Export Manager together with the selected pseudonymized DICOM data. In some cases, a default anonymization policy could be deployed together with the Export Manager. Anonymization policy describes the behavior of processing quasi-identifiers such as Patient's Age or Patient's Sex. The processing behavior can not be unified to fit the requirements of all data collection cases. For example, patient age usually needs to be transformed into a ranged value from the original value, but the range maybe different for different cases, some requiring a 5 years range (20-25, 25-30,..) and others requiring 3 years range. Therefore, ideally, the anonymization policy is customized and approved in a case-by-case manner.
+An anonymization policy needs to be selected and sent to the Export Manager together with the selected pseudonymized DICOM data. In some cases, a default anonymization policy could be deployed together with the Export Manager. Anonymization policy describes the behavior of processing quasi-identifiers such as Patient's Age or Patient's Sex. The processing behavior cannot be unified to fit the requirements of all data collection cases. For example, patient age usually needs to be transformed into a ranged value from the original value, but the range may be different for different cases, some requiring a 5-year range (20-25, 25-30,..) and others requiring a 3-year range. Therefore, ideally, the anonymization policy is customized and approved in a case-by-case manner.
 
 3. Store pseudonymized DICOM data and Anonymization Policy.
 The Export Selector selects the imported pseudonymized DICOM data and the selected anonymization policy then send them to the Export Manager. According to the TCE profile, the DICOM data can be sent using the transaction Store Export Selection [RAD-51], and the anonymization policy can be sent using the transaction Store Additional Teaching File Information [RAD-52].
@@ -68,7 +68,7 @@ The Export Selector selects the imported pseudonymized DICOM data and the select
 The Export Manager performs the anonymization after receiving the pseudonymized DICOM data and anonymization policy, and then sends the anonymized DICOM data to the Receiver via the transaction Export Instances [RAD-53].
 
 5. Export anonymized DICOM to a portable media.
-After receiving the anoymization, the Receiver triggers the grouped Portable Media Creator to perform a task of exporting the anonymized DICOM data to a portable media. It is assumed that the Portable Data for Imaging Integration Profile (PDI) specified in [(IHE RAD TF Vol1)](references.html#IHE_RAD_TF_Vol1) is followed.
+After receiving the anonymization, the Receiver triggers the grouped Portable Media Creator to perform a task of exporting the anonymized DICOM data to a portable media. It is assumed that the Portable Data for Imaging Integration Profile (PDI) specified in [(IHE RAD TF Vol1)](references.html#IHE_RAD_TF_Vol1) is followed.
 
 ### Marking De-identification Status in DICOM
 

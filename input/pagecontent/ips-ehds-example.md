@@ -50,7 +50,7 @@ No corresponding purpose of use is defined by EHDS2 as either permitted or not p
 
 Additional regulation purposes from Article 54 not permitted:
 
-- Taking decisions detrimental to a natural person or a group of natural persons based on their electronic health data; in order to qualify as 'decisions' for the purposes of this point, they have to produce legal, social or economic eUects or similarly significantly aUect those natural persons;
+- Taking decisions detrimental to a natural person or a group of natural persons based on their electronic health data; in order to qualify as 'decisions' for the purposes of this point, they have to produce legal, social or economic effects or similarly significantly affect those natural persons;
 - developing products or services that may harm individuals, public health or society at large, such as illicit drugs, alcoholic beverages, tobacco and nicotine products, weaponry or products or services which are designed or modified in such a way that they create addiction, contravene public order or cause a risk for human health;
 - carrying out activities in conflict with ethical provisions laid down in national law.
 
@@ -113,7 +113,7 @@ Once a Data Permit is granted, the third phase, Data Preparation, begins. The HD
 
 #### Regulatory Constraints
 
-- The HDAB data access application management process is primarily set out in Articles 67–69 of the EHDS regulation, which define the procedural context that any organisational or technical solution for secondary use data applications must align with. Articles 67 and 69 includes the requirements for the common application forms for data access applications and data requests, respectively, to be used by applicants, and which provides the essential information for the processing of applications. Article 68 governs the issuance of data permits and the associated obligations of HDABs, whereas Article 69 provides similar provisions for data requests.
+- The HDAB data access application management process is primarily set out in Articles 67–69 of the EHDS regulation, which define the procedural context that any organizational or technical solution for secondary use data applications must align with. Articles 67 and 69 includes the requirements for the common application forms for data access applications and data requests, respectively, to be used by applicants, and which provides the essential information for the processing of applications. Article 68 governs the issuance of data permits and the associated obligations of HDABs, whereas Article 69 provides similar provisions for data requests.
 - The secondary use of electronic health data is based on pseudonymised or anonymised data, in order to preclude the identification of the data subjects (Recital 53 in the EHDS regulation)
 - Data anonymisation, pseudonymisation, and linkage techniques are addressed in M7.2 Technical specification for Health Data Access Bodies on data minimisation and de-identification, and M7.5 Guideline for Health Data Access Bodies on linkage of health datasets.
 
@@ -443,8 +443,8 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 
 | Section | Data Element | FHIR Path | De-id Method |
 | --- | --- | --- | --- |
-| Patient | Patient Name | Patient.name | Stage 1: pseudonymize; reversable pseudonym |
-| Patient | ID | Patient.identifier | Stage 1: pseudonymize; reversable pseudonym |
+| Patient | Patient Name | Patient.name | Stage 1: pseudonymize; reversible pseudonym |
+| Patient | ID | Patient.identifier | Stage 1: pseudonymize; reversible pseudonym |
 | Patient | Telecom | Patient.telecom.extension(data-absent-reason) | Stage 1: omit value + DAR masked |
 | Patient | Date of Birth | Patient.birthDate | Stage 2: date shift (age-group policy) |
 | Patient | Gender | Patient.gender | Included (QI) |
@@ -636,8 +636,8 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 
 | Section | Data Element | CDA Path | De-id Method |
 | --- | --- | --- | --- |
-| Patient | Patient Name | ClinicalDocument/recordTarget/patientRole/patient/name | Stage 1: pseudonymize; Stage 2: Reversable pseudonym|
-| Patient | ID | ClinicalDocument/recordTarget/patientRole/id | Stage 1: pseudonymize; Stage 2: Reversable pseudonym|
+| Patient | Patient Name | ClinicalDocument/recordTarget/patientRole/patient/name | Stage 1: pseudonymize; Stage 2: Reversible pseudonym|
+| Patient | ID | ClinicalDocument/recordTarget/patientRole/id | Stage 1: pseudonymize; Stage 2: Reversible pseudonym|
 | Patient | Telecom | ClinicalDocument/recordTarget/patientRole/telecom | Stage 1/2: omit value; set nullFlavor='MSK' |
 | Patient | Date of Birth | ClinicalDocument/recordTarget/patientRole/patient/birthTime | Stage 2: date shift or mask with age band |
 | Patient | Gender | ClinicalDocument/recordTarget/patientRole/patient/administrativeGenderCode | Included (QI) |
