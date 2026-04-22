@@ -210,7 +210,11 @@ Usage: #inline
 
 Instance: ex-Patient-secondaryUse-pandemicIPS-stage-1
 InstanceOf: PatientUvIps
-Usage: #inline
+Description: """
+Stage 1 de-identification of the patient. 
+Stage 1 applies reversible pseudonymization to direct identifiers needed for linkage (decedent name and identifier).
+"""
+Usage: #example
 * id = "ex-Patient-secondaryUse-pandemicIPS-stage-1"
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Patient-uv-ips"
 * identifier.system = "urn:oid:1.3.6.1.4.1.21367.2011.2.5.5639"

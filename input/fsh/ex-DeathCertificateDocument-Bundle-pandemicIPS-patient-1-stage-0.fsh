@@ -151,7 +151,10 @@ Usage: #inline
 
 Instance: ex-Decedent-pandemicIPS-VRDR-stage-0
 InstanceOf: Decedent
-Usage: #inline
+Description: """
+The following patient resource represents the decedent referenced in the death certificate document bundle. This is the stage 0 version of the patient, where no de-identification has been applied and all direct identifiers are present.
+"""
+Usage: #example
 * meta.profile[+] = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent"
 * meta.profile[+] = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Patient-vr"
 * meta.profile[+] = "http://hl7.org/fhir/StructureDefinition/Patient"

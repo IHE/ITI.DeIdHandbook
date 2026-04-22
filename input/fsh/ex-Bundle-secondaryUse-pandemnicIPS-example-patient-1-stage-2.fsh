@@ -182,7 +182,10 @@ Usage: #inline
 
 Instance: ex-Patient-secondaryUse-pandemicIPS-stage-2
 InstanceOf: PatientUvIps
-Usage: #inline
+Description: """
+Stage 2 de-identifaction of the patient where The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked.
+"""
+Usage: #example
 * id = "ex-Patient-secondaryUse-pandemicIPS-stage-2"
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Patient-uv-ips"
 * identifier.system = "urn:oid:1.3.6.1.4.1.21367.2011.2.5.5639"

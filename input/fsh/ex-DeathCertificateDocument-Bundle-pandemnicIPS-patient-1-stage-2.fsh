@@ -126,7 +126,10 @@ Usage: #inline
 
 Instance: ex-Decedent-pandemicIPS-VRDR-stage-2
 InstanceOf: Decedent
-Usage: #inline
+Description: """
+Stage 2 de-identifaction of the patient where The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked.
+"""
+Usage: #example
 * meta.profile[+] = "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent"
 * meta.profile[+] = "http://hl7.org/fhir/us/vr-common-library/StructureDefinition/Patient-vr"
 * meta.profile[+] = "http://hl7.org/fhir/StructureDefinition/Patient"
