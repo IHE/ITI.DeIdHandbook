@@ -208,7 +208,10 @@ Usage: #inline
 
 Instance: ex-Patient-secondaryUse-pandemicIPS-stage-0
 InstanceOf: PatientUvIps
-Usage: #inline
+Description: """
+The following patient resource represents the patient referenced in the IPS document bundle. This is the stage 0 version of the patient, where no de-identification has been applied and all direct identifiers are present.
+"""
+Usage: #example
 * id = "ex-Patient-secondaryUse-pandemicIPS-stage-0"
 //* id = "d174bd1a-b368-41e6-83a2-af77f2b3c60f"
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Patient-uv-ips"
