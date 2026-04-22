@@ -101,4 +101,4 @@ The authoring group would like the express gratitude and recognition to the foll
 
 First Revision: Geoff Pascoe, Robert Horn, Vassil Peytchev, Charles Parisot, Lisa Nelson, John Moehrke, Amit Popat, Dan Trainor, Illa Fortunov, Jennifer Puyenbroek, Karen Witting, Landen Bain, Manuel Metz, and Mick Talley 
 
-Second Revision: Alan Zhang, John Moehrke, Mary Jungers, Jose Costa Teixeira, Andrea Fourquet, Lori Fourquet, Mick Talley, Martin Rosner, Christopher Melo
+Second Revision: Alan Zhang, John Moehrke, Mary Jungers, Jose Costa Teixeira, Andrea Fourquet, Lori Fourquet, Mick Talley, Martin Rosner, Christopher Melo, Laura Bright, Rada Hussein

@@ -5,6 +5,7 @@ Description: """
 The following bundle provides an example view of the sample patient record after applying the approved de-identification methods to the pseudonymized bundle as described in section IPS Data Element Mappings (FHIR). 
 This shows:
 - Date shifting throughout the bundle (e.g. dates associated with problems, procedures, medications, immunizations, allergies, etc.)
+- The Patient's birthdate has been date-shifted forward by 107 days.
 - Data omissions, noting the data is omitted in emptyReason as ‘withheld’ at the section level, and as ‘masked’ in dataAbsentReason at the data element level. 
 """
 * id = "6603561c-2888-4355-9df4-23675f6eb458"
@@ -182,7 +183,10 @@ Usage: #inline
 
 Instance: ex-Patient-secondaryUse-pandemicIPS-stage-2
 InstanceOf: PatientUvIps
-Usage: #inline
+Description: """
+Stage 2 de-identification of the patient where the telecom is masked, the address is reduced to the first 3 digits of the postal code, the general practitioner can be seen as masked, and the birthdate has been date-shifted forward by 107 days.
+"""
+Usage: #example
 * id = "ex-Patient-secondaryUse-pandemicIPS-stage-2"
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Patient-uv-ips"
 * identifier.system = "urn:oid:1.3.6.1.4.1.21367.2011.2.5.5639"
