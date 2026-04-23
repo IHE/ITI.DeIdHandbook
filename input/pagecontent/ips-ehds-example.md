@@ -516,7 +516,7 @@ The following bundle provides an example view of a record that could be in the r
 
 **Origional Patient Resource**
 This is a valid IPS Patient Resource with all known minimum data provided
-{% fragment Patient/ex-Patient-secondaryUse-pandemicIPS-stage-0 JSON %} 
+{% fragment Patient/ex-Patient-secondaryUse-pandemicIPS JSON %} 
 
 
 ##### Stage 1 Pseudonymized IPS Document Bundle
