@@ -50,7 +50,7 @@ No corresponding purpose of use is defined by EHDS2 as either permitted or not p
 
 Additional regulation purposes from Article 54 not permitted:
 
-- Taking decisions detrimental to a natural person or a group of natural persons based on their electronic health data; in order to qualify as 'decisions' for the purposes of this point, they have to produce legal, social or economic eUects or similarly significantly aUect those natural persons;
+- Taking decisions detrimental to a natural person or a group of natural persons based on their electronic health data; in order to qualify as 'decisions' for the purposes of this point, they have to produce legal, social or economic effects or similarly significantly affect those natural persons;
 - developing products or services that may harm individuals, public health or society at large, such as illicit drugs, alcoholic beverages, tobacco and nicotine products, weaponry or products or services which are designed or modified in such a way that they create addiction, contravene public order or cause a risk for human health;
 - carrying out activities in conflict with ethical provisions laid down in national law.
 
