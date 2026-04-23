@@ -86,7 +86,7 @@ The following diagram from the EHDS2 M7.2 Draft guideline on data minimisation, 
 Once a Data Permit is granted, the third phase, Data Preparation, begins. The HDAB prepares the data set according to the permit content and de-identification to be applied. The EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts a High-level architecture for safe disclosure of anonymized data, processing results, and synthetic data:
 
 ### Residual Risks and Controls
-  
+    
 #### Data Source
 
 - Clinical sources: IPS-conformant EHR exports (FHIR R4) from provider organizations across jurisdictions; scoped to Patient demographics, Problems, Procedures, Medications, Allergies, Results, Immunizations, and relevant social/pregnancy history needed for the public/occupational health purpose.
