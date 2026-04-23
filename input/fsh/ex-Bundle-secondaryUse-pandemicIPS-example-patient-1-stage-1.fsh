@@ -276,7 +276,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/MedicationStatement-uv-ips"
 * id = "ex-MedicationStatement-secondaryUse-pandemicIPS-stage-1"
 * status = #completed
-* medicationCodeableConcept = $sct#116113006 "Oseltamivir phosphate (substance)"
+* medicationCodeableConcept = $sct#386142008 "Product containing oseltamivir (medicinal product)"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * effectiveDateTime = "2024-06-16"
 * dateAsserted = "2024-06-16"
@@ -360,7 +360,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Observation-results-laboratory-pathology-uv-ips"
 * id = "ex-Lab-secondaryUse-pandemicIPS-stage-1"
 * status = #final
-* code = $loinc#109691-6 "Influenza virus A Ag [Measurement] in Nasopharynx"
+* code = $loinc#43874-7 "Influenza virus A Ag [Presence] in Nasopharynx"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * effectiveDateTime = "2024-06-15"
 * performer = Reference(Practitioner/ex-Practitioner-IPS-SimoneHeps)
@@ -379,13 +379,13 @@ Usage: #inline
 * vaccineCode.text = "Invluenza Vaccination"
 * patient = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * occurrenceDateTime = "2024-05-01"
-* site = $v3-ActSite#LA "left arm"
-* route = $v3-RouteOfAdministration#IM "Injection, intramuscular"
+* site = $sct#762211005 "Structure of part of left upper limb"
+* route = $sct#78421000 "Intramuscular route"
 * doseQuantity.value = 0.5
 * doseQuantity.unit = "mL"
 * performer.function = $v2-0443#OP
 * performer.actor = Reference(Practitioner/ex-Practitioner2-secondaryUse-pandemicIPS-stage-1)
-* protocolApplied.targetDisease = $sct#719865001 "Influenza caused by pandemic influenza virus (disorder)"
+* protocolApplied.targetDisease = $sct#840539006 "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
 * protocolApplied.doseNumberPositiveInt = 2
 
 Instance: ex-PastPresJob-secondaryUse-pandemicIPS-stage-1

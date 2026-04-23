@@ -31,3 +31,7 @@ No definition could be found for URL value 'http://nchs.cdc.gov/vrdr_id'
 # the duplicate anchors are intentional  
 The html source has duplicate anchor Ids: Patient_ex-Patient-secondaryUse-pandemicIPS-stage-0,ex-Patient-secondaryUse-pandemicIPS-stage-0,hcex-Patient-secondaryUse-pandemicIPS-stage-0
 	The html source has duplicate anchor Ids: Patient_ex-Patient-secondaryUse-pandemicIPS-stage-1,ex-Patient-secondaryUse-pandemicIPS-stage-1,hcex-Patient-secondaryUse-pandemicIPS-stage-1
+
+# The ODH Value sets do not properly deffine the codes at this time. PCC is currently updating the ODH profile to fix this. Until then these warnings do not apply
+None of the codings provided are in the value set 'industries types' (https://profiles.ihe.net/PCC/ODH/ValueSet/odf-industriesVS|1.0.0), and a coding is recommended to come from this value set (codes = https://profiles.ihe.net/PCC/ODH/CodeSystem/ISCO08#5321)
+None of the codings provided are in the value set 'industries types' (https://profiles.ihe.net/PCC/ODH/ValueSet/odf-industriesVS|1.0.0), and a coding is recommended to come from this value set (codes = https://profiles.ihe.net/PCC/ODH/CodeSystem/ISICRev4#871)

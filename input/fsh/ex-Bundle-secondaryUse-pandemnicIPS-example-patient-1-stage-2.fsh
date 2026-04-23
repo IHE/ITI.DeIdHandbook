@@ -211,7 +211,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/MedicationStatement-uv-ips"
 * id = "ex-MedicationStatement-secondaryUse-pandemicIPS-stage-2"
 * status = #completed
-* medicationCodeableConcept = $sct#116113006 "Oseltamivir phosphate (substance)"
+* medicationCodeableConcept = $sct#386142008 "Product containing oseltamivir (medicinal product)"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-2)
 * effectiveDateTime = "2024-10-01"
 * dateAsserted = "2024-10-01"
@@ -285,7 +285,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Observation-results-laboratory-pathology-uv-ips"
 * id = "ex-Lab-secondaryUse-pandemicIPS-stage-2"
 * status = #final
-* code = $loinc#109691-6 "Influenza virus A Ag [Measurement] in Nasopharynx"
+* code = $loinc#43874-7 "Influenza virus A Ag [Presence] in Nasopharynx"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-2)
 * effectiveDateTime = "2024-10-30"
 * performer.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
@@ -306,7 +306,7 @@ Usage: #inline
 * vaccineCode.text = "Invluenza Vaccination"
 * patient = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-2)
 * occurrenceDateTime = "2024-08-16"
-* site = $v3-ActSite#LA "left arm"
+* site = $sct#762211005 "Structure of part of left upper limb"
 * route.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * route.extension.valueCode = #masked
 * doseQuantity.value = 0.5
@@ -317,7 +317,7 @@ Usage: #inline
 * performer.actor.extension.valueCode = #masked
 * performer.actor.display = "The information is not available due to security, privacy or related reasons." 
 * protocolApplied.targetDisease.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* protocolApplied.targetDisease.extension.valueCode = #masked
+* protocolApplied.targetDisease = $sct#840539006 "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
 * protocolApplied.doseNumberPositiveInt = 2
 
 Instance: ex-PastPresJob-secondaryUse-pandemicIPS-stage-2
