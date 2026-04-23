@@ -79,18 +79,13 @@ This data flow implements the methodology’s end-to-end analysis described in [
 The following diagram from the EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts the EHDS user journey for the full process, highlighting the areas within the process that address data minimization, pseudonymization and anonymization:
 
 <figure>
-  <img src="ehds-user-journey.jpeg" />
+  <img src="journey.jpg" />
   <figcaption><strong>Figure: EHDS User Journey</strong></figcaption>
   </figure>
 
 Once a Data Permit is granted, the third phase, Data Preparation, begins. The HDAB prepares the data set according to the permit content and de-identification to be applied. The EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts a High-level architecture for safe disclosure of anonymized data, processing results, and synthetic data:
 
 ### Residual Risks and Controls
-
-<figure>
-  <img src="hdab-high-level-architecture.jpeg" />
-  <figcaption><strong>Figure: HDAB High-level Architecture for Safe Disclosure</strong></figcaption>
-</figure>
 
 #### Data Source
 
@@ -113,7 +108,7 @@ Once a Data Permit is granted, the third phase, Data Preparation, begins. The HD
 
 #### Regulatory Constraints
 
-- The HDAB data access application management process is primarily set out in Articles 67–69 of the EHDS regulation, which define the procedural context that any organizational or technical solution for secondary use data applications must align with. Articles 67 and 69 includes the requirements for the common application forms for data access applications and data requests, respectively, to be used by applicants, and which provides the essential information for the processing of applications. Article 68 governs the issuance of data permits and the associated obligations of HDABs, whereas Article 69 provides similar provisions for data requests.
+- The HDAB data access application management process is primarily set out in Articles 67–69 of the EHDS regulation, which define the procedural context that any organisational or technical solution for secondary use data applications must align with. Articles 67 and 69 includes the requirements for the common application forms for data access applications and data requests, respectively, to be used by applicants, and which provides the essential information for the processing of applications. Article 68 governs the issuance of data permits and the associated obligations of HDABs, whereas Article 69 provides similar provisions for data requests.
 - The secondary use of electronic health data is based on pseudonymised or anonymised data, in order to preclude the identification of the data subjects (Recital 53 in the EHDS regulation)
 - Data anonymisation, pseudonymisation, and linkage techniques are addressed in M7.2 Technical specification for Health Data Access Bodies on data minimisation and de-identification, and M7.5 Guideline for Health Data Access Bodies on linkage of health datasets.
 
@@ -443,8 +438,8 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 
 | Section | Data Element | FHIR Path | De-id Method |
 | --- | --- | --- | --- |
-| Patient | Patient Name | Patient.name | Stage 1: pseudonymize; reversible pseudonym |
-| Patient | ID | Patient.identifier | Stage 1: pseudonymize; reversible pseudonym |
+| Patient | Patient Name | Patient.name | Stage 1: pseudonymize; reversable pseudonym |
+| Patient | ID | Patient.identifier | Stage 1: pseudonymize; reversable pseudonym |
 | Patient | Telecom | Patient.telecom.extension(data-absent-reason) | Stage 1: omit value + DAR masked |
 | Patient | Date of Birth | Patient.birthDate | Stage 2: date shift (age-group policy) |
 | Patient | Gender | Patient.gender | Included (QI) |
@@ -511,16 +506,16 @@ The table maps IPS data elements to their FHIR paths and summarizes the applied 
 
 ##### Example FHIR IPS 
 
-###### Stage 0 Original Identified IPS Document Bundle
+###### Original Identified IPS Document Bundle
 The following bundle provides an example view of a record that could be in the research cohort for the pandemic patient [Secondary Use Pandemnic IPS Patient Original Identified IPS Document](Bundle-80c516fd-9c84-4924-875b-bf0048979ae1.html). At this stage (0), there have been no alterations to this original record.
 
 **Origional Patient Resource**
 This is a valid IPS Patient Resource with all known minimum data provided
-{% fragment Patient/ex-Patient-secondaryUse-pandemicIPS-stage-0 JSON %} 
+{% fragment Patient/ex-Patient-secondaryUse-pandemicIPS JSON %} 
 
 
 ##### Stage 1 Pseudonymized IPS Document Bundle
-The Direct Identifiers in the Patient Resource are assigned a reversible pseudonym and pseudo-identifier. The death data in this example is incorporated based upon the linkage with the VRDR death certificate record, and the birth and dates are shifted according to the approved data access permit. The pseudonymized names and shifted dates are applied throughout the document text sections that reference the patient direct identifiers.
+The Direct Identifiers in the Patient Resource are assigned a reversible pseudonym and pseudo-identifier. The death data in this example is incorporated based upon the linkage with the VRDR death certificate record, and the birth and dates are shifted according to the approved data access permit. The pseudonymized names are applied throughout the document text sections that reference the patient direct identifiers.
 
 The pseudonymization can be applied before or after the linkage of the IPS with the VRDR death certificate record.
 
@@ -532,7 +527,6 @@ The following bundle provides an example view of the sample patient record after
 This shows:
 - A pseudo-identifier has been applied to the patient resource and replaces the original patient identifier throughout the document.
 - A pseudo-name has been applied to the patient resource and replaces the original patient name throughout the document. Note that a pseudo-name is required as content is not permitted to be omitted or replaced with a null flavor in FHIR patient resources.
-- Birthdate has been date-shifted forward by 107 days.
 
 {% fragment Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1 JSON %} 
 
@@ -549,6 +543,7 @@ The Indirect Identifiers in the Clinical Resources are date-shifted, and content
 The following bundle provides an example view of the sample patient record after applying the approved de-identification methods to the pseudonymized bundle as described in section IPS Data Element Mappings (FHIR). 
 This shows:
 - Date shifting throughout the bundle (e.g. dates associated with problems, procedures, medications, immunizations, allergies, etc.)
+- The Patient's birthdate has been date-shifted forward by 107 days.
 - Data omissions, noting the data is omitted in emptyReason as ‘withheld’ at the section level, and as ‘masked’ in dataAbsentReason at the data element level.  
 
 Example view of the Stage 2 Pseudonymized IPS Bundle document for the pandemic patient example [Secondary Use Pandemnic IPS Patient Stage 2 Pseudonymized IPS Document](Bundle-6603561c-2888-4355-9df4-23675f6eb458.html)
@@ -586,19 +581,19 @@ This example shows a minimized VRDR Death Certificate Document Bundle using the 
 | Social History | Usual industry | Observation.component.valueCodeableConcept where component.code=21844-6 | Included (review outliers) |
 {:.grid}
 
-##### Stage 0 Original Identified VRDR Death Certificate Document Bundle
+##### Original Identified VRDR Death Certificate Document Bundle
 This example VRDR Death Certificate represents the origional record.
-[Secondary Use Pandemnic IPS Patient Stage 0 VRDR Death Certificate Document Bundle](Bundle-78f68a27-c439-4cd5-9ca2-ebc882468ade.html)
+[Secondary Use Pandemnic IPS Patient VRDR Death Certificate Document Bundle](Bundle-78f68a27-c439-4cd5-9ca2-ebc882468ade.html)
 
 **Origional Patient Resource**
 This is a valid VRDR Decedent Resource with all known minimum data provided
 
-{% fragment Patient/ex-Decedent-pandemicIPS-VRDR-stage-0 JSON %} 
+{% fragment Patient/ex-Decedent-pandemicIPS-VRDR JSON %} 
 
 
 ##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 1)
 
-The Direct Identifiers in the Patient Resource are assigned a reversible pseudonym and pseudo-identifier. The death data in this example is incorporated based upon the linkage with the VRDR death certificate record, and the birth and dates are shifted according to the approved data access permit. The pseudonymized names and shifted dates are applied throughout the document text sections that reference the patient direct identifiers.
+The Direct Identifiers in the Patient Resource are assigned a reversible pseudonym and pseudo-identifier. The death data in this example is incorporated based upon the linkage with the VRDR death certificate record, and the birth and dates are shifted according to the approved data access permit. The pseudonymized names are applied throughout the document text sections that reference the patient direct identifiers.
 
 The pseudonymization can be applied before or after the linkage of the IPS with the VRDR death certificate record.
 
@@ -617,6 +612,7 @@ The Indirect Identifiers in the Clinical Resources are date-shifted, and content
 The following bundle provides an example view of the sample patient record after applying the approved de-identification methods to the pseudonymized bundle as described in section IPS Data Element Mappings (FHIR). 
 This shows:
 - Date shifting throughout the bundle (e.g. dates associated with problems, procedures, medications, immunizations, allergies, etc.)
+- The Patient's birthdate has been date-shifted forward by 107 days.
 - Data omissions, noting the data is omitted in emptyReason as ‘withheld’ at the section level, and as ‘masked’ in dataAbsentReason at the data element level. 
 
 Example view of the Stage 2 Pseudonymized VRDR Bundle document for the pandemic patient example 
@@ -640,8 +636,8 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 
 | Section | Data Element | CDA Path | De-id Method |
 | --- | --- | --- | --- |
-| Patient | Patient Name | ClinicalDocument/recordTarget/patientRole/patient/name | Stage 1: pseudonymize; Stage 2: Reversible pseudonym|
-| Patient | ID | ClinicalDocument/recordTarget/patientRole/id | Stage 1: pseudonymize; Stage 2: Reversible pseudonym|
+| Patient | Patient Name | ClinicalDocument/recordTarget/patientRole/patient/name | Stage 1: pseudonymize; Stage 2: Reversable pseudonym|
+| Patient | ID | ClinicalDocument/recordTarget/patientRole/id | Stage 1: pseudonymize; Stage 2: Reversable pseudonym|
 | Patient | Telecom | ClinicalDocument/recordTarget/patientRole/telecom | Stage 1/2: omit value; set nullFlavor='MSK' |
 | Patient | Date of Birth | ClinicalDocument/recordTarget/patientRole/patient/birthTime | Stage 2: date shift or mask with age band |
 | Patient | Gender | ClinicalDocument/recordTarget/patientRole/patient/administrativeGenderCode | Included (QI) |
@@ -686,235 +682,88 @@ The table maps IPS data elements to their CDA paths and summarizes the applied d
 {:.grid}
 
 #### Original Identified CDA (IPS subset)
-The following CDA IPS Document provides an example view of a record that could be in the research cohort for the pandemic patient [CDA EHDS Example Stage 0](https://drive.google.com/file/d/1FrhpiY3EmOH3j30PlGphTaB4l2m7bpmT/view?usp=drive_link). At this stage (0), there have been no alterations to this original record.  
+The following CDA IPS Document provides an example view of a record that could be in the research cohort for the pandemic patient [CDA EHDS Example Origional IPS](https://drive.google.com/file/d/1FrhpiY3EmOH3j30PlGphTaB4l2m7bpmT/view?usp=drive_link). At this stage (0), there have been no alterations to this original record.  
 
 {% raw %}
 ```xml
-      <component>
-        <section>
-          <templateId root="2.16.840.1.113883.10.22.3.3" />
-          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" />
-          <title>Problem List</title>
-          <text>
-            <table width="100%">
-              <thead>
-                <tr>
-                  <th>Problem Name</th>
-                  <th>Onset Date</th>
-                  <th>End Date</th>
-                  <th>Severity</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ID="medicalProblem.1">
-                  <td>Influenza caused by pandemic influenza virus (disorder)</td>
-                  <td>2024-06-15</td>
-                  <td />
-                  <td>Severe</td>
-                  <td></td>
-                </tr>
-                <tr ID="medicalProblem.2">
-                  <td>Severe asthma</td>
-                  <td>01/03/2006</td>
-                  <td />
-                  <td>Severe</td>
-                  <td>Severe asthma (disorder)</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-          <entry typeCode="DRIV">
-            <act classCode="ACT" moodCode="EVN">
-              <templateId root="2.16.840.1.113883.10.22.4.7" />
-              <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
-              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" />
-              <statusCode code="active" />
-              <effectiveTime>
-                <low value="20130305" />
-              </effectiveTime>
-              <entryRelationship typeCode="SUBJ">
-                <observation classCode="OBS" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.10.22.4.8" />
-                  <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
-                  <code code="75326-9" codeSystem="2.16.840.1.113883.6.1" displayName="Problem" />
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240615" />
-                  </effectiveTime>
-                  <value code="719865001" codeSystem="2.16.840.1.113883.6.96" displayName="Influenza caused by pandemic influenza virus (disorder)" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-                  <entryRelationship inversionInd="false" typeCode="REFR">
-                    <observation classCode="OBS" moodCode="EVN">
-                      <templateId root="2.16.840.1.113883.10.22.4.20" />
-                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" />
-                      <statusCode code="completed" />
-                      <value code="active" codeSystem="2.16.840.1.113883.4.642.3.155" displayName="Active" xsi:type="CE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </entryRelationship>
-            </act>
-          </entry>
+  <recordTarget>
+    <patientRole>
+      <id root="2.16.840.1.113883.3.9143.1.1" extension="ABC1234" />
+      <addr>
+        <postalCode>3210</postalCode>
+      </addr>
+      <telecom value="tel:+64-07-850-9900" use="HP" />
+      <patient>
+        <name>
+          <given>Patricia</given>
+          <family>JORDANA</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" displayName="Female" />
+        <birthTime value="19960501" />
+      </patient>
+    </patientRole>
+  </recordTarget>
 ```
 {% endraw %}
 
 #### After Stage 1 (Pseudonymized CDA)
-
-
 Direct identifiers are removed or pseudonymized; removed elements are marked using `nullFlavor="MSK"`.
 
-The Example view if the [CDA EHDS Example Stage 1](https://drive.google.com/file/d/15aSVfW6Z3qrosXPKNutVJnrsSLXNgdis/view?usp=drive_link) IPS Document. 
+The Example view if the [CDA EHDS Example Stage 1](https://drive.google.com/file/d/1EXTM-9ygi0S2DaywF-ub-FoicjMTd5Rw/view?usp=drive_link) IPS Document. 
 
 {% raw %}
 ```xml
-      <component>
-        <section>
-          <templateId root="2.16.840.1.113883.10.22.3.3" />
-          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" />
-          <title>Problem List</title>
-          <text>
-            <table width="100%">
-              <thead>
-                <tr>
-                  <th>Problem Name</th>
-                  <th>Onset Date</th>
-                  <th>End Date</th>
-                  <th>Severity</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ID="medicalProblem.1">
-                  <td>Influenza caused by pandemic influenza virus (disorder)</td>
-                  <td>2024-06-15</td>
-                  <td />
-                  <td>Severe</td>
-                  <td></td>
-                </tr>
-                <tr ID="medicalProblem.2">
-                  <td>Severe asthma</td>
-                  <td>01/03/2006</td>
-                  <td />
-                  <td>Severe</td>
-                  <td>Severe asthma (disorder)</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-          <entry typeCode="DRIV">
-            <act classCode="ACT" moodCode="EVN">
-              <templateId root="2.16.840.1.113883.10.22.4.7" />
-              <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
-              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" />
-              <statusCode code="active" />
-              <effectiveTime>
-                <low value="20130305" />
-              </effectiveTime>
-              <entryRelationship typeCode="SUBJ">
-                <observation classCode="OBS" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.10.22.4.8" />
-                  <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
-                  <code code="75326-9" codeSystem="2.16.840.1.113883.6.1" displayName="Problem" />
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240615" />
-                  </effectiveTime>
-                  <value code="719865001" codeSystem="2.16.840.1.113883.6.96" displayName="Influenza caused by pandemic influenza virus (disorder)" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-                  <entryRelationship inversionInd="false" typeCode="REFR">
-                    <observation classCode="OBS" moodCode="EVN">
-                      <templateId root="2.16.840.1.113883.10.22.4.20" />
-                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" />
-                      <statusCode code="completed" />
-                      <value code="active" codeSystem="2.16.840.1.113883.4.642.3.155" displayName="Active" xsi:type="CE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </entryRelationship>
-            </act>
-          </entry>
+  <recordTarget>
+    <patientRole>
+      <id root="2.16.840.1.113883.3.9143.1.1" extension="PID-7ac6997e"></id>
+      <addr>
+        <postalCode>3210</postalCode>
+      </addr>
+      <telecom nullFlavor="NI" />
+      <patient>
+        <name>
+          <given>PSeudoGiven</given>
+          <family>PseudoFamily</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" displayName="Female" />
+        <birthTime value="19960501" />
+      </patient>
+    </patientRole>
+  </recordTarget>
 ```
 {% endraw %}
 
 #### After Stage 2 (Anonymized CDA)
-
 Quasi-identifiers are transformed; removed elements continue to use `nullFlavor="MSK"`. Dates are shifted to match the FHIR Stage 2 example; postalCode generalized to 3 digits.
-
-The Example view of the [CDA EHDS Example Stage 2](https://drive.google.com/file/d/1ZIY-u2jvSmlfqSVrhbCpJx0704_2qY2R/view?usp=drive_link) IPS Document. 
-
-{% raw %}
-```xml
-      <component>
-        <section>
-          <templateId root="2.16.840.1.113883.10.22.3.3" />
-          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" />
-          <title>Problem List</title>
-          <text>
-            <table width="100%">
-              <thead>
-                <tr>
-                  <th>Problem Name</th>
-                  <th>Onset Date</th>
-                  <th>End Date</th>
-                  <th>Severity</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ID="medicalProblem.1">
-                  <td>Influenza caused by pandemic influenza virus (disorder)</td>
-                  <td>2024-09-30</td>
-                  <td />
-                  <td>Severe</td>
-                  <td></td>
-                </tr>
-                <tr ID="medicalProblem.2">
-                  <td>Severe asthma</td>
-                  <td>01/03/2006</td>
-                  <td />
-                  <td>Severe</td>
-                  <td>Severe asthma (disorder)</td>
-                </tr>
-              </tbody>
-            </table>
-          </text>
-          <entry typeCode="DRIV">
-            <act classCode="ACT" moodCode="EVN">
-              <templateId root="2.16.840.1.113883.10.22.4.7" />
-              <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
-              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" />
-              <statusCode code="active" />
-              <effectiveTime>
-                <low value="20240930" />
-              </effectiveTime>
-              <entryRelationship typeCode="SUBJ">
-                <observation classCode="OBS" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.10.22.4.8" />
-                  <id extension="1" root="1.3.6.1.4.1.21367.2011.2.5.5610" />
-                  <code code="75326-9" codeSystem="2.16.840.1.113883.6.1" displayName="Problem" />
-                  <statusCode code="completed" />
-                  <effectiveTime>
-                    <low value="20240930" />
-                  </effectiveTime>
-                  <value code="719865001" codeSystem="2.16.840.1.113883.6.96" displayName="Influenza caused by pandemic influenza virus (disorder)" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-                  <entryRelationship inversionInd="false" typeCode="REFR">
-                    <observation classCode="OBS" moodCode="EVN">
-                      <templateId root="2.16.840.1.113883.10.22.4.20" />
-                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" />
-                      <statusCode code="completed" />
-                      <value code="active" codeSystem="2.16.840.1.113883.4.642.3.155" displayName="Active" xsi:type="CE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-                    </observation>
-                  </entryRelationship>
-                </observation>
-              </entryRelationship>
-            </act>
-          </entry>
-```
-{% endraw %}
 
 Notes:
 - CDA uses `nullFlavor` (e.g., `MSK`) to indicate masked/removed content, whereas FHIR uses the Data Absent Reason extension.
 - Pseudonymized identifiers mirror the FHIR Stage 1/2 examples (`PID-7ac6997e`, `PID-9f8b1ea1`).
 - Dates and postal generalization match the FHIR Stage 2 transformations.
 
+The Example view of the [CDA EHDS Example Stage 2](https://drive.google.com/file/d/1ZIY-u2jvSmlfqSVrhbCpJx0704_2qY2R/view?usp=drive_link) IPS Document. 
 
+{% raw %}
+```xml
+  <recordTarget>
+    <patientRole>
+      <id root="2.16.840.1.113883.3.9143.1.1" extension="PID-7ac6997e"></id>
+      <addr>
+        <postalCode>321</postalCode>
+      </addr>
+      <telecom nullFlavor="MSK" />
+      <patient>
+        <name>
+          <given>PSeudoGiven</given>
+          <family>PseudoFamily</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" displayName="Female" />
+        <birthTime value="1996">
+          <!-- Date-shifted within age-group, birth-date truncated to year-->
+        </birthTime>
+      </patient>
+    </patientRole>
+  </recordTarget>
+```
+{% endraw %}
 

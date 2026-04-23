@@ -198,7 +198,8 @@ Following the standard risk model described in [(ISO/IEC 27559, 2022)](reference
 
 This model provides a valuable framework for understanding the two key components of re-identification risk:
 
-- **Data Risk**: The risk inherent in the data itself, corresponding to <math xmlns="http://www.w3.org/1998/Math/MathML" aria-label="P of identification given threat"><mi>P</mi><mo>(</mo><mi>identification</mi><mo>|</mo><mi>threat</mi><mo>)</mo></math>, denoted as R<sup>d</sup>.
+- **Data Risk**: The risk inherent in the data itself, corresponding to P(identification | threat), denoted as R<sup>d</sup>.
+
 - **Context Risk**: The risk inherent in the data sharing environment, corresponding to P(threat), denoted as R<sup>c</sup>.
 
 While this formula provides the conceptual basis, its practical application differs significantly between the primary privacy models:

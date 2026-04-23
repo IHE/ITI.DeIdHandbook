@@ -5,6 +5,7 @@ Description: """
 The following bundle provides an example view of the sample patient record after applying the approved de-identification methods to the pseudonymized bundle as described in section IPS Data Element Mappings (FHIR). 
 This shows:
 - Date shifting throughout the bundle (e.g. dates associated with problems, procedures, medications, immunizations, allergies, etc.)
+- The Patient's birthdate has been date-shifted forward by 107 days.
 - Data omissions, noting the data is omitted in emptyReason as ‘withheld’ at the section level, and as ‘masked’ in dataAbsentReason at the data element level. 
 """
 * id = "6603561c-2888-4355-9df4-23675f6eb458"
@@ -183,7 +184,7 @@ Usage: #inline
 Instance: ex-Patient-secondaryUse-pandemicIPS-stage-2
 InstanceOf: PatientUvIps
 Description: """
-Stage 2 de-identifaction of the patient where The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked.
+Stage 2 de-identification of the patient where the telecom is masked, the address is reduced to the first 3 digits of the postal code, the general practitioner can be seen as masked, and the birthdate has been date-shifted forward by 107 days.
 """
 Usage: #example
 * id = "ex-Patient-secondaryUse-pandemicIPS-stage-2"
@@ -210,7 +211,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/MedicationStatement-uv-ips"
 * id = "ex-MedicationStatement-secondaryUse-pandemicIPS-stage-2"
 * status = #completed
-* medicationCodeableConcept = $sct#116113006 "Oseltamivir phosphate (substance)"
+* medicationCodeableConcept = $sct#386142008 "Product containing oseltamivir (medicinal product)"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-2)
 * effectiveDateTime = "2024-10-01"
 * dateAsserted = "2024-10-01"
@@ -284,7 +285,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Observation-results-laboratory-pathology-uv-ips"
 * id = "ex-Lab-secondaryUse-pandemicIPS-stage-2"
 * status = #final
-* code = $loinc#109691-6 "Influenza virus A Ag [Measurement] in Nasopharynx"
+* code = $loinc#43874-7 "Influenza virus A Ag [Presence] in Nasopharynx"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-2)
 * effectiveDateTime = "2024-10-30"
 * performer.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
@@ -305,7 +306,7 @@ Usage: #inline
 * vaccineCode.text = "Invluenza Vaccination"
 * patient = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-2)
 * occurrenceDateTime = "2024-08-16"
-* site = $v3-ActSite#LA "left arm"
+* site = $sct#762211005 "Structure of part of left upper limb"
 * route.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * route.extension.valueCode = #masked
 * doseQuantity.value = 0.5
@@ -315,8 +316,7 @@ Usage: #inline
 * performer.actor.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * performer.actor.extension.valueCode = #masked
 * performer.actor.display = "The information is not available due to security, privacy or related reasons." 
-* protocolApplied.targetDisease.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-* protocolApplied.targetDisease.extension.valueCode = #masked
+* protocolApplied.targetDisease = $sct#840539006 "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
 * protocolApplied.doseNumberPositiveInt = 2
 
 Instance: ex-PastPresJob-secondaryUse-pandemicIPS-stage-2

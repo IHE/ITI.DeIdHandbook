@@ -5,7 +5,6 @@ The following bundle provides an example view of the sample patient record after
 This shows:
 - A pseudo-identifier has been applied to the patient resource and replaces the original patient identifier throughout the document.
 - A pseudo-name has been applied to the patient resource and replaces the original patient name throughout the document. Note that a pseudo-name is required as content is not permitted to be omitted or replaced with a null flavor in FHIR patient resources.
-- Birthdate has been date-shifted forward by 107 days.
 """
 Usage: #example
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Bundle-uv-ips"
@@ -21,8 +20,8 @@ Usage: #example
 * entry[=].resource = ex-Patient-secondaryUse-pandemicIPS-stage-1
 * entry[+].fullUrl = "http://example.org/Organization/ex-Organization-secondaryUse-pandemicIPS-stage-1"
 * entry[=].resource = ex-Organization-secondaryUse-pandemicIPS-stage-1
-* entry[+].fullUrl = "http://example.org/Practitioner/ex-Practitioner-secondaryUse-pandemicIPS-stage-1"
-* entry[=].resource = ex-Practitioner-secondaryUse-pandemicIPS-stage-1
+* entry[+].fullUrl = "http://example.org/Practitioner/ex-Practitioner-IPS-SimoneHeps"
+* entry[=].resource = ex-Practitioner-IPS-SimoneHeps
 * entry[+].fullUrl = "http://example.org/Practitioner/ex-Practitioner2-secondaryUse-pandemicIPS-stage-1"
 * entry[=].resource = ex-Practitioner2-secondaryUse-pandemicIPS-stage-1
 * entry[+].fullUrl = "http://example.org/MedicationStatement/ex-MedicationStatement-secondaryUse-pandemicIPS-stage-1"
@@ -81,7 +80,7 @@ Usage: #inline
 * type = $loinc#60591-5
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * date = "2024-07-01T00:00:00Z"
-* author = Reference(Practitioner/ex-Practitioner-secondaryUse-pandemicIPS-stage-1)
+* author = Reference(Practitioner/ex-Practitioner-IPS-SimoneHeps)
 * title = "International Patient Summary"
 * confidentiality = #N
 * custodian = Reference(Organization/ex-Organization-secondaryUse-pandemicIPS-stage-1)
@@ -227,40 +226,40 @@ Usage: #example
 * telecom.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * telecom.extension.valueCode = #masked
 * gender = #female
-* birthDate = "1996-08-16"
+* birthDate = "1996-05-01"
 * deceasedDateTime = "2024-10-15"
 * address.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * address.extension.valueCode = #masked
 * deceasedDateTime = "2024-06-30"
-* generalPractitioner = Reference(Practitioner/ex-Practitioner2-secondaryUse-pandemicIPS-stage-1) "Yaser, Joseph"
+* generalPractitioner = Reference(Practitioner/ex-Practitioner-IPS-SimoneHeps) "Heps, Simone"
 * maritalStatus = $v3-MaritalStatus#S "Never Married"
 * contact.relationship = $v2-0131#U
 * contact.relationship.text = "Friend of family"
 * contact.name.text = "Joe Smith"
 
-Instance: ex-Practitioner-secondaryUse-pandemicIPS-stage-1
-InstanceOf: PractitionerUvIps
-Usage: #inline
-* meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Practitioner-uv-ips"
-* id = "ex-Practitioner-secondaryUse-pandemicIPS-stage-1"
-* identifier[+].use = #official
-* identifier[=].system = "urn:oid:2.16.528.1.1007.3.1"
-* identifier[=].value = "874635264"
-* identifier[+].use = #usual
-* identifier[=].system = "urn:oid:2.16.840.1.113883.2.4.6.3"
-* identifier[=].value = "567IUI51C154"
-* name.use = #official
-* name.text = "Heps Simone MD"
-* name.family = "Heps"
-* name.given = "Simone"
-* name.suffix = "MD"
-* address.use = #work
-* address.line = "Galapagosweg 91"
-* address.city = "Den Burg"
-* address.postalCode = "9105 PZ"
-* address.country = "NLD"
-* gender = #female
-* birthDate = "1971-11-07"
+//Instance: ex-Practitioner-IPS-SimoneHeps
+//InstanceOf: PractitionerUvIps
+//Usage: #inline
+//* meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Practitioner-uv-ips"
+//* id = "ex-Practitioner-IPS-SimoneHeps"
+//* identifier[+].use = #official
+//* identifier[=].system = "urn:oid:2.16.528.1.1007.3.1"
+//* identifier[=].value = "874635264"
+//* identifier[+].use = #usual
+//* identifier[=].system = "urn:oid:2.16.840.1.113883.2.4.6.3"
+//* identifier[=].value = "567IUI51C154"
+//* name.use = #official
+//* name.text = "Heps Simone MD"
+//* name.family = "Heps"
+//* name.given = "Simone"
+//* name.suffix = "MD"
+//* address.use = #work
+//* address.line = "Galapagosweg 91"
+//* address.city = "Den Burg"
+//* address.postalCode = "9105 PZ"
+//* address.country = "NLD"
+//* gender = #female
+//* birthDate = "1971-11-07"
 
 Instance: ex-Practitioner2-secondaryUse-pandemicIPS-stage-1
 InstanceOf: PractitionerUvIps
@@ -277,7 +276,7 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/MedicationStatement-uv-ips"
 * id = "ex-MedicationStatement-secondaryUse-pandemicIPS-stage-1"
 * status = #completed
-* medicationCodeableConcept = $sct#116113006 "Oseltamivir phosphate (substance)"
+* medicationCodeableConcept = $sct#386142008 "Product containing oseltamivir (medicinal product)"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * effectiveDateTime = "2024-06-16"
 * dateAsserted = "2024-06-16"
@@ -361,10 +360,10 @@ Usage: #inline
 * meta.profile = "http://hl7.org/fhir/uv/ips/StructureDefinition/Observation-results-laboratory-pathology-uv-ips"
 * id = "ex-Lab-secondaryUse-pandemicIPS-stage-1"
 * status = #final
-* code = $loinc#109691-6 "Influenza virus A Ag [Measurement] in Nasopharynx"
+* code = $loinc#43874-7 "Influenza virus A Ag [Presence] in Nasopharynx"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * effectiveDateTime = "2024-06-15"
-* performer = Reference(Practitioner/ex-Practitioner-secondaryUse-pandemicIPS-stage-1)
+* performer = Reference(Practitioner/ex-Practitioner-IPS-SimoneHeps)
 * valueQuantity.value = 13.2
 * valueQuantity.unit = "g/dL"
 * interpretation = $v3-ObservationInterpretation#H "High"
@@ -380,13 +379,13 @@ Usage: #inline
 * vaccineCode.text = "Invluenza Vaccination"
 * patient = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * occurrenceDateTime = "2024-05-01"
-* site = $v3-ActSite#LA "left arm"
-* route = $v3-RouteOfAdministration#IM "Injection, intramuscular"
+* site = $sct#762211005 "Structure of part of left upper limb"
+* route = $sct#78421000 "Intramuscular route"
 * doseQuantity.value = 0.5
 * doseQuantity.unit = "mL"
 * performer.function = $v2-0443#OP
 * performer.actor = Reference(Practitioner/ex-Practitioner2-secondaryUse-pandemicIPS-stage-1)
-* protocolApplied.targetDisease = $sct#719865001 "Influenza caused by pandemic influenza virus (disorder)"
+* protocolApplied.targetDisease = $sct#840539006 "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
 * protocolApplied.doseNumberPositiveInt = 2
 
 Instance: ex-PastPresJob-secondaryUse-pandemicIPS-stage-1
@@ -403,7 +402,7 @@ Usage: #inline
 * effectivePeriod.start = "2016-03-10"
 * effectivePeriod.end = "2020-04-14"
 * issued = "2024-06-06T13:28:53+02:00"
-* performer = Reference(Practitioner/ex-Practitioner-secondaryUse-pandemicIPS-stage-1)
+* performer = Reference(Practitioner/ex-Practitioner-IPS-SimoneHeps)
 * valueCodeableConcept = $ISCO08#5321 "Health Care Assistants"
 * component.code = $loinc#86188-0 "History of Occupation Industry"
 * component.valueCodeableConcept = $ISICRev4#871 "Residential nursing care facilities"
@@ -417,7 +416,7 @@ Usage: #inline
 * code = $loinc#82810-3 "Pregnancy status"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * effectiveDateTime = "2014-02-01"
-* performer = Reference(Practitioner/ex-Practitioner-secondaryUse-pandemicIPS-stage-1)
+* performer = Reference(Practitioner/ex-Practitioner-IPS-SimoneHeps)
 * valueCodeableConcept = $sct#77386006 "Pregnant"
 * hasMember = Reference(Observation/ex-EDD-secondaryUse-pandemicIPS-stage-1)
 
@@ -430,7 +429,7 @@ Usage: #inline
 * code = $loinc#11778-8 "Delivery date Estimated"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * effectiveDateTime = "2024-06-02"
-* performer = Reference(Practitioner/ex-Practitioner-secondaryUse-pandemicIPS-stage-1)
+* performer = Reference(Practitioner/ex-Practitioner-IPS-SimoneHeps)
 * valueDateTime = "2024-12-01"
 
 Instance: ex-DeviceUse-secondaryUse-pandemicIPS-stage-1
@@ -460,7 +459,7 @@ Usage: #inline
 * code = $loinc#85353-1 "Vital signs, weight, height, head circumference, oxygen saturation and BMI panel"
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * effectiveDateTime = "2024-06-15T09:44:00+06:00"
-* performer = Reference(Practitioner/ex-Practitioner-secondaryUse-pandemicIPS-stage-1)
+* performer = Reference(Practitioner/ex-Practitioner-IPS-SimoneHeps)
 * hasMember[+] = Reference(Observation/ex-VitalSigns-Height-secondaryUse-pandemicIPS-stage-1)
 * hasMember[+] = Reference(Observation/ex-VitalSigns-Weight-secondaryUse-pandemicIPS-stage-1)
 * hasMember[+] = Reference(Observation/ex-VitalSigns-BMI-secondaryUse-pandemicIPS-stage-1)
@@ -572,5 +571,5 @@ Usage: #inline
 * subject = Reference(Patient/ex-Patient-secondaryUse-pandemicIPS-stage-1)
 * effectiveDateTime = "2024-06-16"
 * date = "2024-06-16"
-* assessor = Reference(Practitioner/ex-Practitioner-secondaryUse-pandemicIPS-stage-1)
+* assessor = Reference(Practitioner/ex-Practitioner-IPS-SimoneHeps)
 * finding.itemCodeableConcept = $sct#365112008 "Finding of walking aid use (finding)"
