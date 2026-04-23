@@ -210,7 +210,8 @@ Usage: #inline
 Instance: ex-Patient-secondaryUse-pandemicIPS-stage-1
 InstanceOf: PatientUvIps
 Description: """
-Stage 1 de-identification of the patient. Stage 1 applies reversible pseudonymization to direct identifiers needed for linkage (decedent name and identifier).
+Stage 1 de-identification of the patient. 
+Stage 1 applies reversible pseudonymization to direct identifiers needed for linkage (decedent name and identifier).
 """
 Usage: #example
 * id = "ex-Patient-secondaryUse-pandemicIPS-stage-1"

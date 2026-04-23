@@ -555,6 +555,7 @@ Example view of the Stage 2 Pseudonymized IPS Bundle document for the pandemic p
 
 **Stage 2 Pseudonymized Patient Resource**
 The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked. 
+
 {% fragment Patient/ex-Patient-secondaryUse-pandemicIPS-stage-2 JSON %} 
 
 
@@ -591,6 +592,7 @@ This example VRDR Death Certificate represents the origional record.
 
 **Origional Patient Resource**
 This is a valid VRDR Decedent Resource with all known minimum data provided
+
 {% fragment Patient/ex-Decedent-pandemicIPS-VRDR-stage-0 JSON %} 
 
 
@@ -626,7 +628,8 @@ Notes:
 - Identifiers are irreversibly pseudonymized while preserving referential integrity within the bundle.
 
 **Stage 2 Pseudonymized Patient Resource**
-The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked. 
+The telecom is masked, the address is reduced to the first 3 didgets of the postal code, and the general pratitioner can be seen as masked.
+
 {% fragment Patient/ex-Decedent-pandemicIPS-VRDR-stage-2 JSON %} 
 
 ### CDA Example
