@@ -316,7 +316,6 @@ Usage: #inline
 * performer.actor.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * performer.actor.extension.valueCode = #masked
 * performer.actor.display = "The information is not available due to security, privacy or related reasons." 
-* protocolApplied.targetDisease.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
 * protocolApplied.targetDisease = $sct#840539006 "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
 * protocolApplied.doseNumberPositiveInt = 2
 
