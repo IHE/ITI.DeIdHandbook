@@ -79,18 +79,13 @@ This data flow implements the methodology’s end-to-end analysis described in [
 The following diagram from the EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts the EHDS user journey for the full process, highlighting the areas within the process that address data minimization, pseudonymization and anonymization:
 
 <figure>
-  <img src="ehds-journey.png" />
+  <img src="journey.jpg" />
   <figcaption><strong>Figure: EHDS User Journey</strong></figcaption>
   </figure>
 
 Once a Data Permit is granted, the third phase, Data Preparation, begins. The HDAB prepares the data set according to the permit content and de-identification to be applied. The EHDS2 M7.2 Draft guideline on data minimisation, pseudonymisation, anonymisation and synthetic data depicts a High-level architecture for safe disclosure of anonymized data, processing results, and synthetic data:
 
 ### Residual Risks and Controls
-
-<figure>
-  <img src="hdab-high-level-architecture.jpeg" />
-  <figcaption><strong>Figure: HDAB High-level Architecture for Safe Disclosure</strong></figcaption>
-</figure>
 
 #### Data Source
 
@@ -593,7 +588,7 @@ This example VRDR Death Certificate represents the origional record.
 **Origional Patient Resource**
 This is a valid VRDR Decedent Resource with all known minimum data provided
 
-{% fragment Patient/ex-Decedent-pandemicIPS-VRDR-stage-0 JSON %} 
+{% fragment Patient/ex-Decedent-pandemicIPS-VRDR JSON %} 
 
 
 ##### Pseudonymized VRDR Death Certificate Document Bundle (Stage 1)
