@@ -99,6 +99,6 @@
 
 The authoring group would like the express gratitude and recognition to the following for their valuable insights and assistance in creating this handbook.
 
-First Revision: Geoff Pascoe, Robert Horn, Vassil Peytchev, Charles Parisot, Lisa Nelson, John Moehrke, Amit Popat, Dan Trainor, Illa Fortunov, Jennifer Puyenbroek, Karen Witting, Landen Bain, Manuel Metz, and Mick Talley 
+First Revision: Amit Popat, Charles Parisot, Dan Trainor, Geoff Pascoe, Illa Fortunov, Jennifer Puyenbroek, John Moehrke, Karen Witting, Landen Bain, Lisa Nelson, Manuel Metz, Mick Talley, Robert Horn, and Vassil Peytchev
 
-Second Revision: Alan Zhang, John Moehrke, Mary Jungers, Jose Costa Teixeira, Andrea Fourquet, Lori Fourquet, Mick Talley, Martin Rosner, Christopher Melo, Laura Bright, Rada Hussein
+Second Revision: Alan Zhang, Andrea Fourquet, Christopher Melo, Essien Ge, John Moehrke, Jose Costa Teixeira, Laura Bright, Lori Fourquet, Mary Jungers, Martin Rosner, Mick Talley, and Rada Hussein.
