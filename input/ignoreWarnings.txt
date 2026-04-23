@@ -28,7 +28,7 @@ This element does not match any known slice defined in the profile http://hl7.or
 # This is an example system and does not have a defintion 
 No definition could be found for URL value 'http://nchs.cdc.gov/vrdr_id'
 
-# the duplicate anchors are intentional  
+# the duplicate anchors are intentional   
 	The html source has duplicate anchor Ids: Patient_ex-Patient-secondaryUse-pandemicIPS-stage-1,ex-Patient-secondaryUse-pandemicIPS-stage-1,hcex-Patient-secondaryUse-pandemicIPS-stage-1
 	The html source has duplicate anchor Ids: Patient_ex-Patient-secondaryUse-pandemicIPS,ex-Patient-secondaryUse-pandemicIPS,hcex-Patient-secondaryUse-pandemicIPS
 
