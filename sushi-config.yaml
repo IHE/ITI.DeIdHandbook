@@ -4,16 +4,16 @@
 # e.g. ihe.iti.mhds, or ihe.iti.basicaudit
 id: ihe.iti.deid
 canonical: https://profiles.ihe.net/ITI/DeId
-version: 0.0.1-current
+version: 2.0.0
 name: IHE_ITI_DeId
-title: "De-Identification Profile"
-description: This profile defines the requirements for the de-identification of health information.
-releaseLabel: ci-build
+title: "De-Identification Handbook"
+description: This handbook defines the requirements for the de-identification of health information.
+#releaseLabel: ci-build
 #releaseLabel: ballot
-#releaseLabel: trial-use
+releaseLabel: trial-use
 #releaseLabel: release
 #date: 2022-01-02
-status: draft
+status: active
 publisher:
   ## Find your domain contact on the https://www.ihe.net/ihe_domains page
   - name: IHE IT Infrastructure Technical Committee
