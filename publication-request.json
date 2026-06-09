@@ -10,7 +10,7 @@
     "first": true,
 	"title" : "De-Identification Handbook",
     "ci-build" : "https://build.fhir.org/ig/IHE/ITI.DeIdHandbook/branches/main/index.html",
-    "registry-description" : "This handbook defines the requirements for the de-identification of health information",
+    "registry-description" : "This handbook defines the requirements for the de-identification of health information.",
     "registry-country" : "USA",
     "registry-authority" : "IHE",
 	"category" : "De-Identification",
