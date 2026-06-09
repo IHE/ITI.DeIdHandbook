@@ -1,7 +1,7 @@
 {
     "package-id" : "ihe.iti.deid",
     "version" : "2.0.0-comment",
-    "path" : "https://profiles.ihe.net/ITI/DeId/1.0.0-comment",
+    "path" : "https://profiles.ihe.net/ITI/DeId/2.0.0-comment",
     "mode" : "milestone",
     "status" : "ballot",
     "sequence" : "Publication",
@@ -10,6 +10,9 @@
     "first": true,
 	"title" : "De-Identification Handbook",
     "ci-build" : "https://build.fhir.org/ig/IHE/ITI.DeIdHandbook/branches/main/index.html",
-    "category" : "De-Identification",
+    "registry-description" : "This handbook defines the requirements for the de-identification of health information",
+    "registry-country" : "USA",
+    "registry-authority" : "IHE",
+	"category" : "De-Identification",
     "introduction" : "This handbook defines the requirements for the de-identification of health information."
   }
