@@ -1,15 +1,15 @@
 {
-    "package-id" : "{pid} -- ihe.domain.profile",
-    "version" : "{version to release}",
-    "path" : "{path} -- https://profiles.ihe.net/Domain/Profile/1.0.0",
+    "package-id" : "ihe.iti.deid",
+    "version" : "2.0.0-comment",
+    "path" : "https://profiles.ihe.net/ITI/DeId/1.0.0-comment",
     "mode" : "milestone",
-    "status" : "release",
-    "sequence" : "Releases",
-    "desc" : "{desc of release} (optional)",
-    "descmd" : "{markdown desc of release} (optional)",
-    "changes" : "{relative link to description of changes} (optional)",
-    "title" : "{title} (only for first release)",
-    "ci-build" : "{link to ci-build location} (only for first release) -- http://build.fhir.org/ig/IHE/Profile",
-    "category" : "{category} (only for first release)",
-    "introduction" : "{intro} (only for first release)"
+    "status" : "ballot",
+    "sequence" : "Publication",
+    "desc" : "Public-Comment",
+    "changes" : "issues.html",
+    "first": true,
+	"title" : "De-Identification Handbook",
+    "ci-build" : "https://build.fhir.org/ig/IHE/ITI.DeIdHandbook/branches/main/index.html",
+    "category" : "De-Identification",
+    "introduction" : "This handbook defines the requirements for the de-identification of health information."
   }
