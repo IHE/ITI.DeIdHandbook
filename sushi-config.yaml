@@ -4,13 +4,13 @@
 # e.g. ihe.iti.mhds, or ihe.iti.basicaudit
 id: ihe.iti.deid
 canonical: https://profiles.ihe.net/ITI/DeId
-version: 2.0.0
+version: 2.0.0-comment
 name: IHE_ITI_DeId
 title: "De-Identification Handbook"
 description: This handbook defines the requirements for the de-identification of health information.
 #releaseLabel: ci-build
-#releaseLabel: ballot
-releaseLabel: trial-use
+releaseLabel: ballot
+#releaseLabel: trial-use
 #releaseLabel: release
 #date: 2022-01-02
 status: active
