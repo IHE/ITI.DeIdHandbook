@@ -14,5 +14,5 @@
     "registry-country" : "USA",
     "registry-authority" : "IHE",
 	"category" : "De-Identification",
-    "introduction" : "This handbook defines the requirements for the de-identification of health information."
+    "introduction" : "This De-Identifaction Handbook defines the requirements for the de-identification of health information."
   }
