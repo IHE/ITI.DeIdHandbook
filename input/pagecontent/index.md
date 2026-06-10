@@ -14,7 +14,7 @@ This guide is organized into the following sections:
 
 1. [Introduction to This Handbook](intro.html)
 2. [Glossary](glossary.html)
-3. [De-Identification, Pseudonymization, and Relinking](concepts.html)
+3. [Concepts](concepts.html)
    - [Navigating the Complexity of Privacy Concepts](concepts.html#navigating-the-complexity-of-privacy-concepts)
    - [Identifiability](concepts.html#identifiability)
    - [De-Identification, Pseudonymization, and Anonymization Explained](concepts.html#de-identification-pseudonymization-and-anonymization-explained)
@@ -47,7 +47,7 @@ This guide is organized into the following sections:
    - [HL7 2 Examples](hl7-example.html)
    - [Family Planning](family-planning.html)
    - [IPS EHDS2](ips-ehds-example.html)
-9. Other
+10. Other
    - [Download and Analysis](download.html)
    - [Significant Changes and Issues](issues.html)
 11. [References](references.html)
@@ -55,8 +55,7 @@ This guide is organized into the following sections:
 See also the [Table of Contents](toc.html) and the index of [Artifacts](artifacts.html) defined as part of this implementation guide.
 
 ### Conformance Expectations
-
-IHE uses the normative words: Shall, Should, and May according to [standards conventions](https://profiles.ihe.net/GeneralIntro/ch-E.html).
+IHE uses the normative words: "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" according to [standards conventions](https://profiles.ihe.net/GeneralIntro/ch-E.html).
 
 #### Must Support
 
