@@ -9,6 +9,10 @@
 
 **data custodian**: person or entity that has custody, control or possession of electronically stored information (Source: [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559)).
 
+*Note 1:* The GDPR equivalent is "controller", defined as the natural or legal person which determines the purposes and means of the processing of personal data ([GDPR Art. 4(7)](https://gdpr-info.eu/art-4-gdpr/)). While a data custodian emphasizes custody or possession of data, a controller emphasizes decision-making authority over its processing.
+
+*Note 2:* The PIPL equivalent is "personal information processor", defined as an organization or individual that independently determines the purpose, means, and other matters of processing personal information ([PIPL Art. 73(1)](http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559_3.htm)).
+
 **data linking**: matching and combining data from multiple databases (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
 *Note 1*: The term "data linking" is identical to the term "linking" defined in the [(ISO/IEC 20889, 2018)](references.html#ISO20889).
