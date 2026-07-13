@@ -7,9 +7,13 @@
 
 **anonymous identifier**: identifier of a person which does not allow the identification of the natural person(Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
+**data custodian**: person or entity that has custody, control or possession of electronically stored information (Source: [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559)).
+
 **data linking**: matching and combining data from multiple databases (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
 *Note 1*: The term "data linking" is identical to the term "linking" defined in the [(ISO/IEC 20889, 2018)](references.html#ISO20889).
+
+**data recipient**: person or organization by, with or to whom data is accessed, shared or released (Source: [(ISO/IEC 27559, 2022)](references.html#ISOIEC27559)).
 
 **data subject**: person to whom data refer (Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
