@@ -3,7 +3,7 @@
 
 *Note 1:* The term is defined in a similar way under the PIPL ([Art. 73(4)](http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559_3.htm)).
 
-*Note 2:* An absolute concept of anonymization is not feasible in practice. This book interprets it as a relative concept, where the risk of re-identification, even with reasonable additional information, is minimized to a very low level.
+*Note 2:* An absolute concept of anonymization is not feasible in practice. This book interprets it as a relative concept, where the risk of re-identification, even with reasonable additional information, is minimized to a very low level. This is consistent with the [EDPB Guidelines 01/2025 on Anonymisation](references.html#edpb2025anon), which hold that anonymity is entity-specific: whether data is anonymous depends on whether an identified or identifiable natural person can be singled out by a given recipient, considering the means reasonably likely to be used. Under this approach, the same dataset may be anonymous for one entity but remain personal data for another.
 
 **anonymous identifier**: identifier of a person which does not allow the identification of the natural person(Source: [(ISO 25237, 2017)](references.html#ISO25237)).
 
