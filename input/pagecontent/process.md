@@ -230,7 +230,21 @@ When using k-anonymity, data risk is calculated by analyzing the size of the "eq
 - **Proportion of higher risk records (R<sub>a</sub><sup>d</sup>)**: The proportion of records that have a re-identification probability higher than a threshold τ. R<sub>a</sub><sup>d</sup> = (1 / n) Σ<sub>j∈J</sub> f<sub>j</sub> × I(θ<sub>j</sub> &gt; τ)
 
 
-The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metrics R<sub>a</sub><sup>d</sup>, R<sub>b</sub><sup>d</sup>, R<sub>c</sub><sup>d</sup> become the value for R<sup>d</sup> used in the overall risk calculation. The most challenging aspect of calculating re-identification risk is estimating the population equivalence class size F<sub>j</sub>. A practical approach to avoid complex estimation is to use f<sub>j</sub> (the sample equivalence class size) even when the attacker does not know if the target is in the sample. While this approach overestimates the data risk, it may be acceptable for large dataset releases. However, in healthcare settings with relatively small datasets, simply using f<sub>j</sub> as a substitute is typically not acceptable due to the excessive conservatism it introduces. 
+The choice of which metric to use depends on the data sharing model:
+
+- **Public release**: Use the **maximum probability of re-identification (R<sub>b</sub><sup>d</sup>)**. Because the data is available without restriction and the possibility of attack is high, no single record should exceed the acceptable threshold.
+- **Non-public release**: Use the **strict average probability of re-identification (R<sub>c</sub><sup>d</sup>)**. Under controlled sharing with contractual safeguards, it is generally acceptable to measure risk as the average across all records. However, "strict average" means this metric should be calculated using the **population uniqueness** (based on F<sub>j</sub>) rather than sample uniqueness (f<sub>j</sub>), because the attacker in a non-public setting typically does not know whether a specific target is in the sample. Relying on sample uniqueness in this context would overestimate risk and lead to unnecessary data distortion.
+
+    **Uniqueness** is the proportion of records in the sample that are both sample unique and population unique [(IPC Ontario, 2025)](references.html#IPC_ONTARIO). A record is **sample unique** if it is the only record in the released dataset with a particular combination of quasi-identifiers (f<sub>j</sub> = 1). A record is **population unique** if it is the only record in the entire population with that combination (F<sub>j</sub> = 1). If a record meets both criteria, it is easier to match with a real person.
+
+    The strict average risk is calculated in two steps [(IPC Ontario, 2025)](references.html#IPC_ONTARIO):
+
+    1. **Evaluate Uniqueness**: If uniqueness is below the selected threshold, proceed to step 2. If uniqueness is above the threshold, the dataset is considered insufficiently protected—additional de-identification transformations are required and uniqueness must be reassessed.
+    2. **Evaluate Average Risk**: If average risk is below the acceptable threshold, the overall re-identification risk is considered very low. If not, additional transformations or control measures are required, after which the assessment returns to this step.
+
+    A dataset is considered to have a very low disclosure risk only when both conditions are satisfied: uniqueness is very low **and** average risk is very low.
+
+The foundational methods for these calculations are detailed in [(El Emam, K. 2013)](references.html#EL_EMAM_GUIDE). The selected metrics R<sub>a</sub><sup>d</sup>, R<sub>b</sub><sup>d</sup>, R<sub>c</sub><sup>d</sup> become the value for R<sup>d</sup> used in the overall risk calculation. The most challenging aspect of calculating re-identification risk is estimating the population equivalence class size F<sub>j</sub>. A practical approach to avoid complex estimation is to use f<sub>j</sub> (the sample equivalence class size) even when the attacker does not know if the target is in the sample. While this approach overestimates the data risk, it may be acceptable for large dataset releases. However, in healthcare settings with relatively small datasets, simply using f<sub>j</sub> as a substitute is typically not acceptable due to the excessive conservatism it introduces.
 
 ***For Differential Privacy:***
 
