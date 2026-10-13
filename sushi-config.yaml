@@ -4,13 +4,13 @@
 # e.g. ihe.iti.mhds, or ihe.iti.basicaudit
 id: ihe.iti.deid
 canonical: https://profiles.ihe.net/ITI/DeId
-version: 2.0.0-comment
+version: 2.0.0
 name: IHE_ITI_DeId
 title: "De-Identification Handbook"
 description: This handbook defines the requirements for the de-identification of health information.
 #releaseLabel: ci-build
-releaseLabel: ballot
-#releaseLabel: trial-use
+#releaseLabel: ballot
+releaseLabel: trial-use
 #releaseLabel: release
 #date: 2022-01-02
 status: active
@@ -80,7 +80,7 @@ dependencies:
   hl7.fhir.uv.ips:
     id: hl7ips
   #  uri: http://hl7.org/fhir/uv/ips/ImplementationGuide/hl7.fhir.uv.ips
-    version: 2.0.0
+    version: 2.0.1
   ihe.pcc.odh: 
     id: ihepccodh
     version: 1.0.0 

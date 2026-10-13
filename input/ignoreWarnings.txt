@@ -35,3 +35,8 @@ No definition could be found for URL value 'http://nchs.cdc.gov/vrdr_id'
 # The ODH Value sets do not properly deffine the codes at this time. PCC is currently updating the ODH profile to fix this. Until then these warnings do not apply
 None of the codings provided are in the value set 'industries types' (https://profiles.ihe.net/PCC/ODH/ValueSet/odf-industriesVS|1.0.0), and a coding is recommended to come from this value set (codes = https://profiles.ihe.net/PCC/ODH/CodeSystem/ISCO08#5321)
 None of the codings provided are in the value set 'industries types' (https://profiles.ihe.net/PCC/ODH/ValueSet/odf-industriesVS|1.0.0), and a coding is recommended to come from this value set (codes = https://profiles.ihe.net/PCC/ODH/CodeSystem/ISICRev4#871)
+
+# No OID's assigned yet
+The resource CodeSystem/DeIdentificationEntityType should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
+The resource ValueSet/DeIdentificationEntityTypeVS should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
+The resource ValueSet/IHE.BasicAudit.DeIdentification.Subtype should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
