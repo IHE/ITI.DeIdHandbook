@@ -10,8 +10,8 @@ title: "De-Identification Handbook"
 description: This handbook defines the requirements for the de-identification of health information.
 #releaseLabel: ci-build
 #releaseLabel: ballot
-releaseLabel: trial-use
-#releaseLabel: release
+#releaseLabel: trial-use
+releaseLabel: release
 #date: 2022-01-02
 status: active
 publisher:

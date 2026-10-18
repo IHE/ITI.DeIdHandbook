@@ -3,7 +3,7 @@
     "version" : "2.0.0",
     "path" : "https://profiles.ihe.net/ITI/DeId/2.0.0",
     "mode" : "milestone",
-    "status" : "trial-use",
+    "status" : "normative",
     "sequence" : "Publication",
     "desc" : "This De-Identification Handbook defines the requirements for the de-identification of health information.",
     "changes" : "issues.html",
